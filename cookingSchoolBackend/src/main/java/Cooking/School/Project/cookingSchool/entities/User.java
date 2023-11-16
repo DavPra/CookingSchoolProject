@@ -31,6 +31,8 @@ public class User {
 
     private String mobile;
 
+    private String email;
+
     private String password;
 
     private boolean isAdmin;
@@ -45,8 +47,10 @@ public class User {
         this.lastname = lastname;
         this.address = address;
         this.mobile = mobile;
+        this.email = email;
         this.password = password;
         this.isAdmin = isAdmin;
+
     }
 
     public Long getId() {
@@ -103,5 +107,21 @@ public class User {
 
     public void setAdmin(boolean admin) {
         isAdmin = admin;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Tue Nov 14 16:55:55 CET 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018b-ce8b-e14a-00000136c780 
-on database directory memory:C:\Users\david\Desktop\CookingSchool\42fe9a43-3801-4cc0-9306-541f04656841 with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528 
-Loaded from file:/C:/Users/david/.m2/repository/org/apache/derby/derby/10.16.1.1/derby-10.16.1.1.jar
+Thu Nov 16 22:46:42 CET 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018b-da19-bf73-000003753b58 
+on database directory memory:/Users/stellab/Documents/webdev/codersbay/cookingschool/local with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@4e0e2f2a 
+Loaded from file:/Users/stellab/.m2/repository/org/apache/derby/derby/10.16.1.1/derby-10.16.1.1.jar
 java.vendor=Oracle Corporation
 java.runtime.version=20.0.2+9-78
-user.dir=C:\Users\david\Desktop\cookingschool
-os.name=Windows 10
-os.arch=amd64
-os.version=10.0
+user.dir=/Users/stellab/Documents/webdev/codersbay/cookingschool
+os.name=Mac OS X
+os.arch=aarch64
+os.version=14.0
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
