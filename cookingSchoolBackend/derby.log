@@ -1,8 +1,8 @@
 ----------------------------------------------------------------
-Fri Nov 17 14:26:05 CET 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018b-dd75-c647-000001f51230 
+Fri Nov 17 20:26:17 CET 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.17.1.0 - (1913217): instance a816c00e-018b-debf-8c58-0000035b5f18 
 on database directory memory:/Users/stellab/Documents/webdev/codersbay/cookingschool/cookingSchoolBackend/local with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@4e0e2f2a 
-Loaded from file:/Users/stellab/.m2/repository/org/apache/derby/derby/10.16.1.1/derby-10.16.1.1.jar
+Loaded from file:/Users/stellab/.m2/repository/org/apache/derby/derby/10.17.1.0/derby-10.17.1.0.jar
 java.vendor=Oracle Corporation
 java.runtime.version=20.0.2+9-78
 user.dir=/Users/stellab/Documents/webdev/codersbay/cookingschool/cookingSchoolBackend
