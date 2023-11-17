@@ -1,12 +1,10 @@
 package Cooking.School.Project.cookingSchool.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "recipes")
@@ -46,13 +44,18 @@ public class Recipe {
     private String preparation;
 
     //TODO checken ob eigene Entity sinnvoll wäre mit one-to-many auf recipe?
-    private List<String> categories;
+    @ElementCollection
+    private Set<String> categories;
+
+    @ManyToOne
+    @JoinColumn(name = "courseId")
+    private Course course;
 
     public Recipe(){
 
     }
 
-    public Recipe(Long recipeId, String title, String description, int difficulty, String duration, String ingredients, String preparation, List<String> categories) {
+    public Recipe(Long recipeId, String title, String description, int difficulty, String duration, String ingredients, String preparation, Set<String> categories, Course course) {
         this.recipeId = recipeId;
         this.title = title;
         this.description = description;
@@ -61,6 +64,7 @@ public class Recipe {
         this.ingredients = ingredients;
         this.preparation = preparation;
         this.categories = categories;
+        this.course = course;
     }
 
     public Long getRecipeId() {
@@ -119,11 +123,19 @@ public class Recipe {
         this.preparation = preparation;
     }
 
-    public List<String> getCategories() {
+    public Set<String> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<String> categories) {
+    public void setCategories(Set<String> categories) {
         this.categories = categories;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }

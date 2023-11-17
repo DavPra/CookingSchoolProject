@@ -1,10 +1,11 @@
 package Cooking.School.Project.cookingSchool.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Table(name = "users")
 @Entity
@@ -36,6 +37,11 @@ public class User {
     private String password;
 
     private boolean isAdmin;
+
+
+    @ManyToMany(mappedBy = "users")
+    private Set<Course> courses = new HashSet<>();
+
 
     public User(){
 
@@ -123,5 +129,13 @@ public class User {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Set<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
     }
 }

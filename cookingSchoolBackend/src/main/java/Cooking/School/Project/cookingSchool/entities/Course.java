@@ -1,12 +1,10 @@
 package Cooking.School.Project.cookingSchool.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -39,8 +37,18 @@ public class Course {
 
    //TODO attendants int?
 
+    @ManyToMany
+    @JoinTable(
+            name = "user_course",
+            joinColumns = @JoinColumn(name = "courseId"),
+            inverseJoinColumns = @JoinColumn(name = "userId"))
+    private Set<User> users = new HashSet<>();
 
-   public Course(){
+    @OneToMany(mappedBy = "course")
+    private Set<Recipe> recipes = new HashSet<>();
+
+
+    public Course(){
 
    }
 
