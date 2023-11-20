@@ -1,9 +1,12 @@
 package Cooking.School.Project.cookingSchool.Services;
 
 import Cooking.School.Project.cookingSchool.entities.Course;
+import Cooking.School.Project.cookingSchool.exceptions.PrimaryIdNullOrEmptyException;
 import Cooking.School.Project.cookingSchool.repository.CoursesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 @Service
 public class CourseService {
@@ -30,6 +33,20 @@ public class CourseService {
     public Course updateCourse(Course course){
         coursesRepository.save(course);
         return course;
+    }
+
+    public boolean createCourse(Long courseId, String title, String description, String teacher, LocalDateTime date) {
+
+
+         Course course = new Course();
+            course.setTitle(title);
+            course.setDescription(description);
+            course. setTeacher(teacher);
+            course.setDate(date);
+
+            coursesRepository.save(course);
+            return true;
+
     }
 
 }
