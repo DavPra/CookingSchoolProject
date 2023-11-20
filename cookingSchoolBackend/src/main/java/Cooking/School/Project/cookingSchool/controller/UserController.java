@@ -13,6 +13,7 @@ public class UserController {
 
 
 
+    //TEST
     @PostMapping("/users")
     public User addUser(@RequestBody User user){
         return  userService.addUser(user);
@@ -32,5 +33,7 @@ public class UserController {
     public User updateUser(@RequestBody User user){
         return userService.updateUser(user);
     }
+
+
 
 }
