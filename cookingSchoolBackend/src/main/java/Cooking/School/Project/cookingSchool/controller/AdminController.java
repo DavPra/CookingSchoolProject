@@ -44,7 +44,7 @@ public class AdminController {
     @DeleteMapping("admin/courses/{id}")
     public ResponseEntity<?> deleteCourse(@PathVariable Long id){
         try{
-            courseService.deleteCourse(id);
+            courseService.deleteCourseById(id);
             return new ResponseEntity<>("Kurs erfolgreich gelöscht", HttpStatus.OK);
         } catch (PrimaryIdNullOrEmptyException e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
