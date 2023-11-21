@@ -1,16 +1,13 @@
 package Cooking.School.Project.cookingSchool.controller;
 
-import Cooking.School.Project.cookingSchool.Services.CourseService;
-import Cooking.School.Project.cookingSchool.entities.Course;
+import Cooking.School.Project.cookingSchool.Services.*;
+import Cooking.School.Project.cookingSchool.entities.*;
 import Cooking.School.Project.cookingSchool.exceptions.PrimaryIdNullOrEmptyException;
 import Cooking.School.Project.cookingSchool.restapi.inputParams.CourseInputParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -42,6 +39,16 @@ public class AdminController {
     public ResponseEntity<List<Course>> getAllCourses(){
         List<Course> courses = courseService.getAllCourses();
         return new ResponseEntity<>(courses, HttpStatus.OK);
+    }
+
+    @DeleteMapping("admin/courses/{id}")
+    public ResponseEntity<?> deleteCourse(@PathVariable Long id){
+        try{
+            courseService.deleteCourse(id);
+            return new ResponseEntity<>("Kurs erfolgreich gelöscht", HttpStatus.OK);
+        } catch (PrimaryIdNullOrEmptyException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
 
