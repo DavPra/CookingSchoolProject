@@ -35,7 +35,9 @@ public class Course {
    //TODO ist das Format richtig?
    private LocalDateTime date;
 
-   //TODO attendants int?
+    private int maxAttendants;
+
+    private int price;
 
     @ManyToMany
     @JoinTable(
@@ -52,12 +54,14 @@ public class Course {
 
    }
 
-    public Course(Long courseId, String title, String description, String teacher, LocalDateTime date) {
+    public Course(Long courseId, String title, String description, String teacher, LocalDateTime date, int maxAttendants, int price) {
         this.courseId = courseId;
         this.title = title;
         this.description = description;
         this.teacher = teacher;
         this.date = date;
+        this.maxAttendants = maxAttendants;
+        this.price = price;
 
     }
 
@@ -99,6 +103,14 @@ public class Course {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public int getMaxAttendants() {
+        return maxAttendants;
+    }
+
+    public void setMaxAttendants(int maxAttendants) {
+        this.maxAttendants = maxAttendants;
     }
 
 

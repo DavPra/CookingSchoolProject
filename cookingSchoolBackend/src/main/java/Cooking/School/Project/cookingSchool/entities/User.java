@@ -38,6 +38,8 @@ public class User {
 
     private boolean isAdmin;
 
+    private Long finishedCourses;
+
 
     @ManyToMany(mappedBy = "users")
     private Set<Course> courses = new HashSet<>();
@@ -47,7 +49,7 @@ public class User {
 
     }
 
-    public User(Long id, String firstname, String lastname, String address, String mobile, String password, boolean isAdmin) {
+    public User(Long id, String firstname, String lastname, String address, String mobile, String password, boolean isAdmin, Long finishedCourses) {
         this.userId = userId;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -56,6 +58,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.isAdmin = isAdmin;
+        this.finishedCourses = finishedCourses;
 
     }
 
@@ -137,5 +140,13 @@ public class User {
 
     public void setCourses(Set<Course> courses) {
         this.courses = courses;
+    }
+
+    public Long getFinishedCourses() {
+        return finishedCourses;
+    }
+
+    public void setFinishedCourses(Long finishedCourses) {
+        this.finishedCourses = finishedCourses;
     }
 }
