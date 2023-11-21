@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/ingredient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/tag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/controller/AdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Ingredient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Tag.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +102,7 @@
       <workItem from="1699976733997" duration="1584000" />
       <workItem from="1700160225503" duration="10515000" />
       <workItem from="1700211003929" duration="524000" />
-      <workItem from="1700587753404" duration="6121000" />
+      <workItem from="1700587753404" duration="6497000" />
     </task>
     <task id="LOCAL-00001" summary="Boilerplate fixed.">
       <option name="closed" value="true" />
@@ -157,7 +156,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700596549682</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="delete course by id fixed">
+      <created>1700596642881</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1700596642881</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,6 +176,7 @@
     <MESSAGE value="doppelte appache gelöscht, grundstruktur erstellt" />
     <MESSAGE value="läuft halb" />
     <MESSAGE value="delete course hinzugefügt bei admin controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete course hinzugefügt bei admin controller" />
+    <MESSAGE value="delete course by id fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete course by id fixed" />
   </component>
 </project>
