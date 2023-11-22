@@ -46,7 +46,7 @@ public class Course {
             inverseJoinColumns = @JoinColumn(name = "userId"))
     private Set<User> users = new HashSet<>();
 
-    @OneToMany(mappedBy = "course")
+    @ManyToMany(mappedBy = "recipeId")
     private Set<Recipe> recipes = new HashSet<>();
 
 
