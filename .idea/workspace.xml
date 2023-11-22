@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/repository/IngredientRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/repository/TagRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Recipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Recipe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolBackend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +104,7 @@
       <workItem from="1700160225503" duration="10515000" />
       <workItem from="1700211003929" duration="524000" />
       <workItem from="1700587753404" duration="7195000" />
-      <workItem from="1700671289621" duration="4455000" />
+      <workItem from="1700671289621" duration="142000" />
     </task>
     <task id="LOCAL-00001" summary="Boilerplate fixed.">
       <option name="closed" value="true" />
@@ -180,21 +179,7 @@
       <option name="project" value="LOCAL" />
       <updated>1700597410171</updated>
     </task>
-    <task id="LOCAL-00011" summary="ingredient und tag repositories added">
-      <created>1700671471924</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1700671471924</updated>
-    </task>
-    <task id="LOCAL-00012" summary="ingredient und tag repositories fixed">
-      <created>1700671534386</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1700671534386</updated>
-    </task>
-    <option name="localTasksCounter" value="13" />
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,8 +195,6 @@
     <MESSAGE value="delete course by id fixed" />
     <MESSAGE value="Ingredient und Tag entities written. Beziehungen fehlen" />
     <MESSAGE value="Courses und User überarbeitet nach neuem ER Diagramm" />
-    <MESSAGE value="ingredient und tag repositories added" />
-    <MESSAGE value="ingredient und tag repositories fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="ingredient und tag repositories fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Courses und User überarbeitet nach neuem ER Diagramm" />
   </component>
 </project>
