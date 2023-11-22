@@ -27,8 +27,6 @@ public class Tag {
 
     private String title;
 
-    //TODO: ManyToMany mit Recipe
-    private Set<Recipe> recipes = new HashSet<>();
 
     public Tag(){
 

@@ -39,22 +39,23 @@ public class Course {
 
     private int price;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_course",
-            joinColumns = @JoinColumn(name = "courseId"),
-            inverseJoinColumns = @JoinColumn(name = "userId"))
+   @ManyToMany(mappedBy = "courses")
     private Set<User> users = new HashSet<>();
 
-    @ManyToMany(mappedBy = "recipeId")
-    private Set<Recipe> recipes = new HashSet<>();
+    @ManyToMany
+    @JoinTable(
+            name = "course_recipe",
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "recipe_id"))
+    private Set<Recipe> recipes;
+
 
 
     public Course(){
 
    }
 
-    public Course(Long courseId, String title, String description, String teacher, LocalDateTime date, int maxAttendants, int price) {
+    public Course(Long courseId, String title, String description, String teacher, LocalDateTime date, int maxAttendants, int price, Set<User> users, Set<Recipe> recipes) {
         this.courseId = courseId;
         this.title = title;
         this.description = description;
@@ -62,7 +63,8 @@ public class Course {
         this.date = date;
         this.maxAttendants = maxAttendants;
         this.price = price;
-
+        this.users = users;
+        this.recipes = recipes;
     }
 
     public Long getCourseId() {

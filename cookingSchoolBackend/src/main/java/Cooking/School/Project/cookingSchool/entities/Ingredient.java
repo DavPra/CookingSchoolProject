@@ -29,8 +29,6 @@ public class Ingredient {
 
     private String unit;
 
-    //TODO: ManyToMany mit Recipe
-    private Set<Recipe> recipes = new HashSet<>();
 
     public Ingredient(){
 

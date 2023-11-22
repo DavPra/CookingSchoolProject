@@ -40,8 +40,11 @@ public class User {
 
     private Long finishedCourses;
 
-
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany
+    @JoinTable(
+            name = "user_course",
+            joinColumns = @JoinColumn(name = "userId"),
+            inverseJoinColumns = @JoinColumn(name = "courseId"))
     private Set<Course> courses = new HashSet<>();
 
 
@@ -49,7 +52,7 @@ public class User {
 
     }
 
-    public User(Long id, String firstname, String lastname, String address, String mobile, String password, boolean isAdmin, Long finishedCourses) {
+    public User(Long userId, String firstname, String lastname, String address, String mobile, String email, String password, boolean isAdmin, Long finishedCourses, Set<Course> courses) {
         this.userId = userId;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -59,7 +62,7 @@ public class User {
         this.password = password;
         this.isAdmin = isAdmin;
         this.finishedCourses = finishedCourses;
-
+        this.courses = courses;
     }
 
     public Long getId() {
