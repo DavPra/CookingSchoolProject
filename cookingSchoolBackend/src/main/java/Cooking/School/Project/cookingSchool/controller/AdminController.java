@@ -51,5 +51,15 @@ public class AdminController {
         }
     }
 
+    @PutMapping("admin/courses/{id}")
+    public ResponseEntity<?> updateCourse(@PathVariable Long id, @RequestBody CourseInputParam param){
+        try{
+            courseService.updateCourseById(id, param);
+            return new ResponseEntity<>("Kurs erfolgreich aktualisiert", HttpStatus.OK);
+        } catch (PrimaryIdNullOrEmptyException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
 
 }

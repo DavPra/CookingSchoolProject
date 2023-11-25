@@ -3,6 +3,7 @@ package Cooking.School.Project.cookingSchool.Services;
 import Cooking.School.Project.cookingSchool.entities.Course;
 import Cooking.School.Project.cookingSchool.exceptions.PrimaryIdNullOrEmptyException;
 import Cooking.School.Project.cookingSchool.repository.CoursesRepository;
+import Cooking.School.Project.cookingSchool.restapi.inputParams.CourseInputParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,6 +53,15 @@ public class CourseService {
 
     public List<Course> getAllCourses(){
         return coursesRepository.findAll();
+    }
+
+    public void updateCourseById(Long id, CourseInputParam course){
+        Course courseToUpdate = coursesRepository.findById(id).get();
+        courseToUpdate.setTitle(course.getTitle());
+        courseToUpdate.setDescription(course.getDescription());
+        courseToUpdate.setTeacher(course.getTeacher());
+        courseToUpdate.setDate(course.getDate());
+        coursesRepository.save(courseToUpdate);
     }
 
 }

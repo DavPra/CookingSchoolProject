@@ -11,7 +11,7 @@
 
 	<groupId>at.codersbay.java</groupId>
 
-	<artifactId>rest-api-for-task-app</artifactId>
+	<artifactId>cookingSchoolBackend</artifactId>
 	<version>0.1-SNAPSHOT</version>
 	<name>rest-api-for-task-app</name>
 	<description>This REST API application is a cooking classes management tool written using Java and Spring Boot.
