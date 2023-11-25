@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/repository/IngredientRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/repository/TagRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/CookingSchool.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CookingSchool.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolBackend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolBackend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Ingredient.java" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Ingredient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Recipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Recipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Tag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,6 +110,8 @@
       <workItem from="1700211003929" duration="524000" />
       <workItem from="1700587753404" duration="7195000" />
       <workItem from="1700671289621" duration="142000" />
+      <workItem from="1700906112322" duration="132000" />
+      <workItem from="1700906288104" duration="351000" />
     </task>
     <task id="LOCAL-00001" summary="Boilerplate fixed.">
       <option name="closed" value="true" />
