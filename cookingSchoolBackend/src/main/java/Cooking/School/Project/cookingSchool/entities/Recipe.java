@@ -31,17 +31,17 @@ public class Recipe {
 
         private int preparation;
 
-       @ManyToMany(mappedBy = "recipe")
+       @ManyToMany(mappedBy = "recipes")
        private Set<Course> courses;
 
-       @ManyToMany(mappedBy = "recipe")
+       @ManyToMany
        @JoinTable(
                name = "recipe_ingredient",
                joinColumns = @JoinColumn(name = "recipe_id"),
                inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
          private Set<Ingredient> ingredients;
 
-       @ManyToMany(mappedBy = "recipe")
+       @ManyToMany
          @JoinTable(
                 name = "recipe_tag",
                 joinColumns = @JoinColumn(name = "recipe_id"),

@@ -2,8 +2,9 @@ package Cooking.School.Project.cookingSchool.controller;
 
 import Cooking.School.Project.cookingSchool.Services.*;
 import Cooking.School.Project.cookingSchool.entities.*;
-import Cooking.School.Project.cookingSchool.exceptions.PrimaryIdNullOrEmptyException;
+import Cooking.School.Project.cookingSchool.exceptions.*;
 import Cooking.School.Project.cookingSchool.restapi.inputParams.CourseInputParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,12 @@ public class AdminController {
 
     @Autowired
    private CourseService courseService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private TagService tagService;
 
 
     @PostMapping("admin/courses")

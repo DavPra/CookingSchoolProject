@@ -25,7 +25,7 @@ public class CourseTag {
 
     )
 
-    private Long tagId;
+    private Long courseTagId;
 
     private String title;
 
@@ -38,16 +38,16 @@ public class CourseTag {
     }
 
     public CourseTag(Long tagId, String title, String description) {
-        this.tagId = tagId;
+        this.courseTagId = tagId;
         this.title = title;
     }
 
     public Long getTagId() {
-        return tagId;
+        return courseTagId;
     }
 
-    public void setTagId(Long ingredientId) {
-        this.tagId = ingredientId;
+    public void setTagId(Long courseTagId) {
+        this.courseTagId = courseTagId;
     }
 
     public String getTitle() {

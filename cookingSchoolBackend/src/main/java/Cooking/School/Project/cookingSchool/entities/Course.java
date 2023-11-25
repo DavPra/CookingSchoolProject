@@ -50,11 +50,11 @@ public class Course {
             inverseJoinColumns = @JoinColumn(name = "recipe_id"))
     private Set<Recipe> recipes;
 
-    @ManyToMany(mappedBy = "courses")
+    @ManyToMany
     @JoinTable(
             name = "course_tags",
             joinColumns = @JoinColumn(name = "course_id"),
-            inverseJoinColumns = @JoinColumn(name = "tag_id"))
+            inverseJoinColumns = @JoinColumn(name = "courseTag_id"))
     private Set<CourseTag> courseTags;
 
 
