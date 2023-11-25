@@ -33,7 +33,9 @@ public class AdminController {
                    param.getTitle(),
                    param.getDescription(),
                    param.getTeacher(),
-                   param.getDate()
+                   param.getDate(),
+                   param.getMaxAttendants(),
+                   param.getPrice()
            );
             return new ResponseEntity<>("Kurs erfolgreich erstellt", HttpStatus.CREATED);
         } catch (PrimaryIdNullOrEmptyException e ){

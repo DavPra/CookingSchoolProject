@@ -13,6 +13,10 @@ public class CourseInputParam {
 
     private LocalDateTime date;
 
+    private int maxAttendants;
+
+    private int price;
+
     public CourseInputParam(){
 
     }
@@ -23,6 +27,8 @@ public class CourseInputParam {
         this.description = description;
         this.teacher = teacher;
         this.date = date;
+        this.maxAttendants = maxAttendants;
+        this.price = price;
     }
 
 
@@ -65,4 +71,20 @@ public class CourseInputParam {
     public void setDate(LocalDateTime date) {
         this.date = date;
     }
+
+        public int getMaxAttendants() {
+            return maxAttendants;
+        }
+
+        public void setMaxAttendants(int maxAttendants) {
+            this.maxAttendants = maxAttendants;
+        }
+
+        public int getPrice() {
+            return price;
+        }
+
+        public void setPrice(int price) {
+            this.price = price;
+        }
 }

@@ -37,14 +37,16 @@ public class CourseService {
         return course;
     }
 
-    public boolean createCourse(Long courseId, String title, String description, String teacher, LocalDateTime date) {
+    public boolean createCourse(Long courseId, String title, String description, String teacher, LocalDateTime date, int maxAttendants, int price) {
 
 
          Course course = new Course();
             course.setTitle(title);
             course.setDescription(description);
-            course. setTeacher(teacher);
+            course.setTeacher(teacher);
             course.setDate(date);
+            course.setMaxAttendants(maxAttendants);
+            course.setPrice(price);
 
             coursesRepository.save(course);
             return true;
