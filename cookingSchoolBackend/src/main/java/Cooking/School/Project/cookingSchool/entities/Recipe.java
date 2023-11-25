@@ -31,8 +31,22 @@ public class Recipe {
 
         private int preparation;
 
-       /* @ManyToMany(mappedBy = "recipe")
-       private Set<Course> courses; */
+       @ManyToMany(mappedBy = "recipe")
+       private Set<Course> courses;
+
+       @ManyToMany(mappedBy = "recipe")
+       @JoinTable(
+               name = "recipe_ingredient",
+               joinColumns = @JoinColumn(name = "recipe_id"),
+               inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+         private Set<Ingredient> ingredients;
+
+       @ManyToMany(mappedBy = "recipe")
+         @JoinTable(
+                name = "recipe_tag",
+                joinColumns = @JoinColumn(name = "recipe_id"),
+                inverseJoinColumns = @JoinColumn(name = "tag_id"))
+         private Set<RecipeTag> recipeTags;
 
 
         public Recipe(){

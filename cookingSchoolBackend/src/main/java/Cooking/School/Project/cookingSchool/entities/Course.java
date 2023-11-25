@@ -50,13 +50,20 @@ public class Course {
             inverseJoinColumns = @JoinColumn(name = "recipe_id"))
     private Set<Recipe> recipes;
 
+    @ManyToMany(mappedBy = "courses")
+    @JoinTable(
+            name = "course_tags",
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    private Set<CourseTag> courseTags;
+
 
 
     public Course(){
 
    }
 
-    public Course(Long courseId, String title, String description, String teacher, LocalDateTime date, int maxAttendants, int price, Set<User> users, Set<Recipe> recipes) {
+    public Course(Long courseId, String title, String description, String teacher, LocalDateTime date, int maxAttendants, int price, Set<User> users, Set<Recipe> recipes, Set<CourseTag> courseTags) {
         this.courseId = courseId;
         this.title = title;
         this.description = description;
@@ -66,6 +73,7 @@ public class Course {
         this.price = price;
         this.users = users;
         this.recipes = recipes;
+        this.courseTags = courseTags;
     }
 
     public Long getCourseId() {
@@ -114,6 +122,38 @@ public class Course {
 
     public void setMaxAttendants(int maxAttendants) {
         this.maxAttendants = maxAttendants;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
+    public Set<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(Set<Recipe> recipes) {
+        this.recipes = recipes;
+    }
+
+    public Set<CourseTag> getCourseTags() {
+        return courseTags;
+    }
+
+    public void setCourseTags(Set<CourseTag> courseTags) {
+        this.courseTags = courseTags;
     }
 
 

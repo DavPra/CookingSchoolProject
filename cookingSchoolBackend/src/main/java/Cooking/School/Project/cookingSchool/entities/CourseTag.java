@@ -2,16 +2,15 @@ package Cooking.School.Project.cookingSchool.entities;
 
 
 import org.hibernate.annotations.GenericGenerator;
-
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Set;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Table(name = "tags")
 @Entity
 
-public class Tag {
+public class CourseTag {
 
     @Id
     @GeneratedValue(generator = "tagSequence")
@@ -30,12 +29,15 @@ public class Tag {
 
     private String title;
 
+    @ManyToMany(mappedBy = "courseTags")
+    private Set<Course> courses;
 
-    public Tag(){
+
+    public CourseTag(){
 
     }
 
-    public Tag(Long tagId, String title, String description) {
+    public CourseTag(Long tagId, String title, String description) {
         this.tagId = tagId;
         this.title = title;
     }
