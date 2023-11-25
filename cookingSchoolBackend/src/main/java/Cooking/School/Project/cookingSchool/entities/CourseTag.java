@@ -7,7 +7,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-@Table(name = "tags")
+@Table(name = "coursetags")
 @Entity
 
 public class CourseTag {
