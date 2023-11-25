@@ -4,10 +4,7 @@ package Cooking.School.Project.cookingSchool.entities;
 import org.hibernate.annotations.GenericGenerator;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
