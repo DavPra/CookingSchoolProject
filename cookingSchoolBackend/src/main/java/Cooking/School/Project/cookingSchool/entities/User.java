@@ -1,5 +1,6 @@
 package Cooking.School.Project.cookingSchool.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -7,8 +8,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+
 @Table(name = "users")
-@Entity
+ @Entity
 public class User {
     @Id
     @GeneratedValue(generator = "userSequence")
@@ -39,6 +41,10 @@ public class User {
     private boolean isAdmin;
 
     private Long finishedCourses;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private AppUser appUser;
 
     @ManyToMany
     @JoinTable(

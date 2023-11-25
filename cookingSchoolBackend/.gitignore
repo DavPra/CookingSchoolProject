@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+/local/
+/derby.log
+/mvnw
+/mvnw.cmd
+/.mvn/

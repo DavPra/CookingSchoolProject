@@ -11,9 +11,9 @@
 
 	<groupId>at.codersbay.java</groupId>
 
-	<artifactId>rest-api-for-task-app</artifactId>
+	<artifactId>ccoking</artifactId>
 	<version>0.1-SNAPSHOT</version>
-	<name>rest-api-for-task-app</name>
+	<name>cookingAcademy</name>
 	<description>This REST API application is a cooking classes management tool written using Java and Spring Boot.
 	</description>
 	<properties>
@@ -43,6 +43,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+
 
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>

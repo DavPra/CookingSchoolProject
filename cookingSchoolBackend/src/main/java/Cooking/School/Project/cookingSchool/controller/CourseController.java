@@ -5,6 +5,8 @@ import Cooking.School.Project.cookingSchool.entities.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class CourseController {
 
@@ -14,6 +16,12 @@ public class CourseController {
     @PostMapping("/courses")
     public Course addCourse(@RequestBody Course course){
         return  courseService.addCourse(course);
+    }
+
+
+    @GetMapping("/courses")
+    public List<Course> getAllCourses() {
+        return courseService.getAllCourses();
     }
 
     @GetMapping("/courses/{id}")
