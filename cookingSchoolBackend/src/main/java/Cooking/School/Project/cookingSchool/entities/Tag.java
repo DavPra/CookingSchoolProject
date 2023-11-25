@@ -1,13 +1,19 @@
 package Cooking.School.Project.cookingSchool.entities;
 
-import jakarta.persistence.*;
+
 import org.hibernate.annotations.GenericGenerator;
 
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
 @Table(name = "tags")
 @Entity
+
 public class Tag {
 
     @Id

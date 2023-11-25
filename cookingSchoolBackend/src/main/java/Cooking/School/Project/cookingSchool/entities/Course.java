@@ -1,8 +1,9 @@
 package Cooking.School.Project.cookingSchool.entities;
 
-import jakarta.persistence.*;
+
 import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
@@ -32,7 +33,7 @@ public class Course {
 
    private String teacher;
 
-   //TODO ist das Format richtig?
+
    private LocalDateTime date;
 
     private int maxAttendants;
