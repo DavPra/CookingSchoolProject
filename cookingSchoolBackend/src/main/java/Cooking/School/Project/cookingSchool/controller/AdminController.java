@@ -70,7 +70,9 @@ public class AdminController {
     public CourseTag addCourseTag(@RequestBody CourseTag courseTag){
         return tagService.addCourseTag(courseTag);
     }
-
-
-
+    @GetMapping("admin/courseTag")
+    public ResponseEntity<List<CourseTag>> getAllCourseTags(){
+        List<CourseTag> courseTags = tagService.getAllCourseTags();
+        return new ResponseEntity<>(courseTags, HttpStatus.OK);
+    }
 }

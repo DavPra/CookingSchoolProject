@@ -47,7 +47,7 @@ public class CourseService {
     }
 
     /**
-     *  Kurs inkl optional courseTag
+     *  Kurs inkl courseTag noch mit id und title und noch keine ausnahmen
      * @param
      * @return
      */
