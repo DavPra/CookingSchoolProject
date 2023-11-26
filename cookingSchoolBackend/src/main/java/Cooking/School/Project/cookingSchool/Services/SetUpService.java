@@ -11,14 +11,14 @@ import javax.annotation.PostConstruct;
 @Service
 public class SetUpService {
 
-    private final CoursesRepository coursesRepository;
+    private final CourseRepository courseRepository;
     private final IngredientRepository ingredientRepository;
     private final RecipeRepository recipeRepository;
     private final UserRepository userRepository;
 
     @Autowired
-    public SetUpService(CoursesRepository coursesRepository, IngredientRepository ingredientRepository, RecipeRepository recipeRepository, UserRepository userRepository) {
-        this.coursesRepository = coursesRepository;
+    public SetUpService(CourseRepository courseRepository, IngredientRepository ingredientRepository, RecipeRepository recipeRepository, UserRepository userRepository) {
+        this.courseRepository = courseRepository;
         this.ingredientRepository = ingredientRepository;
         this.recipeRepository = recipeRepository;
         this.userRepository = userRepository;
@@ -27,10 +27,10 @@ public class SetUpService {
     @PostConstruct
     public void setUp() {
         Course course = new Course();
-        course.setTitle("Kurs 1");
+        course.setCourseTitle("Kurs 1");
         course.setDescription("Beschreibung 1");
         course.setTeacher("Lehrer 1");
-        coursesRepository.save(course);
+        courseRepository.save(course);
         System.out.println("Kurs 1 wurde erstellt");
 
         Ingredient ingredient = new Ingredient();

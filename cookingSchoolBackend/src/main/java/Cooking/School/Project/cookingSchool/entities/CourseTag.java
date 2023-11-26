@@ -27,7 +27,7 @@ public class CourseTag {
 
     private Long courseTagId;
 
-    private String title;
+    private String courseTagTitle;
 
     @ManyToMany(mappedBy = "courseTags")
     private Set<Course> courses;
@@ -37,24 +37,33 @@ public class CourseTag {
 
     }
 
-    public CourseTag(Long tagId, String title, String description) {
-        this.courseTagId = tagId;
-        this.title = title;
+    public CourseTag(Long courseTagId, String courseTagTitle, Set<Course> courses) {
+        this.courseTagId = courseTagId;
+        this.courseTagTitle = courseTagTitle;
+        this.courses = courses;
     }
 
-    public Long getTagId() {
+    public Long getCourseTagId() {
         return courseTagId;
     }
 
-    public void setTagId(Long courseTagId) {
+    public void setCourseTagId(Long courseTagId) {
         this.courseTagId = courseTagId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getCourseTagTitle() {
+        return courseTagTitle;
     }
 
-    public void setTitle(String name) {
-        this.title = name;
+    public void setCourseTagTitle(String courseTagTitle) {
+        this.courseTagTitle = courseTagTitle;
+    }
+
+    public Set<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
     }
 }
