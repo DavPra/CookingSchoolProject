@@ -1,6 +1,7 @@
 package Cooking.School.Project.cookingSchool.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Set;
@@ -20,7 +21,8 @@ public class CourseTag {
             parameters = {
                     @org.hibernate.annotations.Parameter(name = "sequence_name", value = "tag_sequence"),
                     @org.hibernate.annotations.Parameter(name = "initial_value", value = "1"),
-                    @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")
+                    @org.hibernate.annotations.Parameter(name = "increment_size", value = "1"),
+                    @org.hibernate.annotations.Parameter(name = "allocation_size", value = "1")
             }
 
     )
@@ -29,6 +31,7 @@ public class CourseTag {
 
     private String courseTagTitle;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "courseTags")
     private Set<Course> courses;
 
