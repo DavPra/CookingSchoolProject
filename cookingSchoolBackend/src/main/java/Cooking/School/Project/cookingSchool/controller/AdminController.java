@@ -7,6 +7,7 @@ import Cooking.School.Project.cookingSchool.restapi.inputParams.CourseInputParam
 
 import Cooking.School.Project.cookingSchool.restapi.inputParams.CourseRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,9 @@ public class AdminController {
 
     @Autowired
     private TagService tagService;
+
+    @Autowired
+    private RecipeService recipeService;
 
 //-------------------------------- Admin course
     @PostMapping("admin/courses")
@@ -75,4 +79,23 @@ public class AdminController {
         List<CourseTag> courseTags = tagService.getAllCourseTags();
         return new ResponseEntity<>(courseTags, HttpStatus.OK);
     }
+
+    //--------------------------- Recipe
+
+
+    //TODO lieber ins userService?
+    @PostMapping("admin/addRecipe")
+    public ResponseEntity<?> addRecipe(@RequestBody Recipe recipe) {
+        try {
+            recipeService.addRecipe(recipe);
+            return new ResponseEntity<>("Rezept erfolgrich erstellt", HttpStatus.CREATED);
+        } catch (DuplicateKeyException dke) {
+            return new ResponseEntity<>(dke.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
+
 }
+
+
