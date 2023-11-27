@@ -88,7 +88,7 @@ public class AdminController {
     public ResponseEntity<?> addRecipe(@RequestBody Recipe recipe) {
         try {
             recipeService.addRecipe(recipe);
-            return new ResponseEntity<>("Rezept erfolgrich erstellt", HttpStatus.CREATED);
+            return new ResponseEntity<>("Rezept erfolgreich erstellt", HttpStatus.CREATED);
         } catch (DuplicateKeyException dke) {
             return new ResponseEntity<>(dke.getMessage(), HttpStatus.BAD_REQUEST);
         }
@@ -104,11 +104,53 @@ public class AdminController {
     //TODO put recipes über id im path?
 
     @GetMapping("/admin/recipe/{id}")
-    public Recipe getRecipeById(@PathVariable Long recipeId){
-        return recipeService.getRecipeById(recipeId);
+    public Recipe getRecipeById(@PathVariable Long id){
+        return recipeService.getRecipeById(id);
     }
 
-    //TODO Admin User verwaltung (delete, update, create)
+    //--------------------------- Admin users administration
+
+    @GetMapping("/admin/users")
+    public ResponseEntity<List<User>> getAllUsers(){
+        List<User> users = userService.getAllUsers();
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    @PostMapping("/admin/users")
+    public ResponseEntity<?> addUser(@RequestBody User user){
+        try{
+            userService.addUser(user);
+            return new ResponseEntity<>("User erfolgreich erstellt", HttpStatus.CREATED);
+        } catch (DuplicateKeyException dke){
+            return new ResponseEntity<>(dke.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping("/admin/users/{id}")
+    public ResponseEntity<?> deleteUserById(@PathVariable Long id){
+        try{
+            userService.deleteUserById(id);
+            return new ResponseEntity<>("User erfolgreich gelöscht", HttpStatus.OK);
+        } catch (PrimaryIdNullOrEmptyException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PutMapping("/admin/users/{id}")
+    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User user){
+        try{
+            userService.updateUser(user);
+            return new ResponseEntity<>("User erfolgreich aktualisiert", HttpStatus.OK);
+        } catch (PrimaryIdNullOrEmptyException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/admin/users/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable Long id){
+        User user = userService.getUserById(id);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
 
 
 }
