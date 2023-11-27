@@ -2,16 +2,22 @@ package Cooking.School.Project.cookingSchool.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Table(name = "courses")
 @Entity
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Course {
    @Id
     @GeneratedValue(generator = "courseSequence")
@@ -26,25 +32,34 @@ public class Course {
 
     )
 
-    private Long courseId;
+   private Long courseId;
 
+   @Setter
    private String courseTitle;
 
+   @Setter
    private String description;
 
+   @Setter
    private String teacher;
 
 
-   @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-   private LocalDateTime date;
+   @Setter
+   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+   private LocalDateTime startDate;
 
+    @Setter
     private int maxAttendants;
 
+    //TODO BigDecimal to be used with respect to prices
+    @Setter
     private int price;
 
+    @Setter
    @ManyToMany(mappedBy = "courses")
     private Set<User> users = new HashSet<>();
 
+    @Setter
     @ManyToMany
     @JoinTable(
             name = "course_recipe",
@@ -52,111 +67,11 @@ public class Course {
             inverseJoinColumns = @JoinColumn(name = "recipe_id"))
     private Set<Recipe> recipes;
 
+    @Setter
     @ManyToMany
     @JoinTable(
             name = "course_tags",
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "courseTag_id"))
     private Set<CourseTag> courseTags;
-
-
-
-    public Course(){
-
-   }
-
-    public Course(Long courseId, String courseTitle, String description, String teacher, LocalDateTime date, int maxAttendants, int price, Set<User> users, Set<Recipe> recipes, Set<CourseTag> courseTags) {
-        this.courseId = courseId;
-        this.courseTitle = courseTitle;
-        this.description = description;
-        this.teacher = teacher;
-        this.date = date;
-        this.maxAttendants = maxAttendants;
-        this.price = price;
-        this.users = users;
-        this.recipes = recipes;
-        this.courseTags = courseTags;
-    }
-
-    public Long getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(Long courseId) {
-        this.courseId = courseId;
-    }
-
-    public String getCourseTitle() {
-        return courseTitle;
-    }
-
-    public void setCourseTitle(String courseTitle) {
-        this.courseTitle = courseTitle;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getTeacher() {
-        return teacher;
-    }
-
-    public void setTeacher(String teacher) {
-        this.teacher = teacher;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
-
-    public int getMaxAttendants() {
-        return maxAttendants;
-    }
-
-    public void setMaxAttendants(int maxAttendants) {
-        this.maxAttendants = maxAttendants;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
-
-    public Set<Recipe> getRecipes() {
-        return recipes;
-    }
-
-    public void setRecipes(Set<Recipe> recipes) {
-        this.recipes = recipes;
-    }
-
-    public Set<CourseTag> getCourseTags() {
-        return courseTags;
-    }
-
-    public void setCourseTags(Set<CourseTag> courseTags) {
-        this.courseTags = courseTags;
-    }
-
-
 }

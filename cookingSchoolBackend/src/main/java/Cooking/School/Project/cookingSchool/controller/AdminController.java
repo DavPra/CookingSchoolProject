@@ -101,6 +101,13 @@ public class AdminController {
        return new ResponseEntity<>(recipes, HttpStatus.OK);
     }
 
+    //TODO put recipes über id im path?
+
+    @GetMapping("/admin/recipe/{id}")
+    public Recipe getRecipeById(@PathVariable Long recipeId){
+        return recipeService.getRecipeById(recipeId);
+    }
+
 
 
 }
