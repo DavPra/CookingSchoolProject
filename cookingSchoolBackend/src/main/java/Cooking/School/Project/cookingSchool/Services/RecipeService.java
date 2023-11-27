@@ -1,10 +1,13 @@
 package Cooking.School.Project.cookingSchool.Services;
 
 import Cooking.School.Project.cookingSchool.entities.Recipe;
+import Cooking.School.Project.cookingSchool.exceptions.RecipeNotFoundException;
 import Cooking.School.Project.cookingSchool.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class RecipeService {
@@ -22,6 +25,12 @@ public class RecipeService {
         }
         recipeRepository.save(recipe);
         return recipe;
+
+    }
+
+    public List<Recipe> getAllRecipe() throws RecipeNotFoundException {
+
+        return recipeRepository.findAll();
 
     }
 }

@@ -95,6 +95,13 @@ public class AdminController {
 
     }
 
+    @GetMapping("admin/getAllRecipes")
+    public ResponseEntity<List<Recipe>> getAllRecipes(){
+       List<Recipe> recipes = recipeService.getAllRecipe();
+       return new ResponseEntity<>(recipes, HttpStatus.OK);
+    }
+
+
 
 }
 
