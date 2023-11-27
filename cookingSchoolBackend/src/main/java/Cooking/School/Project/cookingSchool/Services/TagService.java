@@ -1,11 +1,14 @@
 package Cooking.School.Project.cookingSchool.Services;
 
+import Cooking.School.Project.cookingSchool.entities.Course;
 import Cooking.School.Project.cookingSchool.entities.CourseTag;
 import Cooking.School.Project.cookingSchool.entities.RecipeTag;
 import Cooking.School.Project.cookingSchool.repository.CourseTagRepository;
 import Cooking.School.Project.cookingSchool.repository.RecipeTagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TagService {
@@ -54,4 +57,9 @@ public class TagService {
         recipeTagRepository.save(recipeTag);
         return recipeTag;
     }
+
+    public List<CourseTag> getAllCourseTags() {
+        return courseTagRepository.findAll();
+    }
+
 }

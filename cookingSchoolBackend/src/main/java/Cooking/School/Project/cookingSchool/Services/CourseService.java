@@ -1,69 +1,93 @@
 package Cooking.School.Project.cookingSchool.Services;
 
 import Cooking.School.Project.cookingSchool.entities.Course;
-import Cooking.School.Project.cookingSchool.exceptions.PrimaryIdNullOrEmptyException;
-import Cooking.School.Project.cookingSchool.repository.CoursesRepository;
+import Cooking.School.Project.cookingSchool.entities.CourseTag;
+import Cooking.School.Project.cookingSchool.repository.CourseRepository;
+import Cooking.School.Project.cookingSchool.repository.CourseTagRepository;
 import Cooking.School.Project.cookingSchool.restapi.inputParams.CourseInputParam;
+import Cooking.School.Project.cookingSchool.restapi.inputParams.CourseRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class CourseService {
 
     @Autowired
-    CoursesRepository coursesRepository;
+    CourseRepository courseRepository;
+
+
+    @Autowired
+    CourseTagRepository courseTagRepository;
 
     public CourseService(){
     }
 
     public Course addCourse(Course course){
-        coursesRepository.save(course);
+        courseRepository.save(course);
         return course;
     }
 
     public Course getCourseById(Long id){
-        return coursesRepository.findById(id).get();
+        return courseRepository.findById(id).get();
     }
 
     public void deleteCourseById(Long id){
-        coursesRepository.deleteById(id);
+        courseRepository.deleteById(id);
     }
 
     public Course updateCourse(Course course){
-        coursesRepository.save(course);
+        courseRepository.save(course);
         return course;
     }
 
-    public boolean createCourse(Long courseId, String title, String description, String teacher, LocalDateTime date, int maxAttendants, int price) {
+    /**
+     *  Kurs inkl courseTag noch mit id und title und noch keine ausnahmen
+     * @param
+     * @return
+     */
+    @Transactional
+    public Long createCourse(CourseRequest request) {
+        Course course = new Course();
+        course.setCourseTitle(request.getCourseTitle());
+        course.setDescription(request.getDescription());
+        course.setTeacher(request.getTeacher());
+        course.setDate(request.getDate());
+        course.setMaxAttendants(request.getMaxAttendants());
+        course.setPrice(request.getPrice());
+
+        Set<CourseTag> courseTags = request.getCourseTags();
+        course.setCourseTags(courseTags);
 
 
-         Course course = new Course();
-            course.setTitle(title);
-            course.setDescription(description);
-            course.setTeacher(teacher);
-            course.setDate(date);
-            course.setMaxAttendants(maxAttendants);
-            course.setPrice(price);
 
-            coursesRepository.save(course);
-            return true;
+        Course savedCourse = courseRepository.save(course);
 
+        return savedCourse.getCourseId();
     }
 
-    public List<Course> getAllCourses(){
-        return coursesRepository.findAll();
+
+    /**
+     *
+     * @return
+     */
+    public List<Course> getAllCourses() {
+        return courseRepository.findAll();
     }
+
 
     public void updateCourseById(Long id, CourseInputParam course){
-        Course courseToUpdate = coursesRepository.findById(id).get();
-        courseToUpdate.setTitle(course.getTitle());
+        Course courseToUpdate = courseRepository.findById(id).get();
+        courseToUpdate.setCourseTitle(course.getTitle());
         courseToUpdate.setDescription(course.getDescription());
         courseToUpdate.setTeacher(course.getTeacher());
         courseToUpdate.setDate(course.getDate());
-        coursesRepository.save(courseToUpdate);
+        courseRepository.save(courseToUpdate);
     }
 
 }

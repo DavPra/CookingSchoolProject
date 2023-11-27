@@ -1,6 +1,7 @@
 package Cooking.School.Project.cookingSchool.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Set;
@@ -20,15 +21,17 @@ public class CourseTag {
             parameters = {
                     @org.hibernate.annotations.Parameter(name = "sequence_name", value = "tag_sequence"),
                     @org.hibernate.annotations.Parameter(name = "initial_value", value = "1"),
-                    @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")
+                    @org.hibernate.annotations.Parameter(name = "increment_size", value = "1"),
+                    @org.hibernate.annotations.Parameter(name = "allocation_size", value = "1")
             }
 
     )
 
     private Long courseTagId;
 
-    private String title;
+    private String courseTagTitle;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "courseTags")
     private Set<Course> courses;
 
@@ -37,24 +40,33 @@ public class CourseTag {
 
     }
 
-    public CourseTag(Long tagId, String title, String description) {
-        this.courseTagId = tagId;
-        this.title = title;
+    public CourseTag(Long courseTagId, String courseTagTitle, Set<Course> courses) {
+        this.courseTagId = courseTagId;
+        this.courseTagTitle = courseTagTitle;
+        this.courses = courses;
     }
 
-    public Long getTagId() {
+    public Long getCourseTagId() {
         return courseTagId;
     }
 
-    public void setTagId(Long courseTagId) {
+    public void setCourseTagId(Long courseTagId) {
         this.courseTagId = courseTagId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getCourseTagTitle() {
+        return courseTagTitle;
     }
 
-    public void setTitle(String name) {
-        this.title = name;
+    public void setCourseTagTitle(String courseTagTitle) {
+        this.courseTagTitle = courseTagTitle;
+    }
+
+    public Set<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
     }
 }

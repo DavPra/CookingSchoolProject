@@ -1,6 +1,7 @@
 package Cooking.School.Project.cookingSchool.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -27,13 +28,14 @@ public class Course {
 
     private Long courseId;
 
-   private String title;
+   private String courseTitle;
 
    private String description;
 
    private String teacher;
 
 
+   @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
    private LocalDateTime date;
 
     private int maxAttendants;
@@ -63,9 +65,9 @@ public class Course {
 
    }
 
-    public Course(Long courseId, String title, String description, String teacher, LocalDateTime date, int maxAttendants, int price, Set<User> users, Set<Recipe> recipes, Set<CourseTag> courseTags) {
+    public Course(Long courseId, String courseTitle, String description, String teacher, LocalDateTime date, int maxAttendants, int price, Set<User> users, Set<Recipe> recipes, Set<CourseTag> courseTags) {
         this.courseId = courseId;
-        this.title = title;
+        this.courseTitle = courseTitle;
         this.description = description;
         this.teacher = teacher;
         this.date = date;
@@ -84,12 +86,12 @@ public class Course {
         this.courseId = courseId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getCourseTitle() {
+        return courseTitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setCourseTitle(String courseTitle) {
+        this.courseTitle = courseTitle;
     }
 
     public String getDescription() {
