@@ -1,3 +1,5 @@
+/*
+
 package Cooking.School.Project.cookingSchool.Services;
 
 import Cooking.School.Project.cookingSchool.entities.*;
@@ -54,3 +56,4 @@ public class SetUpService {
         userRepository.save(user);
     }
 }
+*/

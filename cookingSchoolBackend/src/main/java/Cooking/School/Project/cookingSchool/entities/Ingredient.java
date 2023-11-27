@@ -30,6 +30,8 @@ public class Ingredient {
 
     private String unit;
 
+    private int quantity;
+
 
     public Ingredient(){
 
@@ -39,6 +41,7 @@ public class Ingredient {
         this.ingredientId = ingredientId;
         this.title = title;
         this.unit = unit;
+        this.quantity = quantity;
     }
 
     public Long getIngredientId() {
@@ -63,6 +66,14 @@ public class Ingredient {
 
     public void setUnit(String unit) {
         this.unit = unit;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
 

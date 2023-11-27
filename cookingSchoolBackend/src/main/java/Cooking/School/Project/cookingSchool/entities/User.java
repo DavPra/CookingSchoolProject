@@ -38,7 +38,6 @@ public class User {
 
     private boolean isAdmin;
 
-    private Long finishedCourses;
 
     @ManyToMany
     @JoinTable(
@@ -61,7 +60,6 @@ public class User {
         this.email = email;
         this.password = password;
         this.isAdmin = isAdmin;
-        this.finishedCourses = finishedCourses;
         this.courses = courses;
     }
 
@@ -145,11 +143,4 @@ public class User {
         this.courses = courses;
     }
 
-    public Long getFinishedCourses() {
-        return finishedCourses;
-    }
-
-    public void setFinishedCourses(Long finishedCourses) {
-        this.finishedCourses = finishedCourses;
-    }
 }
