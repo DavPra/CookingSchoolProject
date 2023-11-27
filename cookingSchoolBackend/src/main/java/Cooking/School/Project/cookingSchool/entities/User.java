@@ -1,5 +1,9 @@
 package Cooking.School.Project.cookingSchool.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -7,8 +11,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+
 @Table(name = "users")
 @Entity
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
     @Id
     @GeneratedValue(generator = "userSequence")
@@ -24,22 +32,31 @@ public class User {
 
     private Long userId;
 
+    @Setter
     private String firstname;
 
+    @Setter
     private String lastname;
 
+    @Setter
     private String address;
 
+    @Setter
     private String mobile;
 
+    @Setter
     private String email;
 
+    @Setter
     private String password;
 
+    @Setter
     private boolean isAdmin;
 
+    @Setter
     private Long finishedCourses;
 
+    @Setter
     @ManyToMany
     @JoinTable(
             name = "user_course",
@@ -47,109 +64,4 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "courseId"))
     private Set<Course> courses = new HashSet<>();
 
-
-    public User(){
-
-    }
-
-    public User(Long userId, String firstname, String lastname, String address, String mobile, String email, String password, boolean isAdmin, Long finishedCourses, Set<Course> courses) {
-        this.userId = userId;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.address = address;
-        this.mobile = mobile;
-        this.email = email;
-        this.password = password;
-        this.isAdmin = isAdmin;
-        this.finishedCourses = finishedCourses;
-        this.courses = courses;
-    }
-
-    public Long getId() {
-        return userId;
-    }
-
-    public void setId(Long id) {
-        this.userId = userId;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public boolean isAdmin() {
-        return isAdmin;
-    }
-
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public Set<Course> getCourses() {
-        return courses;
-    }
-
-    public void setCourses(Set<Course> courses) {
-        this.courses = courses;
-    }
-
-    public Long getFinishedCourses() {
-        return finishedCourses;
-    }
-
-    public void setFinishedCourses(Long finishedCourses) {
-        this.finishedCourses = finishedCourses;
-    }
 }

@@ -2,6 +2,10 @@ package Cooking.School.Project.cookingSchool.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Set;
@@ -10,6 +14,9 @@ import javax.persistence.*;
 
 @Table(name = "coursetags")
 @Entity
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 
 public class CourseTag {
 
@@ -29,6 +36,7 @@ public class CourseTag {
 
     private Long courseTagId;
 
+    @Setter
     private String courseTagTitle;
 
     @JsonIgnore
@@ -36,37 +44,4 @@ public class CourseTag {
     private Set<Course> courses;
 
 
-    public CourseTag(){
-
-    }
-
-    public CourseTag(Long courseTagId, String courseTagTitle, Set<Course> courses) {
-        this.courseTagId = courseTagId;
-        this.courseTagTitle = courseTagTitle;
-        this.courses = courses;
-    }
-
-    public Long getCourseTagId() {
-        return courseTagId;
-    }
-
-    public void setCourseTagId(Long courseTagId) {
-        this.courseTagId = courseTagId;
-    }
-
-    public String getCourseTagTitle() {
-        return courseTagTitle;
-    }
-
-    public void setCourseTagTitle(String courseTagTitle) {
-        this.courseTagTitle = courseTagTitle;
-    }
-
-    public Set<Course> getCourses() {
-        return courses;
-    }
-
-    public void setCourses(Set<Course> courses) {
-        this.courses = courses;
-    }
 }
