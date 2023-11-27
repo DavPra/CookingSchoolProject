@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -57,7 +55,7 @@ public class CourseService {
         course.setCourseTitle(request.getCourseTitle());
         course.setDescription(request.getDescription());
         course.setTeacher(request.getTeacher());
-        course.setDate(request.getDate());
+        course.setStartDate(request.getDate());
         course.setMaxAttendants(request.getMaxAttendants());
         course.setPrice(request.getPrice());
 
@@ -86,7 +84,7 @@ public class CourseService {
         courseToUpdate.setCourseTitle(course.getTitle());
         courseToUpdate.setDescription(course.getDescription());
         courseToUpdate.setTeacher(course.getTeacher());
-        courseToUpdate.setDate(course.getDate());
+        courseToUpdate.setStartDate(course.getDate());
         courseRepository.save(courseToUpdate);
     }
 
