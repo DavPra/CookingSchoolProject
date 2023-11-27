@@ -80,34 +80,6 @@ public class AdminController {
         return new ResponseEntity<>(courseTags, HttpStatus.OK);
     }
 
-    //--------------------------- Recipe
-
-
-    //TODO lieber ins userService?
-    @PostMapping("admin/addRecipe")
-    public ResponseEntity<?> addRecipe(@RequestBody Recipe recipe) {
-        try {
-            recipeService.addRecipe(recipe);
-            return new ResponseEntity<>("Rezept erfolgrich erstellt", HttpStatus.CREATED);
-        } catch (DuplicateKeyException dke) {
-            return new ResponseEntity<>(dke.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-
-    }
-
-    @GetMapping("admin/getAllRecipes")
-    public ResponseEntity<List<Recipe>> getAllRecipes(){
-       List<Recipe> recipes = recipeService.getAllRecipe();
-       return new ResponseEntity<>(recipes, HttpStatus.OK);
-    }
-
-    //TODO put recipes über id im path?
-
-    @GetMapping("/admin/recipe/{id}")
-    public Recipe getRecipeById(@PathVariable Long recipeId){
-        return recipeService.getRecipeById(recipeId);
-    }
-
 
 
 }

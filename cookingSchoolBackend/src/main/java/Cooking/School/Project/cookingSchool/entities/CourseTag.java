@@ -39,6 +39,7 @@ public class CourseTag {
     @Setter
     private String courseTagTitle;
 
+    @Setter
     @JsonIgnore
     @ManyToMany(mappedBy = "courseTags")
     private Set<Course> courses;

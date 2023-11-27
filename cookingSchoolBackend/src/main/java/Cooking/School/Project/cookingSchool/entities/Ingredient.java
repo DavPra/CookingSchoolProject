@@ -4,6 +4,7 @@ package Cooking.School.Project.cookingSchool.entities;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -31,9 +32,9 @@ public class Ingredient {
     )
 
     private Long ingredientId;
-    @Getter
+    @Setter
     private String title;
-    @Getter
+    @Setter
     private String unit;
 
 
