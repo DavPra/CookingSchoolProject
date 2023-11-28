@@ -50,9 +50,15 @@ public class RecipeController {
     }
 
     @GetMapping("/admin/recipe/{id}")
-    public Recipe getRecipeById(@PathVariable Long recipeId){
-        return recipeService.getRecipeById(recipeId);
+    public ResponseEntity<?> getRecipeById(@PathVariable Long recipeId) {
+        try {
+            Recipe recipe = recipeService.getRecipeById(recipeId);
+            return new ResponseEntity<>(recipe, HttpStatus.OK);
+        } catch (PrimaryIdNullOrEmptyException pinoee) {
+            return new ResponseEntity<>(pinoee.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
+
 
    @PutMapping("/admin/updateRecipe/{recipeId}")
     public ResponseEntity<?> updateRecipe(

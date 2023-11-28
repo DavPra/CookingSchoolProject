@@ -44,7 +44,10 @@ public class RecipeService {
     }
 
     //TODO Exceptions weiter
-    public Recipe getRecipeById(Long recipeId) {
+    public Recipe getRecipeById(Long recipeId) throws PrimaryIdNullOrEmptyException{
+        if (recipeId == null || recipeId <= 0) {
+            throw new PrimaryIdNullOrEmptyException("Id is null or empty");
+        }
         return recipeRepository.findById(recipeId).get();
     }
 
