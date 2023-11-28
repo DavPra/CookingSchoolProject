@@ -1,7 +1,6 @@
-package Cooking.School.Project.cookingSchool.restapi.inputParams;
+package Cooking.School.Project.cookingSchool.restapi.DTO;
 
 import Cooking.School.Project.cookingSchool.entities.CourseTag;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;
 import java.util.Set;

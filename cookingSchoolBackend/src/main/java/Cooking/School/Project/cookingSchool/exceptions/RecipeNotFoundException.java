@@ -13,6 +13,11 @@ public class RecipeNotFoundException extends RuntimeException{
             this.recipeId = recipeId;
         }
 
+        public RecipeNotFoundException(String message){
+            super(message);
+        }
+
+
         public Long getUserId(){
             return recipeId;
         }

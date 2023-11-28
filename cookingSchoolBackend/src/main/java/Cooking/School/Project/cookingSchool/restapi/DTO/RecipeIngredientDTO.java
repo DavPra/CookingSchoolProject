@@ -1,4 +1,4 @@
-package Cooking.School.Project.cookingSchool.restapi.inputParams;
+package Cooking.School.Project.cookingSchool.restapi.DTO;
 
 
 import lombok.AllArgsConstructor;
@@ -26,6 +26,8 @@ public class RecipeIngredientDTO {
     private String ingredientTitle;
     @Setter
     private String unit;
+    @Setter
+    private int quantity;
 
 
 

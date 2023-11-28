@@ -3,6 +3,8 @@ package Cooking.School.Project.cookingSchool.controller;
 import Cooking.School.Project.cookingSchool.Services.RecipeService;
 import Cooking.School.Project.cookingSchool.Services.TagService;
 import Cooking.School.Project.cookingSchool.entities.Recipe;
+import Cooking.School.Project.cookingSchool.exceptions.RecipeNotFoundException;
+import Cooking.School.Project.cookingSchool.restapi.DTO.RecipeIngredientDTO;
 import org.aspectj.lang.annotation.DeclareWarning;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -47,10 +49,19 @@ public class RecipeController {
         return recipeService.getRecipeById(recipeId);
     }
 
-   /* @PutMapping("/admin/updateRecipe/{id}")
+   @PutMapping("/admin/updateRecipe/{recipeId}")
     public ResponseEntity<?> updateRecipe(
-        @PathVariable Long recipeId,
-        @RequestBody
-    )*/
+           @PathVariable Long recipeId,
+           @RequestBody Recipe updatedRecipe
+           ){
+        try {
+            Recipe updated = recipeService.updateRecipe(recipeId, updatedRecipe);
+
+            return  new ResponseEntity<>(updated, HttpStatus.OK);
+        }catch (RecipeNotFoundException rnfe){
+            return new ResponseEntity<>("Recipe not found", HttpStatus.NOT_FOUND);
+        }
+
+   }
 
 }

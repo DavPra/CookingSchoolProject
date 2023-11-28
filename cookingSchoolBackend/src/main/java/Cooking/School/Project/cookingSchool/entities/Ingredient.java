@@ -36,6 +36,8 @@ public class Ingredient {
     private String title;
     @Setter
     private String unit;
+    @Setter
+    private int quantity;
 
 
 }
