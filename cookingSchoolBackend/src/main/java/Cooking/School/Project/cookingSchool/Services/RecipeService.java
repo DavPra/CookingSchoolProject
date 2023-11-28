@@ -28,8 +28,8 @@ public class RecipeService {
 
     }
 
-    public Recipe addRecipe(Recipe recipe){
-        if(recipeRepository.existsByTitle(recipe.getTitle())){
+    public Recipe addRecipe(Recipe recipe) {
+        if (recipeRepository.existsByTitle(recipe.getTitle())) {
             throw new DuplicateKeyException("Dieser Rezept Title exestiert bereits");
         }
         recipeRepository.save(recipe);
@@ -42,14 +42,17 @@ public class RecipeService {
         return recipeRepository.findAll();
 
     }
-//TODO Exceptions weiter
-    public Recipe getRecipeById(Long recipeId){
+
+    //TODO Exceptions weiter
+    public Recipe getRecipeById(Long recipeId) {
         return recipeRepository.findById(recipeId).get();
     }
 
     //TODO gibt zutaten nicht in der response aus
+
     /**
      * updatet Recipe und zutaten anhand der recipeId im pfad und findet Ingredient anhand der id,checkt ob da und updatet
+     *
      * @param recipeId
      * @param updatedRecipe
      * @return
@@ -58,7 +61,7 @@ public class RecipeService {
      */
 
     @Transactional
-    public Recipe updateRecipe( Long recipeId, Recipe updatedRecipe) throws RecipeNotFoundException, PrimaryIdNullOrEmptyException {
+    public Recipe updateRecipe(Long recipeId, Recipe updatedRecipe) throws RecipeNotFoundException, PrimaryIdNullOrEmptyException {
         Recipe existingRecipe = recipeRepository.findById(recipeId)
                 .orElseThrow(() -> new RecipeNotFoundException("Recipe with Id  " + recipeId + " not found"));
 
@@ -71,21 +74,24 @@ public class RecipeService {
         if (updatedRecipe.getIngredients() != null) {
             existingRecipe.getIngredients().forEach(ingredient -> {
                 Ingredient updatedIngredient = ingredientRepository.findById(ingredient.getIngredientId())
-                                .orElseThrow(() -> new IngredientNotFoundException("Ingredient with Id " + ingredient.getIngredientId() + " notfound"));
+                        .orElseThrow(() -> new IngredientNotFoundException("Ingredient with Id " + ingredient.getIngredientId() + " notfound"));
 
 
                 ingredient.setTitle(updatedIngredient.getTitle());
-                ingredient.setTitle(updatedIngredient.getUnit());
+                ingredient.setUnit(updatedIngredient.getUnit());
                 ingredient.setQuantity(updatedIngredient.getQuantity());
+
 
             });
         }
+
         return recipeRepository.save(existingRecipe);
     }
 
-
-
-
-
-
+    public void deleteRecipeById(Long recipeId) throws PrimaryIdNullOrEmptyException {
+        if (recipeId == null || recipeId <= 0) {
+            throw new PrimaryIdNullOrEmptyException("Id is null or empty");
+        }
+        recipeRepository.deleteById(recipeId);
+    }
 }

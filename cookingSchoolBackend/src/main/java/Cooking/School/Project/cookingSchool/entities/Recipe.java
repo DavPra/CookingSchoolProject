@@ -45,7 +45,7 @@ public class Recipe {
        private Set<Course> courses;
 
         @Setter
-       @ManyToMany
+       @ManyToMany(cascade = CascadeType.ALL)
        @JoinTable(
                name = "recipe_ingredient",
                joinColumns = @JoinColumn(name = "recipe_id"),
