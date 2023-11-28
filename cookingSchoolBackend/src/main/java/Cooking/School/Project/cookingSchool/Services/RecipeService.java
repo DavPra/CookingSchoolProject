@@ -43,8 +43,8 @@ public class RecipeService {
 
     }
 
-    //TODO Exceptions weiter
-    public Recipe getRecipeById(Long recipeId) throws PrimaryIdNullOrEmptyException{
+
+    public Recipe getRecipeById(Long recipeId) throws PrimaryIdNullOrEmptyException {
         if (recipeId == null || recipeId <= 0) {
             throw new PrimaryIdNullOrEmptyException("Id is null or empty");
         }
@@ -91,10 +91,20 @@ public class RecipeService {
         return recipeRepository.save(existingRecipe);
     }
 
-    public void deleteRecipeById(Long recipeId) throws PrimaryIdNullOrEmptyException {
+    @Transactional
+    //TODO Ingredients löschen?
+
+    public void deleteRecipeById(Long recipeId) throws PrimaryIdNullOrEmptyException, RecipeNotFoundException {
         if (recipeId == null || recipeId <= 0) {
             throw new PrimaryIdNullOrEmptyException("Id is null or empty");
         }
+
+        Recipe recipe = recipeRepository.findById(recipeId)
+                .orElseThrow(() -> new RecipeNotFoundException("Recipe with Id " + recipeId + " not found"));
+
+        recipe.getIngredients().forEach(ingredient -> ingredientRepository.deleteById(ingredient.getIngredientId()));
+
         recipeRepository.deleteById(recipeId);
     }
 }
+

@@ -77,7 +77,6 @@ public class RecipeController {
    }
 
 
-   // @Transactional
     @DeleteMapping("admin/recipe/{recipeId}")
     public ResponseEntity<?> deleteRecipeById(@PathVariable Long recipeId){
         logger.info("get id"+ recipeId);
@@ -86,6 +85,8 @@ public class RecipeController {
             return new ResponseEntity<>("Recipe erfolgreich gelöscht", HttpStatus.OK);
         } catch (PrimaryIdNullOrEmptyException e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }catch (RecipeNotFoundException rnfe){
+            return new ResponseEntity<>(rnfe.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
