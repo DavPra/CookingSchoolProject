@@ -1,13 +1,11 @@
 package Cooking.School.Project.cookingSchool.controller;
 
-import Cooking.School.Project.cookingSchool.restapi.DTO.DownloadRequest;
+import Cooking.School.Project.cookingSchool.Services.DownloadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import Cooking.School.Project.cookingSchool.Services.DownloadService;
 
 import java.io.IOException;
 
@@ -21,9 +19,9 @@ public class DownloadController {
         this.downloadService = downloadService;
     }
 
-    @PostMapping("/download/pdf")
+    @PostMapping("/download/pdf/{recipeId}")
     @ResponseBody
-    public void createPDF(@RequestBody DownloadRequest request) throws IOException {
-        downloadService.createPDF(request.getContent());
+    public void createPDF(@PathVariable Long recipeId) throws IOException {
+        downloadService.createPDF(recipeId);
     }
 }
