@@ -8,7 +8,7 @@ import java.util.Set;
 
 
 @Entity
-@Table(name= "recipes")
+@Table(name= "recipe")
 
 public class Recipe {
         @Id()

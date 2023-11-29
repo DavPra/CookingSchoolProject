@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Table(name = "ingredients")
+@Table(name = "ingredient")
 @Entity
 public class Ingredient {
 
