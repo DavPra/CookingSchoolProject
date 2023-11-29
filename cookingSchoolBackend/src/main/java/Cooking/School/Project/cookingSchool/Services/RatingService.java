@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import Cooking.School.Project.cookingSchool.entities.Rating;
 import Cooking.School.Project.cookingSchool.repository.RatingRepository;
 
+import java.util.List;
+
 
 @Service
 public class RatingService {
@@ -37,4 +39,7 @@ public class RatingService {
         return rating;
     }
 
+    public List<Rating> getAllRatings() {
+        return ratingRepository.findAll();
+    }
 }

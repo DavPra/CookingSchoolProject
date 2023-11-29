@@ -29,6 +29,9 @@ public class AdminController {
     @Autowired
     private RecipeService recipeService;
 
+    @Autowired
+    private RatingService ratingService;
+
 //-------------------------------- Admin course
     @PostMapping("admin/courses")
     public ResponseEntity<?> createCourse(@RequestBody CourseRequest request) {
@@ -121,6 +124,47 @@ public class AdminController {
     public ResponseEntity<User> getUserById(@PathVariable Long id){
         User user = userService.getUserById(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+
+    //--------------------------- Admin ratings administration
+
+    @GetMapping("/admin/ratings")
+    public ResponseEntity<List<Rating>> getAllRatings(){
+        List<Rating> ratings = ratingService.getAllRatings();
+        return new ResponseEntity<>(ratings, HttpStatus.OK);
+    }
+
+    @PostMapping("/admin/ratings")
+    public ResponseEntity<?> addRating(@RequestBody Rating rating){
+        try{
+            ratingService.addRating(rating);
+            return new ResponseEntity<>("Bewertung erfolgreich erstellt", HttpStatus.CREATED);
+        } catch (DuplicateKeyException dke){
+            return new ResponseEntity<>(dke.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping("/admin/ratings/{id}")
+
+    public ResponseEntity<?> deleteRatingById(@PathVariable Long id){
+        try{
+            ratingService.deleteRatingById(id);
+            return new ResponseEntity<>("Bewertung erfolgreich gelöscht", HttpStatus.OK);
+        } catch (PrimaryIdNullOrEmptyException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PutMapping("/admin/ratings/{id}")
+
+    public ResponseEntity<?> updateRating(@PathVariable Long id, @RequestBody Rating rating){
+        try{
+            ratingService.updateRating(rating);
+            return new ResponseEntity<>("Bewertung erfolgreich aktualisiert", HttpStatus.OK);
+        } catch (PrimaryIdNullOrEmptyException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
 
