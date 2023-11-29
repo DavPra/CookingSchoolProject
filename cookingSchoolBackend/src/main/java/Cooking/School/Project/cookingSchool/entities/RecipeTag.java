@@ -1,6 +1,10 @@
 package Cooking.School.Project.cookingSchool.entities;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -8,6 +12,9 @@ import java.util.Set;
 
 @Entity
 @Table(name= "recipe_tags")
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class RecipeTag {
 
         @Id
@@ -25,41 +32,13 @@ public class RecipeTag {
 
         private Long tagId;
 
+
+        @Setter
         private String title;
 
+        @Setter
         @ManyToMany(mappedBy = "recipeTags")
         private Set<Recipe> recipes;
 
-        public RecipeTag(){
 
-        }
-
-        public RecipeTag(Long tagId, String title) {
-            this.tagId = tagId;
-            this.title = title;
-        }
-
-    public Long getTagId() {
-        return tagId;
-    }
-
-    public void setTagId(Long tagId) {
-        this.tagId = tagId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Set<Recipe> getRecipes() {
-        return recipes;
-    }
-
-    public void setRecipes(Set<Recipe> recipes) {
-        this.recipes = recipes;
-    }
 }

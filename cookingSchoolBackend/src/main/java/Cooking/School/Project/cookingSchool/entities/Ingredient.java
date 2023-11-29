@@ -1,6 +1,10 @@
 package Cooking.School.Project.cookingSchool.entities;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -9,6 +13,9 @@ import java.util.Set;
 
 @Table(name = "ingredients")
 @Entity
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Ingredient {
 
     @Id
@@ -25,10 +32,12 @@ public class Ingredient {
     )
 
     private Long ingredientId;
-
+    @Setter
     private String title;
-
+    @Setter
     private String unit;
+    @Setter
+    private int quantity;
 
     private int quantity;
 

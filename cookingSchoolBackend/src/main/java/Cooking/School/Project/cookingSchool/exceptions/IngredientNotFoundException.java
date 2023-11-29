@@ -12,6 +12,10 @@ public class IngredientNotFoundException extends RuntimeException {
         super("Ingredient not found with Id" + ingredientId);
         this.ingredientId = ingredientId;
     }
+    public IngredientNotFoundException(String message){
+        super(message);
+    }
+
 
     public Long getIngredientId(){
         return ingredientId;

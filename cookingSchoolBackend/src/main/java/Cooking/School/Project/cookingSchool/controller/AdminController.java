@@ -3,17 +3,15 @@ package Cooking.School.Project.cookingSchool.controller;
 import Cooking.School.Project.cookingSchool.Services.*;
 import Cooking.School.Project.cookingSchool.entities.*;
 import Cooking.School.Project.cookingSchool.exceptions.*;
-import Cooking.School.Project.cookingSchool.restapi.inputParams.CourseInputParam;
+import Cooking.School.Project.cookingSchool.restapi.DTO.CourseInputParam;
 
-import Cooking.School.Project.cookingSchool.restapi.inputParams.CourseRequest;
+import Cooking.School.Project.cookingSchool.restapi.DTO.CourseRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 public class AdminController {

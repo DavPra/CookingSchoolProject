@@ -1,4 +1,4 @@
-package Cooking.School.Project.cookingSchool.restapi.inputParams;
+package Cooking.School.Project.cookingSchool.restapi.DTO;
 
 import java.time.LocalDateTime;
 
