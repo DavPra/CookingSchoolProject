@@ -74,4 +74,8 @@ public class Course {
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "courseTag_id"))
     private Set<CourseTag> courseTags;
+
+    @Setter
+    @OneToMany(mappedBy = "course")
+    private Set<Rating> ratings;
 }
