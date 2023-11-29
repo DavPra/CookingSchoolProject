@@ -53,8 +53,6 @@ public class User {
     @Setter
     private boolean isAdmin;
 
-    @Setter
-    private Long finishedCourses;
 
     @Setter
     @ManyToMany
