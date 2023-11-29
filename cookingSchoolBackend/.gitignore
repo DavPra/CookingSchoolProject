@@ -191,4 +191,7 @@ buildNumber.properties
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
+# derby DB
+derby.log
+
 # End of https://www.toptal.com/developers/gitignore/api/intellij+all,intellij+iml,maven,java
