@@ -35,10 +35,10 @@ public class SetUpService {
         courseRepository.save(course);
         System.out.println("Kurs 1 wurde erstellt");
 
-       /* Ingredient ingredient = new Ingredient();
+        Ingredient ingredient = new Ingredient();
         ingredient.setTitle("Zutat 1");
         ingredient.setUnit("Einheit 1");
-        ingredientRepository.save(ingredient);*/
+        ingredientRepository.save(ingredient);
 
         Recipe recipe = new Recipe();
         recipe.setTitle("Rezept 1");

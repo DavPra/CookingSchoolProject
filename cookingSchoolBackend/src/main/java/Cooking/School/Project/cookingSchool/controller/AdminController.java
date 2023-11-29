@@ -7,6 +7,7 @@ import Cooking.School.Project.cookingSchool.restapi.DTO.CourseInputParam;
 
 import Cooking.School.Project.cookingSchool.restapi.DTO.CourseRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -76,34 +77,6 @@ public class AdminController {
     public ResponseEntity<List<CourseTag>> getAllCourseTags(){
         List<CourseTag> courseTags = tagService.getAllCourseTags();
         return new ResponseEntity<>(courseTags, HttpStatus.OK);
-    }
-
-    //--------------------------- Recipe
-
-
-    //TODO lieber ins userService?
-    @PostMapping("admin/addRecipe")
-    public ResponseEntity<?> addRecipe(@RequestBody Recipe recipe) {
-        try {
-            recipeService.addRecipe(recipe);
-            return new ResponseEntity<>("Rezept erfolgreich erstellt", HttpStatus.CREATED);
-        } catch (DuplicateKeyException dke) {
-            return new ResponseEntity<>(dke.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-
-    }
-
-    @GetMapping("admin/getAllRecipes")
-    public ResponseEntity<List<Recipe>> getAllRecipes(){
-       List<Recipe> recipes = recipeService.getAllRecipe();
-       return new ResponseEntity<>(recipes, HttpStatus.OK);
-    }
-
-    //TODO put recipes über id im path?
-
-    @GetMapping("/admin/recipe/{id}")
-    public Recipe getRecipeById(@PathVariable Long id){
-        return recipeService.getRecipeById(id);
     }
 
     //--------------------------- Admin users administration

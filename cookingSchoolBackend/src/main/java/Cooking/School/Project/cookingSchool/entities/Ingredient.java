@@ -39,51 +39,11 @@ public class Ingredient {
     @Setter
     private int quantity;
 
-    private int quantity;
+    @Setter
+    @ManyToMany(mappedBy = "ingredients")
+    private Set<Recipe> recipes = new HashSet<>();
 
 
-    public Ingredient(){
-
-    }
-
-    public Ingredient(Long ingredientId, String title, String unit) {
-        this.ingredientId = ingredientId;
-        this.title = title;
-        this.unit = unit;
-        this.quantity = quantity;
-    }
-
-    public Long getIngredientId() {
-        return ingredientId;
-    }
-
-    public void setIngredientId(Long ingredientId) {
-        this.ingredientId = ingredientId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 }
 
 
