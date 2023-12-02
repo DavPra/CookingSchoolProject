@@ -12,6 +12,10 @@ public class EntityNotFoundException  extends RuntimeException {
         this.entityId = entityId;
     }
 
+    public EntityNotFoundException (String message){
+        super(message);
+    }
+
     public Long getEntityId() {
         return entityId;
     }

@@ -7,11 +7,15 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class CourseNotFoundException extends RuntimeException {
     private Long courseId;
 
-    public CourseNotFoundException(Long userId) {
-        super("User not found with Id" + userId);
+
+    public CourseNotFoundException(Long courseId) {
+        super("Course not found with Id" + courseId);
         this.courseId = courseId;
     }
 
+    public CourseNotFoundException(String message){
+        super(message);
+    }
     public Long getUserId(){
         return courseId;
     }

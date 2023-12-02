@@ -22,6 +22,8 @@ public class TagService {
     public TagService(){
     }
 
+    //----------------------- Course Tags
+
     public CourseTag addCourseTag(CourseTag courseTag){
         courseTagRepository.save(courseTag);
         return courseTag;
@@ -40,6 +42,12 @@ public class TagService {
         return courseTag;
     }
 
+    public List<CourseTag> getAllCourseTags() {
+        return courseTagRepository.findAll();
+    }
+
+
+    //------------------------------------------ Recipe Tags
     public RecipeTag addRecipeTag(RecipeTag recipeTag){
         recipeTagRepository.save(recipeTag);
         return recipeTag;
@@ -58,8 +66,6 @@ public class TagService {
         return recipeTag;
     }
 
-    public List<CourseTag> getAllCourseTags() {
-        return courseTagRepository.findAll();
-    }
+
 
 }
