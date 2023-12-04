@@ -8,13 +8,11 @@ import Cooking.School.Project.cookingSchool.exceptions.PrimaryIdNullOrEmptyExcep
 import Cooking.School.Project.cookingSchool.exceptions.TagNotFoundException;
 import Cooking.School.Project.cookingSchool.repository.CourseRepository;
 import Cooking.School.Project.cookingSchool.repository.CourseTagRepository;
-import Cooking.School.Project.cookingSchool.restapi.DTO.CourseInputParam;
 import Cooking.School.Project.cookingSchool.restapi.DTO.CourseRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
@@ -41,6 +39,7 @@ public class CourseService {
         return courseRepository.findById(id).get();
     }
 
+
     public void deleteCourseById(Long id){
         courseRepository.deleteById(id);
     }
@@ -63,7 +62,7 @@ public class CourseService {
         course.setCourseTitle(request.getCourseTitle());
         course.setDescription(request.getDescription());
         course.setTeacher(request.getTeacher());
-        course.setStartDate(request.getDate());
+        course.setStartDate(request.getStartDate());
         course.setMaxAttendants(request.getMaxAttendants());
         course.setPrice(request.getPrice());
 
@@ -85,7 +84,8 @@ public class CourseService {
         return courseRepository.findAll();
     }
 
-//TODO Tags
+
+    @Transactional
     public Course  updateCourse(Long courseId, String title, String description, String teacher, LocalDateTime startDate,
                                 int maxAttendants, int  price, Set<CourseTag> courseTags)
             throws PrimaryIdNullOrEmptyException, CourseNotFoundException, InvalidStartDateException, TagNotFoundException{

@@ -3,7 +3,6 @@ package Cooking.School.Project.cookingSchool.controller;
 import Cooking.School.Project.cookingSchool.Services.*;
 import Cooking.School.Project.cookingSchool.entities.*;
 import Cooking.School.Project.cookingSchool.exceptions.*;
-import Cooking.School.Project.cookingSchool.restapi.DTO.CourseInputParam;
 
 import Cooking.School.Project.cookingSchool.restapi.DTO.CourseRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,12 +57,19 @@ public class AdminController {
         }
     }
 
+    /**
+     * updatet einen Kurs inkl zugehöriger Tags
+     * @param courseId
+     * @param param
+     * @return
+     */
+
     @PutMapping("admin/courses/{courseId}")
-    public ResponseEntity<?> updateCourse(@PathVariable Long courseId, @RequestBody CourseInputParam param){
+    public ResponseEntity<?> updateCourse(@PathVariable Long courseId, @RequestBody CourseRequest param){
         try {
             Set<CourseTag> courseTags = param.getCourseTags();
 
-            Course updatedCourse = courseService.updateCourse(courseId, param.getTitle(),
+            Course updatedCourse = courseService.updateCourse(courseId, param.getCourseTitle(),
                     param.getDescription(), param.getTeacher(), param.getStartDate(),
                     param.getMaxAttendants(), param.getPrice(), courseTags);
             return new ResponseEntity<>("Kurs erfolgreich aktualisiert", HttpStatus.OK);
