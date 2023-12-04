@@ -84,8 +84,9 @@ public class CourseService {
         return courseRepository.findAll();
     }
 
-
-    public Course  updateCourse(Long courseId, String title, String description, String teacher, LocalDateTime startDate,int maxAttendants, int  price )
+//TODO Tags
+    public Course  updateCourse(Long courseId, String title, String description, String teacher, LocalDateTime startDate,
+                                int maxAttendants, int  price, Set<CourseTag> courseTags)
             throws PrimaryIdNullOrEmptyException, CourseNotFoundException, InvalidStartDateException {
 
         if(courseId == null) {
@@ -105,6 +106,7 @@ public class CourseService {
         existingCourse.setStartDate(startDate);
         existingCourse.setMaxAttendants(maxAttendants);
         existingCourse.setPrice(price);
+        existingCourse.setCourseTags(courseTags);
 
         return courseRepository.save(existingCourse);
 

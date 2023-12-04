@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class AdminController {
@@ -60,9 +61,11 @@ public class AdminController {
     @PutMapping("admin/courses/{id}")
     public ResponseEntity<?> updateCourse(@PathVariable Long courseId, @RequestBody CourseInputParam param){
         try {
+            Set<CourseTag> courseTags = param.getCourseTags();
+
             Course updatedCourse = courseService.updateCourse(courseId, param.getTitle(),
                     param.getDescription(), param.getTeacher(), param.getStartDate(),
-                    param.getMaxAttendants(), param.getPrice());
+                    param.getMaxAttendants(), param.getPrice(), courseTags);
             return new ResponseEntity<>("Kurs erfolgreich aktualisiert", HttpStatus.OK);
 
         } catch (PrimaryIdNullOrEmptyException e){

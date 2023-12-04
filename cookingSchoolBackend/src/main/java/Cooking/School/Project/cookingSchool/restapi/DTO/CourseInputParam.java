@@ -1,6 +1,10 @@
 package Cooking.School.Project.cookingSchool.restapi.DTO;
 
+import Cooking.School.Project.cookingSchool.entities.Course;
+import Cooking.School.Project.cookingSchool.entities.CourseTag;
+
 import java.time.LocalDateTime;
+import java.util.Set;
 
 public class CourseInputParam {
     private Long courseId;
@@ -17,11 +21,13 @@ public class CourseInputParam {
 
     private int price;
 
+   private  Set<CourseTag> courseTags;
+
     public CourseInputParam(){
 
     }
 
-    public CourseInputParam(Long courseId, String title, String description, String teacher, LocalDateTime startDate) {
+    public CourseInputParam(Long courseId, String title, String description, String teacher, LocalDateTime startDate, int maxAttendants, int price, Set<CourseTag> courseTags) {
         this.courseId = courseId;
         this.title = title;
         this.description = description;
@@ -29,8 +35,8 @@ public class CourseInputParam {
         this.startDate = startDate;
         this.maxAttendants = maxAttendants;
         this.price = price;
+        this.courseTags = courseTags;
     }
-
 
     public Long getCourseId() {
         return courseId;
@@ -87,4 +93,12 @@ public class CourseInputParam {
         public void setPrice(int price) {
             this.price = price;
         }
+
+    public Set<CourseTag> getCourseTags() {
+        return courseTags;
+    }
+
+    public void setCourseTags(Set<CourseTag> courseTags) {
+        this.courseTags = courseTags;
+    }
 }
