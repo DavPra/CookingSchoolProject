@@ -5,6 +5,7 @@ import Cooking.School.Project.cookingSchool.entities.CourseTag;
 import Cooking.School.Project.cookingSchool.exceptions.CourseNotFoundException;
 import Cooking.School.Project.cookingSchool.exceptions.InvalidStartDateException;
 import Cooking.School.Project.cookingSchool.exceptions.PrimaryIdNullOrEmptyException;
+import Cooking.School.Project.cookingSchool.exceptions.TagNotFoundException;
 import Cooking.School.Project.cookingSchool.repository.CourseRepository;
 import Cooking.School.Project.cookingSchool.repository.CourseTagRepository;
 import Cooking.School.Project.cookingSchool.restapi.DTO.CourseInputParam;
@@ -87,7 +88,7 @@ public class CourseService {
 //TODO Tags
     public Course  updateCourse(Long courseId, String title, String description, String teacher, LocalDateTime startDate,
                                 int maxAttendants, int  price, Set<CourseTag> courseTags)
-            throws PrimaryIdNullOrEmptyException, CourseNotFoundException, InvalidStartDateException {
+            throws PrimaryIdNullOrEmptyException, CourseNotFoundException, InvalidStartDateException, TagNotFoundException{
 
         if(courseId == null) {
             throw new PrimaryIdNullOrEmptyException("Course Id is null or empty");
@@ -99,6 +100,10 @@ public class CourseService {
         LocalDateTime currentDate = LocalDateTime.now();
         if (startDate.isBefore(currentDate)) {
             throw new InvalidStartDateException("Please enter a valid start date");
+        }
+        for (CourseTag courseTag : courseTags) {
+            CourseTag existingCourseTag = courseTagRepository.findById(courseTag.getCourseTagId())
+                    .orElseThrow(() -> new TagNotFoundException("Course tag not found"));
         }
         existingCourse.setCourseTitle(title);
         existingCourse.setDescription(description);

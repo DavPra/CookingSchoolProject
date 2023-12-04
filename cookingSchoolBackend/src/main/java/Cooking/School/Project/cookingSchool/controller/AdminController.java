@@ -58,7 +58,7 @@ public class AdminController {
         }
     }
 
-    @PutMapping("admin/courses/{id}")
+    @PutMapping("admin/courses/{courseId}")
     public ResponseEntity<?> updateCourse(@PathVariable Long courseId, @RequestBody CourseInputParam param){
         try {
             Set<CourseTag> courseTags = param.getCourseTags();
@@ -72,6 +72,8 @@ public class AdminController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (InvalidStartDateException isde){
             return new ResponseEntity<>(isde.getMessage(), HttpStatus.NOT_FOUND);
+        }catch (TagNotFoundException tnfe){
+            return new ResponseEntity<>(tnfe.getMessage(), HttpStatus.NOT_FOUND);
         }
 
     }

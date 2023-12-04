@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 public class CourseInputParam {
-    private Long courseId;
+
 
     private String title;
 
@@ -27,8 +27,8 @@ public class CourseInputParam {
 
     }
 
-    public CourseInputParam(Long courseId, String title, String description, String teacher, LocalDateTime startDate, int maxAttendants, int price, Set<CourseTag> courseTags) {
-        this.courseId = courseId;
+    public CourseInputParam( String title, String description, String teacher, LocalDateTime startDate, int maxAttendants, int price, Set<CourseTag> courseTags) {
+
         this.title = title;
         this.description = description;
         this.teacher = teacher;
@@ -38,13 +38,7 @@ public class CourseInputParam {
         this.courseTags = courseTags;
     }
 
-    public Long getCourseId() {
-        return courseId;
-    }
 
-    public void setCourseId(Long courseId) {
-        this.courseId = courseId;
-    }
 
     public String getTitle() {
         return title;

@@ -13,6 +13,10 @@ public class TagNotFoundException extends RuntimeException {
         this.tagId = tagId;
     }
 
+    public TagNotFoundException(String message) {
+        super(message);
+    }
+
     public Long getTagId(){
         return tagId;
     }
