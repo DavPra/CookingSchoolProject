@@ -1,10 +1,13 @@
 package Cooking.School.Project.cookingSchool.Services;
 
+import Cooking.School.Project.cookingSchool.entities.Course;
 import Cooking.School.Project.cookingSchool.entities.Ingredient;
 import Cooking.School.Project.cookingSchool.entities.Recipe;
+import Cooking.School.Project.cookingSchool.exceptions.CourseNotFoundException;
 import Cooking.School.Project.cookingSchool.exceptions.IngredientNotFoundException;
 import Cooking.School.Project.cookingSchool.exceptions.PrimaryIdNullOrEmptyException;
 import Cooking.School.Project.cookingSchool.exceptions.RecipeNotFoundException;
+import Cooking.School.Project.cookingSchool.repository.CourseRepository;
 import Cooking.School.Project.cookingSchool.repository.IngredientRepository;
 import Cooking.School.Project.cookingSchool.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,18 +27,31 @@ public class RecipeService {
     @Autowired
     IngredientRepository ingredientRepository;
 
+    @Autowired
+    CourseRepository courseRepository;
+
+
+
     public RecipeService() {
 
     }
 
-    public Recipe addRecipe(Recipe recipe) {
-        if (recipeRepository.existsByTitle(recipe.getTitle())) {
-            throw new DuplicateKeyException("Dieser Rezept Title exestiert bereits");
-        }
-        recipeRepository.save(recipe);
-        return recipe;
 
+    public void addRecipeToCourse(Long courseId, Recipe recipe) {
+        Course course = courseRepository.findById(courseId)
+                .orElseThrow(() -> new CourseNotFoundException("Course not found with ID: " + courseId));
+
+        boolean recipeExists = recipeRepository.existsByTitle(recipe.getTitle());
+
+        if (!recipeExists) {
+            recipeRepository.save(recipe);
+        }
+
+        course.getRecipes().add(recipe);
+
+        courseRepository.save(course);
     }
+
 
     public List<Recipe> getAllRecipe() throws RecipeNotFoundException {
 
