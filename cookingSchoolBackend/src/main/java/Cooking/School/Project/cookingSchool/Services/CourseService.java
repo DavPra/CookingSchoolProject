@@ -2,6 +2,7 @@ package Cooking.School.Project.cookingSchool.Services;
 
 import Cooking.School.Project.cookingSchool.entities.Course;
 import Cooking.School.Project.cookingSchool.entities.CourseTag;
+import Cooking.School.Project.cookingSchool.entities.Recipe;
 import Cooking.School.Project.cookingSchool.exceptions.CourseNotFoundException;
 import Cooking.School.Project.cookingSchool.exceptions.InvalidStartDateException;
 import Cooking.School.Project.cookingSchool.exceptions.PrimaryIdNullOrEmptyException;
@@ -9,11 +10,13 @@ import Cooking.School.Project.cookingSchool.exceptions.TagNotFoundException;
 import Cooking.School.Project.cookingSchool.repository.CourseRepository;
 import Cooking.School.Project.cookingSchool.repository.CourseTagRepository;
 import Cooking.School.Project.cookingSchool.restapi.DTO.CourseRequest;
+import Cooking.School.Project.cookingSchool.restapi.DTO.CourseTagsRecipeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -80,9 +83,25 @@ public class CourseService {
      *
      * @return
      */
-    public List<Course> getAllCourses() {
-        return courseRepository.findAll();
+    public List<CourseTagsRecipeResponse> getAllCourses() {
+        List<Course> courses = courseRepository.findAll();
+        List<CourseTagsRecipeResponse> responseList = new ArrayList<>();
+
+        for (Course course : courses) {
+            Set<CourseTag> tags = course.getCourseTags();
+            Set<Recipe> recipes = course.getRecipes();
+
+
+            CourseTagsRecipeResponse response = new CourseTagsRecipeResponse();
+            response.setCourseTags(tags);
+            response.setRecipes(recipes);
+
+            responseList.add(response);
+        }
+
+        return responseList;
     }
+
 
 
     @Transactional

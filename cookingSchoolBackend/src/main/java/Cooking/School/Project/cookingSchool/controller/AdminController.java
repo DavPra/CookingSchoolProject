@@ -5,6 +5,7 @@ import Cooking.School.Project.cookingSchool.entities.*;
 import Cooking.School.Project.cookingSchool.exceptions.*;
 
 import Cooking.School.Project.cookingSchool.restapi.DTO.CourseRequest;
+import Cooking.School.Project.cookingSchool.restapi.DTO.CourseTagsRecipeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
@@ -40,11 +41,16 @@ public class AdminController {
         }
     }
 
-
+//TODO Retten weil JSON Ignore ...da weiter 4.12.
     @GetMapping("admin/courses")
-    public ResponseEntity<List<Course>> getAllCourses(){
-        List<Course> courses = courseService.getAllCourses();
-        return new ResponseEntity<>(courses, HttpStatus.OK);
+    public ResponseEntity<List<CourseTagsRecipeResponse>> getAllCourses(){
+        try{
+            List<CourseTagsRecipeResponse> courseTagsRecipeResponses = courseService.getAllCourses();
+            return new ResponseEntity<>(courseTagsRecipeResponses,HttpStatus.OK );
+        }catch (CourseNotFoundException cnfe){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @DeleteMapping("admin/courses/{id}")
