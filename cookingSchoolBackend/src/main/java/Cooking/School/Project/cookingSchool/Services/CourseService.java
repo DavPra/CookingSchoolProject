@@ -63,7 +63,6 @@ public class CourseService {
         course.setCourseTags(courseTags);
 
 
-
         Course savedCourse = courseRepository.save(course);
 
         return savedCourse.getCourseId();

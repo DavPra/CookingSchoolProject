@@ -6,6 +6,7 @@ import Cooking.School.Project.cookingSchool.exceptions.CourseNotFoundException;
 import Cooking.School.Project.cookingSchool.exceptions.EntityNotFoundException;
 import Cooking.School.Project.cookingSchool.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,6 +53,20 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal Server Error");
         }
     }
+
+    @PostMapping("/registration")
+    public ResponseEntity<?> registration(@RequestBody User user){
+        try {
+            userService.registration(user);
+            return ResponseEntity.ok("successfully registered");
+        }catch (DuplicateKeyException dke){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email address already registered");
+        }
+    }
+
+
+
+
 
 
 }
