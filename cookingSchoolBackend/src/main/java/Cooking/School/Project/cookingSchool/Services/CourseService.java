@@ -2,6 +2,9 @@ package Cooking.School.Project.cookingSchool.Services;
 
 import Cooking.School.Project.cookingSchool.entities.Course;
 import Cooking.School.Project.cookingSchool.entities.CourseTag;
+import Cooking.School.Project.cookingSchool.exceptions.CourseNotFoundException;
+import Cooking.School.Project.cookingSchool.exceptions.InvalidStartDateException;
+import Cooking.School.Project.cookingSchool.exceptions.PrimaryIdNullOrEmptyException;
 import Cooking.School.Project.cookingSchool.repository.CourseRepository;
 import Cooking.School.Project.cookingSchool.repository.CourseTagRepository;
 import Cooking.School.Project.cookingSchool.restapi.DTO.CourseInputParam;
@@ -10,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -49,6 +54,8 @@ public class CourseService {
      * @param
      * @return
      */
+
+
     @Transactional
     public Long createCourse(CourseRequest request) {
         Course course = new Course();
@@ -78,13 +85,29 @@ public class CourseService {
     }
 
 
-    public void updateCourseById(Long id, CourseInputParam course){
-        Course courseToUpdate = courseRepository.findById(id).get();
-        courseToUpdate.setCourseTitle(course.getTitle());
-        courseToUpdate.setDescription(course.getDescription());
-        courseToUpdate.setTeacher(course.getTeacher());
-        courseToUpdate.setStartDate(course.getDate());
-        courseRepository.save(courseToUpdate);
+    public Course  updateCourse(Long courseId, String title, String description, String teacher, LocalDateTime startDate,int maxAttendants, int  price )
+            throws PrimaryIdNullOrEmptyException, CourseNotFoundException, InvalidStartDateException {
+
+        if(courseId == null) {
+            throw new PrimaryIdNullOrEmptyException("Course Id is null or empty");
+        }
+
+        Course existingCourse = courseRepository.findById(courseId)
+                .orElseThrow(() -> new CourseNotFoundException("Course not found" + courseId));
+
+        LocalDateTime currentDate = LocalDateTime.now();
+        if (startDate.isBefore(currentDate)) {
+            throw new InvalidStartDateException("Please enter a valid start date");
+        }
+        existingCourse.setCourseTitle(title);
+        existingCourse.setDescription(description);
+        existingCourse.setTeacher(teacher);
+        existingCourse.setStartDate(startDate);
+        existingCourse.setMaxAttendants(maxAttendants);
+        existingCourse.setPrice(price);
+
+        return courseRepository.save(existingCourse);
+
     }
 
 

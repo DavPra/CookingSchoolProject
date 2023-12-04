@@ -11,7 +11,7 @@ public class CourseInputParam {
 
     private String teacher;
 
-    private LocalDateTime date;
+    private LocalDateTime startDate;
 
     private int maxAttendants;
 
@@ -21,12 +21,12 @@ public class CourseInputParam {
 
     }
 
-    public CourseInputParam(Long courseId, String title, String description, String teacher, LocalDateTime date) {
+    public CourseInputParam(Long courseId, String title, String description, String teacher, LocalDateTime startDate) {
         this.courseId = courseId;
         this.title = title;
         this.description = description;
         this.teacher = teacher;
-        this.date = date;
+        this.startDate = startDate;
         this.maxAttendants = maxAttendants;
         this.price = price;
     }
@@ -64,15 +64,15 @@ public class CourseInputParam {
         this.teacher = teacher;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public LocalDateTime getStartDate() {
+        return startDate;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
     }
 
-        public int getMaxAttendants() {
+    public int getMaxAttendants() {
             return maxAttendants;
         }
 

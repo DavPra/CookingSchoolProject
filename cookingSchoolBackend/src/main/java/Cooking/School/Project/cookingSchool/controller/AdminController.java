@@ -58,13 +58,19 @@ public class AdminController {
     }
 
     @PutMapping("admin/courses/{id}")
-    public ResponseEntity<?> updateCourse(@PathVariable Long id, @RequestBody CourseInputParam param){
-        try{
-            courseService.updateCourseById(id, param);
+    public ResponseEntity<?> updateCourse(@PathVariable Long courseId, @RequestBody CourseInputParam param){
+        try {
+            Course updatedCourse = courseService.updateCourse(courseId, param.getTitle(),
+                    param.getDescription(), param.getTeacher(), param.getStartDate(),
+                    param.getMaxAttendants(), param.getPrice());
             return new ResponseEntity<>("Kurs erfolgreich aktualisiert", HttpStatus.OK);
+
         } catch (PrimaryIdNullOrEmptyException e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (InvalidStartDateException isde){
+            return new ResponseEntity<>(isde.getMessage(), HttpStatus.NOT_FOUND);
         }
+
     }
 
     //------------------------- Admin tags
