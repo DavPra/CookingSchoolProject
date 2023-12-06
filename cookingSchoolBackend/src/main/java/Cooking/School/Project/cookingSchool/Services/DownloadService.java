@@ -33,24 +33,21 @@ public class DownloadService {
 
                 try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
                     contentStream.beginText();
-                    contentStream.setFont(PDType1Font.HELVETICA_BOLD, 15);
-
-                    float yPosition = 700; // Initial y-coordinate
 
                     // Title
-                    contentStream.newLineAtOffset(10, 500);
+                    contentStream.setFont(PDType1Font.HELVETICA_BOLD, 20); // Larger font for title
+                    contentStream.newLineAtOffset(10, 700);
                     contentStream.showText("Title: " + recipe.getTitle());
-                    yPosition -= 15; // Adjust for the next line
 
                     // Description
-                    contentStream.newLineAtOffset(0, -50);
+                    contentStream.setFont(PDType1Font.HELVETICA_BOLD, 15); // Smaller font for description
+                    contentStream.newLineAtOffset(10, -100);
                     contentStream.showText("Description: " + recipe.getDescription());
-                    yPosition -= 20; // Adjust for the next line
 
                     // Preparation
-                    contentStream.newLineAtOffset(0, -150);
+                    contentStream.setFont(PDType1Font.HELVETICA_BOLD, 15); // Smaller font for preparation
+                    contentStream.newLineAtOffset(10, -100);
                     contentStream.showText("Preparation: " + recipe.getPreparation());
-                    yPosition -= 30; // Adjust for the next line
 
                     contentStream.endText();
                 }
@@ -64,6 +61,7 @@ public class DownloadService {
             }
         }
     }
+
 
 
 }
