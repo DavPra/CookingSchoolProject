@@ -1,6 +1,7 @@
 package Cooking.School.Project.cookingSchool.entities;
 
 
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -8,6 +9,10 @@ import java.util.Set;
 
 
 @Entity
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name= "recipe")
 
 public class Recipe {
@@ -23,8 +28,9 @@ public class Recipe {
                 }
         )
 
-
+        @Setter(AccessLevel.NONE)
         private Long recipeId;
+
         private String title;
         private String description;
         private int difficulty;
@@ -49,58 +55,6 @@ public class Recipe {
          private Set<RecipeTag> recipeTags;
 
 
-        public Recipe(){
-
-        }
-
-        public Recipe(Long recipeId, String title, String description, int difficulty, int preparation) {
-                this.recipeId = recipeId;
-                this.title = title;
-                this.description = description;
-                this.difficulty = difficulty;
-                this.preparation = preparation;
-
-        }
-
-        public Long getRecipeId() {
-                return recipeId;
-        }
-
-        public void setRecipeId(Long recipeId) {
-                this.recipeId = recipeId;
-        }
-
-        public String getTitle() {
-                return title;
-        }
-
-        public void setTitle(String title) {
-                this.title = title;
-        }
-
-        public String getDescription() {
-                return description;
-        }
-
-        public void setDescription(String description) {
-                this.description = description;
-        }
-
-        public int getDifficulty() {
-                return difficulty;
-        }
-
-        public void setDifficulty(int difficulty) {
-                this.difficulty = difficulty;
-        }
-
-        public int getPreparation() {
-                return preparation;
-        }
-
-        public void setPreparation(int preparation) {
-                this.preparation = preparation;
-        }
 
 
 }

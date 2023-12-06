@@ -43,7 +43,7 @@ public class AdminController {
         }
     }
 
-//TODO Retten weil JSON Ignore ...da weiter 4.12.
+
     @GetMapping("admin/courses")
     public ResponseEntity<List<CourseTagsRecipeResponse>> getAllCourses(){
         try{

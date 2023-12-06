@@ -79,7 +79,7 @@ public class RecipeService {
      * @throws PrimaryIdNullOrEmptyException
      */
 
-    /*  @Transactional
+    @Transactional
     public Recipe updateRecipe(Long recipeId, Recipe updatedRecipe) throws RecipeNotFoundException, PrimaryIdNullOrEmptyException {
         Recipe existingRecipe = recipeRepository.findById(recipeId)
                 .orElseThrow(() -> new RecipeNotFoundException("Recipe with Id  " + recipeId + " not found"));
@@ -96,7 +96,7 @@ public class RecipeService {
                         .orElseThrow(() -> new IngredientNotFoundException("Ingredient with Id " + ingredient.getIngredientId() + " notfound"));
 
 
-                ingredient.(updatedIngredient.getTitle());
+                ingredient.setTitle(updatedIngredient.getTitle());
                 ingredient.setUnit(updatedIngredient.getUnit());
                 ingredient.setQuantity(updatedIngredient.getQuantity());
 
@@ -121,7 +121,7 @@ public class RecipeService {
         recipe.getIngredients().forEach(ingredient -> ingredientRepository.deleteById(ingredient.getIngredientId()));
 
         recipeRepository.deleteById(recipeId);
-    } */
+    }
 }
 
 

@@ -60,7 +60,7 @@ public class RecipeController {
     }
 
 
-  /*  @Transactional
+    @Transactional
   @PutMapping("/admin/updateRecipe/{recipeId}")
     public ResponseEntity<?> updateRecipe(
            @PathVariable Long recipeId,
@@ -68,7 +68,7 @@ public class RecipeController {
            ){
         try {
             Recipe updated = recipeService.updateRecipe(recipeId, updatedRecipe);
-            logger.info("Updated Ingredients: " + updated.());
+            logger.info("Updated Ingredients: " + updated.getIngredients());
 
             return  new ResponseEntity<>(updated, HttpStatus.OK);
         }catch (RecipeNotFoundException rnfe){
@@ -93,6 +93,6 @@ public class RecipeController {
         }
     }
 
-  */
+
 
 }
