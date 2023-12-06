@@ -20,24 +20,36 @@ public class UserController {
 
 
     //TEST
-    @PostMapping("/users")
-    public User addUser(@RequestBody User user){
-        return  userService.addUser(user);
-    }
 
     @GetMapping("/users/{id}")
-    public User getUserById(@PathVariable Long id){
-        return userService.getUserById(id);
+    public ResponseEntity<User> getUserById(@PathVariable Long id){
+        try {
+            User user = userService.getUserById(id);
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } catch (UserNotFoundException unfe) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping("/users/{id}")
-    public void deleteUserById(@PathVariable Long id){
-        userService.deleteUserById(id);
+    public ResponseEntity<?> deleteUserById(@PathVariable Long id){
+        try {
+            userService.deleteUserById(id);
+            return new ResponseEntity<>("User deleted successfully", HttpStatus.OK);
+        } catch (UserNotFoundException unfe) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PutMapping("/users")
-    public User updateUser(@RequestBody User user){
-        return userService.updateUser(user);
+    public ResponseEntity<?> updateUser(@RequestBody User user){
+        try {
+            userService.updateUser(user);
+            return new ResponseEntity<>("User updated successfully", HttpStatus.OK);
+        } catch (UserNotFoundException unfe) {
+            return new ResponseEntity<>(unfe.getMessage(), HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @PostMapping("/users/{userId}/book-course/{courseId}")
