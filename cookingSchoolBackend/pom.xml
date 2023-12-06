@@ -44,7 +44,7 @@
 			<scope>test</scope>
 		</dependency>
 
-	<!--	<dependency>
+	<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
@@ -64,14 +64,6 @@
 			<artifactId>jjwt-jackson</artifactId>
 			<version>0.11.5</version>
 		</dependency>
--->
-
-        <!-- PDF -->
-        <dependency>
-            <groupId>com.itextpdf</groupId>
-            <artifactId>itextpdf</artifactId>
-            <version>5.5.13</version>
-        </dependency>
 
 		<dependency>
 			<groupId>org.junit.vintage</groupId>
