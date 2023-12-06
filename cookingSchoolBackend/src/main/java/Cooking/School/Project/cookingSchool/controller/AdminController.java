@@ -3,9 +3,9 @@ package Cooking.School.Project.cookingSchool.controller;
 import Cooking.School.Project.cookingSchool.Services.*;
 import Cooking.School.Project.cookingSchool.entities.*;
 import Cooking.School.Project.cookingSchool.exceptions.*;
-import Cooking.School.Project.cookingSchool.restapi.DTO.CourseInputParam;
 
 import Cooking.School.Project.cookingSchool.restapi.DTO.CourseRequest;
+import Cooking.School.Project.cookingSchool.restapi.DTO.CourseTagsRecipeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class AdminController {
@@ -40,11 +41,16 @@ public class AdminController {
         }
     }
 
-
+//TODO Retten weil JSON Ignore ...da weiter 4.12.
     @GetMapping("admin/courses")
-    public ResponseEntity<List<Course>> getAllCourses(){
-        List<Course> courses = courseService.getAllCourses();
-        return new ResponseEntity<>(courses, HttpStatus.OK);
+    public ResponseEntity<List<CourseTagsRecipeResponse>> getAllCourses(){
+        try{
+            List<CourseTagsRecipeResponse> courseTagsRecipeResponses = courseService.getAllCourses();
+            return new ResponseEntity<>(courseTagsRecipeResponses,HttpStatus.OK );
+        }catch (CourseNotFoundException cnfe){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @DeleteMapping("admin/courses/{id}")
@@ -57,14 +63,31 @@ public class AdminController {
         }
     }
 
-    @PutMapping("admin/courses/{id}")
-    public ResponseEntity<?> updateCourse(@PathVariable Long id, @RequestBody CourseInputParam param){
-        try{
-            courseService.updateCourseById(id, param);
+    /**
+     * updatet einen Kurs inkl zugehöriger Tags
+     * @param courseId
+     * @param param
+     * @return
+     */
+
+    @PutMapping("admin/courses/{courseId}")
+    public ResponseEntity<?> updateCourse(@PathVariable Long courseId, @RequestBody CourseRequest param){
+        try {
+            Set<CourseTag> courseTags = param.getCourseTags();
+
+            Course updatedCourse = courseService.updateCourse(courseId, param.getCourseTitle(),
+                    param.getDescription(), param.getTeacher(), param.getStartDate(),
+                    param.getMaxAttendants(), param.getPrice(), courseTags);
             return new ResponseEntity<>("Kurs erfolgreich aktualisiert", HttpStatus.OK);
+
         } catch (PrimaryIdNullOrEmptyException e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (InvalidStartDateException isde){
+            return new ResponseEntity<>(isde.getMessage(), HttpStatus.NOT_FOUND);
+        }catch (TagNotFoundException tnfe){
+            return new ResponseEntity<>(tnfe.getMessage(), HttpStatus.NOT_FOUND);
         }
+
     }
 
     //------------------------- Admin tags

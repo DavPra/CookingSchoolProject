@@ -11,6 +11,10 @@ public class UserNotFoundException extends RuntimeException {
         super("User not found with Id" + userId);
         this.userId = userId;
     }
+    public UserNotFoundException(String message){
+        super(message);
+    }
+
 
     public Long getUserId(){
         return userId;

@@ -1,4 +1,4 @@
-/*
+
 
 package Cooking.School.Project.cookingSchool.Services;
 
@@ -56,4 +56,3 @@ public class SetUpService {
         userRepository.save(user);
     }
 }
-*/

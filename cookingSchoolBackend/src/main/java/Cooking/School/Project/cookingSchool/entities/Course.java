@@ -2,6 +2,7 @@ package Cooking.School.Project.cookingSchool.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -65,6 +66,8 @@ public class Course {
    @ManyToMany(mappedBy = "courses")
     private Set<User> users = new HashSet<>();
 
+
+    @JsonIgnore
     @Setter
     @ManyToMany
     @JoinTable(

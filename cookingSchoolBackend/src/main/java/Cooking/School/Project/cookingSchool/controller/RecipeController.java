@@ -3,6 +3,7 @@ package Cooking.School.Project.cookingSchool.controller;
 import Cooking.School.Project.cookingSchool.Services.RecipeService;
 import Cooking.School.Project.cookingSchool.Services.TagService;
 import Cooking.School.Project.cookingSchool.entities.Recipe;
+import Cooking.School.Project.cookingSchool.exceptions.CourseNotFoundException;
 import Cooking.School.Project.cookingSchool.exceptions.PrimaryIdNullOrEmptyException;
 import Cooking.School.Project.cookingSchool.exceptions.RecipeNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,17 +32,16 @@ public class RecipeController {
     //--------------------------- Recipe
 
 
-    //TODO lieber ins userService?
-    @PostMapping("admin/addRecipe")
-    public ResponseEntity<?> addRecipe(@RequestBody Recipe recipe) {
+    @PostMapping("/admin/addRecipe/{courseId}")
+    public ResponseEntity<?> addRecipeToCourse(@PathVariable Long courseId, @RequestBody Recipe recipe) {
         try {
-            recipeService.addRecipe(recipe);
-            return new ResponseEntity<>("Rezept erfolgrich erstellt", HttpStatus.CREATED);
-        } catch (DuplicateKeyException dke) {
-            return new ResponseEntity<>(dke.getMessage(), HttpStatus.BAD_REQUEST);
+            recipeService.addRecipeToCourse(courseId, recipe);
+            return new ResponseEntity<>("Rezept erfolgreich dem Kurs hinzugefügt", HttpStatus.OK);
+        } catch (CourseNotFoundException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
-
     }
+
 
     @GetMapping("admin/getAllRecipes")
     public ResponseEntity<List<Recipe>> getAllRecipes(){
@@ -89,5 +89,7 @@ public class RecipeController {
             return new ResponseEntity<>(rnfe.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
+
+
 
 }
