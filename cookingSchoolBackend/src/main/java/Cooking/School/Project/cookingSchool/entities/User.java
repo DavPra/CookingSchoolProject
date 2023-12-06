@@ -5,19 +5,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 
-@Table(name = "users")
 @Entity
+@Table(name = "BENUTZER")
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
-public class User {
+@NoArgsConstructor
+public class User implements UserDetails {
+
     @Id
     @GeneratedValue(generator = "userSequence")
     @GenericGenerator(
@@ -47,12 +52,22 @@ public class User {
     @Setter
     private String email;
 
-    @Setter
+   // @Setter
     private String password;
+
+    @Column(name = "USERNAME")
+    @Setter
+    private String username;
 
     @Setter
     private boolean isAdmin;
 
+    @Setter
+    private Long finishedCourses;
+
+    @Setter
+    @ManyToMany(mappedBy = "users")
+    Set<GrantedAuthorityImpl> authorities;
 
     @Setter
     @ManyToMany
@@ -61,5 +76,45 @@ public class User {
             joinColumns = @JoinColumn(name = "userId"),
             inverseJoinColumns = @JoinColumn(name = "courseId"))
     private Set<Course> courses = new HashSet<>();
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    /*public void setPassword(String password) {
+        this.password = new BCryptPasswordEncoder().encode(password);
+    }*/
+
+    public void setPassword(String password) {
+        this.password = new BCryptPasswordEncoder().encode(password);
+    }
+
+
 
 }
