@@ -38,19 +38,19 @@ public class DownloadService {
                     float yPosition = 700; // Initial y-coordinate
 
                     // Title
-                    contentStream.newLineAtOffset(10, yPosition);
+                    contentStream.newLineAtOffset(10, 0);
                     contentStream.showText("Title: " + recipe.getTitle());
                     yPosition -= 15; // Adjust for the next line
 
                     // Description
-                    contentStream.newLineAtOffset(10, yPosition);
+                    contentStream.newLineAtOffset(10, 50);
                     contentStream.showText("Description: " + recipe.getDescription());
-                    yPosition -= 15; // Adjust for the next line
+                    yPosition -= 20; // Adjust for the next line
 
                     // Preparation
-                    contentStream.newLineAtOffset(10, yPosition);
+                    contentStream.newLineAtOffset(10, 150);
                     contentStream.showText("Preparation: " + recipe.getPreparation());
-                    yPosition -= 15; // Adjust for the next line
+                    yPosition -= 30; // Adjust for the next line
 
                     contentStream.endText();
                 }

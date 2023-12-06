@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/Services/SetUpService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/Services/SetUpService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Ingredient.java" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Ingredient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/derby.log" beforeDir="false" afterPath="$PROJECT_DIR$/derby.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/Services/DownloadService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/Services/DownloadService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +23,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -53,7 +54,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Download__PDF",
     "last_opened_file_path": "/Users/stellab/Documents/webdev/codersbay/cookingschool",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -75,6 +76,9 @@
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="Cooking.School.Project.cookingSchool" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Cooking.School.Project.cookingSchool.restapi.DTO" />
     </key>
   </component>
   <component name="RunManager">
@@ -192,7 +196,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700597410171</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="updated addRecipe, linked to courses">
+      <created>1701722047051</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1701722047051</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,6 +219,7 @@
     <MESSAGE value="delete course by id fixed" />
     <MESSAGE value="Ingredient und Tag entities written. Beziehungen fehlen" />
     <MESSAGE value="Courses und User überarbeitet nach neuem ER Diagramm" />
-    <option name="LAST_COMMIT_MESSAGE" value="Courses und User überarbeitet nach neuem ER Diagramm" />
+    <MESSAGE value="updated addRecipe, linked to courses" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated addRecipe, linked to courses" />
   </component>
 </project>
