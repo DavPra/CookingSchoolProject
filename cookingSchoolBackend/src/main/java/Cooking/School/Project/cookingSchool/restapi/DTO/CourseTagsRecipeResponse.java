@@ -14,7 +14,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CourseRequest {
+public class CourseTagsRecipeResponse {
     private String courseTitle;
 
     private String description;
@@ -29,7 +29,7 @@ public class CourseRequest {
 
     private Set<CourseTag> courseTags;
 
-
+    private Set<Recipe> recipes;
 
 
 }

@@ -15,4 +15,6 @@ public interface CourseTagRepository extends JpaRepository<CourseTag, Long> {
     Optional<CourseTag> findByTitle(@Param("title") String title);
 
 
+
+
 }

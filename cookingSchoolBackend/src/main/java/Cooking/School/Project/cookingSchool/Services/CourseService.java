@@ -2,14 +2,21 @@ package Cooking.School.Project.cookingSchool.Services;
 
 import Cooking.School.Project.cookingSchool.entities.Course;
 import Cooking.School.Project.cookingSchool.entities.CourseTag;
+import Cooking.School.Project.cookingSchool.entities.Recipe;
+import Cooking.School.Project.cookingSchool.exceptions.CourseNotFoundException;
+import Cooking.School.Project.cookingSchool.exceptions.InvalidStartDateException;
+import Cooking.School.Project.cookingSchool.exceptions.PrimaryIdNullOrEmptyException;
+import Cooking.School.Project.cookingSchool.exceptions.TagNotFoundException;
 import Cooking.School.Project.cookingSchool.repository.CourseRepository;
 import Cooking.School.Project.cookingSchool.repository.CourseTagRepository;
-import Cooking.School.Project.cookingSchool.restapi.DTO.CourseInputParam;
 import Cooking.School.Project.cookingSchool.restapi.DTO.CourseRequest;
+import Cooking.School.Project.cookingSchool.restapi.DTO.CourseTagsRecipeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -35,6 +42,7 @@ public class CourseService {
         return courseRepository.findById(id).get();
     }
 
+
     public void deleteCourseById(Long id){
         courseRepository.deleteById(id);
     }
@@ -49,19 +57,20 @@ public class CourseService {
      * @param
      * @return
      */
+
+
     @Transactional
     public Long createCourse(CourseRequest request) {
         Course course = new Course();
         course.setCourseTitle(request.getCourseTitle());
         course.setDescription(request.getDescription());
         course.setTeacher(request.getTeacher());
-        course.setStartDate(request.getDate());
+        course.setStartDate(request.getStartDate());
         course.setMaxAttendants(request.getMaxAttendants());
         course.setPrice(request.getPrice());
 
         Set<CourseTag> courseTags = request.getCourseTags();
         course.setCourseTags(courseTags);
-
 
 
         Course savedCourse = courseRepository.save(course);
@@ -74,18 +83,57 @@ public class CourseService {
      *
      * @return
      */
-    public List<Course> getAllCourses() {
-        return courseRepository.findAll();
+    public List<CourseTagsRecipeResponse> getAllCourses() {
+        List<Course> courses = courseRepository.findAll();
+        List<CourseTagsRecipeResponse> responseList = new ArrayList<>();
+
+        for (Course course : courses) {
+            Set<CourseTag> tags = course.getCourseTags();
+            Set<Recipe> recipes = course.getRecipes();
+
+
+            CourseTagsRecipeResponse response = new CourseTagsRecipeResponse();
+            response.setCourseTags(tags);
+            response.setRecipes(recipes);
+
+            responseList.add(response);
+        }
+
+        return responseList;
     }
 
 
-    public void updateCourseById(Long id, CourseInputParam course){
-        Course courseToUpdate = courseRepository.findById(id).get();
-        courseToUpdate.setCourseTitle(course.getTitle());
-        courseToUpdate.setDescription(course.getDescription());
-        courseToUpdate.setTeacher(course.getTeacher());
-        courseToUpdate.setStartDate(course.getDate());
-        courseRepository.save(courseToUpdate);
+
+    @Transactional
+    public Course  updateCourse(Long courseId, String title, String description, String teacher, LocalDateTime startDate,
+                                int maxAttendants, int  price, Set<CourseTag> courseTags)
+            throws PrimaryIdNullOrEmptyException, CourseNotFoundException, InvalidStartDateException, TagNotFoundException{
+
+        if(courseId == null) {
+            throw new PrimaryIdNullOrEmptyException("Course Id is null or empty");
+        }
+
+        Course existingCourse = courseRepository.findById(courseId)
+                .orElseThrow(() -> new CourseNotFoundException("Course not found" + courseId));
+
+        LocalDateTime currentDate = LocalDateTime.now();
+        if (startDate.isBefore(currentDate)) {
+            throw new InvalidStartDateException("Please enter a valid start date");
+        }
+        for (CourseTag courseTag : courseTags) {
+            CourseTag existingCourseTag = courseTagRepository.findById(courseTag.getCourseTagId())
+                    .orElseThrow(() -> new TagNotFoundException("Course tag not found"));
+        }
+        existingCourse.setCourseTitle(title);
+        existingCourse.setDescription(description);
+        existingCourse.setTeacher(teacher);
+        existingCourse.setStartDate(startDate);
+        existingCourse.setMaxAttendants(maxAttendants);
+        existingCourse.setPrice(price);
+        existingCourse.setCourseTags(courseTags);
+
+        return courseRepository.save(existingCourse);
+
     }
 
 
