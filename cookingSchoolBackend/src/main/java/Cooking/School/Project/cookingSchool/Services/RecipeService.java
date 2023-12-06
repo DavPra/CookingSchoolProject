@@ -96,7 +96,7 @@ public class RecipeService {
                         .orElseThrow(() -> new IngredientNotFoundException("Ingredient with Id " + ingredient.getIngredientId() + " notfound"));
 
 
-                ingredient.setTitle(updatedIngredient.getTitle());
+                ingredient.(updatedIngredient.getTitle());
                 ingredient.setUnit(updatedIngredient.getUnit());
                 ingredient.setQuantity(updatedIngredient.getQuantity());
 
