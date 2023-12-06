@@ -73,13 +73,13 @@ public class RecipeService {
      * updatet Recipe und zutaten anhand der recipeId im pfad und findet Ingredient anhand der id,checkt ob da und updatet
      *
      * @param recipeId
-     * @param updatedRecipe
+     //* @param updatedRecipe
      * @return
      * @throws RecipeNotFoundException
      * @throws PrimaryIdNullOrEmptyException
      */
 
-    @Transactional
+    /*  @Transactional
     public Recipe updateRecipe(Long recipeId, Recipe updatedRecipe) throws RecipeNotFoundException, PrimaryIdNullOrEmptyException {
         Recipe existingRecipe = recipeRepository.findById(recipeId)
                 .orElseThrow(() -> new RecipeNotFoundException("Recipe with Id  " + recipeId + " not found"));
@@ -90,7 +90,7 @@ public class RecipeService {
         existingRecipe.setPreparation(updatedRecipe.getPreparation());
 
         //TODO ingredient besser per title finden?
-        if (updatedRecipe.getIngredients() != null) {
+      if (updatedRecipe.getIngredients() != null) {
             existingRecipe.getIngredients().forEach(ingredient -> {
                 Ingredient updatedIngredient = ingredientRepository.findById(ingredient.getIngredientId())
                         .orElseThrow(() -> new IngredientNotFoundException("Ingredient with Id " + ingredient.getIngredientId() + " notfound"));
@@ -107,9 +107,9 @@ public class RecipeService {
         return recipeRepository.save(existingRecipe);
     }
 
-    @Transactional
-    //TODO Ingredients löschen?
 
+    //TODO Ingredients löschen?
+@Transactional
     public void deleteRecipeById(Long recipeId) throws PrimaryIdNullOrEmptyException, RecipeNotFoundException {
         if (recipeId == null || recipeId <= 0) {
             throw new PrimaryIdNullOrEmptyException("Id is null or empty");
@@ -121,6 +121,8 @@ public class RecipeService {
         recipe.getIngredients().forEach(ingredient -> ingredientRepository.deleteById(ingredient.getIngredientId()));
 
         recipeRepository.deleteById(recipeId);
-    }
+    } */
 }
+
+
 
