@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,6 +32,7 @@ public class AdminController {
     private RecipeService recipeService;
 
 //-------------------------------- Admin course
+    @Transactional
     @PostMapping("admin/courses")
     public ResponseEntity<?> createCourse(@RequestBody CourseRequest request) {
         try {
@@ -70,6 +72,7 @@ public class AdminController {
      * @return
      */
 
+    @Transactional
     @PutMapping("admin/courses/{courseId}")
     public ResponseEntity<?> updateCourse(@PathVariable Long courseId, @RequestBody CourseRequest param){
         try {
@@ -92,9 +95,15 @@ public class AdminController {
 
     //------------------------- Admin tags
 
+    @Transactional
     @PostMapping("admin/courseTag")
-    public CourseTag addCourseTag(@RequestBody CourseTag courseTag){
-        return tagService.addCourseTag(courseTag);
+    public ResponseEntity<?> addCourseTag(@RequestBody CourseTag courseTag){
+        try{
+            tagService.addCourseTag(courseTag);
+            return new ResponseEntity<>("Tag erfolgreich erstellt", HttpStatus.CREATED);
+        } catch (DuplicateKeyException dke){
+            return new ResponseEntity<>(dke.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
     @GetMapping("admin/courseTag")
     public ResponseEntity<List<CourseTag>> getAllCourseTags(){
@@ -110,6 +119,7 @@ public class AdminController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
+    @Transactional
     @PostMapping("/admin/users")
     public ResponseEntity<?> addUser(@RequestBody User user){
         try{
@@ -130,6 +140,7 @@ public class AdminController {
         }
     }
 
+    @Transactional
     @PutMapping("/admin/users/{id}")
     public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User user){
         try{

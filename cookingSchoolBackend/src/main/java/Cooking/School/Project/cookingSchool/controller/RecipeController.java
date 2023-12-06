@@ -31,7 +31,7 @@ public class RecipeController {
 
     //--------------------------- Recipe
 
-
+    @Transactional
     @PostMapping("/admin/addRecipe/{courseId}")
     public ResponseEntity<?> addRecipeToCourse(@PathVariable Long courseId, @RequestBody Recipe recipe) {
         try {
@@ -60,7 +60,8 @@ public class RecipeController {
     }
 
 
-  /* @PutMapping("/admin/updateRecipe/{recipeId}")
+  /*  @Transactional
+  @PutMapping("/admin/updateRecipe/{recipeId}")
     public ResponseEntity<?> updateRecipe(
            @PathVariable Long recipeId,
            @RequestBody Recipe updatedRecipe

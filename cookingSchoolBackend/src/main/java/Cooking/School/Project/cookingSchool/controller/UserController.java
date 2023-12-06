@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -41,6 +42,7 @@ public class UserController {
         }
     }
 
+    @Transactional
     @PutMapping("/users")
     public ResponseEntity<?> updateUser(@RequestBody User user){
         try {
@@ -52,6 +54,7 @@ public class UserController {
 
     }
 
+    @Transactional
     @PostMapping("/users/{userId}/book-course/{courseId}")
     public ResponseEntity<?> bookCourse(@PathVariable Long userId, @PathVariable Long courseId) {
         try {
@@ -66,6 +69,7 @@ public class UserController {
         }
     }
 
+    @Transactional
     @PostMapping("/registration")
     public ResponseEntity<?> registration(@RequestBody User user){
         try {
