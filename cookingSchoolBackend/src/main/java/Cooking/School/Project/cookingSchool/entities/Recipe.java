@@ -1,10 +1,6 @@
 package Cooking.School.Project.cookingSchool.entities;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -12,10 +8,8 @@ import java.util.Set;
 
 
 @Entity
-@Table(name= "recipes")
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
+@Table(name= "recipe")
+
 public class Recipe {
         @Id()
         @GeneratedValue(generator = "recipeSequence")
@@ -31,33 +25,82 @@ public class Recipe {
 
 
         private Long recipeId;
-        @Setter
         private String title;
-        @Setter
         private String description;
-        @Setter
         private int difficulty;
-        @Setter
+
         private int preparation;
 
-        @Setter
        @ManyToMany(mappedBy = "recipes")
        private Set<Course> courses;
 
-        @Setter
-       @ManyToMany(cascade = CascadeType.ALL)
+       @ManyToMany
        @JoinTable(
                name = "recipe_ingredient",
                joinColumns = @JoinColumn(name = "recipe_id"),
                inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
          private Set<Ingredient> ingredients;
 
-        @Setter
-        @ManyToMany
+       @ManyToMany
          @JoinTable(
                 name = "recipe_tag",
                 joinColumns = @JoinColumn(name = "recipe_id"),
                 inverseJoinColumns = @JoinColumn(name = "tag_id"))
          private Set<RecipeTag> recipeTags;
+
+
+        public Recipe(){
+
+        }
+
+        public Recipe(Long recipeId, String title, String description, int difficulty, int preparation) {
+                this.recipeId = recipeId;
+                this.title = title;
+                this.description = description;
+                this.difficulty = difficulty;
+                this.preparation = preparation;
+
+        }
+
+        public Long getRecipeId() {
+                return recipeId;
+        }
+
+        public void setRecipeId(Long recipeId) {
+                this.recipeId = recipeId;
+        }
+
+        public String getTitle() {
+                return title;
+        }
+
+        public void setTitle(String title) {
+                this.title = title;
+        }
+
+        public String getDescription() {
+                return description;
+        }
+
+        public void setDescription(String description) {
+                this.description = description;
+        }
+
+        public int getDifficulty() {
+                return difficulty;
+        }
+
+        public void setDifficulty(int difficulty) {
+                this.difficulty = difficulty;
+        }
+
+        public int getPreparation() {
+                return preparation;
+        }
+
+        public void setPreparation(int preparation) {
+                this.preparation = preparation;
+        }
+
 
 }

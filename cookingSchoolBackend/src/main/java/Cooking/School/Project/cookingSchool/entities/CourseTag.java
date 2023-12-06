@@ -12,7 +12,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-@Table(name = "coursetags")
+@Table(name = "coursetag")
 @Entity
 @Getter
 @NoArgsConstructor
