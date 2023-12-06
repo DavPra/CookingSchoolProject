@@ -38,27 +38,18 @@ import org.springframework.security.web.util.matcher.RegexRequestMatcher;
 
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-            return http.csrf().disable()
-                    .authorizeHttpRequests()
-                    .requestMatchers(
-                            new RegexRequestMatcher("/authenticate", HttpMethod.POST.toString()),
-                            new AntPathRequestMatcher("/courses/", HttpMethod.GET.toString())
-
-                    ).permitAll()
+            http.csrf().disable()
+                    .authorizeRequests()
+                    .antMatchers("/**").permitAll() // Erlaubt den Zugriff auf alle URLs
+                    .anyRequest().authenticated()
                     .and()
-                    .authorizeHttpRequests().requestMatchers(
-                            new AntPathRequestMatcher("/admin/**")
-                           // new AntPathRequestMatcher("/users/", HttpMethod.GET.toString()),
-                            //new AntPathRequestMatcher("/users/", HttpMethod.DELETE.toString())
-
-                    )
-                    .authenticated().and()
                     .sessionManagement()
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and()
                     .authenticationProvider(authenticationProvider())
-                    .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
-                    .build();
+                    .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
+
+            return http.build();
         }
 
         @Bean
