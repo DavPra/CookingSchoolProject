@@ -40,6 +40,7 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    //Todo: check if user exists, update user and not create new one.
     public User updateUser(User user) {
         userRepository.save(user);
         return user;
