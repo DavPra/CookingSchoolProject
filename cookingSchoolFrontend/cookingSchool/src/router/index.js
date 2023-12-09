@@ -1,23 +1,65 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import AdminLayout from '../layouts/AdminLayout.vue'
+import UserLayout from '../layouts/UserLayout.vue'
+import HomeView from '../views/user/HomeView.vue'
+import CourseView from '../views/user/CourseView.vue'
+import RecipeView from '../views/user/RecipeView.vue'
+import AboutView from '../views/user/AboutView.vue'
+import LoginView from '../views/admin/LoginView.vue'
+import AdminCourseView from '../views/admin/AdminCourseView.vue'
+import AdminRecipeView from '../views/admin/AdminRecipeView.vue'
+import AdminUserView from '../views/admin/AdminUserView.vue'
 
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
+const routes = [
     {
       path: '/',
-      name: 'home',
-      component: HomeView
+      component: UserLayout,
+      children: [
+        {
+          path: '/',
+          component: HomeView
+        },
+        {
+          path: '/courses',
+          component: CourseView
+        },
+        {
+          path: '/recipes',
+          component: RecipeView
+        },
+        {
+          path: '/about',
+          component: AboutView
+        }
+      ]
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
+      path: '/admin',
+      component: AdminLayout,
+      children: [
+        {
+          path: '/',
+          component: LoginView
+        },
+        {
+          path: '/courses',
+          component: AdminCourseView
+        },
+        {
+          path: '/recipes',
+          component: AdminRecipeView
+        },
+        {
+          path: '/users',
+          component: AdminUserView
+        }
+      ]
     }
   ]
+
+const router = createRouter({
+  routes,
+  history: createWebHistory()
 })
 
-export default router
+export {router}
