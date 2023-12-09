@@ -1,10 +1,14 @@
 package Cooking.School.Project.cookingSchool.controller;
 
 import Cooking.School.Project.cookingSchool.Services.UserService;
+import Cooking.School.Project.cookingSchool.entities.Recipe;
 import Cooking.School.Project.cookingSchool.entities.User;
 import Cooking.School.Project.cookingSchool.exceptions.CourseNotFoundException;
 import Cooking.School.Project.cookingSchool.exceptions.EntityNotFoundException;
 import Cooking.School.Project.cookingSchool.exceptions.UserNotFoundException;
+import Cooking.School.Project.cookingSchool.Services.CourseService;
+import Cooking.School.Project.cookingSchool.Services.RecipeService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
@@ -18,6 +22,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CourseService courseService;
+
+    @Autowired
+    private RecipeService recipeService;
 
 
     //TEST
@@ -80,9 +89,15 @@ public class UserController {
         }
     }
 
-
-
-
+    @GetMapping("/users/recipes/{id}")
+    public ResponseEntity<?> getRecipesByID(@PathVariable Long id){
+        try {
+            Recipe recipe = recipeService.getRecipeById(id);
+            return new ResponseEntity<>(recipe, HttpStatus.OK);
+        } catch (UserNotFoundException unfe) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
 
 }
