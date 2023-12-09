@@ -62,7 +62,7 @@ public class JwtService {
 
     public String generateToken(String userName){
         logger.info("try generate token");
-        Map<String,Object> claims=new HashMap<>();
+        Map<String,Object> claims=new HashMap<>(); //Daten zum mitschicken
 
         String token = createToken(claims,userName);
         logger.info("token generated");
