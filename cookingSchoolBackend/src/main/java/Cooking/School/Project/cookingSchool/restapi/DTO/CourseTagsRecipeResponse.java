@@ -3,6 +3,7 @@ package Cooking.School.Project.cookingSchool.restapi.DTO;
 import Cooking.School.Project.cookingSchool.entities.Course;
 import Cooking.School.Project.cookingSchool.entities.CourseTag;
 import Cooking.School.Project.cookingSchool.entities.Recipe;
+import Cooking.School.Project.cookingSchool.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,6 +36,8 @@ public class CourseTagsRecipeResponse {
 
     private Set<Recipe> recipes;
 
+    private Set<User> userIds;
+
 
     public void setCourse(Course course) {
         this.courseId = course.getCourseId();
@@ -44,6 +47,9 @@ public class CourseTagsRecipeResponse {
         this.startDate = course.getStartDate();
         this.maxAttendants = course.getMaxAttendants();
         this.price = course.getPrice();
+        this.courseTags = course.getCourseTags();
+        this.recipes = course.getRecipes();
+        this.userIds = course.getUsers();
     }
 
 }

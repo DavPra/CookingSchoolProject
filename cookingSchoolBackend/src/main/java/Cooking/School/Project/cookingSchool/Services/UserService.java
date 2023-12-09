@@ -7,13 +7,15 @@ import Cooking.School.Project.cookingSchool.exceptions.EntityNotFoundException;
 import Cooking.School.Project.cookingSchool.exceptions.UserNotFoundException;
 import Cooking.School.Project.cookingSchool.repository.CourseRepository;
 import Cooking.School.Project.cookingSchool.repository.UserRepository;
+import Cooking.School.Project.cookingSchool.restapi.DTO.UserRecipesDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -51,6 +53,22 @@ public class UserService {
     }
 
 
+    public UserRecipesDTO getUserCoursesDTO(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
+
+        Set<Long> courseIds = user.getCourses().stream()
+                .map(course -> course.getCourseId())
+                .collect(Collectors.toSet());
+
+        Set<Long> recipeIds = user.getCourses().stream()
+                .flatMap(course -> course.getRecipes().stream())
+                .map(recipe -> recipe.getRecipeId())
+                .collect(Collectors.toSet());
+
+        return new UserRecipesDTO(userId, courseIds, recipeIds);
+    }
+
     public void bookCourse(Long userId, Long courseId) throws EntityNotFoundException {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
@@ -73,10 +91,9 @@ public class UserService {
         } else {
             return userRepository.save(user);
         }
-
-
-
     }
+
+
 }
 
 

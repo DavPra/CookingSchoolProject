@@ -99,5 +99,15 @@ public class UserController {
         }
     }
 
+    @GetMapping("/UserCoursesDTO/{id}")
+    public ResponseEntity<?> getUserCoursesDTO(@PathVariable Long id){
+        try {
+            userService.getUserCoursesDTO(id);
+            return new ResponseEntity<>(userService.getUserCoursesDTO(id), HttpStatus.OK);
+        } catch (UserNotFoundException unfe) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 
 }
