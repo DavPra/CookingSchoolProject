@@ -61,7 +61,7 @@ public class RecipeController {
 
 
     @Transactional
-  @PutMapping("/admin/updateRecipe/{recipeId}")
+    @PutMapping("/admin/updateRecipe/{recipeId}")
     public ResponseEntity<?> updateRecipe(
            @PathVariable Long recipeId,
            @RequestBody Recipe updatedRecipe

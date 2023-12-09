@@ -86,18 +86,16 @@ public class CourseService {
     public List<CourseTagsRecipeResponse> getAllCourses() {
         List<Course> courses = courseRepository.findAll();
         List<CourseTagsRecipeResponse> responseList = new ArrayList<>();
-
         for (Course course : courses) {
+            CourseTagsRecipeResponse response = new CourseTagsRecipeResponse();
+            response.setCourse(course);
             Set<CourseTag> tags = course.getCourseTags();
             Set<Recipe> recipes = course.getRecipes();
-
-
-            CourseTagsRecipeResponse response = new CourseTagsRecipeResponse();
             response.setCourseTags(tags);
             response.setRecipes(recipes);
-
             responseList.add(response);
         }
+
 
         return responseList;
     }

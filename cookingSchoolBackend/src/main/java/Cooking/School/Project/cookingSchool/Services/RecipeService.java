@@ -108,8 +108,8 @@ public class RecipeService {
     }
 
 
-    //TODO Ingredients löschen?
-@Transactional
+    //TODO Ingredients löschen? NEIN NICHT Löschen nicht cascadieren, Ingredients Servic mit delete vorher checken ob ingredient nicht verwendet wird
+    @Transactional
     public void deleteRecipeById(Long recipeId) throws PrimaryIdNullOrEmptyException, RecipeNotFoundException {
         if (recipeId == null || recipeId <= 0) {
             throw new PrimaryIdNullOrEmptyException("Id is null or empty");
