@@ -55,7 +55,7 @@ public class UserService {
     }
 
 
-    public UserRecipesDTO getUserCoursesDTO(Long userId) {
+  /*  public UserRecipesDTO getUserCoursesDTO(Long userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
 
@@ -69,7 +69,7 @@ public class UserService {
                 .collect(Collectors.toSet());
 
         return new UserRecipesDTO(userId, courseIds, recipeIds);
-    }
+    } */
 
     public void bookCourse(Long userId, Long courseId) throws EntityNotFoundException {
         User user = userRepository.findById(userId)
