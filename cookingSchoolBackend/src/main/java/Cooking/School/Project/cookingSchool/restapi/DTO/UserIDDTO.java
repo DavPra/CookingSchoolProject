@@ -1,20 +1,18 @@
 package Cooking.School.Project.cookingSchool.restapi.DTO;
 
+import Cooking.School.Project.cookingSchool.entities.User;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Map;
-import java.util.Set;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserRecipesDTO {
 
-    private Long userId;
+public class UserIDDTO {
 
-    private Map<Long, Set<Long>> courseRecipeIDs;
+    private Long userId = getUserId();
 }

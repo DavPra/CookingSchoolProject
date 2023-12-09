@@ -107,7 +107,7 @@ public class UserController {
         } catch (UserNotFoundException unfe) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-    }
+    } 
 
 
 }

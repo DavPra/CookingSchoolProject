@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -36,7 +37,7 @@ public class CourseTagsRecipeResponse {
 
     private Set<Recipe> recipes;
 
-    private Set<User> userIds;
+    private Set<UserDTO> userIds = new HashSet<>();
 
 
     public void setCourse(Course course) {
@@ -49,8 +50,22 @@ public class CourseTagsRecipeResponse {
         this.price = course.getPrice();
         this.courseTags = course.getCourseTags();
         this.recipes = course.getRecipes();
-        this.userIds = course.getUsers();
+        for (User user : course.getUsers()) {
+            UserDTO userDTO = new UserDTO();
+            userDTO.setUserId(user.getUserId());
+            this.userIds.add(userDTO);
+        }
     }
 
+}
+
+class UserDTO {
+
+    @Getter
+    long userId;
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
 }
 

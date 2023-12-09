@@ -1,5 +1,6 @@
 package Cooking.School.Project.cookingSchool.entities;
 
+import Cooking.School.Project.cookingSchool.restapi.DTO.UserIDDTO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -20,13 +21,14 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+
 @Table(name = "course")
 @Entity
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Course {
-   @Id
+    @Id
     @GeneratedValue(generator = "courseSequence")
     @GenericGenerator(
             name = "courseSequence",
@@ -39,21 +41,23 @@ public class Course {
 
     )
 
-   private Long courseId;
 
-   @Setter
-   private String courseTitle;
-
-   @Setter
-   private String description;
-
-   @Setter
-   private String teacher;
+    private Long courseId;
 
 
-   @Setter
-   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-   private LocalDateTime startDate;
+    @Setter
+    private String courseTitle;
+
+    @Setter
+    private String description;
+
+    @Setter
+    private String teacher;
+
+
+    @Setter
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime startDate;
 
     @Setter
     private int maxAttendants;
@@ -63,8 +67,8 @@ public class Course {
     private int price;
 
     @Setter
-   @ManyToMany(mappedBy = "courses")
-    private Set<User> users = new HashSet<>();
+    @ManyToMany(mappedBy = "courses")
+    protected Set<User> users = new HashSet<>();
 
 
     @JsonIgnore

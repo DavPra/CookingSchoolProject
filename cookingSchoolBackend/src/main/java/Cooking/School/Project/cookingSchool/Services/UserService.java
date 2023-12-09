@@ -79,6 +79,8 @@ public class UserService {
 
         if (user != null && course != null) {
 
+            course.getUsers().add(user);
+
             user.getCourses().add(course);
             userRepository.save(user);
             courseRepository.save(course);
