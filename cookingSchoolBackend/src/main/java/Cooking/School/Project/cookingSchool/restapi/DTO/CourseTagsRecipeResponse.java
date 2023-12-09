@@ -44,6 +44,7 @@ public class CourseTagsRecipeResponse {
         this.startDate = course.getStartDate();
         this.maxAttendants = course.getMaxAttendants();
         this.price = course.getPrice();
+
     }
 
 }

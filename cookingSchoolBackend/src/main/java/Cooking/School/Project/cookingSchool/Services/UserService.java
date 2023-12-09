@@ -4,6 +4,7 @@ import Cooking.School.Project.cookingSchool.entities.Course;
 import Cooking.School.Project.cookingSchool.entities.User;
 import Cooking.School.Project.cookingSchool.exceptions.CourseNotFoundException;
 import Cooking.School.Project.cookingSchool.exceptions.EntityNotFoundException;
+import Cooking.School.Project.cookingSchool.exceptions.PrimaryIdNullOrEmptyException;
 import Cooking.School.Project.cookingSchool.exceptions.UserNotFoundException;
 import Cooking.School.Project.cookingSchool.repository.CourseRepository;
 import Cooking.School.Project.cookingSchool.repository.UserRepository;
@@ -40,10 +41,27 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    //Todo: check if user exists, update user and not create new one.
-    public User updateUser(User user) {
-        userRepository.save(user);
-        return user;
+
+    @Transactional
+    public User updateUser(Long userId, User updatedUser) throws PrimaryIdNullOrEmptyException, UserNotFoundException {
+        if ( userId == null){
+            throw new PrimaryIdNullOrEmptyException("User Id is null or empty");
+        }
+        User existingUser = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
+
+        existingUser.setFirstname(updatedUser.getFirstname());
+        existingUser.setLastname(updatedUser.getLastname());
+        existingUser.setAddress(updatedUser.getAddress());
+        existingUser.setPassword(updatedUser.getPassword());
+        existingUser.setUsername(updatedUser.getUsername());
+        existingUser.setAdmin(updatedUser.isAdmin());
+
+        userRepository.save(existingUser);
+
+        return existingUser;
+
+
     }
 
     public List<User> getAllUsers() {

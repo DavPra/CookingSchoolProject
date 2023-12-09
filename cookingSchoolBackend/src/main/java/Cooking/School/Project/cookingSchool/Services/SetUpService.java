@@ -48,11 +48,13 @@ public class SetUpService {
         recipeRepository.save(recipe);
 
         User user = new User();
-        user.setFirstname("Vorname 1");
+        user.setFirstname("admin 1");
         user.setLastname("Nachname 1");
         user.setEmail("Email 1");
         user.setPassword("Passwort 1");
-        user.setAdmin(false);
+        user.setAdmin(true);
         userRepository.save(user);
+
+
     }
 }

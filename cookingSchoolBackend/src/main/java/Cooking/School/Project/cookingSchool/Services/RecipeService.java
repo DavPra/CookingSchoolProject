@@ -10,11 +10,13 @@ import Cooking.School.Project.cookingSchool.exceptions.RecipeNotFoundException;
 import Cooking.School.Project.cookingSchool.repository.CourseRepository;
 import Cooking.School.Project.cookingSchool.repository.IngredientRepository;
 import Cooking.School.Project.cookingSchool.repository.RecipeRepository;
+import Cooking.School.Project.cookingSchool.restapi.DTO.RecipeCourse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -37,20 +39,51 @@ public class RecipeService {
     }
 
 
-    public void addRecipeToCourse(Long courseId, Recipe recipe) {
-        Course course = courseRepository.findById(courseId)
-                .orElseThrow(() -> new CourseNotFoundException("Course not found with ID: " + courseId));
+    public void addRecipeToCourse(RecipeCourse recipeCourse) {
+        Set<Course> courses = loadCourses(recipeCourse.getCourseIds());
+        Set<Ingredient> ingredients = loadIngredients(recipeCourse.getIngredients());
+        Recipe recipe = new Recipe();
+        recipe.setTitle(recipeCourse.getTitle());
+        recipe.setDescription(recipe.getDescription());
+        recipe.setDifficulty(recipe.getDifficulty());
+        recipe.setPreparation(recipe.getPreparation());
 
-        boolean recipeExists = recipeRepository.existsByTitle(recipe.getTitle());
 
-        if (!recipeExists) {
-            recipeRepository.save(recipe);
+        recipe.setCourses(courses);
+        recipe.setIngredients(ingredients);
+
+        recipeRepository.save(recipe);
+    }
+
+    private Set<Course> loadCourses(Set<Long> courseIds) {
+        Set<Course> courses = new HashSet<>();
+        for (Long courseId : courseIds) {
+            Course course = courseRepository.findById(courseId)
+                    .orElseThrow(() -> new CourseNotFoundException("Course not found with ID: " + courseId));
+            courses.add(course);
+        }
+        return courses;
+    }
+
+    private Set<Ingredient> loadIngredients(Set<Ingredient> ingredients) {
+        Set<Ingredient> loadedIngredients = new HashSet<>();
+
+        for (Ingredient ingredient : ingredients) {
+            if (ingredient.getIngredientId() == null) {
+
+                ingredientRepository.save(ingredient);
+            }
+
+            Ingredient loadedIngredient = ingredientRepository.findById(ingredient.getIngredientId())
+                    .orElseThrow(() -> new IngredientNotFoundException("Ingredient not found with ID: " + ingredient.getIngredientId()));
+            loadedIngredients.add(loadedIngredient);
         }
 
-        course.getRecipes().add(recipe);
-
-        courseRepository.save(course);
+        return loadedIngredients;
     }
+
+
+
 
 
     public List<Recipe> getAllRecipe() throws RecipeNotFoundException {

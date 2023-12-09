@@ -54,6 +54,12 @@ public class AdminController {
         }
 
     }
+    @GetMapping("admin/courses/{courseId}")
+    public ResponseEntity<?> getCourseById(@PathVariable Long courseId){
+        Course course = courseService.getCourseById(courseId);
+        return new ResponseEntity<>(course, HttpStatus.OK);
+
+    }
 
     @DeleteMapping("admin/courses/{id}")
     public ResponseEntity<?> deleteCourse(@PathVariable Long id){
@@ -141,14 +147,16 @@ public class AdminController {
     }
 
     @Transactional
-    @PutMapping("/admin/users/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User user){
-        try{
-            userService.updateUser(user);
-            return new ResponseEntity<>("User erfolgreich aktualisiert", HttpStatus.OK);
-        } catch (PrimaryIdNullOrEmptyException e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    @PutMapping("admin/users/{userId}")
+    public ResponseEntity<?> updateUser(
+            @PathVariable Long userId, @RequestBody User updatedUser){
+        try {
+            userService.updateUser(userId, updatedUser);
+            return new ResponseEntity<>("User updated successfully", HttpStatus.OK);
+        } catch (UserNotFoundException unfe) {
+            return new ResponseEntity<>(unfe.getMessage(), HttpStatus.NOT_FOUND);
         }
+
     }
 
     @GetMapping("/admin/users/{id}")

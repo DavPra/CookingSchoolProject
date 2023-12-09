@@ -42,11 +42,12 @@ public class UserController {
         }
     }
 
-    @Transactional
-    @PutMapping("/users")
-    public ResponseEntity<?> updateUser(@RequestBody User user){
+
+    @PutMapping("/users/{userId}")
+    public ResponseEntity<?> updateUser(
+            @PathVariable Long userId, @RequestBody User updatedUser){
         try {
-            userService.updateUser(user);
+            userService.updateUser(userId, updatedUser);
             return new ResponseEntity<>("User updated successfully", HttpStatus.OK);
         } catch (UserNotFoundException unfe) {
             return new ResponseEntity<>(unfe.getMessage(), HttpStatus.NOT_FOUND);
@@ -54,6 +55,7 @@ public class UserController {
 
     }
 
+    //TODO maxAttendens
     @Transactional
     @PostMapping("/users/{userId}/book-course/{courseId}")
     public ResponseEntity<?> bookCourse(@PathVariable Long userId, @PathVariable Long courseId) {

@@ -6,6 +6,7 @@ import Cooking.School.Project.cookingSchool.entities.Recipe;
 import Cooking.School.Project.cookingSchool.exceptions.CourseNotFoundException;
 import Cooking.School.Project.cookingSchool.exceptions.PrimaryIdNullOrEmptyException;
 import Cooking.School.Project.cookingSchool.exceptions.RecipeNotFoundException;
+import Cooking.School.Project.cookingSchool.restapi.DTO.RecipeCourse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
@@ -32,10 +33,10 @@ public class RecipeController {
     //--------------------------- Recipe
 
     @Transactional
-    @PostMapping("/admin/addRecipe/{courseId}")
-    public ResponseEntity<?> addRecipeToCourse(@PathVariable Long courseId, @RequestBody Recipe recipe) {
+    @PostMapping("/admin/addRecipe")
+    public ResponseEntity<?> addRecipeToCourse(@RequestBody RecipeCourse recipeCourse) {
         try {
-            recipeService.addRecipeToCourse(courseId, recipe);
+            recipeService.addRecipeToCourse(recipeCourse);
             return new ResponseEntity<>("Rezept erfolgreich dem Kurs hinzugefügt", HttpStatus.OK);
         } catch (CourseNotFoundException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
