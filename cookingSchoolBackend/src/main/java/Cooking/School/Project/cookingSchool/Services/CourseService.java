@@ -58,7 +58,7 @@ public class CourseService {
      * @return
      */
 
-
+//TODO: Coursedata kommt als null an.
     @Transactional
     public Long createCourse(CourseRequest request) {
         Course course = new Course();
