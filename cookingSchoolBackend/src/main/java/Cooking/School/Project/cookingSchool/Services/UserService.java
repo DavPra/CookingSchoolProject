@@ -8,6 +8,7 @@ import Cooking.School.Project.cookingSchool.exceptions.UserNotFoundException;
 import Cooking.School.Project.cookingSchool.repository.CourseRepository;
 import Cooking.School.Project.cookingSchool.repository.UserRepository;
 import Cooking.School.Project.cookingSchool.restapi.DTO.UserRecipesDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.lang.*;
 
 @Service
 public class UserService {
@@ -76,7 +78,10 @@ public class UserService {
                 .orElseThrow(() -> new CourseNotFoundException("Course not found"));
 
         if (user != null && course != null) {
+
+            user.getCourses().add(course);
             userRepository.save(user);
+            courseRepository.save(course);
         } else {
             throw new EntityNotFoundException("User or Course not found");
         }

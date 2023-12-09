@@ -1,5 +1,6 @@
 package Cooking.School.Project.cookingSchool.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -69,6 +70,7 @@ public class User implements UserDetails {
     @ManyToMany(mappedBy = "users")
     Set<GrantedAuthorityImpl> authorities;
 
+    @JsonIgnore
     @Setter
     @ManyToMany
     @JoinTable(
