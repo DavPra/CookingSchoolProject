@@ -99,15 +99,15 @@ public class UserController {
         }
     }
 
-    @GetMapping("/UserCoursesDTO/{id}")
-    public ResponseEntity<?> getUserCoursesDTO(@PathVariable Long id){
+    //Todo: does give a user back and not a recipe
+    @GetMapping("/users/{id}/recipes")
+    public ResponseEntity<?> getUserRecipes(@PathVariable Long id){
         try {
-            userService.getUserCoursesDTO(id);
-            return new ResponseEntity<>(userService.getUserCoursesDTO(id), HttpStatus.OK);
+            return new ResponseEntity<>(userService.getRecipesByUser(id), HttpStatus.OK);
         } catch (UserNotFoundException unfe) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-    } 
+    }
 
 
 }

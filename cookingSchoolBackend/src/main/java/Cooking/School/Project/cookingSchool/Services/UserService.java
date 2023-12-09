@@ -100,6 +100,13 @@ public class UserService {
         }
     }
 
+    //Todo: does give a user back and not a recipe
+    public User getRecipesByUser(Long id) throws UserNotFoundException {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
+        return user;
+    }
+
 
 }
 
