@@ -6,10 +6,7 @@ import Cooking.School.Project.cookingSchool.entities.Recipe;
 import Cooking.School.Project.cookingSchool.exceptions.CourseNotFoundException;
 import Cooking.School.Project.cookingSchool.exceptions.PrimaryIdNullOrEmptyException;
 import Cooking.School.Project.cookingSchool.exceptions.RecipeNotFoundException;
-import Cooking.School.Project.cookingSchool.exceptions.UserNotFoundException;
-import Cooking.School.Project.cookingSchool.restapi.DTO.UserRecipesDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,8 +42,8 @@ public class RecipeController {
     }
 
     @Transactional
-    @PostMapping("/admin/getRecipes/{userId}")
-    public ResponseEntity<List<Recipe>> addRecipeToCourse(@PathVariable Long userId) {
+    @GetMapping("/user/getRecipes/{userId}")
+    public ResponseEntity<List<Recipe>> getRecipeForUser(@PathVariable Long userId) {
         if (userId == null || userId <= 0) {
             throw new PrimaryIdNullOrEmptyException(String.format("userId [%s] is not acceptable!", userId)); // %s platzhalter für userId
         }

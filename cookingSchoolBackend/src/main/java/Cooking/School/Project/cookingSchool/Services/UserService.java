@@ -7,16 +7,12 @@ import Cooking.School.Project.cookingSchool.exceptions.EntityNotFoundException;
 import Cooking.School.Project.cookingSchool.exceptions.UserNotFoundException;
 import Cooking.School.Project.cookingSchool.repository.CourseRepository;
 import Cooking.School.Project.cookingSchool.repository.UserRepository;
-import Cooking.School.Project.cookingSchool.restapi.DTO.UserRecipesDTO;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 import java.lang.*;
 
 @Service
