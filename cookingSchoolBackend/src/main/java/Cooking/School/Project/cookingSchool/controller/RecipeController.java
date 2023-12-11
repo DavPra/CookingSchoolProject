@@ -43,6 +43,7 @@ public class RecipeController {
         }
     }
 
+    //TODO gigbt keine recipeId retour
 
     @GetMapping("admin/getAllRecipes")
     public ResponseEntity<List<Recipe>> getAllRecipes(){
@@ -77,8 +78,6 @@ public class RecipeController {
         }
 
    }
-
-
 
 
     @DeleteMapping("admin/recipe/{recipeId}")

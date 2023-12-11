@@ -2,10 +2,7 @@ package Cooking.School.Project.cookingSchool.Services;
 
 import Cooking.School.Project.cookingSchool.entities.Course;
 import Cooking.School.Project.cookingSchool.entities.User;
-import Cooking.School.Project.cookingSchool.exceptions.CourseNotFoundException;
-import Cooking.School.Project.cookingSchool.exceptions.EntityNotFoundException;
-import Cooking.School.Project.cookingSchool.exceptions.PrimaryIdNullOrEmptyException;
-import Cooking.School.Project.cookingSchool.exceptions.UserNotFoundException;
+import Cooking.School.Project.cookingSchool.exceptions.*;
 import Cooking.School.Project.cookingSchool.repository.CourseRepository;
 import Cooking.School.Project.cookingSchool.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +41,7 @@ public class UserService {
 
     @Transactional
     public User updateUser(Long userId, User updatedUser) throws PrimaryIdNullOrEmptyException, UserNotFoundException {
-        if ( userId == null){
+        if (userId == null) {
             throw new PrimaryIdNullOrEmptyException("User Id is null or empty");
         }
         User existingUser = userRepository.findById(userId)
@@ -68,22 +65,26 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    @Transactional
+    public void bookCourse(Long userId, Long courseId) {
 
-    public void bookCourse(Long userId, Long courseId) throws EntityNotFoundException {
-        User user = userRepository.findById(userId)
+        final User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
-        Course course = courseRepository.findById(courseId)
+        final Course course = courseRepository.findById(courseId)
                 .orElseThrow(() -> new CourseNotFoundException("Course not found"));
 
-        if (user != null && course != null) {
-            userRepository.save(user);
+        int maxNumberOfAttendants = course.getMaxAttendants();
+
+        if (course.getUsers().size() < maxNumberOfAttendants) {
+            course.getUsers().add(user);
+            course.setMaxAttendants(course.getMaxAttendants() - 1);
+            courseRepository.save(course);
         } else {
-            throw new EntityNotFoundException("User or Course not found");
+            throw new MaxAttendantsReachedException(maxNumberOfAttendants);
         }
     }
 
-
-    public User registration( User user ) throws DuplicateKeyException{
+    public User registration(User user) throws DuplicateKeyException {
         Optional<User> existingUser = userRepository.findUserByEmail(user.getEmail());
 
         if (existingUser.isPresent()) {
@@ -91,7 +92,6 @@ public class UserService {
         } else {
             return userRepository.save(user);
         }
-
 
 
     }
