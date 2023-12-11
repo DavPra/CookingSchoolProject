@@ -1,7 +1,5 @@
 package Cooking.School.Project.cookingSchool.entities;
 
-import Cooking.School.Project.cookingSchool.restapi.DTO.UserIDDTO;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;

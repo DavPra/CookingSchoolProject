@@ -1,7 +1,5 @@
 package Cooking.School.Project.cookingSchool.restapi.DTO;
 
-import Cooking.School.Project.cookingSchool.entities.User;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +10,13 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class UserIDDTO {
+public class UserDTO1 {
 
-    private Long userId = getUserId();
+    private Long userID;
+
+    private String name;
+
+    private String email;
+
+    private String address;
 }
