@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Map;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -14,7 +12,4 @@ import java.util.Set;
 @NoArgsConstructor
 public class UserRecipesDTO {
 
-    private Long userId;
-
-    private Map<Long, Set<Long>> courseRecipeIDs;
 }

@@ -6,12 +6,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Set;
 
+/**
+ *
+ */
 public class GetAllCoursesDTO {
 
     private CourseDTO course;
 }
 
 
+// WTF is this??
 class CourseDTO extends Course {
 
 

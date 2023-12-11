@@ -10,8 +10,10 @@ import Cooking.School.Project.cookingSchool.exceptions.RecipeNotFoundException;
 import Cooking.School.Project.cookingSchool.repository.CourseRepository;
 import Cooking.School.Project.cookingSchool.repository.IngredientRepository;
 import Cooking.School.Project.cookingSchool.repository.RecipeRepository;
+import Cooking.School.Project.cookingSchool.restapi.DTO.UserRecipesDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -121,6 +123,12 @@ public class RecipeService {
         recipe.getIngredients().forEach(ingredient -> ingredientRepository.deleteById(ingredient.getIngredientId()));
 
         recipeRepository.deleteById(recipeId);
+    }
+
+    @Transactional
+    public List<Recipe> getRecipesForUser(Long userId) {
+        return recipeRepository.findRecipesByUser(userId);
+
     }
 }
 
