@@ -1,6 +1,7 @@
 package Cooking.School.Project.cookingSchool.controller;
 
 import Cooking.School.Project.cookingSchool.Services.DownloadService;
+import Cooking.School.Project.cookingSchool.htmlToPdf.html.htmltopdf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,5 +24,11 @@ public class DownloadController {
     @ResponseBody
     public void createPDF(@PathVariable Long recipeId) throws IOException {
         downloadService.createPDF(recipeId);
+    }
+
+    @PostMapping("/download/html/{recipeId}")
+    public String createHTML(@PathVariable Long recipeId) throws IOException {
+        htmltopdf.htmltopdfconverter();
+        return "Rechung erstellt";
     }
 }

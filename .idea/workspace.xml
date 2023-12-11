@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="" />
+    <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/htmlToPdf/html/Rechnung.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/htmlToPdf/html/htmltopdf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolBackend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolBackend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/controller/DownloadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/controller/DownloadController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/derby.log" beforeDir="false" afterPath="$PROJECT_DIR$/derby.log" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,8 +22,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="AnnotationType" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -43,6 +52,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -51,7 +61,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "pdf__mit__html",
     "last_opened_file_path": "/Users/stellab/Documents/webdev/codersbay/cookingschool",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -61,6 +71,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
     "spring.configuration.checksum": "ab34ddadcffe0d2dfdc145de21d27cdb",
     "vue.rearranger.settings.migration": "true"
   },
@@ -75,7 +86,10 @@
       <recent name="Cooking.School.Project.cookingSchool" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.Main">
+    <configuration name="Rechnung.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/CookingSchool/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/htmlToPdf/html/Rechnung.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="cookingschool" />
       <method v="2">
@@ -98,6 +112,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.Rechnung.html" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -194,7 +213,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700597410171</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="UserDTO1 created">
+      <created>1702321793500</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1702321793500</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,6 +236,7 @@
     <MESSAGE value="delete course by id fixed" />
     <MESSAGE value="Ingredient und Tag entities written. Beziehungen fehlen" />
     <MESSAGE value="Courses und User überarbeitet nach neuem ER Diagramm" />
-    <option name="LAST_COMMIT_MESSAGE" value="Courses und User überarbeitet nach neuem ER Diagramm" />
+    <MESSAGE value="UserDTO1 created" />
+    <option name="LAST_COMMIT_MESSAGE" value="UserDTO1 created" />
   </component>
 </project>
