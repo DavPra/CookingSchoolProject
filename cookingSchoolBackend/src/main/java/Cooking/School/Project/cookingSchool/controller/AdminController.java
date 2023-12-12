@@ -78,7 +78,7 @@ public class AdminController {
      * @return
      */
 
-    @Transactional
+
     @PutMapping("admin/courses/{courseId}")
     public ResponseEntity<?> updateCourse(@PathVariable Long courseId, @RequestBody CourseRequest param){
         try {

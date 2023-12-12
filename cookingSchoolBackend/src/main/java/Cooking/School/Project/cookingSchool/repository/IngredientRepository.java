@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
 
-    /*
+
     @Query("select i from Ingredient i " +
             "where lower(i.title) = lower(:title) " +
             "and i.unit = :unit " +
@@ -19,7 +19,7 @@ public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
     public Optional<Ingredient> findBy(@Param("title") String title,
                                        @Param("unit") String unit,
                                        @Param("quantity") int quantity);
-        */
+
 
 
 }

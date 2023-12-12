@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -38,8 +39,8 @@ public class RecipeService {
 
     }
 
-
-    public void addRecipeToCourse(RecipeCourse recipeCourse) {
+    @Transactional
+    public RecipeCourse addRecipeToCourse(RecipeCourse recipeCourse) {
         Set<Course> courses = loadCourses(recipeCourse.getCourseIds());
         Set<Ingredient> ingredients = loadIngredients(recipeCourse.getIngredients());
         Recipe recipe = new Recipe();
@@ -48,11 +49,14 @@ public class RecipeService {
         recipe.setDifficulty(recipe.getDifficulty());
         recipe.setPreparation(recipe.getPreparation());
 
-
         recipe.setCourses(courses);
         recipe.setIngredients(ingredients);
 
-        recipeRepository.save(recipe);
+        recipe = recipeRepository.save(recipe);
+        recipeCourse.setRecipeId(recipe.getRecipeId());
+
+
+        return recipeCourse;
     }
 
     private Set<Course> loadCourses(Set<Long> courseIds) {
@@ -70,17 +74,23 @@ public class RecipeService {
 
         for (Ingredient ingredient : ingredients) {
             if (ingredient.getIngredientId() == null) {
-
                 ingredientRepository.save(ingredient);
             }
 
-            Ingredient loadedIngredient = ingredientRepository.findById(ingredient.getIngredientId())
-                    .orElseThrow(() -> new IngredientNotFoundException("Ingredient not found with ID: " + ingredient.getIngredientId()));
+            Optional<Ingredient> loadedIngredientOptional = ingredientRepository.findBy(
+                    ingredient.getTitle(),
+                    ingredient.getUnit(),
+                    ingredient.getQuantity());
+
+            Ingredient loadedIngredient = loadedIngredientOptional.orElseThrow(() ->
+                    new IngredientNotFoundException("Ingredient not found"));
+
             loadedIngredients.add(loadedIngredient);
         }
 
         return loadedIngredients;
     }
+
 
 
 

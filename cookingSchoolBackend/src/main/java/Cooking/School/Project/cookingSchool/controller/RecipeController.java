@@ -32,12 +32,12 @@ public class RecipeController {
 
     //--------------------------- Recipe
 
-    @Transactional
+
     @PostMapping("/admin/addRecipe")
     public ResponseEntity<?> addRecipeToCourse(@RequestBody RecipeCourse recipeCourse) {
         try {
-            recipeService.addRecipeToCourse(recipeCourse);
-            return new ResponseEntity<>("Rezept erfolgreich dem Kurs hinzugefügt", HttpStatus.OK);
+            RecipeCourse response = recipeService.addRecipeToCourse(recipeCourse);
+            return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (CourseNotFoundException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
