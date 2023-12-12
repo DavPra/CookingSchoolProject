@@ -138,7 +138,7 @@ public class AdminController {
         }
     }
 
-    @Transactional
+//TODO User not found wird nicht abgefangen wenn ich catch block lösche
     @PutMapping("admin/users/{userId}")
     public ResponseEntity<?> updateUser(
             @PathVariable Long userId, @RequestBody User updatedUser){
