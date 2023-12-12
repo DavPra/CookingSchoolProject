@@ -43,20 +43,21 @@ public class UserController {
         }
     }
 
-
+    /**
+     * updates a user from user dashboard
+     * @param userId in PathVariable
+     * @param updatedUser JSON - in the requestbody
+     * @return
+     */
     @PutMapping("/users/{userId}")
     public ResponseEntity<?> updateUser(
             @PathVariable Long userId, @RequestBody User updatedUser){
-        try {
             userService.updateUser(userId, updatedUser);
             return new ResponseEntity<>("User updated successfully", HttpStatus.OK);
-        } catch (UserNotFoundException unfe) {
-            return new ResponseEntity<>(unfe.getMessage(), HttpStatus.NOT_FOUND);
-        }
 
     }
 
-    //TODO maxAttendens
+
     @PostMapping("/users/{userId}/book-course/{courseId}")
     public ResponseEntity<?> bookCourse(@PathVariable Long userId, @PathVariable Long courseId) {
         userService.bookCourse(userId, courseId);

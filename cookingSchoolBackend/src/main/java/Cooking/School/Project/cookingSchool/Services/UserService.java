@@ -40,7 +40,7 @@ public class UserService {
 
 
     @Transactional
-    public User updateUser(Long userId, User updatedUser) throws PrimaryIdNullOrEmptyException, UserNotFoundException {
+    public User updateUser(Long userId, User updatedUser) throws PrimaryIdNullOrEmptyException{
         if (userId == null) {
             throw new PrimaryIdNullOrEmptyException("User Id is null or empty");
         }

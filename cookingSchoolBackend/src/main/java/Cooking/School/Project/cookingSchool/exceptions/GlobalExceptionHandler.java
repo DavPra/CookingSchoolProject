@@ -22,4 +22,14 @@ public class GlobalExceptionHandler{
     public final ResponseEntity<?> handleCourseNotFoundException(CourseNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
+
+    @ExceptionHandler(TagNotFoundException.class)
+    public final ResponseEntity<?> handleTagNotFoundException(TagNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public final ResponseEntity<?> handleEntityNotFoundException(EntityNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
 }
