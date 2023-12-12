@@ -30,30 +30,31 @@ public class CourseService {
     @Autowired
     CourseTagRepository courseTagRepository;
 
-    public CourseService(){
+    public CourseService() {
     }
 
-    public Course addCourse(Course course){
+    public Course addCourse(Course course) {
         courseRepository.save(course);
         return course;
     }
 
-    public Course getCourseById(Long id){
+    public Course getCourseById(Long id) {
         return courseRepository.findById(id).get();
     }
 
 
-    public void deleteCourseById(Long id){
+    public void deleteCourseById(Long id) {
         courseRepository.deleteById(id);
     }
 
-    public Course updateCourse(Course course){
+    public Course updateCourse(Course course) {
         courseRepository.save(course);
         return course;
     }
 
     /**
-     *  Kurs inkl courseTag noch mit id und title und noch keine ausnahmen
+     * Kurs inkl courseTag noch mit id und title und noch keine ausnahmen
+     *
      * @param
      * @return
      */
@@ -80,7 +81,6 @@ public class CourseService {
 
 
     /**
-     *
      * @return
      */
     public List<CourseTagsRecipeResponse> getAllCourses() {
@@ -101,13 +101,12 @@ public class CourseService {
     }
 
 
-
     @Transactional
-    public Course  updateCourse(Long courseId, String title, String description, String teacher, LocalDateTime startDate,
-                                int maxAttendants, int  price, Set<CourseTag> courseTags)
-            throws PrimaryIdNullOrEmptyException, CourseNotFoundException, InvalidStartDateException, TagNotFoundException{
+    public Course updateCourse(Long courseId, String title, String description, String teacher, LocalDateTime startDate,
+                               int maxAttendants, int price, Set<CourseTag> courseTags)
+            throws PrimaryIdNullOrEmptyException, CourseNotFoundException, InvalidStartDateException, TagNotFoundException {
 
-        if(courseId == null) {
+        if (courseId == null) {
             throw new PrimaryIdNullOrEmptyException("Course Id is null or empty");
         }
 
@@ -133,7 +132,6 @@ public class CourseService {
         return courseRepository.save(existingCourse);
 
     }
-
 
 
 }

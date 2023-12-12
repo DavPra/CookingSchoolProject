@@ -49,11 +49,13 @@ public class RecipeService {
         recipe.setDifficulty(recipe.getDifficulty());
         recipe.setPreparation(recipe.getPreparation());
 
-
         recipe.setCourses(courses);
         recipe.setIngredients(ingredients);
 
-        recipeRepository.save(recipe);
+        recipe = recipeRepository.save(recipe);
+        recipeCourse.setRecipeId(recipe.getRecipeId());
+
+
         return recipeCourse;
     }
 
