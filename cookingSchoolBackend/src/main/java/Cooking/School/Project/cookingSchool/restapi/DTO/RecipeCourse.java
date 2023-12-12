@@ -13,7 +13,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class RecipeCourse {
 
-
+    //@Setter(AccessLevel.NONE)
     private Long recipeId;
 
     private String title;
