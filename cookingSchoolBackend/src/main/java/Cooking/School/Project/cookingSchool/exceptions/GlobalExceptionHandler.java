@@ -32,4 +32,8 @@ public class GlobalExceptionHandler{
     public final ResponseEntity<?> handleEntityNotFoundException(EntityNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
+    @ExceptionHandler(RecipeNotFoundException.class)
+    public final ResponseEntity<?> handleRecipeNotFoundException(RecipeNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
 }

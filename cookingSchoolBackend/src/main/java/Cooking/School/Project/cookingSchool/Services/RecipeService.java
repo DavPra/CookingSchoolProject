@@ -123,7 +123,7 @@ public class RecipeService {
      */
 
     @Transactional
-    public Recipe updateRecipe(Long recipeId, Recipe updatedRecipe) throws RecipeNotFoundException, PrimaryIdNullOrEmptyException {
+    public Recipe updateRecipe(Long recipeId, Recipe updatedRecipe) throws PrimaryIdNullOrEmptyException {
         Recipe existingRecipe = recipeRepository.findById(recipeId)
                 .orElseThrow(() -> new RecipeNotFoundException("Recipe with Id  " + recipeId + " not found"));
 
@@ -153,7 +153,7 @@ public class RecipeService {
 
     //TODO Ingredients löschen? NEIN NICHT Löschen nicht cascadieren, Ingredients Servic mit delete vorher checken ob ingredient nicht verwendet wird
     @Transactional
-    public void deleteRecipeById(Long recipeId) throws PrimaryIdNullOrEmptyException, RecipeNotFoundException {
+    public void deleteRecipeById(Long recipeId) throws PrimaryIdNullOrEmptyException {
         if (recipeId == null || recipeId <= 0) {
             throw new PrimaryIdNullOrEmptyException("Id is null or empty");
         }
