@@ -34,10 +34,11 @@ public class RecipeService {
     CourseRepository courseRepository;
 
 
-
     public RecipeService() {
 
     }
+
+    //TODO Martin meint wir müssen Ingredient nicht überprüfen, einfach nur speichern
 
     @Transactional
     public RecipeCourse addRecipeToCourse(RecipeCourse recipeCourse) {
@@ -92,10 +93,6 @@ public class RecipeService {
     }
 
 
-
-
-
-
     public List<Recipe> getAllRecipe() throws RecipeNotFoundException {
 
         return recipeRepository.findAll();
@@ -115,8 +112,7 @@ public class RecipeService {
     /**
      * updatet Recipe und zutaten anhand der recipeId im pfad und findet Ingredient anhand der id,checkt ob da und updatet
      *
-     * @param recipeId
-     //* @param updatedRecipe
+     * @param recipeId //* @param updatedRecipe
      * @return
      * @throws RecipeNotFoundException
      * @throws PrimaryIdNullOrEmptyException
@@ -133,7 +129,7 @@ public class RecipeService {
         existingRecipe.setPreparation(updatedRecipe.getPreparation());
 
         //TODO ingredient besser per title finden?
-      if (updatedRecipe.getIngredients() != null) {
+        if (updatedRecipe.getIngredients() != null) {
             existingRecipe.getIngredients().forEach(ingredient -> {
                 Ingredient updatedIngredient = ingredientRepository.findById(ingredient.getIngredientId())
                         .orElseThrow(() -> new IngredientNotFoundException("Ingredient with Id " + ingredient.getIngredientId() + " notfound"));

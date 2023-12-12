@@ -6,6 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+/**
+ * Alle hier definierten handler müssen weder im Service(oben in einer methode) geworfen noch im Controller abgefangen werden.
+ */
 @ControllerAdvice
 public class GlobalExceptionHandler{
     @ExceptionHandler(MaxAttendantsReachedException.class)
