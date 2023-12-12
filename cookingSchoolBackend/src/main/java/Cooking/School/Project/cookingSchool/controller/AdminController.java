@@ -46,13 +46,8 @@ public class AdminController {
 
     @GetMapping("admin/courses")
     public ResponseEntity<List<CourseTagsRecipeResponse>> getAllCourses(){
-        try{
             List<CourseTagsRecipeResponse> courseTagsRecipeResponses = courseService.getAllCourses();
             return new ResponseEntity<>(courseTagsRecipeResponses,HttpStatus.OK );
-        }catch (CourseNotFoundException cnfe){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
     }
     @GetMapping("admin/courses/{courseId}")
     public ResponseEntity<?> getCourseById(@PathVariable Long courseId){
@@ -93,10 +88,7 @@ public class AdminController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (InvalidStartDateException isde){
             return new ResponseEntity<>(isde.getMessage(), HttpStatus.NOT_FOUND);
-        }catch (TagNotFoundException tnfe){
-            return new ResponseEntity<>(tnfe.getMessage(), HttpStatus.NOT_FOUND);
         }
-
     }
 
     //------------------------- Admin tags
