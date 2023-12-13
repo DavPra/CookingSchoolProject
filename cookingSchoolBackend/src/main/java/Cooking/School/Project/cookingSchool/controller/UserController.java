@@ -17,7 +17,6 @@ public class UserController {
     private UserService userService;
 
 
-
     @GetMapping("/users/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id){
             User user = userService.getUserById(id);
@@ -44,14 +43,13 @@ public class UserController {
 
     }
 
-
     @PostMapping("/users/{userId}/book-course/{courseId}")
     public ResponseEntity<?> bookCourse(@PathVariable Long userId, @PathVariable Long courseId) {
         userService.bookCourse(userId, courseId);
         return ResponseEntity.ok("Course booked successfully");
     }
 
-    @Transactional
+
     @PostMapping("/registration")
     public ResponseEntity<?> registration(@RequestBody User user){
             userService.registration(user);

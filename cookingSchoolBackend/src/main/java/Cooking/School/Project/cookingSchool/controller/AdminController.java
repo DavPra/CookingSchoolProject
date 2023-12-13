@@ -71,7 +71,6 @@ public class AdminController {
      * @return
      */
 
-
     @PutMapping("admin/courses/{courseId}")
     public ResponseEntity<?> updateCourse(@PathVariable Long courseId, @RequestBody CourseRequest param) {
         try {
@@ -88,7 +87,7 @@ public class AdminController {
 
     //------------------------- Admin tags
 
-    @Transactional
+
     @PostMapping("admin/courseTag")
     public ResponseEntity<?> addCourseTag(@RequestBody CourseTag courseTag) {
 
@@ -110,7 +109,7 @@ public class AdminController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @Transactional
+
     @PostMapping("/admin/users")
     public ResponseEntity<?> addUser(@RequestBody User user) {
         userService.addUser(user);

@@ -13,6 +13,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
+import java.util.Set;
+
 @SpringBootApplication
 @RequiredArgsConstructor
 public class Main implements CommandLineRunner {
@@ -37,11 +43,16 @@ public class Main implements CommandLineRunner {
 	}
 
 	public void setUp() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+
+
 		Course course = new Course();
 		course.setCourseTitle("Kurs 1");
 		course.setDescription("Beschreibung 1");
 		course.setTeacher("Lehrer 1");
-		course.setMaxAttendants(0);
+		course.setMaxAttendants(10);
+		course.setPrice(100);
+		course.setStartDate(LocalDateTime.parse("2023-11-20T14:30:00", formatter));
 		courseRepository.save(course);
 		System.out.println("Kurs 1 wurde erstellt");
 
@@ -55,6 +66,14 @@ public class Main implements CommandLineRunner {
 		recipe.setDescription("Beschreibung 1");
 		recipe.setPreparation(120);
 		recipe.setDifficulty(3);
+
+		Set<Ingredient> ingredients = new HashSet<>();
+		Ingredient ingredientForRecipe = new Ingredient();
+		ingredient.setTitle("Zutat 1");
+		ingredient.setUnit("Einheit 1");
+		ingredientRepository.save(ingredient);
+		ingredients.add(ingredient);
+		recipe.setIngredients(ingredients);
 		recipeRepository.save(recipe);
 
 		User user = new User();
