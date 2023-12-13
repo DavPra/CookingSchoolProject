@@ -30,9 +30,6 @@ public class RecipeController {
     @Autowired
     private RecipeService recipeService;
 
-    //--------------------------- Recipe
-
-
     @PostMapping("/admin/addRecipe")
     public ResponseEntity<?> addRecipeToCourse(@RequestBody RecipeCourse recipeCourse) {
         RecipeCourse response = recipeService.addRecipeToCourse(recipeCourse);
@@ -46,14 +43,10 @@ public class RecipeController {
         return new ResponseEntity<>(recipes, HttpStatus.OK);
     }
 
-    @GetMapping("/admin/recipe/{id}")
+    @GetMapping("/admin/recipe/{recipeId}")
     public ResponseEntity<?> getRecipeById(@PathVariable Long recipeId) {
-        try {
             Recipe recipe = recipeService.getRecipeById(recipeId);
             return new ResponseEntity<>(recipe, HttpStatus.OK);
-        } catch (PrimaryIdNullOrEmptyException pinoee) {
-            return new ResponseEntity<>(pinoee.getMessage(), HttpStatus.BAD_REQUEST);
-        }
     }
 
 
@@ -71,13 +64,7 @@ public class RecipeController {
     @DeleteMapping("admin/recipe/{recipeId}")
     public ResponseEntity<?> deleteRecipeById(@PathVariable Long recipeId) {
         logger.info("get id" + recipeId);
-        try {
             recipeService.deleteRecipeById(recipeId);
             return new ResponseEntity<>("Recipe erfolgreich gelöscht", HttpStatus.OK);
-        } catch (PrimaryIdNullOrEmptyException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
     }
-
-
 }

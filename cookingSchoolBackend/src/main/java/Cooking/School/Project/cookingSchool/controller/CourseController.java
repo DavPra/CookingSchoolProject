@@ -23,19 +23,15 @@ public class CourseController {
 
 
     @GetMapping("/courses")
-    public ResponseEntity<List<CourseTagsRecipeResponse>> getAllCourses(){
+    public ResponseEntity<List<CourseTagsRecipeResponse>> getAllCourses() {
         List<CourseTagsRecipeResponse> courses = courseService.getAllCourses();
         return new ResponseEntity<>(courses, HttpStatus.OK);
     }
 
     @GetMapping("/courses/{id}")
-    public ResponseEntity<Course> getCourseById(@PathVariable Long id){
-        try {
-            Course course = courseService.getCourseById(id);
-            return new ResponseEntity<>(course, HttpStatus.OK);
-        } catch (CourseNotFoundException cnfe) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<Course> getCourseById(@PathVariable Long id) {
+        Course course = courseService.getCourseById(id);
+        return new ResponseEntity<>(course, HttpStatus.OK);
     }
 
 

@@ -2,9 +2,6 @@ package Cooking.School.Project.cookingSchool.controller;
 
 import Cooking.School.Project.cookingSchool.Services.UserService;
 import Cooking.School.Project.cookingSchool.entities.User;
-import Cooking.School.Project.cookingSchool.exceptions.CourseNotFoundException;
-import Cooking.School.Project.cookingSchool.exceptions.EntityNotFoundException;
-import Cooking.School.Project.cookingSchool.exceptions.MaxAttendantsReachedException;
 import Cooking.School.Project.cookingSchool.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -21,30 +18,20 @@ public class UserController {
 
 
 
-    //TEST
-
     @GetMapping("/users/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id){
-        try {
             User user = userService.getUserById(id);
             return new ResponseEntity<>(user, HttpStatus.OK);
-        } catch (UserNotFoundException unfe) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
     }
 
     @DeleteMapping("/users/{id}")
     public ResponseEntity<?> deleteUserById(@PathVariable Long id){
-        try {
             userService.deleteUserById(id);
             return new ResponseEntity<>("User deleted successfully", HttpStatus.OK);
-        } catch (UserNotFoundException unfe) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
     }
 
     /**
-     * updates a user from user dashboard
+     * updates a user from user site
      * @param userId in PathVariable
      * @param updatedUser JSON - in the requestbody
      * @return
@@ -67,17 +54,7 @@ public class UserController {
     @Transactional
     @PostMapping("/registration")
     public ResponseEntity<?> registration(@RequestBody User user){
-        try {
             userService.registration(user);
             return ResponseEntity.ok("successfully registered");
-        }catch (DuplicateKeyException dke){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email address already registered");
-        }
     }
-
-
-
-
-
-
 }
