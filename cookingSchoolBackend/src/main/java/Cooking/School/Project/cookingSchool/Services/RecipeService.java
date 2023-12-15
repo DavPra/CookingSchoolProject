@@ -34,10 +34,11 @@ public class RecipeService {
     CourseRepository courseRepository;
 
 
-
     public RecipeService() {
 
     }
+
+/* Martin meint wir müssen Ingredient nicht überprüfen, einfach nur speichern */
 
     @Transactional
     public RecipeCourse addRecipeToCourse(RecipeCourse recipeCourse) {
@@ -92,38 +93,31 @@ public class RecipeService {
     }
 
 
-
-
-
-
     public List<Recipe> getAllRecipe() throws RecipeNotFoundException {
-
         return recipeRepository.findAll();
-
     }
-
 
     public Recipe getRecipeById(Long recipeId) throws PrimaryIdNullOrEmptyException {
         if (recipeId == null || recipeId <= 0) {
             throw new PrimaryIdNullOrEmptyException("Id is null or empty");
         }
-        return recipeRepository.findById(recipeId).get();
-    }
+        Recipe recipe = recipeRepository.findById(recipeId)
+                .orElseThrow(() -> new RecipeNotFoundException("Recipe not found with " + recipeId));
 
-    //TODO gibt zutaten nicht in der response aus
+        return recipe;
+    }
 
     /**
      * updatet Recipe und zutaten anhand der recipeId im pfad und findet Ingredient anhand der id,checkt ob da und updatet
      *
-     * @param recipeId
-     //* @param updatedRecipe
+     * @param recipeId //* @param updatedRecipe
      * @return
      * @throws RecipeNotFoundException
      * @throws PrimaryIdNullOrEmptyException
      */
 
     @Transactional
-    public Recipe updateRecipe(Long recipeId, Recipe updatedRecipe) throws RecipeNotFoundException, PrimaryIdNullOrEmptyException {
+    public Recipe updateRecipe(Long recipeId, Recipe updatedRecipe) throws PrimaryIdNullOrEmptyException {
         Recipe existingRecipe = recipeRepository.findById(recipeId)
                 .orElseThrow(() -> new RecipeNotFoundException("Recipe with Id  " + recipeId + " not found"));
 
@@ -132,8 +126,7 @@ public class RecipeService {
         existingRecipe.setDifficulty(updatedRecipe.getDifficulty());
         existingRecipe.setPreparation(updatedRecipe.getPreparation());
 
-        //TODO ingredient besser per title finden?
-      if (updatedRecipe.getIngredients() != null) {
+        if (updatedRecipe.getIngredients() != null) {
             existingRecipe.getIngredients().forEach(ingredient -> {
                 Ingredient updatedIngredient = ingredientRepository.findById(ingredient.getIngredientId())
                         .orElseThrow(() -> new IngredientNotFoundException("Ingredient with Id " + ingredient.getIngredientId() + " notfound"));
@@ -151,9 +144,14 @@ public class RecipeService {
     }
 
 
-    //TODO Ingredients löschen? NEIN NICHT Löschen nicht cascadieren, Ingredients Servic mit delete vorher checken ob ingredient nicht verwendet wird
+    /**
+     * Deletes recipe including associated ingredients using the recipe ID
+     *
+     * @param recipeId
+     * @throws PrimaryIdNullOrEmptyException
+     */
     @Transactional
-    public void deleteRecipeById(Long recipeId) throws PrimaryIdNullOrEmptyException, RecipeNotFoundException {
+    public void deleteRecipeById(Long recipeId) throws PrimaryIdNullOrEmptyException {
         if (recipeId == null || recipeId <= 0) {
             throw new PrimaryIdNullOrEmptyException("Id is null or empty");
         }

@@ -31,7 +31,10 @@ public class UserService {
     }
 
     public User getUserById(Long id) {
-        return userRepository.findById(id).get();
+       // return userRepository.findById(id).get();
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User not found " +id));
+        return user;
     }
 
     public void deleteUserById(Long id) {
@@ -40,7 +43,7 @@ public class UserService {
 
 
     @Transactional
-    public User updateUser(Long userId, User updatedUser) throws PrimaryIdNullOrEmptyException, UserNotFoundException {
+    public User updateUser(Long userId, User updatedUser) throws PrimaryIdNullOrEmptyException{
         if (userId == null) {
             throw new PrimaryIdNullOrEmptyException("User Id is null or empty");
         }

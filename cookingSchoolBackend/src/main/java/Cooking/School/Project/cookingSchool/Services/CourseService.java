@@ -104,14 +104,14 @@ public class CourseService {
     @Transactional
     public Course updateCourse(Long courseId, String title, String description, String teacher, LocalDateTime startDate,
                                int maxAttendants, int price, Set<CourseTag> courseTags)
-            throws PrimaryIdNullOrEmptyException, CourseNotFoundException, InvalidStartDateException, TagNotFoundException {
+            throws PrimaryIdNullOrEmptyException, InvalidStartDateException {
 
         if (courseId == null) {
             throw new PrimaryIdNullOrEmptyException("Course Id is null or empty");
         }
 
         Course existingCourse = courseRepository.findById(courseId)
-                .orElseThrow(() -> new CourseNotFoundException("Course not found" + courseId));
+                .orElseThrow(() -> new CourseNotFoundException("Course not found " + courseId));
 
         LocalDateTime currentDate = LocalDateTime.now();
         if (startDate.isBefore(currentDate)) {

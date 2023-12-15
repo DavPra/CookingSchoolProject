@@ -30,69 +30,41 @@ public class RecipeController {
     @Autowired
     private RecipeService recipeService;
 
-    //--------------------------- Recipe
-
-
     @PostMapping("/admin/addRecipe")
     public ResponseEntity<?> addRecipeToCourse(@RequestBody RecipeCourse recipeCourse) {
-        try {
-            RecipeCourse response = recipeService.addRecipeToCourse(recipeCourse);
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        } catch (CourseNotFoundException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-        }
+        RecipeCourse response = recipeService.addRecipeToCourse(recipeCourse);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    //TODO gigbt keine recipeId retour
 
     @GetMapping("admin/getAllRecipes")
-    public ResponseEntity<List<Recipe>> getAllRecipes(){
+    public ResponseEntity<List<Recipe>> getAllRecipes() {
         List<Recipe> recipes = recipeService.getAllRecipe();
         return new ResponseEntity<>(recipes, HttpStatus.OK);
     }
 
-    @GetMapping("/admin/recipe/{id}")
+    @GetMapping("/admin/recipe/{recipeId}")
     public ResponseEntity<?> getRecipeById(@PathVariable Long recipeId) {
-        try {
             Recipe recipe = recipeService.getRecipeById(recipeId);
             return new ResponseEntity<>(recipe, HttpStatus.OK);
-        } catch (PrimaryIdNullOrEmptyException pinoee) {
-            return new ResponseEntity<>(pinoee.getMessage(), HttpStatus.BAD_REQUEST);
-        }
     }
 
 
     @Transactional
     @PutMapping("/admin/updateRecipe/{recipeId}")
     public ResponseEntity<?> updateRecipe(
-           @PathVariable Long recipeId,
-           @RequestBody Recipe updatedRecipe
-           ){
-        try {
-            Recipe updated = recipeService.updateRecipe(recipeId, updatedRecipe);
-            logger.info("Updated Ingredients: " + updated.getIngredients());
-
-            return  new ResponseEntity<>(updated, HttpStatus.OK);
-        }catch (RecipeNotFoundException rnfe){
-            return new ResponseEntity<>("Recipe not found", HttpStatus.NOT_FOUND);
-        }
-
-   }
-
-
-    @DeleteMapping("admin/recipe/{recipeId}")
-    public ResponseEntity<?> deleteRecipeById(@PathVariable Long recipeId){
-        logger.info("get id"+ recipeId);
-        try{
-            recipeService.deleteRecipeById(recipeId);
-            return new ResponseEntity<>("Recipe erfolgreich gelöscht", HttpStatus.OK);
-        } catch (PrimaryIdNullOrEmptyException e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }catch (RecipeNotFoundException rnfe){
-            return new ResponseEntity<>(rnfe.getMessage(), HttpStatus.BAD_REQUEST);
-        }
+            @PathVariable Long recipeId,
+            @RequestBody Recipe updatedRecipe
+    ) {
+        Recipe updated = recipeService.updateRecipe(recipeId, updatedRecipe);
+        logger.info("Updated Ingredients: " + updated.getIngredients());
+        return new ResponseEntity<>(updated, HttpStatus.OK);
     }
 
-
-
+    @DeleteMapping("admin/recipe/{recipeId}")
+    public ResponseEntity<?> deleteRecipeById(@PathVariable Long recipeId) {
+        logger.info("get id" + recipeId);
+            recipeService.deleteRecipeById(recipeId);
+            return new ResponseEntity<>("Recipe erfolgreich gelöscht", HttpStatus.OK);
+    }
 }
