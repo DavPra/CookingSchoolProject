@@ -1,5 +1,6 @@
 package Cooking.School.Project.cookingSchool;
 
+import Cooking.School.Project.cookingSchool.config.HSQLDBStarter;
 import Cooking.School.Project.cookingSchool.entities.Course;
 import Cooking.School.Project.cookingSchool.entities.Ingredient;
 import Cooking.School.Project.cookingSchool.entities.Recipe;
@@ -19,7 +20,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "Cooking.School.Project.cookingSchool")
 @RequiredArgsConstructor
 public class Main implements CommandLineRunner {
 
@@ -27,6 +28,7 @@ public class Main implements CommandLineRunner {
 	private final IngredientRepository ingredientRepository;
 	private final RecipeRepository recipeRepository;
 	private final UserRepository userRepository;
+	private final HSQLDBStarter hsqldbStarter;
 
 	@Value("${spring.jpa.hibernate.ddl-auto}")
 	private String hbm2ddl;
