@@ -1,5 +1,7 @@
 package Cooking.School.Project.cookingSchool.security;
 
+import Cooking.School.Project.cookingSchool.entities.User;
+import Cooking.School.Project.cookingSchool.repository.AppUserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -7,6 +9,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -19,8 +22,11 @@ import java.util.function.Function;
 
 @Component
 public class JwtService {
-    private static final Logger logger = LoggerFactory.getLogger(JwtService.class);
 
+    @Autowired
+    private AppUserRepository appUserRepository;
+
+    private static final Logger logger = LoggerFactory.getLogger(JwtService.class);
 
     public static final String SECRET = "5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437";
 
@@ -61,9 +67,14 @@ public class JwtService {
 
 
     public String generateToken(String userName){
+
+        final User user = appUserRepository.findByUsername(userName);
+
         logger.info("try generate token");
         Map<String,Object> claims=new HashMap<>(); //Daten zum mitschicken
-
+        claims.put("userId", user.getUserId());
+        claims.put("username", user.getUsername());
+        claims.put("admin", user.isAdmin());
         String token = createToken(claims,userName);
         logger.info("token generated");
         return token;

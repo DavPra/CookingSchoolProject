@@ -1,4 +1,4 @@
-package Cooking.School.Project.cookingSchool.restapi.DTO;
+package Cooking.School.Project.cookingSchool.restapi.dto;
 
 public class DownloadRequest {
     private String content;

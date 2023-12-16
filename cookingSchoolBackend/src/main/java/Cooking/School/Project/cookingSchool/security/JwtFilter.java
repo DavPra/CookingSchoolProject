@@ -35,6 +35,7 @@ public class JwtFilter extends OncePerRequestFilter {
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             token = authHeader.substring(7);
             username = jwtService.extractUsername(token);
+
         }
 //securityContext Holder speichert Token für springboot
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {

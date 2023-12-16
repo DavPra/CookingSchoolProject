@@ -2,9 +2,8 @@ package Cooking.School.Project.cookingSchool.controller;
 
 import Cooking.School.Project.cookingSchool.Services.CourseService;
 import Cooking.School.Project.cookingSchool.entities.Course;
-import Cooking.School.Project.cookingSchool.exceptions.CourseNotFoundException;
 import Cooking.School.Project.cookingSchool.repository.CourseTagRepository;
-import Cooking.School.Project.cookingSchool.restapi.DTO.CourseTagsRecipeResponse;
+import Cooking.School.Project.cookingSchool.restapi.dto.CourseTagsRecipeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
