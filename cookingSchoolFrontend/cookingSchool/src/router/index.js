@@ -5,7 +5,8 @@ import HomeView from '../views/user/HomeView.vue'
 import CourseView from '../views/user/CourseView.vue'
 import RecipeView from '../views/user/RecipeView.vue'
 import AboutView from '../views/user/AboutView.vue'
-import LoginView from '../views/admin/LoginView.vue'
+import RegistrationView from '../views/user/RegistrationView.vue'
+import AdminView from '../views/admin/AdminView.vue'
 import AdminCourseView from '../views/admin/AdminCourseView.vue'
 import AdminRecipeView from '../views/admin/AdminRecipeView.vue'
 import AdminUserView from '../views/admin/AdminUserView.vue'
@@ -16,7 +17,7 @@ const routes = [
       component: UserLayout,
       children: [
         {
-          path: '/',
+          path: '',
           component: HomeView
         },
         {
@@ -30,6 +31,10 @@ const routes = [
         {
           path: '/about',
           component: AboutView
+        },
+        {
+          path: '/register',
+          component: RegistrationView
         }
       ]
     },
@@ -39,7 +44,7 @@ const routes = [
       children: [
         {
           path: '/',
-          component: LoginView
+          component: AdminView
         },
         {
           path: '/courses',
