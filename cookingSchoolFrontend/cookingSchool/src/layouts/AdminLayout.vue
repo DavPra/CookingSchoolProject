@@ -9,17 +9,17 @@ import HeaderIcon from '@/components/HeaderIcon.vue'
     <div class="container">
       <div class="item">
         <nav>
-        <RouterLink to="/admin/courses">Kurse</RouterLink>
+        <RouterLink to="courses">Kurse</RouterLink>
         </nav>
       </div>
       <div class="item">
         <nav>
-        <RouterLink to="/admin/recipes">Rezepte</RouterLink>
+        <RouterLink to="recipes">Rezepte</RouterLink>
         </nav>
       </div>
       <div class="item">
         <nav>
-        <RouterLink to="/admin/users">User</RouterLink>
+        <RouterLink to="users">User</RouterLink>
         </nav>
       </div>
       <div class="item">

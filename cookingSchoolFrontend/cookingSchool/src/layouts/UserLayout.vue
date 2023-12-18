@@ -10,6 +10,11 @@ import LoginCard from '@/components/LoginCard.vue'
   <div class="container">
       <div class="item">
         <nav>
+            <v-btn to="/" ><v-icon>home</v-icon></v-btn>
+        </nav>
+      </div>
+      <div class="item">
+        <nav>
         <RouterLink to="/courses">Kurse</RouterLink>
         </nav>
       </div>

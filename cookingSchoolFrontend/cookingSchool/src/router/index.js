@@ -21,7 +21,7 @@ const routes = [
           component: HomeView
         },
         {
-          path: '/profile',
+          path: 'profile',
           component: ProfileView
         },
         {
@@ -47,15 +47,15 @@ const routes = [
       component: AdminLayout,
       children: [
         {
-          path: '/courses',
+          path: 'courses',
           component: AdminCourseView
         },
         {
-          path: '/recipes',
+          path: 'recipes',
           component: AdminRecipeView
         },
         {
-          path: '/users',
+          path: 'users',
           component: AdminUserView
         }
       ]

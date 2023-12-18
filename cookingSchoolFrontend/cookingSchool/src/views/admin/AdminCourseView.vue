@@ -1,5 +1,6 @@
 <script setup>
 import { useCourseStore } from "@/stores/courseStore.js";
+import { createApiUrl } from "@/helper/ApiHelper.js";
 import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
@@ -26,7 +27,7 @@ async function createCourse() {
     console.log('createCourse function called');
     try {
         await courseStore.createCourse(data.value);
-        router.push('/');
+        await router.push(createApiUrl('admin/courses'));
     } catch (err) {
         if (err.isAxiosError && err.status === 401) {
             console.log(err);
