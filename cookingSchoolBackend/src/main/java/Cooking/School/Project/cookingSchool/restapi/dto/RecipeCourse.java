@@ -1,8 +1,6 @@
-package Cooking.School.Project.cookingSchool.restapi.DTO;
+package Cooking.School.Project.cookingSchool.restapi.dto;
 
-import Cooking.School.Project.cookingSchool.entities.Course;
 import Cooking.School.Project.cookingSchool.entities.Ingredient;
-import Cooking.School.Project.cookingSchool.entities.Recipe;
 import lombok.*;
 
 import java.util.Set;

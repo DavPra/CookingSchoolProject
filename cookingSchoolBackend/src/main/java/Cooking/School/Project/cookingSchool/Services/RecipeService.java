@@ -10,9 +10,8 @@ import Cooking.School.Project.cookingSchool.exceptions.RecipeNotFoundException;
 import Cooking.School.Project.cookingSchool.repository.CourseRepository;
 import Cooking.School.Project.cookingSchool.repository.IngredientRepository;
 import Cooking.School.Project.cookingSchool.repository.RecipeRepository;
-import Cooking.School.Project.cookingSchool.restapi.DTO.RecipeCourse;
+import Cooking.School.Project.cookingSchool.restapi.dto.RecipeCourse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

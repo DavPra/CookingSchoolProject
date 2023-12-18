@@ -1,7 +1,6 @@
-package Cooking.School.Project.cookingSchool.restapi.DTO;
+package Cooking.School.Project.cookingSchool.restapi.dto;
 
 import Cooking.School.Project.cookingSchool.entities.CourseTag;
-import Cooking.School.Project.cookingSchool.entities.Recipe;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

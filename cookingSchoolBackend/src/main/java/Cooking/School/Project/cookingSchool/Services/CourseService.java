@@ -9,8 +9,8 @@ import Cooking.School.Project.cookingSchool.exceptions.PrimaryIdNullOrEmptyExcep
 import Cooking.School.Project.cookingSchool.exceptions.TagNotFoundException;
 import Cooking.School.Project.cookingSchool.repository.CourseRepository;
 import Cooking.School.Project.cookingSchool.repository.CourseTagRepository;
-import Cooking.School.Project.cookingSchool.restapi.DTO.CourseRequest;
-import Cooking.School.Project.cookingSchool.restapi.DTO.CourseTagsRecipeResponse;
+import Cooking.School.Project.cookingSchool.restapi.dto.CourseRequest;
+import Cooking.School.Project.cookingSchool.restapi.dto.CourseTagsRecipeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,13 +53,13 @@ public class CourseService {
     }
 
     /**
-     * Kurs inkl courseTag noch mit id und title und noch keine ausnahmen
+     * creates a course including course categories and saves it to the database
      *
-     * @param
-     * @return
+     * @param request a JSON holding the information to create a course
+     * @return the  course Id
      */
 
-//TODO: Coursedata kommt als null an.
+//TODO: Coursedata kommt als null an. ??? aktuell???
     @Transactional
     public Long createCourse(CourseRequest request) {
         Course course = new Course();
