@@ -8,7 +8,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@jamescoyle/vue-icon": "^0.1.2",
     "@mdi/font": "^7.3.67",
+    "@mdi/js": "^7.3.67",
     "@vueuse/core": "^10.7.0",
     "@vueuse/router": "^10.7.0",
     "axios": "^1.6.2",

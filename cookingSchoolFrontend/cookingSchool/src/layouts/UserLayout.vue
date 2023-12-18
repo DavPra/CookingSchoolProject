@@ -1,11 +1,19 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HeaderIcon from '@/components/HeaderIcon.vue'
+
+
 </script>
 
 <template>
   <HeaderIcon/>
   <div class="container">
+      <div class="item">
+        <nav>
+        <v-icon class="mdi mdi-home"></v-icon>
+        <RouterLink to="/">Home</RouterLink>
+        </nav>
+      </div>
       <div class="item">
         <nav>
         <RouterLink to="/courses">Kurse</RouterLink>
