@@ -12,59 +12,60 @@ import AdminRecipeView from '../views/admin/AdminRecipeView.vue'
 import AdminUserView from '../views/admin/AdminUserView.vue'
 
 const routes = [
-    {
-      path: '/',
-      component: UserLayout,
-      children: [
-        {
-          path: '',
-          component: HomeView
-        },
-        {
-          path: '/courses',
-          component: CourseView
-        },
-        {
-          path: '/recipes',
-          component: RecipeView
-        },
-        {
-          path: '/about',
-          component: AboutView
-        },
-        {
-          path: '/register',
-          component: RegistrationView
-        }
-      ]
-    },
-    {
-      path: '/admin',
-      component: AdminLayout,
-      children: [
-        {
-          path: '/',
-          component: AdminView
-        },
-        {
-          path: '/courses',
-          component: AdminCourseView
-        },
-        {
-          path: '/recipes',
-          component: AdminRecipeView
-        },
-        {
-          path: '/users',
-          component: AdminUserView
-        }
-      ]
-    }
-  ]
+  {
+    path: '/',
+    component: UserLayout,
+    children: [
+      // User routes
+      {
+        path: '',
+        component: HomeView
+      },
+      {
+        path: '/courses',
+        component: CourseView
+      },
+      {
+        path: '/recipes',
+        component: RecipeView
+      },
+      {
+        path: '/about',
+        component: AboutView
+      },
+      {
+        path: '/register',
+        component: RegistrationView
+      }
+    ]
+  },
+  {
+    path: '/admin',
+    component: AdminLayout,
+    children: [
+      {
+        path: 'home',
+        component: AdminView
+      },
+      {
+        path: 'courses',
+        component: AdminCourseView
+      },
+      {
+        path: 'recipes',
+        component: AdminRecipeView
+      },
+      {
+        path: 'users',
+        component: AdminUserView
+      }
+    ]
+  }
+];
 
 const router = createRouter({
   routes,
   history: createWebHistory()
-})
+});
 
-export {router}
+export { router };

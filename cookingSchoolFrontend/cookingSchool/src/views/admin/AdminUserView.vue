@@ -1,3 +1,5 @@
 <script setup></script>
 
-<template></template>
+<template>
+    <h1>create Course 1</h1>
+</template>
