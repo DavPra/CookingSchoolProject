@@ -18,7 +18,7 @@ import HeaderIcon from '@/components/HeaderIcon.vue'
       </div>
       <div class="item">
         <nav>
-        <RouterLink to="/user">User</RouterLink>
+        <RouterLink to="/users">User</RouterLink>
         </nav>
       </div>
       <div class="item">

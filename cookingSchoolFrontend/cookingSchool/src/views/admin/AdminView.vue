@@ -46,9 +46,9 @@ showCourses();
 <template>
   <h1>create Course 1</h1>
   <div>
-    <form @submit.prevent = "createCourse">
+    <form @submit.preven="createCourse">
       <label>title
-        <input type="text" v-model ="data.courseTitle">
+        <input type="text" v-model="data.courseTitle">
       </label>
       <label>description
         <input type="text" v-model="data.description">
@@ -69,8 +69,6 @@ showCourses();
     </form>
   </div>
 
-
-
   <div>
     <h1>Course List</h1>
     <ul>
@@ -82,11 +80,9 @@ showCourses();
         {{course.price}}
         {{course.startDate}}
         {{course.teacher}}
-
       </li>
     </ul>
   </div>
-
 </template>
 
 <style>
