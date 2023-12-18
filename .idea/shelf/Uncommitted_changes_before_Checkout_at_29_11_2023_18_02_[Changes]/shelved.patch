@@ -1,0 +1,460 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"29cbc65d-7dae-4e36-ab78-e1841a5ed636\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/CookingSchool.iml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/CookingSchool.iml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/cookingSchoolBackend/pom.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/cookingSchoolBackend/pom.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Course.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Course.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Ingredient.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Ingredient.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Recipe.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Recipe.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Tag.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Tag.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/User.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/User.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"AnnotationType\" />\r\n        <option value=\"Class\" />\r\n        <option value=\"Interface\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 1\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2YAG77FQsTA3djSJ5uzR057G2PK\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,\r\n    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,\r\n    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,\r\n    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;main&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;/Users/stellab/Documents/webdev/codersbay/cookingschool&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;spring.configuration.checksum&quot;: &quot;95ad48a94cc8c4f41ffa874a3628b7b7&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CreateClassDialog.RecentsKey\">\r\n      <recent name=\"Cooking.School.Project.cookingSchool\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration default=\"true\" type=\"JetRunConfigurationType\">\r\n      <module name=\"cookingschool\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"KotlinStandaloneScriptRunConfigurationType\">\r\n      <module name=\"cookingschool\" />\r\n      <option name=\"filePath\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Main\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <option name=\"ALTERNATIVE_JRE_PATH\" value=\"openjdk-20\" />\r\n      <option name=\"ALTERNATIVE_JRE_PATH_ENABLED\" value=\"true\" />\r\n      <module name=\"cookingSchool\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"Cooking.School.Project.cookingSchool.Main\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"29cbc65d-7dae-4e36-ab78-e1841a5ed636\" name=\"Changes\" comment=\"\" />\r\n      <created>1699960799412</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1699960799412</updated>\r\n      <workItem from=\"1699960800614\" duration=\"459000\" />\r\n      <workItem from=\"1699966014127\" duration=\"1577000\" />\r\n      <workItem from=\"1699976733997\" duration=\"1584000\" />\r\n      <workItem from=\"1700160225503\" duration=\"10515000\" />\r\n      <workItem from=\"1700211003929\" duration=\"524000\" />\r\n      <workItem from=\"1700587753404\" duration=\"7195000\" />\r\n      <workItem from=\"1700671289621\" duration=\"142000\" />\r\n      <workItem from=\"1700906112322\" duration=\"132000\" />\r\n      <workItem from=\"1700906288104\" duration=\"351000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Boilerplate fixed.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1699960958766</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1699960958766</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Entities added\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1699966278625</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1699966278625</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Email detail added\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1699977960898</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1699977960898</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"doppelte appache gelöscht, grundstruktur erstellt\">\r\n      <created>1700165585993</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700165585993</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"doppelte appache gelöscht, grundstruktur erstellt\">\r\n      <created>1700165599642</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700165599642</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"läuft halb\">\r\n      <created>1700171384799</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700171384799</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"delete course hinzugefügt bei admin controller\">\r\n      <created>1700596549682</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700596549682</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"delete course by id fixed\">\r\n      <created>1700596642881</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700596642881</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Ingredient und Tag entities written. Beziehungen fehlen\">\r\n      <created>1700597034599</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700597034599</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"Courses und User überarbeitet nach neuem ER Diagramm\">\r\n      <created>1700597410171</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700597410171</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"11\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Boilerplate fixed.\" />\r\n    <MESSAGE value=\"Entities added\" />\r\n    <MESSAGE value=\"Email detail added\" />\r\n    <MESSAGE value=\"doppelte appache gelöscht, grundstruktur erstellt\" />\r\n    <MESSAGE value=\"läuft halb\" />\r\n    <MESSAGE value=\"delete course hinzugefügt bei admin controller\" />\r\n    <MESSAGE value=\"delete course by id fixed\" />\r\n    <MESSAGE value=\"Ingredient und Tag entities written. Beziehungen fehlen\" />\r\n    <MESSAGE value=\"Courses und User überarbeitet nach neuem ER Diagramm\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Courses und User überarbeitet nach neuem ER Diagramm\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -4,15 +4,129 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="">
+-      <change beforePath="$PROJECT_DIR$/.idea/CookingSchool.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CookingSchool.iml" afterDir="false" />
++    <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="Courses und User überarbeitet nach neuem ER Diagramm">
++      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/dataSources/78ea8e16-46c6-4cdd-beaa-89bfc24d90bf.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/dataSources/78ea8e16-46c6-4cdd-beaa-89bfc24d90bf/storage_v2/_src_/schema/SYS.rUIBAA.meta" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/dataSources/78ea8e16-46c6-4cdd-beaa-89bfc24d90bf/storage_v2/_src_/schema/SYSCS_UTIL.JC_i2A.meta" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/dataSources/78ea8e16-46c6-4cdd-beaa-89bfc24d90bf/storage_v2/_src_/schema/SYSIBM.hzyvkg.meta" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/Services/RatingService.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Rating.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/repository/RatingRepository.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/README_DO_NOT_TOUCH_FILES.txt" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/db.lck" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/log/README_DO_NOT_TOUCH_FILES.txt" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/log/log.ctrl" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/log/log1.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/log/logmirror.ctrl" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/README_DO_NOT_TOUCH_FILES.txt" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c10.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c101.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c111.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c121.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c130.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c141.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c150.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c161.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c171.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c180.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c191.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c1a1.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c1b1.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c1c0.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c1d1.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c1e0.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c1f1.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c20.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c200.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c211.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c221.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c230.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c241.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c251.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c260.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c271.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c281.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c290.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c2a1.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c2b1.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c2c1.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c2d0.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c2e1.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c2f0.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c300.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c31.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c311.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c321.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c331.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c340.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c351.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c361.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c371.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c380.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c391.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c3a1.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c3b1.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c3c0.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c3d1.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c3e1.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c3f1.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c400.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c41.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c411.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c421.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c430.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c441.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c451.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c461.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c470.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c481.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c490.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c4a1.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c4b0.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c4c1.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c4d0.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c4e1.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c4f0.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c501.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c51.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c510.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c521.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c530.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c541.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c570.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c581.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c590.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c5a1.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c5b0.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c5c1.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c5d0.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c5e1.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c5f1.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c60.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c601.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c611.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c621.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c631.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c641.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c671.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c681.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c71.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c81.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/c90.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/ca1.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/cb1.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/cc0.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/cd1.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/ce1.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/seg0/cf0.dat" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/local/service.properties" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/cookingSchoolBackend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolBackend/pom.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Course.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Ingredient.java" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Ingredient.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Recipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Recipe.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/Tag.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/entities/User.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/derby.log" beforeDir="false" afterPath="$PROJECT_DIR$/derby.log" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -29,6 +143,11 @@
+     </option>
+   </component>
+   <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="main" />
++      </map>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+   <component name="MarkdownSettingsMigration">
+@@ -38,40 +157,47 @@
+   &quot;associatedIndex&quot;: 1
+ }</component>
+   <component name="ProjectId" id="2YAG77FQsTA3djSJ5uzR057G2PK" />
++  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
++    <ConfirmationsSetting value="2" id="Add" />
++  </component>
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;/Users/stellab/Documents/webdev/codersbay/cookingschool&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+-    &quot;spring.configuration.checksum&quot;: &quot;95ad48a94cc8c4f41ffa874a3628b7b7&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "ASKED_ADD_EXTERNAL_FILES": "true",
++    "RequestMappingsPanelOrder0": "0",
++    "RequestMappingsPanelOrder1": "1",
++    "RequestMappingsPanelWidth0": "75",
++    "RequestMappingsPanelWidth1": "75",
++    "RunOnceActivity.OpenProjectViewOnStart": "true",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
++    "WebServerToolWindowFactoryState": "false",
++    "git-widget-placeholder": "Bewertungen",
++    "last_opened_file_path": "C:/Users/pm-user61/OneDrive/Desktop/CookingSchool/local",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "project.structure.last.edited": "Modules",
++    "project.structure.proportion": "0.0",
++    "project.structure.side.proportion": "0.0",
++    "spring.configuration.checksum": "ab34ddadcffe0d2dfdc145de21d27cdb",
++    "vue.rearranger.settings.migration": "true"
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
+     <key name="CreateClassDialog.RecentsKey">
+       <recent name="Cooking.School.Project.cookingSchool" />
+     </key>
++    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
++      <recent name="Cooking.School.Project.cookingSchool.email" />
++    </key>
+   </component>
+-  <component name="RunManager">
++  <component name="RunManager" selected="Spring Boot.Main">
+     <configuration default="true" type="JetRunConfigurationType">
+       <module name="cookingschool" />
+       <method v="2">
+@@ -81,6 +207,13 @@
+     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+       <module name="cookingschool" />
+       <option name="filePath" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="Main (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
++      <module name="cookingSchoolBackend" />
++      <option name="SPRING_BOOT_MAIN_CLASS" value="Cooking.School.Project.cookingSchool.Main" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+@@ -88,7 +221,7 @@
+     <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-20" />
+       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+-      <module name="cookingSchool" />
++      <module name="cookingSchoolBackend" />
+       <option name="SPRING_BOOT_MAIN_CLASS" value="Cooking.School.Project.cookingSchool.Main" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+@@ -112,6 +245,9 @@
+       <workItem from="1700671289621" duration="142000" />
+       <workItem from="1700906112322" duration="132000" />
+       <workItem from="1700906288104" duration="351000" />
++      <workItem from="1701103572269" duration="92000" />
++      <workItem from="1701103681223" duration="10904000" />
++      <workItem from="1701275758096" duration="1523000" />
+     </task>
+     <task id="LOCAL-00001" summary="Boilerplate fixed.">
+       <option name="closed" value="true" />
+@@ -186,13 +322,128 @@
+       <option name="project" value="LOCAL" />
+       <updated>1700597410171</updated>
+     </task>
+-    <option name="localTasksCounter" value="11" />
++    <task id="LOCAL-00011" summary="edit/update course in AdminController, CourseService">
++      <created>1700909324491</created>
++      <option name="number" value="00011" />
++      <option name="presentableId" value="LOCAL-00011" />
++      <option name="project" value="LOCAL" />
++      <updated>1700909324492</updated>
++    </task>
++    <task id="LOCAL-00012" summary="Imports verkürzt in Entities">
++      <created>1700909776109</created>
++      <option name="number" value="00012" />
++      <option name="presentableId" value="LOCAL-00012" />
++      <option name="project" value="LOCAL" />
++      <updated>1700909776109</updated>
++    </task>
++    <task id="LOCAL-00013" summary="Security auskommentiert, CoursesRepository überarbeitet">
++      <created>1700912068748</created>
++      <option name="number" value="00013" />
++      <option name="presentableId" value="LOCAL-00013" />
++      <option name="project" value="LOCAL" />
++      <updated>1700912068748</updated>
++    </task>
++    <task id="LOCAL-00014" summary="Datenbank Struktur implementiert">
++      <created>1700916388328</created>
++      <option name="number" value="00014" />
++      <option name="presentableId" value="LOCAL-00014" />
++      <option name="project" value="LOCAL" />
++      <updated>1700916388328</updated>
++    </task>
++    <task id="LOCAL-00015" summary="Courses und User überarbeitet nach neuem ER Diagramm">
++      <created>1700916764667</created>
++      <option name="number" value="00015" />
++      <option name="presentableId" value="LOCAL-00015" />
++      <option name="project" value="LOCAL" />
++      <updated>1700916764667</updated>
++    </task>
++    <task id="LOCAL-00016" summary="Exceptions added for ingredients, tags and recipes">
++      <created>1700917271023</created>
++      <option name="number" value="00016" />
++      <option name="presentableId" value="LOCAL-00016" />
++      <option name="project" value="LOCAL" />
++      <updated>1700917271023</updated>
++    </task>
++    <task id="LOCAL-00017" summary="Relations in DB fixed">
++      <created>1700918326454</created>
++      <option name="number" value="00017" />
++      <option name="presentableId" value="LOCAL-00017" />
++      <option name="project" value="LOCAL" />
++      <updated>1700918326454</updated>
++    </task>
++    <task id="LOCAL-00018" summary="CourseTag table name changed">
++      <created>1700919092440</created>
++      <option name="number" value="00018" />
++      <option name="presentableId" value="LOCAL-00018" />
++      <option name="project" value="LOCAL" />
++      <updated>1700919092440</updated>
++    </task>
++    <task id="LOCAL-00019" summary="attendants">
++      <created>1700920167962</created>
++      <option name="number" value="00019" />
++      <option name="presentableId" value="LOCAL-00019" />
++      <option name="project" value="LOCAL" />
++      <updated>1700920167962</updated>
++    </task>
++    <task id="LOCAL-00020" summary="final project report">
++      <created>1700921215413</created>
++      <option name="number" value="00020" />
++      <option name="presentableId" value="LOCAL-00020" />
++      <option name="project" value="LOCAL" />
++      <updated>1700921215413</updated>
++    </task>
++    <task id="LOCAL-00021" summary="Courses und User überarbeitet nach neuem ER Diagramm">
++      <created>1701112312877</created>
++      <option name="number" value="00021" />
++      <option name="presentableId" value="LOCAL-00021" />
++      <option name="project" value="LOCAL" />
++      <updated>1701112312877</updated>
++    </task>
++    <task id="LOCAL-00022" summary="admin user paths added">
++      <created>1701112873166</created>
++      <option name="number" value="00022" />
++      <option name="presentableId" value="LOCAL-00022" />
++      <option name="project" value="LOCAL" />
++      <updated>1701112873166</updated>
++    </task>
++    <task id="LOCAL-00023" summary="email schicken funktioniert">
++      <created>1701116443647</created>
++      <option name="number" value="00023" />
++      <option name="presentableId" value="LOCAL-00023" />
++      <option name="project" value="LOCAL" />
++      <updated>1701116443647</updated>
++    </task>
++    <option name="localTasksCounter" value="24" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+     <option name="version" value="3" />
+   </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State>
++              <option name="FILTERS">
++                <map>
++                  <entry key="branch">
++                    <value>
++                      <list>
++                        <option value="main" />
++                      </list>
++                    </value>
++                  </entry>
++                </map>
++              </option>
++            </State>
++          </value>
++        </entry>
++      </map>
++    </option>
++  </component>
+   <component name="VcsManagerConfiguration">
++    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+     <MESSAGE value="Boilerplate fixed." />
+     <MESSAGE value="Entities added" />
+     <MESSAGE value="Email detail added" />
+@@ -201,7 +452,19 @@
+     <MESSAGE value="delete course hinzugefügt bei admin controller" />
+     <MESSAGE value="delete course by id fixed" />
+     <MESSAGE value="Ingredient und Tag entities written. Beziehungen fehlen" />
++    <MESSAGE value="edit/update course in AdminController, CourseService" />
++    <MESSAGE value="Imports verkürzt in Entities" />
++    <MESSAGE value="Security auskommentiert, CoursesRepository überarbeitet" />
++    <MESSAGE value="Datenbank Struktur implementiert" />
++    <MESSAGE value="Exceptions erweitert" />
++    <MESSAGE value="Exceptions added for ingredients, tags and recipes" />
++    <MESSAGE value="Relations in DB fixed" />
++    <MESSAGE value="CourseTag table name changed" />
++    <MESSAGE value="attendants" />
++    <MESSAGE value="final project report" />
+     <MESSAGE value="Courses und User überarbeitet nach neuem ER Diagramm" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Courses und User überarbeitet nach neuem ER Diagramm" />
++    <MESSAGE value="admin user paths added" />
++    <MESSAGE value="email schicken funktioniert" />
++    <option name="LAST_COMMIT_MESSAGE" value="email schicken funktioniert" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: local/service.properties
+===================================================================
+diff --git a/local/service.properties b/local/service.properties
+new file mode 100644
+--- /dev/null	
++++ b/local/service.properties	
+@@ -0,0 +1,23 @@
++#C:\Users\pm-user61\OneDrive\Desktop\CookingSchool\local
++# ********************************************************************
++# ***                Please do NOT edit this file.                 ***
++# *** CHANGING THE CONTENT OF THIS FILE MAY CAUSE DATA CORRUPTION. ***
++# ********************************************************************
++#Sat Nov 25 14:30:38 CET 2023
++SyscolumnsIdentifier=144
++SyscolumnsIndex1Identifier=161
++SyscolumnsIndex2Identifier=177
++SysconglomeratesIdentifier=32
++SysconglomeratesIndex1Identifier=49
++SysconglomeratesIndex2Identifier=65
++SysconglomeratesIndex3Identifier=81
++SysschemasIdentifier=192
++SysschemasIndex1Identifier=209
++SysschemasIndex2Identifier=225
++SystablesIdentifier=96
++SystablesIndex1Identifier=113
++SystablesIndex2Identifier=129
++derby.serviceLocale=de_AT
++derby.serviceProtocol=org.apache.derby.database.Database
++derby.storage.propertiesId=16
++#--- last line, don't put anything after this line ---
+Index: .idea/sqldialects.xml
+===================================================================
+diff --git a/.idea/sqldialects.xml b/.idea/sqldialects.xml
+new file mode 100644
+--- /dev/null	
++++ b/.idea/sqldialects.xml	
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="SqlDialectMappings">
++    <file url="PROJECT" dialect="Derby" />
++  </component>
++</project>
+\ No newline at end of file
