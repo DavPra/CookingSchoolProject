@@ -1,9 +1,11 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HeaderIcon from '@/components/HeaderIcon.vue'
+import LoginCard from '@/components/LoginCard.vue'
 </script>
 
 <template>
+  <!-- Grundgerüst des Headers und Navbar für die Ansicht der User -->
   <HeaderIcon/>
   <div class="container">
       <div class="item">
@@ -22,9 +24,16 @@ import HeaderIcon from '@/components/HeaderIcon.vue'
         </nav>
       </div>
       <div class="item">
-        <button class="button">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
           Login
         </button>
+        <div class="dropdown-menu">
+            <ul>
+              <li>
+                <LoginCard />
+              </li>
+            </ul>
+        </div>
       </div>
     </div>
   <RouterView />
@@ -52,7 +61,7 @@ import HeaderIcon from '@/components/HeaderIcon.vue'
   max-width: 100%;
 }
 
-.button {
+.dropdown {
   background-color: transparent;
   border: none;
   font-size: 1.2rem;

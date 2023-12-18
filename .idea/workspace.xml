@@ -5,7 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/ProfileView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/components/CourseCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/components/CourseCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/components/LoginCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/components/LoginCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/helper/ApiHelper.js" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/helper/ApiHelper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/AdminLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/AdminLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/UserLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/UserLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/admin/AdminCourseView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/admin/AdminCourseView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/admin/AdminRecipeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/admin/AdminRecipeView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/admin/AdminUserView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/admin/AdminUserView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/admin/AdminView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/AboutView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/AboutView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/CourseView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/CourseView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/HomeView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/RecipeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/RecipeView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/RegistrationView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/RegistrationView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.lck" beforeDir="false" afterPath="$PROJECT_DIR$/db/cooking/cookingdb.lck" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.log" beforeDir="false" afterPath="$PROJECT_DIR$/db/cooking/cookingdb.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +129,7 @@
       <workItem from="1701706785972" duration="16000" />
       <workItem from="1702726466770" duration="34000" />
       <workItem from="1702726514101" duration="1003000" />
-      <workItem from="1702918702689" duration="1022000" />
+      <workItem from="1702918702689" duration="6312000" />
     </task>
     <task id="LOCAL-00001" summary="Boilerplate fixed.">
       <option name="closed" value="true" />

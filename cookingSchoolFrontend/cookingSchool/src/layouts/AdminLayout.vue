@@ -4,21 +4,22 @@ import HeaderIcon from '@/components/HeaderIcon.vue'
 </script>
 
 <template>
+  <!-- Grundgerüst des Headers und Navbar für die Ansicht der Admin -->
     <HeaderIcon/>
     <div class="container">
       <div class="item">
         <nav>
-        <RouterLink to="/courses">Kurse</RouterLink>
+        <RouterLink to="/admin/courses">Kurse</RouterLink>
         </nav>
       </div>
       <div class="item">
         <nav>
-        <RouterLink to="/recipes">Rezepte</RouterLink>
+        <RouterLink to="/admin/recipes">Rezepte</RouterLink>
         </nav>
       </div>
       <div class="item">
         <nav>
-        <RouterLink to="/user">User</RouterLink>
+        <RouterLink to="/admin/users">User</RouterLink>
         </nav>
       </div>
       <div class="item">

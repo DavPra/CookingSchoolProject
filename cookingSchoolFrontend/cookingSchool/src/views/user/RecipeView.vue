@@ -1,3 +1,6 @@
 <script setup></script>
 
-<template></template>
+<template>
+  <!--Übersicht aller Rezepte die für den User verfügbar sind-->
+
+</template>

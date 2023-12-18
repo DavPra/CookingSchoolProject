@@ -1,3 +1,6 @@
 <script setup></script>
 
-<template></template>
+<template>
+  <!-- Formular für einen neuen User um sich zu registrieren -->
+
+</template>

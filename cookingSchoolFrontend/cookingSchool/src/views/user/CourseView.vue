@@ -1,3 +1,5 @@
 <script setup></script>
 
-<template></template>
+<template>
+  <!-- Übersicht aller verfügbaren Kurse für Gäste uns eingeloggte User -->
+</template>

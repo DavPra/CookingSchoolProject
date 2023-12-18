@@ -3,6 +3,7 @@ import LoginCard from '@/components/LoginCard.vue'
 </script>
 
 <template>
+  <!-- Willkommensseite für alle User mit Login-Möglichkeit -->
   <div class="container">
     <div class="item">
     <h3 class="text">Welcome</h3>

@@ -1,3 +1,6 @@
 <script setup></script>
 
-<template></template>
+<template>
+  <!-- Übersicht aller User zur Bearbeitung für den Admin
+und zum Upgraden eines Users zum Admin -->
+</template>

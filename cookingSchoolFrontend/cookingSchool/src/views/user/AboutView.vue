@@ -2,6 +2,7 @@
 </script>
 
 <template>
+  <!-- kurze Beschreibung des Teams und der Location -->
   <h3 class="text">About Us</h3>
     
   <p class="text">

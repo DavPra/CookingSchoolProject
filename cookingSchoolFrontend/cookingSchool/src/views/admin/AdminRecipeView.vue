@@ -1,3 +1,5 @@
 <script setup></script>
 
-<template></template>
+<template>
+  <!-- Übersicht aller Rezepte zum Bearbeiten für den Admin -->
+</template>
