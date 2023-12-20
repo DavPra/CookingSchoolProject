@@ -194,4 +194,7 @@ buildNumber.properties
 # derby DB
 derby.log
 
+#workspace.xml - contains paths to local data sources, including passwords
+workspace.xml
+
 # End of https://www.toptal.com/developers/gitignore/api/intellij+all,intellij+iml,maven,java
