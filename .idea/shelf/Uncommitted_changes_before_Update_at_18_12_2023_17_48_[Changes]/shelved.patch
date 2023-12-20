@@ -1,0 +1,240 @@
+Index: cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/exceptions/ErrorResponse.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/exceptions/ErrorResponse.java b/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/exceptions/ErrorResponse.java
+new file mode 100644
+--- /dev/null	(date 1702918009693)
++++ b/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/exceptions/ErrorResponse.java	(date 1702918009693)
+@@ -0,0 +1,32 @@
++package Cooking.School.Project.cookingSchool.exceptions;
++
++import lombok.Getter;
++import lombok.Setter;
++
++@Getter
++@Setter
++public class ErrorResponse {
++    private int statusCode;
++    private String message;
++
++    public ErrorResponse( int statusCode, String message){
++        this.statusCode = statusCode;
++        this.message = message;
++    }
++
++    public int getStatusCode() {
++        return statusCode;
++    }
++
++    public void setStatusCode(int statusCode) {
++        this.statusCode = statusCode;
++    }
++
++    public String getMessage() {
++        return message;
++    }
++
++    public void setMessage(String message) {
++        this.message = message;
++    }
++}
+Index: cookingSchoolFrontend/cookingSchool/src/stores/AuthStore.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cookingSchoolFrontend/cookingSchool/src/stores/AuthStore.js b/cookingSchoolFrontend/cookingSchool/src/stores/AuthStore.js
+new file mode 100644
+--- /dev/null	(date 1702918009709)
++++ b/cookingSchoolFrontend/cookingSchool/src/stores/AuthStore.js	(date 1702918009709)
+@@ -0,0 +1,31 @@
++import {defineStore} from 'pinia'
++import axios from 'axios'
++import {createApiUrl} from '@/helper/ApiHelper'
++
++const accessToken = window.localStorage.getItem('accessToken')
++
++export const useAuthStore = defineStore('authentication', {
++    state: () => ({
++        user: null,
++        accessToken: null
++    }),
++    actions: {
++        async login({username, password}) {
++            const response = await axios.post(createApiUrl('authenticate'),{username:username, password:password})
++            if(response.status !== 200){
++                throw new Error('User nicht gefunden')
++            }
++            const user = response.data.user
++            if(!user) {
++                throw new Error('User nicht gefunden')
++            }
++            this.user = user
++            this.accessToken = response.data.accessToken
++            window.localStorage.setItem('accessToken', this.accessToken)
++        },
++        logout() {
++            this.user = null
++            window.localStorage.clear()
++        }
++    }
++})
+\ No newline at end of file
+Index: cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/exceptions/DuplicateKeyException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/exceptions/DuplicateKeyException.java b/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/exceptions/DuplicateKeyException.java
+new file mode 100644
+--- /dev/null	(date 1702918009693)
++++ b/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/exceptions/DuplicateKeyException.java	(date 1702918009693)
+@@ -0,0 +1,18 @@
++package Cooking.School.Project.cookingSchool.exceptions;
++
++import org.springframework.http.HttpStatus;
++import org.springframework.web.bind.annotation.ResponseStatus;
++
++@ResponseStatus(value = HttpStatus.CONFLICT, reason = "Duplicate key violation")
++public class DuplicateKeyException extends RuntimeException {
++
++    public DuplicateKeyException() {
++        super("Duplicate key violation");
++    }
++
++    public DuplicateKeyException(String message){
++        super(message);
++    }
++
++
++}
+Index: cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/exceptions/MaxAttendantsReachedException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/exceptions/MaxAttendantsReachedException.java b/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/exceptions/MaxAttendantsReachedException.java
+new file mode 100644
+--- /dev/null	(date 1702918009695)
++++ b/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/exceptions/MaxAttendantsReachedException.java	(date 1702918009695)
+@@ -0,0 +1,8 @@
++package Cooking.School.Project.cookingSchool.exceptions;
++
++public class MaxAttendantsReachedException extends RuntimeException {
++
++    public MaxAttendantsReachedException(int maxNumberOfAttendants) {
++        super(String.format("The maximum number of attendants %d was reached!", maxNumberOfAttendants));
++    }
++}
+Index: cookingSchoolFrontend/cookingSchool/src/views/user/RegistrationView.vue
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cookingSchoolFrontend/cookingSchool/src/views/user/RegistrationView.vue b/cookingSchoolFrontend/cookingSchool/src/views/user/RegistrationView.vue
+new file mode 100644
+--- /dev/null	(date 1702918009711)
++++ b/cookingSchoolFrontend/cookingSchool/src/views/user/RegistrationView.vue	(date 1702918009711)
+@@ -0,0 +1,3 @@
++<script setup></script>
++
++<template></template>
+\ No newline at end of file
+Index: cookingSchoolFrontend/cookingSchool/src/components/LoginCard.vue
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cookingSchoolFrontend/cookingSchool/src/components/LoginCard.vue b/cookingSchoolFrontend/cookingSchool/src/components/LoginCard.vue
+new file mode 100644
+--- /dev/null	(date 1702918009707)
++++ b/cookingSchoolFrontend/cookingSchool/src/components/LoginCard.vue	(date 1702918009707)
+@@ -0,0 +1,40 @@
++<script setup>
++    import {ref} from 'vue'
++    import {useRouter} from 'vue-router'
++    import {useAuthStore} from '@/stores/AuthStore'
++
++    const areCredentialsInvalid = ref(false)
++    const isLoginInProgress = ref(false)
++    const router = useRouter()
++    const authentication = useAuthStore()
++    const credentials = ref({
++        username: '',
++        password: ''
++    })
++
++    async function login() {
++        isLoginInProgress.value = true
++        try {
++            await authentication.login(credentials.value)
++            await router.push('/courses')
++        } catch (err) {
++            areCredentialsInvalid.value = true
++        } finally {
++            isLoginInProgress.value = false
++        }
++    }
++</script>
++
++<template>
++     <h2>Login</h2>
++    <form @submit.prevent="login" style="margin-bottom: 10px;">
++        <div v-if="areCredentialsInvalid" class="error">Zugangsdaten falsch</div>
++        <input type="text" required placeholder="Username" v-model="credentials.username" :disabled="isLoginInProgress">
++        <input type="password" required placeholder="Passwort" v-model="credentials.password" :disabled="isLoginInProgress">
++        <button type="submit" :disabled="isLoginInProgress">Login</button>
++        <br>
++        <a href="/register">Registrieren</a>
++    </form>
++</template>
++
++<style scoped></style>
+\ No newline at end of file
+Index: cookingSchoolFrontend/cookingSchool/src/views/admin/AdminView.vue
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cookingSchoolFrontend/cookingSchool/src/views/admin/AdminView.vue b/cookingSchoolFrontend/cookingSchool/src/views/admin/AdminView.vue
+new file mode 100644
+--- /dev/null	(date 1702918009710)
++++ b/cookingSchoolFrontend/cookingSchool/src/views/admin/AdminView.vue	(date 1702918009710)
+@@ -0,0 +1,3 @@
++<script setup></script>
++
++<template></template>
+\ No newline at end of file
+Index: cookingSchoolFrontend/cookingSchool/src/helper/ApiHelper.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cookingSchoolFrontend/cookingSchool/src/helper/ApiHelper.js b/cookingSchoolFrontend/cookingSchool/src/helper/ApiHelper.js
+new file mode 100644
+--- /dev/null	(date 1702918009707)
++++ b/cookingSchoolFrontend/cookingSchool/src/helper/ApiHelper.js	(date 1702918009707)
+@@ -0,0 +1,4 @@
++export function createApiUrl(path) {
++    const normalizedPath = path.startsWith('/') ? path.substring(1) : path
++    return `http://localhost:8082/${normalizedPath}`
++}
+\ No newline at end of file
+Index: cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/restapi/DTO/RecipeCourseResponse.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/restapi/DTO/RecipeCourseResponse.java b/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/restapi/DTO/RecipeCourseResponse.java
+new file mode 100644
+--- /dev/null	(date 1702918009701)
++++ b/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/restapi/DTO/RecipeCourseResponse.java	(date 1702918009701)
+@@ -0,0 +1,6 @@
++package Cooking.School.Project.cookingSchool.restapi.DTO;
++
++public class RecipeCourseResponse {
++
++
++}

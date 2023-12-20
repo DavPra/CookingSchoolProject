@@ -1,0 +1,610 @@
+Index: cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Cooking.School.Project.cookingSchool;\r\n\r\nimport org.springframework.boot.SpringApplication;\r\nimport org.springframework.boot.autoconfigure.SpringBootApplication;\r\n@SpringBootApplication\r\npublic class Main {\r\n\r\n\tpublic static void main(String[] args) {\r\n\t\tSpringApplication.run(Main.class, args);\r\n\t}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/Main.java b/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/Main.java
+--- a/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/Main.java	(revision 87ce2d67de9e393156432a7aa9edc4fc1ce400fb)
++++ b/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/Main.java	(date 1702918009680)
+@@ -1,12 +1,68 @@
+ package Cooking.School.Project.cookingSchool;
+ 
++import Cooking.School.Project.cookingSchool.entities.Course;
++import Cooking.School.Project.cookingSchool.entities.Ingredient;
++import Cooking.School.Project.cookingSchool.entities.Recipe;
++import Cooking.School.Project.cookingSchool.entities.User;
++import Cooking.School.Project.cookingSchool.repository.CourseRepository;
++import Cooking.School.Project.cookingSchool.repository.IngredientRepository;
++import Cooking.School.Project.cookingSchool.repository.RecipeRepository;
++import Cooking.School.Project.cookingSchool.repository.UserRepository;
++import lombok.RequiredArgsConstructor;
++import org.springframework.beans.factory.annotation.Value;
++import org.springframework.boot.CommandLineRunner;
+ import org.springframework.boot.SpringApplication;
+ import org.springframework.boot.autoconfigure.SpringBootApplication;
+ @SpringBootApplication
+-public class Main {
++@RequiredArgsConstructor
++public class Main implements CommandLineRunner {
++
++	private final CourseRepository courseRepository;
++	private final IngredientRepository ingredientRepository;
++	private final RecipeRepository recipeRepository;
++	private final UserRepository userRepository;
++
++	@Value("${spring.jpa.hibernate.ddl-auto}")
++	private String hbm2ddl;
+ 
+ 	public static void main(String[] args) {
+ 		SpringApplication.run(Main.class, args);
+ 	}
+ 
++	@Override
++	public void run(String... args) throws Exception {
++		if(hbm2ddl != null && hbm2ddl.contains("create")){
++			setUp();
++		}
++	}
++
++	public void setUp() {
++		Course course = new Course();
++		course.setCourseTitle("Kurs 1");
++		course.setDescription("Beschreibung 1");
++		course.setTeacher("Lehrer 1");
++		course.setMaxAttendants(0);
++		courseRepository.save(course);
++		System.out.println("Kurs 1 wurde erstellt");
++
++		Ingredient ingredient = new Ingredient();
++		ingredient.setTitle("Zutat 1");
++		ingredient.setUnit("Einheit 1");
++		ingredientRepository.save(ingredient);
++
++		Recipe recipe = new Recipe();
++		recipe.setTitle("Rezept 1");
++		recipe.setDescription("Beschreibung 1");
++		recipe.setPreparation(120);
++		recipe.setDifficulty(3);
++		recipeRepository.save(recipe);
++
++		User user = new User();
++		user.setFirstname("admin 1");
++		user.setLastname("Nachname 1");
++		user.setEmail("Email 1");
++		user.setPassword("Passwort 1");
++		user.setAdmin(true);
++		userRepository.save(user);
++	}
+ }
+Index: cookingSchoolFrontend/cookingSchool/src/stores/counter.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cookingSchoolFrontend/cookingSchool/src/stores/counter.js b/cookingSchoolFrontend/cookingSchool/src/stores/counter.js
+deleted file mode 100644
+--- a/cookingSchoolFrontend/cookingSchool/src/stores/counter.js	(revision 87ce2d67de9e393156432a7aa9edc4fc1ce400fb)
++++ /dev/null	(revision 87ce2d67de9e393156432a7aa9edc4fc1ce400fb)
+@@ -1,12 +0,0 @@
+-import { ref, computed } from 'vue'
+-import { defineStore } from 'pinia'
+-
+-export const useCounterStore = defineStore('counter', () => {
+-  const count = ref(0)
+-  const doubleCount = computed(() => count.value * 2)
+-  function increment() {
+-    count.value++
+-  }
+-
+-  return { count, doubleCount, increment }
+-})
+Index: cookingSchoolFrontend/cookingSchool/src/views/admin/LoginView.vue
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cookingSchoolFrontend/cookingSchool/src/views/admin/LoginView.vue b/cookingSchoolFrontend/cookingSchool/src/views/admin/LoginView.vue
+deleted file mode 100644
+--- a/cookingSchoolFrontend/cookingSchool/src/views/admin/LoginView.vue	(revision 87ce2d67de9e393156432a7aa9edc4fc1ce400fb)
++++ /dev/null	(revision 87ce2d67de9e393156432a7aa9edc4fc1ce400fb)
+@@ -1,3 +0,0 @@
+-<script setup></script>
+-
+-<template></template>
+\ No newline at end of file
+Index: cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/Services/SetUpService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/Services/SetUpService.java b/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/Services/SetUpService.java
+deleted file mode 100644
+--- a/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/Services/SetUpService.java	(revision 87ce2d67de9e393156432a7aa9edc4fc1ce400fb)
++++ /dev/null	(revision 87ce2d67de9e393156432a7aa9edc4fc1ce400fb)
+@@ -1,60 +0,0 @@
+-
+-
+-package Cooking.School.Project.cookingSchool.Services;
+-
+-import Cooking.School.Project.cookingSchool.entities.*;
+-import Cooking.School.Project.cookingSchool.repository.*;
+-
+-import org.springframework.beans.factory.annotation.Autowired;
+-import org.springframework.stereotype.Service;
+-
+-import javax.annotation.PostConstruct;
+-
+-@Service
+-public class SetUpService {
+-
+-    private final CourseRepository courseRepository;
+-    private final IngredientRepository ingredientRepository;
+-    private final RecipeRepository recipeRepository;
+-    private final UserRepository userRepository;
+-
+-    @Autowired
+-    public SetUpService(CourseRepository courseRepository, IngredientRepository ingredientRepository, RecipeRepository recipeRepository, UserRepository userRepository) {
+-        this.courseRepository = courseRepository;
+-        this.ingredientRepository = ingredientRepository;
+-        this.recipeRepository = recipeRepository;
+-        this.userRepository = userRepository;
+-    }
+-
+-    @PostConstruct
+-    public void setUp() {
+-        Course course = new Course();
+-        course.setCourseTitle("Kurs 1");
+-        course.setDescription("Beschreibung 1");
+-        course.setTeacher("Lehrer 1");
+-        courseRepository.save(course);
+-        System.out.println("Kurs 1 wurde erstellt");
+-
+-        Ingredient ingredient = new Ingredient();
+-        ingredient.setTitle("Zutat 1");
+-        ingredient.setUnit("Einheit 1");
+-        ingredientRepository.save(ingredient);
+-
+-        Recipe recipe = new Recipe();
+-        recipe.setTitle("Rezept 1");
+-        recipe.setDescription("Beschreibung 1");
+-        recipe.setPreparation(120);
+-        recipe.setDifficulty(3);
+-        recipeRepository.save(recipe);
+-
+-        User user = new User();
+-        user.setFirstname("admin 1");
+-        user.setLastname("Nachname 1");
+-        user.setEmail("Email 1");
+-        user.setPassword("Passwort 1");
+-        user.setAdmin(true);
+-        userRepository.save(user);
+-
+-
+-    }
+-}
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+deleted file mode 100644
+--- a/.idea/modules.xml	(revision 87ce2d67de9e393156432a7aa9edc4fc1ce400fb)
++++ /dev/null	(revision 87ce2d67de9e393156432a7aa9edc4fc1ce400fb)
+@@ -1,8 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ProjectModuleManager">
+-    <modules>
+-      <module fileurl="file://$PROJECT_DIR$/.idea/cookingschool.iml" filepath="$PROJECT_DIR$/.idea/cookingschool.iml" />
+-    </modules>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: cookingSchoolFrontend/cookingSchool/package-lock.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"name\": \"cookingschool\",\r\n  \"version\": \"0.0.0\",\r\n  \"lockfileVersion\": 3,\r\n  \"requires\": true,\r\n  \"packages\": {\r\n    \"\": {\r\n      \"name\": \"cookingschool\",\r\n      \"version\": \"0.0.0\",\r\n      \"dependencies\": {\r\n        \"@mdi/font\": \"^7.3.67\",\r\n        \"@vueuse/core\": \"^10.7.0\",\r\n        \"@vueuse/router\": \"^10.7.0\",\r\n        \"bootstrap\": \"^5.3.2\",\r\n        \"pinia\": \"^2.0.32\",\r\n        \"vue\": \"^3.2.47\",\r\n        \"vue-router\": \"^4.1.6\",\r\n        \"vuetify\": \"^3.4.6\"\r\n      },\r\n      \"devDependencies\": {\r\n        \"@vitejs/plugin-vue\": \"^4.0.0\",\r\n        \"vite\": \"^4.1.4\"\r\n      }\r\n    },\r\n    \"node_modules/@babel/parser\": {\r\n      \"version\": \"7.23.4\",\r\n      \"resolved\": \"https://registry.npmjs.org/@babel/parser/-/parser-7.23.4.tgz\",\r\n      \"integrity\": \"sha512-vf3Xna6UEprW+7t6EtOmFpHNAuxw3xqPZghy+brsnusscJRW5BMUzzHZc5ICjULee81WeUV2jjakG09MDglJXQ==\",\r\n      \"bin\": {\r\n        \"parser\": \"bin/babel-parser.js\"\r\n      },\r\n      \"engines\": {\r\n        \"node\": \">=6.0.0\"\r\n      }\r\n    },\r\n    \"node_modules/@esbuild/android-arm\": {\r\n      \"version\": \"0.18.20\",\r\n      \"resolved\": \"https://registry.npmjs.org/@esbuild/android-arm/-/android-arm-0.18.20.tgz\",\r\n      \"integrity\": \"sha512-fyi7TDI/ijKKNZTUJAQqiG5T7YjJXgnzkURqmGj13C6dCqckZBLdl4h7bkhHt/t0WP+zO9/zwroDvANaOqO5Sw==\",\r\n      \"cpu\": [\r\n        \"arm\"\r\n      ],\r\n      \"dev\": true,\r\n      \"optional\": true,\r\n      \"os\": [\r\n        \"android\"\r\n      ],\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      }\r\n    },\r\n    \"node_modules/@esbuild/android-arm64\": {\r\n      \"version\": \"0.18.20\",\r\n      \"resolved\": \"https://registry.npmjs.org/@esbuild/android-arm64/-/android-arm64-0.18.20.tgz\",\r\n      \"integrity\": \"sha512-Nz4rJcchGDtENV0eMKUNa6L12zz2zBDXuhj/Vjh18zGqB44Bi7MBMSXjgunJgjRhCmKOjnPuZp4Mb6OKqtMHLQ==\",\r\n      \"cpu\": [\r\n        \"arm64\"\r\n      ],\r\n      \"dev\": true,\r\n      \"optional\": true,\r\n      \"os\": [\r\n        \"android\"\r\n      ],\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      }\r\n    },\r\n    \"node_modules/@esbuild/android-x64\": {\r\n      \"version\": \"0.18.20\",\r\n      \"resolved\": \"https://registry.npmjs.org/@esbuild/android-x64/-/android-x64-0.18.20.tgz\",\r\n      \"integrity\": \"sha512-8GDdlePJA8D6zlZYJV/jnrRAi6rOiNaCC/JclcXpB+KIuvfBN4owLtgzY2bsxnx666XjJx2kDPUmnTtR8qKQUg==\",\r\n      \"cpu\": [\r\n        \"x64\"\r\n      ],\r\n      \"dev\": true,\r\n      \"optional\": true,\r\n      \"os\": [\r\n        \"android\"\r\n      ],\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      }\r\n    },\r\n    \"node_modules/@esbuild/darwin-arm64\": {\r\n      \"version\": \"0.18.20\",\r\n      \"resolved\": \"https://registry.npmjs.org/@esbuild/darwin-arm64/-/darwin-arm64-0.18.20.tgz\",\r\n      \"integrity\": \"sha512-bxRHW5kHU38zS2lPTPOyuyTm+S+eobPUnTNkdJEfAddYgEcll4xkT8DB9d2008DtTbl7uJag2HuE5NZAZgnNEA==\",\r\n      \"cpu\": [\r\n        \"arm64\"\r\n      ],\r\n      \"dev\": true,\r\n      \"optional\": true,\r\n      \"os\": [\r\n        \"darwin\"\r\n      ],\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      }\r\n    },\r\n    \"node_modules/@esbuild/darwin-x64\": {\r\n      \"version\": \"0.18.20\",\r\n      \"resolved\": \"https://registry.npmjs.org/@esbuild/darwin-x64/-/darwin-x64-0.18.20.tgz\",\r\n      \"integrity\": \"sha512-pc5gxlMDxzm513qPGbCbDukOdsGtKhfxD1zJKXjCCcU7ju50O7MeAZ8c4krSJcOIJGFR+qx21yMMVYwiQvyTyQ==\",\r\n      \"cpu\": [\r\n        \"x64\"\r\n      ],\r\n      \"dev\": true,\r\n      \"optional\": true,\r\n      \"os\": [\r\n        \"darwin\"\r\n      ],\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      }\r\n    },\r\n    \"node_modules/@esbuild/freebsd-arm64\": {\r\n      \"version\": \"0.18.20\",\r\n      \"resolved\": \"https://registry.npmjs.org/@esbuild/freebsd-arm64/-/freebsd-arm64-0.18.20.tgz\",\r\n      \"integrity\": \"sha512-yqDQHy4QHevpMAaxhhIwYPMv1NECwOvIpGCZkECn8w2WFHXjEwrBn3CeNIYsibZ/iZEUemj++M26W3cNR5h+Tw==\",\r\n      \"cpu\": [\r\n        \"arm64\"\r\n      ],\r\n      \"dev\": true,\r\n      \"optional\": true,\r\n      \"os\": [\r\n        \"freebsd\"\r\n      ],\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      }\r\n    },\r\n    \"node_modules/@esbuild/freebsd-x64\": {\r\n      \"version\": \"0.18.20\",\r\n      \"resolved\": \"https://registry.npmjs.org/@esbuild/freebsd-x64/-/freebsd-x64-0.18.20.tgz\",\r\n      \"integrity\": \"sha512-tgWRPPuQsd3RmBZwarGVHZQvtzfEBOreNuxEMKFcd5DaDn2PbBxfwLcj4+aenoh7ctXcbXmOQIn8HI6mCSw5MQ==\",\r\n      \"cpu\": [\r\n        \"x64\"\r\n      ],\r\n      \"dev\": true,\r\n      \"optional\": true,\r\n      \"os\": [\r\n        \"freebsd\"\r\n      ],\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      }\r\n    },\r\n    \"node_modules/@esbuild/linux-arm\": {\r\n      \"version\": \"0.18.20\",\r\n      \"resolved\": \"https://registry.npmjs.org/@esbuild/linux-arm/-/linux-arm-0.18.20.tgz\",\r\n      \"integrity\": \"sha512-/5bHkMWnq1EgKr1V+Ybz3s1hWXok7mDFUMQ4cG10AfW3wL02PSZi5kFpYKrptDsgb2WAJIvRcDm+qIvXf/apvg==\",\r\n      \"cpu\": [\r\n        \"arm\"\r\n      ],\r\n      \"dev\": true,\r\n      \"optional\": true,\r\n      \"os\": [\r\n        \"linux\"\r\n      ],\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      }\r\n    },\r\n    \"node_modules/@esbuild/linux-arm64\": {\r\n      \"version\": \"0.18.20\",\r\n      \"resolved\": \"https://registry.npmjs.org/@esbuild/linux-arm64/-/linux-arm64-0.18.20.tgz\",\r\n      \"integrity\": \"sha512-2YbscF+UL7SQAVIpnWvYwM+3LskyDmPhe31pE7/aoTMFKKzIc9lLbyGUpmmb8a8AixOL61sQ/mFh3jEjHYFvdA==\",\r\n      \"cpu\": [\r\n        \"arm64\"\r\n      ],\r\n      \"dev\": true,\r\n      \"optional\": true,\r\n      \"os\": [\r\n        \"linux\"\r\n      ],\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      }\r\n    },\r\n    \"node_modules/@esbuild/linux-ia32\": {\r\n      \"version\": \"0.18.20\",\r\n      \"resolved\": \"https://registry.npmjs.org/@esbuild/linux-ia32/-/linux-ia32-0.18.20.tgz\",\r\n      \"integrity\": \"sha512-P4etWwq6IsReT0E1KHU40bOnzMHoH73aXp96Fs8TIT6z9Hu8G6+0SHSw9i2isWrD2nbx2qo5yUqACgdfVGx7TA==\",\r\n      \"cpu\": [\r\n        \"ia32\"\r\n      ],\r\n      \"dev\": true,\r\n      \"optional\": true,\r\n      \"os\": [\r\n        \"linux\"\r\n      ],\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      }\r\n    },\r\n    \"node_modules/@esbuild/linux-loong64\": {\r\n      \"version\": \"0.18.20\",\r\n      \"resolved\": \"https://registry.npmjs.org/@esbuild/linux-loong64/-/linux-loong64-0.18.20.tgz\",\r\n      \"integrity\": \"sha512-nXW8nqBTrOpDLPgPY9uV+/1DjxoQ7DoB2N8eocyq8I9XuqJ7BiAMDMf9n1xZM9TgW0J8zrquIb/A7s3BJv7rjg==\",\r\n      \"cpu\": [\r\n        \"loong64\"\r\n      ],\r\n      \"dev\": true,\r\n      \"optional\": true,\r\n      \"os\": [\r\n        \"linux\"\r\n      ],\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      }\r\n    },\r\n    \"node_modules/@esbuild/linux-mips64el\": {\r\n      \"version\": \"0.18.20\",\r\n      \"resolved\": \"https://registry.npmjs.org/@esbuild/linux-mips64el/-/linux-mips64el-0.18.20.tgz\",\r\n      \"integrity\": \"sha512-d5NeaXZcHp8PzYy5VnXV3VSd2D328Zb+9dEq5HE6bw6+N86JVPExrA6O68OPwobntbNJ0pzCpUFZTo3w0GyetQ==\",\r\n      \"cpu\": [\r\n        \"mips64el\"\r\n      ],\r\n      \"dev\": true,\r\n      \"optional\": true,\r\n      \"os\": [\r\n        \"linux\"\r\n      ],\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      }\r\n    },\r\n    \"node_modules/@esbuild/linux-ppc64\": {\r\n      \"version\": \"0.18.20\",\r\n      \"resolved\": \"https://registry.npmjs.org/@esbuild/linux-ppc64/-/linux-ppc64-0.18.20.tgz\",\r\n      \"integrity\": \"sha512-WHPyeScRNcmANnLQkq6AfyXRFr5D6N2sKgkFo2FqguP44Nw2eyDlbTdZwd9GYk98DZG9QItIiTlFLHJHjxP3FA==\",\r\n      \"cpu\": [\r\n        \"ppc64\"\r\n      ],\r\n      \"dev\": true,\r\n      \"optional\": true,\r\n      \"os\": [\r\n        \"linux\"\r\n      ],\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      }\r\n    },\r\n    \"node_modules/@esbuild/linux-riscv64\": {\r\n      \"version\": \"0.18.20\",\r\n      \"resolved\": \"https://registry.npmjs.org/@esbuild/linux-riscv64/-/linux-riscv64-0.18.20.tgz\",\r\n      \"integrity\": \"sha512-WSxo6h5ecI5XH34KC7w5veNnKkju3zBRLEQNY7mv5mtBmrP/MjNBCAlsM2u5hDBlS3NGcTQpoBvRzqBcRtpq1A==\",\r\n      \"cpu\": [\r\n        \"riscv64\"\r\n      ],\r\n      \"dev\": true,\r\n      \"optional\": true,\r\n      \"os\": [\r\n        \"linux\"\r\n      ],\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      }\r\n    },\r\n    \"node_modules/@esbuild/linux-s390x\": {\r\n      \"version\": \"0.18.20\",\r\n      \"resolved\": \"https://registry.npmjs.org/@esbuild/linux-s390x/-/linux-s390x-0.18.20.tgz\",\r\n      \"integrity\": \"sha512-+8231GMs3mAEth6Ja1iK0a1sQ3ohfcpzpRLH8uuc5/KVDFneH6jtAJLFGafpzpMRO6DzJ6AvXKze9LfFMrIHVQ==\",\r\n      \"cpu\": [\r\n        \"s390x\"\r\n      ],\r\n      \"dev\": true,\r\n      \"optional\": true,\r\n      \"os\": [\r\n        \"linux\"\r\n      ],\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      }\r\n    },\r\n    \"node_modules/@esbuild/linux-x64\": {\r\n      \"version\": \"0.18.20\",\r\n      \"resolved\": \"https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.18.20.tgz\",\r\n      \"integrity\": \"sha512-UYqiqemphJcNsFEskc73jQ7B9jgwjWrSayxawS6UVFZGWrAAtkzjxSqnoclCXxWtfwLdzU+vTpcNYhpn43uP1w==\",\r\n      \"cpu\": [\r\n        \"x64\"\r\n      ],\r\n      \"dev\": true,\r\n      \"optional\": true,\r\n      \"os\": [\r\n        \"linux\"\r\n      ],\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      }\r\n    },\r\n    \"node_modules/@esbuild/netbsd-x64\": {\r\n      \"version\": \"0.18.20\",\r\n      \"resolved\": \"https://registry.npmjs.org/@esbuild/netbsd-x64/-/netbsd-x64-0.18.20.tgz\",\r\n      \"integrity\": \"sha512-iO1c++VP6xUBUmltHZoMtCUdPlnPGdBom6IrO4gyKPFFVBKioIImVooR5I83nTew5UOYrk3gIJhbZh8X44y06A==\",\r\n      \"cpu\": [\r\n        \"x64\"\r\n      ],\r\n      \"dev\": true,\r\n      \"optional\": true,\r\n      \"os\": [\r\n        \"netbsd\"\r\n      ],\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      }\r\n    },\r\n    \"node_modules/@esbuild/openbsd-x64\": {\r\n      \"version\": \"0.18.20\",\r\n      \"resolved\": \"https://registry.npmjs.org/@esbuild/openbsd-x64/-/openbsd-x64-0.18.20.tgz\",\r\n      \"integrity\": \"sha512-e5e4YSsuQfX4cxcygw/UCPIEP6wbIL+se3sxPdCiMbFLBWu0eiZOJ7WoD+ptCLrmjZBK1Wk7I6D/I3NglUGOxg==\",\r\n      \"cpu\": [\r\n        \"x64\"\r\n      ],\r\n      \"dev\": true,\r\n      \"optional\": true,\r\n      \"os\": [\r\n        \"openbsd\"\r\n      ],\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      }\r\n    },\r\n    \"node_modules/@esbuild/sunos-x64\": {\r\n      \"version\": \"0.18.20\",\r\n      \"resolved\": \"https://registry.npmjs.org/@esbuild/sunos-x64/-/sunos-x64-0.18.20.tgz\",\r\n      \"integrity\": \"sha512-kDbFRFp0YpTQVVrqUd5FTYmWo45zGaXe0X8E1G/LKFC0v8x0vWrhOWSLITcCn63lmZIxfOMXtCfti/RxN/0wnQ==\",\r\n      \"cpu\": [\r\n        \"x64\"\r\n      ],\r\n      \"dev\": true,\r\n      \"optional\": true,\r\n      \"os\": [\r\n        \"sunos\"\r\n      ],\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      }\r\n    },\r\n    \"node_modules/@esbuild/win32-arm64\": {\r\n      \"version\": \"0.18.20\",\r\n      \"resolved\": \"https://registry.npmjs.org/@esbuild/win32-arm64/-/win32-arm64-0.18.20.tgz\",\r\n      \"integrity\": \"sha512-ddYFR6ItYgoaq4v4JmQQaAI5s7npztfV4Ag6NrhiaW0RrnOXqBkgwZLofVTlq1daVTQNhtI5oieTvkRPfZrePg==\",\r\n      \"cpu\": [\r\n        \"arm64\"\r\n      ],\r\n      \"dev\": true,\r\n      \"optional\": true,\r\n      \"os\": [\r\n        \"win32\"\r\n      ],\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      }\r\n    },\r\n    \"node_modules/@esbuild/win32-ia32\": {\r\n      \"version\": \"0.18.20\",\r\n      \"resolved\": \"https://registry.npmjs.org/@esbuild/win32-ia32/-/win32-ia32-0.18.20.tgz\",\r\n      \"integrity\": \"sha512-Wv7QBi3ID/rROT08SABTS7eV4hX26sVduqDOTe1MvGMjNd3EjOz4b7zeexIR62GTIEKrfJXKL9LFxTYgkyeu7g==\",\r\n      \"cpu\": [\r\n        \"ia32\"\r\n      ],\r\n      \"dev\": true,\r\n      \"optional\": true,\r\n      \"os\": [\r\n        \"win32\"\r\n      ],\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      }\r\n    },\r\n    \"node_modules/@esbuild/win32-x64\": {\r\n      \"version\": \"0.18.20\",\r\n      \"resolved\": \"https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.18.20.tgz\",\r\n      \"integrity\": \"sha512-kTdfRcSiDfQca/y9QIkng02avJ+NCaQvrMejlsB3RRv5sE9rRoeBPISaZpKxHELzRxZyLvNts1P27W3wV+8geQ==\",\r\n      \"cpu\": [\r\n        \"x64\"\r\n      ],\r\n      \"dev\": true,\r\n      \"optional\": true,\r\n      \"os\": [\r\n        \"win32\"\r\n      ],\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      }\r\n    },\r\n    \"node_modules/@jridgewell/sourcemap-codec\": {\r\n      \"version\": \"1.4.15\",\r\n      \"resolved\": \"https://registry.npmjs.org/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.15.tgz\",\r\n      \"integrity\": \"sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==\"\r\n    },\r\n    \"node_modules/@mdi/font\": {\r\n      \"version\": \"7.3.67\",\r\n      \"resolved\": \"https://registry.npmjs.org/@mdi/font/-/font-7.3.67.tgz\",\r\n      \"integrity\": \"sha512-SWxvzRbUQRfewlIV+OF4/YF4DkeTjMWoT8Hh9yeU/5UBVdJZj9Uf4a9+cXjknSIhIaMxZ/4N1O/s7ojApOOGjg==\"\r\n    },\r\n    \"node_modules/@popperjs/core\": {\r\n      \"version\": \"2.11.8\",\r\n      \"resolved\": \"https://registry.npmjs.org/@popperjs/core/-/core-2.11.8.tgz\",\r\n      \"integrity\": \"sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==\",\r\n      \"peer\": true,\r\n      \"funding\": {\r\n        \"type\": \"opencollective\",\r\n        \"url\": \"https://opencollective.com/popperjs\"\r\n      }\r\n    },\r\n    \"node_modules/@types/web-bluetooth\": {\r\n      \"version\": \"0.0.20\",\r\n      \"resolved\": \"https://registry.npmjs.org/@types/web-bluetooth/-/web-bluetooth-0.0.20.tgz\",\r\n      \"integrity\": \"sha512-g9gZnnXVq7gM7v3tJCWV/qw7w+KeOlSHAhgF9RytFyifW6AF61hdT2ucrYhPq9hLs5JIryeupHV3qGk95dH9ow==\"\r\n    },\r\n    \"node_modules/@vitejs/plugin-vue\": {\r\n      \"version\": \"4.5.0\",\r\n      \"resolved\": \"https://registry.npmjs.org/@vitejs/plugin-vue/-/plugin-vue-4.5.0.tgz\",\r\n      \"integrity\": \"sha512-a2WSpP8X8HTEww/U00bU4mX1QpLINNuz/2KMNpLsdu3BzOpak3AGI1CJYBTXcc4SPhaD0eNRUp7IyQK405L5dQ==\",\r\n      \"dev\": true,\r\n      \"engines\": {\r\n        \"node\": \"^14.18.0 || >=16.0.0\"\r\n      },\r\n      \"peerDependencies\": {\r\n        \"vite\": \"^4.0.0 || ^5.0.0\",\r\n        \"vue\": \"^3.2.25\"\r\n      }\r\n    },\r\n    \"node_modules/@vue/compiler-core\": {\r\n      \"version\": \"3.3.8\",\r\n      \"resolved\": \"https://registry.npmjs.org/@vue/compiler-core/-/compiler-core-3.3.8.tgz\",\r\n      \"integrity\": \"sha512-hN/NNBUECw8SusQvDSqqcVv6gWq8L6iAktUR0UF3vGu2OhzRqcOiAno0FmBJWwxhYEXRlQJT5XnoKsVq1WZx4g==\",\r\n      \"dependencies\": {\r\n        \"@babel/parser\": \"^7.23.0\",\r\n        \"@vue/shared\": \"3.3.8\",\r\n        \"estree-walker\": \"^2.0.2\",\r\n        \"source-map-js\": \"^1.0.2\"\r\n      }\r\n    },\r\n    \"node_modules/@vue/compiler-dom\": {\r\n      \"version\": \"3.3.8\",\r\n      \"resolved\": \"https://registry.npmjs.org/@vue/compiler-dom/-/compiler-dom-3.3.8.tgz\",\r\n      \"integrity\": \"sha512-+PPtv+p/nWDd0AvJu3w8HS0RIm/C6VGBIRe24b9hSyNWOAPEUosFZ5diwawwP8ip5sJ8n0Pe87TNNNHnvjs0FQ==\",\r\n      \"dependencies\": {\r\n        \"@vue/compiler-core\": \"3.3.8\",\r\n        \"@vue/shared\": \"3.3.8\"\r\n      }\r\n    },\r\n    \"node_modules/@vue/compiler-sfc\": {\r\n      \"version\": \"3.3.8\",\r\n      \"resolved\": \"https://registry.npmjs.org/@vue/compiler-sfc/-/compiler-sfc-3.3.8.tgz\",\r\n      \"integrity\": \"sha512-WMzbUrlTjfYF8joyT84HfwwXo+8WPALuPxhy+BZ6R4Aafls+jDBnSz8PDz60uFhuqFbl3HxRfxvDzrUf3THwpA==\",\r\n      \"dependencies\": {\r\n        \"@babel/parser\": \"^7.23.0\",\r\n        \"@vue/compiler-core\": \"3.3.8\",\r\n        \"@vue/compiler-dom\": \"3.3.8\",\r\n        \"@vue/compiler-ssr\": \"3.3.8\",\r\n        \"@vue/reactivity-transform\": \"3.3.8\",\r\n        \"@vue/shared\": \"3.3.8\",\r\n        \"estree-walker\": \"^2.0.2\",\r\n        \"magic-string\": \"^0.30.5\",\r\n        \"postcss\": \"^8.4.31\",\r\n        \"source-map-js\": \"^1.0.2\"\r\n      }\r\n    },\r\n    \"node_modules/@vue/compiler-ssr\": {\r\n      \"version\": \"3.3.8\",\r\n      \"resolved\": \"https://registry.npmjs.org/@vue/compiler-ssr/-/compiler-ssr-3.3.8.tgz\",\r\n      \"integrity\": \"sha512-hXCqQL/15kMVDBuoBYpUnSYT8doDNwsjvm3jTefnXr+ytn294ySnT8NlsFHmTgKNjwpuFy7XVV8yTeLtNl/P6w==\",\r\n      \"dependencies\": {\r\n        \"@vue/compiler-dom\": \"3.3.8\",\r\n        \"@vue/shared\": \"3.3.8\"\r\n      }\r\n    },\r\n    \"node_modules/@vue/devtools-api\": {\r\n      \"version\": \"6.5.1\",\r\n      \"resolved\": \"https://registry.npmjs.org/@vue/devtools-api/-/devtools-api-6.5.1.tgz\",\r\n      \"integrity\": \"sha512-+KpckaAQyfbvshdDW5xQylLni1asvNSGme1JFs8I1+/H5pHEhqUKMEQD/qn3Nx5+/nycBq11qAEi8lk+LXI2dA==\"\r\n    },\r\n    \"node_modules/@vue/reactivity\": {\r\n      \"version\": \"3.3.8\",\r\n      \"resolved\": \"https://registry.npmjs.org/@vue/reactivity/-/reactivity-3.3.8.tgz\",\r\n      \"integrity\": \"sha512-ctLWitmFBu6mtddPyOKpHg8+5ahouoTCRtmAHZAXmolDtuZXfjL2T3OJ6DL6ezBPQB1SmMnpzjiWjCiMYmpIuw==\",\r\n      \"dependencies\": {\r\n        \"@vue/shared\": \"3.3.8\"\r\n      }\r\n    },\r\n    \"node_modules/@vue/reactivity-transform\": {\r\n      \"version\": \"3.3.8\",\r\n      \"resolved\": \"https://registry.npmjs.org/@vue/reactivity-transform/-/reactivity-transform-3.3.8.tgz\",\r\n      \"integrity\": \"sha512-49CvBzmZNtcHua0XJ7GdGifM8GOXoUMOX4dD40Y5DxI3R8OUhMlvf2nvgUAcPxaXiV5MQQ1Nwy09ADpnLQUqRw==\",\r\n      \"dependencies\": {\r\n        \"@babel/parser\": \"^7.23.0\",\r\n        \"@vue/compiler-core\": \"3.3.8\",\r\n        \"@vue/shared\": \"3.3.8\",\r\n        \"estree-walker\": \"^2.0.2\",\r\n        \"magic-string\": \"^0.30.5\"\r\n      }\r\n    },\r\n    \"node_modules/@vue/runtime-core\": {\r\n      \"version\": \"3.3.8\",\r\n      \"resolved\": \"https://registry.npmjs.org/@vue/runtime-core/-/runtime-core-3.3.8.tgz\",\r\n      \"integrity\": \"sha512-qurzOlb6q26KWQ/8IShHkMDOuJkQnQcTIp1sdP4I9MbCf9FJeGVRXJFr2mF+6bXh/3Zjr9TDgURXrsCr9bfjUw==\",\r\n      \"dependencies\": {\r\n        \"@vue/reactivity\": \"3.3.8\",\r\n        \"@vue/shared\": \"3.3.8\"\r\n      }\r\n    },\r\n    \"node_modules/@vue/runtime-dom\": {\r\n      \"version\": \"3.3.8\",\r\n      \"resolved\": \"https://registry.npmjs.org/@vue/runtime-dom/-/runtime-dom-3.3.8.tgz\",\r\n      \"integrity\": \"sha512-Noy5yM5UIf9UeFoowBVgghyGGPIDPy1Qlqt0yVsUdAVbqI8eeMSsTqBtauaEoT2UFXUk5S64aWVNJN4MJ2vRdA==\",\r\n      \"dependencies\": {\r\n        \"@vue/runtime-core\": \"3.3.8\",\r\n        \"@vue/shared\": \"3.3.8\",\r\n        \"csstype\": \"^3.1.2\"\r\n      }\r\n    },\r\n    \"node_modules/@vue/server-renderer\": {\r\n      \"version\": \"3.3.8\",\r\n      \"resolved\": \"https://registry.npmjs.org/@vue/server-renderer/-/server-renderer-3.3.8.tgz\",\r\n      \"integrity\": \"sha512-zVCUw7RFskvPuNlPn/8xISbrf0zTWsTSdYTsUTN1ERGGZGVnRxM2QZ3x1OR32+vwkkCm0IW6HmJ49IsPm7ilLg==\",\r\n      \"dependencies\": {\r\n        \"@vue/compiler-ssr\": \"3.3.8\",\r\n        \"@vue/shared\": \"3.3.8\"\r\n      },\r\n      \"peerDependencies\": {\r\n        \"vue\": \"3.3.8\"\r\n      }\r\n    },\r\n    \"node_modules/@vue/shared\": {\r\n      \"version\": \"3.3.8\",\r\n      \"resolved\": \"https://registry.npmjs.org/@vue/shared/-/shared-3.3.8.tgz\",\r\n      \"integrity\": \"sha512-8PGwybFwM4x8pcfgqEQFy70NaQxASvOC5DJwLQfpArw1UDfUXrJkdxD3BhVTMS+0Lef/TU7YO0Jvr0jJY8T+mw==\"\r\n    },\r\n    \"node_modules/@vueuse/core\": {\r\n      \"version\": \"10.7.0\",\r\n      \"resolved\": \"https://registry.npmjs.org/@vueuse/core/-/core-10.7.0.tgz\",\r\n      \"integrity\": \"sha512-4EUDESCHtwu44ZWK3Gc/hZUVhVo/ysvdtwocB5vcauSV4B7NiGY5972WnsojB3vRNdxvAt7kzJWE2h9h7C9d5w==\",\r\n      \"dependencies\": {\r\n        \"@types/web-bluetooth\": \"^0.0.20\",\r\n        \"@vueuse/metadata\": \"10.7.0\",\r\n        \"@vueuse/shared\": \"10.7.0\",\r\n        \"vue-demi\": \">=0.14.6\"\r\n      },\r\n      \"funding\": {\r\n        \"url\": \"https://github.com/sponsors/antfu\"\r\n      }\r\n    },\r\n    \"node_modules/@vueuse/core/node_modules/vue-demi\": {\r\n      \"version\": \"0.14.6\",\r\n      \"resolved\": \"https://registry.npmjs.org/vue-demi/-/vue-demi-0.14.6.tgz\",\r\n      \"integrity\": \"sha512-8QA7wrYSHKaYgUxDA5ZC24w+eHm3sYCbp0EzcDwKqN3p6HqtTCGR/GVsPyZW92unff4UlcSh++lmqDWN3ZIq4w==\",\r\n      \"hasInstallScript\": true,\r\n      \"bin\": {\r\n        \"vue-demi-fix\": \"bin/vue-demi-fix.js\",\r\n        \"vue-demi-switch\": \"bin/vue-demi-switch.js\"\r\n      },\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      },\r\n      \"funding\": {\r\n        \"url\": \"https://github.com/sponsors/antfu\"\r\n      },\r\n      \"peerDependencies\": {\r\n        \"@vue/composition-api\": \"^1.0.0-rc.1\",\r\n        \"vue\": \"^3.0.0-0 || ^2.6.0\"\r\n      },\r\n      \"peerDependenciesMeta\": {\r\n        \"@vue/composition-api\": {\r\n          \"optional\": true\r\n        }\r\n      }\r\n    },\r\n    \"node_modules/@vueuse/metadata\": {\r\n      \"version\": \"10.7.0\",\r\n      \"resolved\": \"https://registry.npmjs.org/@vueuse/metadata/-/metadata-10.7.0.tgz\",\r\n      \"integrity\": \"sha512-GlaH7tKP2iBCZ3bHNZ6b0cl9g0CJK8lttkBNUX156gWvNYhTKEtbweWLm9rxCPIiwzYcr/5xML6T8ZUEt+DkvA==\",\r\n      \"funding\": {\r\n        \"url\": \"https://github.com/sponsors/antfu\"\r\n      }\r\n    },\r\n    \"node_modules/@vueuse/router\": {\r\n      \"version\": \"10.7.0\",\r\n      \"resolved\": \"https://registry.npmjs.org/@vueuse/router/-/router-10.7.0.tgz\",\r\n      \"integrity\": \"sha512-8NQ12V3dtiIEKyd32RzzXLOqU+NC5/9cf7kv5cGOQzJB+Ne8j+1VmRz4ciOhOyHuiBJSfjwSqKDTzvsczZUBlQ==\",\r\n      \"dependencies\": {\r\n        \"@vueuse/shared\": \"10.7.0\",\r\n        \"vue-demi\": \">=0.14.6\"\r\n      },\r\n      \"funding\": {\r\n        \"url\": \"https://github.com/sponsors/antfu\"\r\n      },\r\n      \"peerDependencies\": {\r\n        \"vue-router\": \">=4.0.0-rc.1\"\r\n      }\r\n    },\r\n    \"node_modules/@vueuse/router/node_modules/vue-demi\": {\r\n      \"version\": \"0.14.6\",\r\n      \"resolved\": \"https://registry.npmjs.org/vue-demi/-/vue-demi-0.14.6.tgz\",\r\n      \"integrity\": \"sha512-8QA7wrYSHKaYgUxDA5ZC24w+eHm3sYCbp0EzcDwKqN3p6HqtTCGR/GVsPyZW92unff4UlcSh++lmqDWN3ZIq4w==\",\r\n      \"hasInstallScript\": true,\r\n      \"bin\": {\r\n        \"vue-demi-fix\": \"bin/vue-demi-fix.js\",\r\n        \"vue-demi-switch\": \"bin/vue-demi-switch.js\"\r\n      },\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      },\r\n      \"funding\": {\r\n        \"url\": \"https://github.com/sponsors/antfu\"\r\n      },\r\n      \"peerDependencies\": {\r\n        \"@vue/composition-api\": \"^1.0.0-rc.1\",\r\n        \"vue\": \"^3.0.0-0 || ^2.6.0\"\r\n      },\r\n      \"peerDependenciesMeta\": {\r\n        \"@vue/composition-api\": {\r\n          \"optional\": true\r\n        }\r\n      }\r\n    },\r\n    \"node_modules/@vueuse/shared\": {\r\n      \"version\": \"10.7.0\",\r\n      \"resolved\": \"https://registry.npmjs.org/@vueuse/shared/-/shared-10.7.0.tgz\",\r\n      \"integrity\": \"sha512-kc00uV6CiaTdc3i1CDC4a3lBxzaBE9AgYNtFN87B5OOscqeWElj/uza8qVDmk7/U8JbqoONLbtqiLJ5LGRuqlw==\",\r\n      \"dependencies\": {\r\n        \"vue-demi\": \">=0.14.6\"\r\n      },\r\n      \"funding\": {\r\n        \"url\": \"https://github.com/sponsors/antfu\"\r\n      }\r\n    },\r\n    \"node_modules/@vueuse/shared/node_modules/vue-demi\": {\r\n      \"version\": \"0.14.6\",\r\n      \"resolved\": \"https://registry.npmjs.org/vue-demi/-/vue-demi-0.14.6.tgz\",\r\n      \"integrity\": \"sha512-8QA7wrYSHKaYgUxDA5ZC24w+eHm3sYCbp0EzcDwKqN3p6HqtTCGR/GVsPyZW92unff4UlcSh++lmqDWN3ZIq4w==\",\r\n      \"hasInstallScript\": true,\r\n      \"bin\": {\r\n        \"vue-demi-fix\": \"bin/vue-demi-fix.js\",\r\n        \"vue-demi-switch\": \"bin/vue-demi-switch.js\"\r\n      },\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      },\r\n      \"funding\": {\r\n        \"url\": \"https://github.com/sponsors/antfu\"\r\n      },\r\n      \"peerDependencies\": {\r\n        \"@vue/composition-api\": \"^1.0.0-rc.1\",\r\n        \"vue\": \"^3.0.0-0 || ^2.6.0\"\r\n      },\r\n      \"peerDependenciesMeta\": {\r\n        \"@vue/composition-api\": {\r\n          \"optional\": true\r\n        }\r\n      }\r\n    },\r\n    \"node_modules/bootstrap\": {\r\n      \"version\": \"5.3.2\",\r\n      \"resolved\": \"https://registry.npmjs.org/bootstrap/-/bootstrap-5.3.2.tgz\",\r\n      \"integrity\": \"sha512-D32nmNWiQHo94BKHLmOrdjlL05q1c8oxbtBphQFb9Z5to6eGRDCm0QgeaZ4zFBHzfg2++rqa2JkqCcxDy0sH0g==\",\r\n      \"funding\": [\r\n        {\r\n          \"type\": \"github\",\r\n          \"url\": \"https://github.com/sponsors/twbs\"\r\n        },\r\n        {\r\n          \"type\": \"opencollective\",\r\n          \"url\": \"https://opencollective.com/bootstrap\"\r\n        }\r\n      ],\r\n      \"peerDependencies\": {\r\n        \"@popperjs/core\": \"^2.11.8\"\r\n      }\r\n    },\r\n    \"node_modules/csstype\": {\r\n      \"version\": \"3.1.2\",\r\n      \"resolved\": \"https://registry.npmjs.org/csstype/-/csstype-3.1.2.tgz\",\r\n      \"integrity\": \"sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==\"\r\n    },\r\n    \"node_modules/esbuild\": {\r\n      \"version\": \"0.18.20\",\r\n      \"resolved\": \"https://registry.npmjs.org/esbuild/-/esbuild-0.18.20.tgz\",\r\n      \"integrity\": \"sha512-ceqxoedUrcayh7Y7ZX6NdbbDzGROiyVBgC4PriJThBKSVPWnnFHZAkfI1lJT8QFkOwH4qOS2SJkS4wvpGl8BpA==\",\r\n      \"dev\": true,\r\n      \"hasInstallScript\": true,\r\n      \"bin\": {\r\n        \"esbuild\": \"bin/esbuild\"\r\n      },\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      },\r\n      \"optionalDependencies\": {\r\n        \"@esbuild/android-arm\": \"0.18.20\",\r\n        \"@esbuild/android-arm64\": \"0.18.20\",\r\n        \"@esbuild/android-x64\": \"0.18.20\",\r\n        \"@esbuild/darwin-arm64\": \"0.18.20\",\r\n        \"@esbuild/darwin-x64\": \"0.18.20\",\r\n        \"@esbuild/freebsd-arm64\": \"0.18.20\",\r\n        \"@esbuild/freebsd-x64\": \"0.18.20\",\r\n        \"@esbuild/linux-arm\": \"0.18.20\",\r\n        \"@esbuild/linux-arm64\": \"0.18.20\",\r\n        \"@esbuild/linux-ia32\": \"0.18.20\",\r\n        \"@esbuild/linux-loong64\": \"0.18.20\",\r\n        \"@esbuild/linux-mips64el\": \"0.18.20\",\r\n        \"@esbuild/linux-ppc64\": \"0.18.20\",\r\n        \"@esbuild/linux-riscv64\": \"0.18.20\",\r\n        \"@esbuild/linux-s390x\": \"0.18.20\",\r\n        \"@esbuild/linux-x64\": \"0.18.20\",\r\n        \"@esbuild/netbsd-x64\": \"0.18.20\",\r\n        \"@esbuild/openbsd-x64\": \"0.18.20\",\r\n        \"@esbuild/sunos-x64\": \"0.18.20\",\r\n        \"@esbuild/win32-arm64\": \"0.18.20\",\r\n        \"@esbuild/win32-ia32\": \"0.18.20\",\r\n        \"@esbuild/win32-x64\": \"0.18.20\"\r\n      }\r\n    },\r\n    \"node_modules/estree-walker\": {\r\n      \"version\": \"2.0.2\",\r\n      \"resolved\": \"https://registry.npmjs.org/estree-walker/-/estree-walker-2.0.2.tgz\",\r\n      \"integrity\": \"sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==\"\r\n    },\r\n    \"node_modules/fsevents\": {\r\n      \"version\": \"2.3.3\",\r\n      \"resolved\": \"https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz\",\r\n      \"integrity\": \"sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==\",\r\n      \"dev\": true,\r\n      \"hasInstallScript\": true,\r\n      \"optional\": true,\r\n      \"os\": [\r\n        \"darwin\"\r\n      ],\r\n      \"engines\": {\r\n        \"node\": \"^8.16.0 || ^10.6.0 || >=11.0.0\"\r\n      }\r\n    },\r\n    \"node_modules/magic-string\": {\r\n      \"version\": \"0.30.5\",\r\n      \"resolved\": \"https://registry.npmjs.org/magic-string/-/magic-string-0.30.5.tgz\",\r\n      \"integrity\": \"sha512-7xlpfBaQaP/T6Vh8MO/EqXSW5En6INHEvEXQiuff7Gku0PWjU3uf6w/j9o7O+SpB5fOAkrI5HeoNgwjEO0pFsA==\",\r\n      \"dependencies\": {\r\n        \"@jridgewell/sourcemap-codec\": \"^1.4.15\"\r\n      },\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      }\r\n    },\r\n    \"node_modules/nanoid\": {\r\n      \"version\": \"3.3.7\",\r\n      \"resolved\": \"https://registry.npmjs.org/nanoid/-/nanoid-3.3.7.tgz\",\r\n      \"integrity\": \"sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g==\",\r\n      \"funding\": [\r\n        {\r\n          \"type\": \"github\",\r\n          \"url\": \"https://github.com/sponsors/ai\"\r\n        }\r\n      ],\r\n      \"bin\": {\r\n        \"nanoid\": \"bin/nanoid.cjs\"\r\n      },\r\n      \"engines\": {\r\n        \"node\": \"^10 || ^12 || ^13.7 || ^14 || >=15.0.1\"\r\n      }\r\n    },\r\n    \"node_modules/picocolors\": {\r\n      \"version\": \"1.0.0\",\r\n      \"resolved\": \"https://registry.npmjs.org/picocolors/-/picocolors-1.0.0.tgz\",\r\n      \"integrity\": \"sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==\"\r\n    },\r\n    \"node_modules/pinia\": {\r\n      \"version\": \"2.1.7\",\r\n      \"resolved\": \"https://registry.npmjs.org/pinia/-/pinia-2.1.7.tgz\",\r\n      \"integrity\": \"sha512-+C2AHFtcFqjPih0zpYuvof37SFxMQ7OEG2zV9jRI12i9BOy3YQVAHwdKtyyc8pDcDyIc33WCIsZaCFWU7WWxGQ==\",\r\n      \"dependencies\": {\r\n        \"@vue/devtools-api\": \"^6.5.0\",\r\n        \"vue-demi\": \">=0.14.5\"\r\n      },\r\n      \"funding\": {\r\n        \"url\": \"https://github.com/sponsors/posva\"\r\n      },\r\n      \"peerDependencies\": {\r\n        \"@vue/composition-api\": \"^1.4.0\",\r\n        \"typescript\": \">=4.4.4\",\r\n        \"vue\": \"^2.6.14 || ^3.3.0\"\r\n      },\r\n      \"peerDependenciesMeta\": {\r\n        \"@vue/composition-api\": {\r\n          \"optional\": true\r\n        },\r\n        \"typescript\": {\r\n          \"optional\": true\r\n        }\r\n      }\r\n    },\r\n    \"node_modules/pinia/node_modules/vue-demi\": {\r\n      \"version\": \"0.14.6\",\r\n      \"resolved\": \"https://registry.npmjs.org/vue-demi/-/vue-demi-0.14.6.tgz\",\r\n      \"integrity\": \"sha512-8QA7wrYSHKaYgUxDA5ZC24w+eHm3sYCbp0EzcDwKqN3p6HqtTCGR/GVsPyZW92unff4UlcSh++lmqDWN3ZIq4w==\",\r\n      \"hasInstallScript\": true,\r\n      \"bin\": {\r\n        \"vue-demi-fix\": \"bin/vue-demi-fix.js\",\r\n        \"vue-demi-switch\": \"bin/vue-demi-switch.js\"\r\n      },\r\n      \"engines\": {\r\n        \"node\": \">=12\"\r\n      },\r\n      \"funding\": {\r\n        \"url\": \"https://github.com/sponsors/antfu\"\r\n      },\r\n      \"peerDependencies\": {\r\n        \"@vue/composition-api\": \"^1.0.0-rc.1\",\r\n        \"vue\": \"^3.0.0-0 || ^2.6.0\"\r\n      },\r\n      \"peerDependenciesMeta\": {\r\n        \"@vue/composition-api\": {\r\n          \"optional\": true\r\n        }\r\n      }\r\n    },\r\n    \"node_modules/postcss\": {\r\n      \"version\": \"8.4.31\",\r\n      \"resolved\": \"https://registry.npmjs.org/postcss/-/postcss-8.4.31.tgz\",\r\n      \"integrity\": \"sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ==\",\r\n      \"funding\": [\r\n        {\r\n          \"type\": \"opencollective\",\r\n          \"url\": \"https://opencollective.com/postcss/\"\r\n        },\r\n        {\r\n          \"type\": \"tidelift\",\r\n          \"url\": \"https://tidelift.com/funding/github/npm/postcss\"\r\n        },\r\n        {\r\n          \"type\": \"github\",\r\n          \"url\": \"https://github.com/sponsors/ai\"\r\n        }\r\n      ],\r\n      \"dependencies\": {\r\n        \"nanoid\": \"^3.3.6\",\r\n        \"picocolors\": \"^1.0.0\",\r\n        \"source-map-js\": \"^1.0.2\"\r\n      },\r\n      \"engines\": {\r\n        \"node\": \"^10 || ^12 || >=14\"\r\n      }\r\n    },\r\n    \"node_modules/rollup\": {\r\n      \"version\": \"3.29.4\",\r\n      \"resolved\": \"https://registry.npmjs.org/rollup/-/rollup-3.29.4.tgz\",\r\n      \"integrity\": \"sha512-oWzmBZwvYrU0iJHtDmhsm662rC15FRXmcjCk1xD771dFDx5jJ02ufAQQTn0etB2emNk4J9EZg/yWKpsn9BWGRw==\",\r\n      \"dev\": true,\r\n      \"bin\": {\r\n        \"rollup\": \"dist/bin/rollup\"\r\n      },\r\n      \"engines\": {\r\n        \"node\": \">=14.18.0\",\r\n        \"npm\": \">=8.0.0\"\r\n      },\r\n      \"optionalDependencies\": {\r\n        \"fsevents\": \"~2.3.2\"\r\n      }\r\n    },\r\n    \"node_modules/source-map-js\": {\r\n      \"version\": \"1.0.2\",\r\n      \"resolved\": \"https://registry.npmjs.org/source-map-js/-/source-map-js-1.0.2.tgz\",\r\n      \"integrity\": \"sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==\",\r\n      \"engines\": {\r\n        \"node\": \">=0.10.0\"\r\n      }\r\n    },\r\n    \"node_modules/vite\": {\r\n      \"version\": \"4.5.1\",\r\n      \"resolved\": \"https://registry.npmjs.org/vite/-/vite-4.5.1.tgz\",\r\n      \"integrity\": \"sha512-AXXFaAJ8yebyqzoNB9fu2pHoo/nWX+xZlaRwoeYUxEqBO+Zj4msE5G+BhGBll9lYEKv9Hfks52PAF2X7qDYXQA==\",\r\n      \"dev\": true,\r\n      \"dependencies\": {\r\n        \"esbuild\": \"^0.18.10\",\r\n        \"postcss\": \"^8.4.27\",\r\n        \"rollup\": \"^3.27.1\"\r\n      },\r\n      \"bin\": {\r\n        \"vite\": \"bin/vite.js\"\r\n      },\r\n      \"engines\": {\r\n        \"node\": \"^14.18.0 || >=16.0.0\"\r\n      },\r\n      \"funding\": {\r\n        \"url\": \"https://github.com/vitejs/vite?sponsor=1\"\r\n      },\r\n      \"optionalDependencies\": {\r\n        \"fsevents\": \"~2.3.2\"\r\n      },\r\n      \"peerDependencies\": {\r\n        \"@types/node\": \">= 14\",\r\n        \"less\": \"*\",\r\n        \"lightningcss\": \"^1.21.0\",\r\n        \"sass\": \"*\",\r\n        \"stylus\": \"*\",\r\n        \"sugarss\": \"*\",\r\n        \"terser\": \"^5.4.0\"\r\n      },\r\n      \"peerDependenciesMeta\": {\r\n        \"@types/node\": {\r\n          \"optional\": true\r\n        },\r\n        \"less\": {\r\n          \"optional\": true\r\n        },\r\n        \"lightningcss\": {\r\n          \"optional\": true\r\n        },\r\n        \"sass\": {\r\n          \"optional\": true\r\n        },\r\n        \"stylus\": {\r\n          \"optional\": true\r\n        },\r\n        \"sugarss\": {\r\n          \"optional\": true\r\n        },\r\n        \"terser\": {\r\n          \"optional\": true\r\n        }\r\n      }\r\n    },\r\n    \"node_modules/vue\": {\r\n      \"version\": \"3.3.8\",\r\n      \"resolved\": \"https://registry.npmjs.org/vue/-/vue-3.3.8.tgz\",\r\n      \"integrity\": \"sha512-5VSX/3DabBikOXMsxzlW8JyfeLKlG9mzqnWgLQLty88vdZL7ZJgrdgBOmrArwxiLtmS+lNNpPcBYqrhE6TQW5w==\",\r\n      \"dependencies\": {\r\n        \"@vue/compiler-dom\": \"3.3.8\",\r\n        \"@vue/compiler-sfc\": \"3.3.8\",\r\n        \"@vue/runtime-dom\": \"3.3.8\",\r\n        \"@vue/server-renderer\": \"3.3.8\",\r\n        \"@vue/shared\": \"3.3.8\"\r\n      },\r\n      \"peerDependencies\": {\r\n        \"typescript\": \"*\"\r\n      },\r\n      \"peerDependenciesMeta\": {\r\n        \"typescript\": {\r\n          \"optional\": true\r\n        }\r\n      }\r\n    },\r\n    \"node_modules/vue-router\": {\r\n      \"version\": \"4.2.5\",\r\n      \"resolved\": \"https://registry.npmjs.org/vue-router/-/vue-router-4.2.5.tgz\",\r\n      \"integrity\": \"sha512-DIUpKcyg4+PTQKfFPX88UWhlagBEBEfJ5A8XDXRJLUnZOvcpMF8o/dnL90vpVkGaPbjvXazV/rC1qBKrZlFugw==\",\r\n      \"dependencies\": {\r\n        \"@vue/devtools-api\": \"^6.5.0\"\r\n      },\r\n      \"funding\": {\r\n        \"url\": \"https://github.com/sponsors/posva\"\r\n      },\r\n      \"peerDependencies\": {\r\n        \"vue\": \"^3.2.0\"\r\n      }\r\n    },\r\n    \"node_modules/vuetify\": {\r\n      \"version\": \"3.4.6\",\r\n      \"resolved\": \"https://registry.npmjs.org/vuetify/-/vuetify-3.4.6.tgz\",\r\n      \"integrity\": \"sha512-Zp6BjKkNcnyHlOmr01Y/Rc4d686PORO+hcpfM76qRaDMIU4H1GnP0JIF3jwxI1q3Uj/2bHKLwn81oCLJZd+8sg==\",\r\n      \"engines\": {\r\n        \"node\": \"^12.20 || >=14.13\"\r\n      },\r\n      \"funding\": {\r\n        \"type\": \"github\",\r\n        \"url\": \"https://github.com/sponsors/johnleider\"\r\n      },\r\n      \"peerDependencies\": {\r\n        \"typescript\": \">=4.7\",\r\n        \"vite-plugin-vuetify\": \"^1.0.0-alpha.12\",\r\n        \"vue\": \"^3.3.0\",\r\n        \"vue-i18n\": \"^9.0.0\",\r\n        \"webpack-plugin-vuetify\": \"^2.0.0-alpha.11\"\r\n      },\r\n      \"peerDependenciesMeta\": {\r\n        \"typescript\": {\r\n          \"optional\": true\r\n        },\r\n        \"vite-plugin-vuetify\": {\r\n          \"optional\": true\r\n        },\r\n        \"vue-i18n\": {\r\n          \"optional\": true\r\n        },\r\n        \"webpack-plugin-vuetify\": {\r\n          \"optional\": true\r\n        }\r\n      }\r\n    }\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cookingSchoolFrontend/cookingSchool/package-lock.json b/cookingSchoolFrontend/cookingSchool/package-lock.json
+--- a/cookingSchoolFrontend/cookingSchool/package-lock.json	(revision 87ce2d67de9e393156432a7aa9edc4fc1ce400fb)
++++ b/cookingSchoolFrontend/cookingSchool/package-lock.json	(date 1702918009703)
+@@ -11,9 +11,12 @@
+         "@mdi/font": "^7.3.67",
+         "@vueuse/core": "^10.7.0",
+         "@vueuse/router": "^10.7.0",
++        "axios": "^1.6.2",
++        "axios-jwt": "^4.0.0",
+         "bootstrap": "^5.3.2",
+         "pinia": "^2.0.32",
+         "vue": "^3.2.47",
++        "vue-axios": "^3.5.2",
+         "vue-router": "^4.1.6",
+         "vuetify": "^3.4.6"
+       },
+@@ -650,6 +653,39 @@
+       "peerDependenciesMeta": {
+         "@vue/composition-api": {
+           "optional": true
++        }
++      }
++    },
++    "node_modules/asynckit": {
++      "version": "0.4.0",
++      "resolved": "https://registry.npmjs.org/asynckit/-/asynckit-0.4.0.tgz",
++      "integrity": "sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q=="
++    },
++    "node_modules/axios": {
++      "version": "1.6.2",
++      "resolved": "https://registry.npmjs.org/axios/-/axios-1.6.2.tgz",
++      "integrity": "sha512-7i24Ri4pmDRfJTR7LDBhsOTtcm+9kjX5WiY1X3wIisx6G9So3pfMkEiU7emUBe46oceVImccTEM3k6C5dbVW8A==",
++      "dependencies": {
++        "follow-redirects": "^1.15.0",
++        "form-data": "^4.0.0",
++        "proxy-from-env": "^1.1.0"
++      }
++    },
++    "node_modules/axios-jwt": {
++      "version": "4.0.0",
++      "resolved": "https://registry.npmjs.org/axios-jwt/-/axios-jwt-4.0.0.tgz",
++      "integrity": "sha512-5UPhNaj0BbZemLjkSnSCNirUYaJI3sih2sikC6RSX1FdlOofrS9ck/WSQblEZffvZO+sxLVTJI17wh4dFcxX8Q==",
++      "dependencies": {
++        "jwt-decode": "3.1.2",
++        "ms": "^3.0.0-canary.1"
++      },
++      "peerDependencies": {
++        "@react-native-async-storage/async-storage": "1.15.17",
++        "axios": "^1.4.0"
++      },
++      "peerDependenciesMeta": {
++        "@react-native-async-storage/async-storage": {
++          "optional": true
+         }
+       }
+     },
+@@ -671,11 +707,30 @@
+         "@popperjs/core": "^2.11.8"
+       }
+     },
++    "node_modules/combined-stream": {
++      "version": "1.0.8",
++      "resolved": "https://registry.npmjs.org/combined-stream/-/combined-stream-1.0.8.tgz",
++      "integrity": "sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==",
++      "dependencies": {
++        "delayed-stream": "~1.0.0"
++      },
++      "engines": {
++        "node": ">= 0.8"
++      }
++    },
+     "node_modules/csstype": {
+       "version": "3.1.2",
+       "resolved": "https://registry.npmjs.org/csstype/-/csstype-3.1.2.tgz",
+       "integrity": "sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ=="
+     },
++    "node_modules/delayed-stream": {
++      "version": "1.0.0",
++      "resolved": "https://registry.npmjs.org/delayed-stream/-/delayed-stream-1.0.0.tgz",
++      "integrity": "sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==",
++      "engines": {
++        "node": ">=0.4.0"
++      }
++    },
+     "node_modules/esbuild": {
+       "version": "0.18.20",
+       "resolved": "https://registry.npmjs.org/esbuild/-/esbuild-0.18.20.tgz",
+@@ -718,6 +773,38 @@
+       "resolved": "https://registry.npmjs.org/estree-walker/-/estree-walker-2.0.2.tgz",
+       "integrity": "sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w=="
+     },
++    "node_modules/follow-redirects": {
++      "version": "1.15.3",
++      "resolved": "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.15.3.tgz",
++      "integrity": "sha512-1VzOtuEM8pC9SFU1E+8KfTjZyMztRsgEfwQl44z8A25uy13jSzTj6dyK2Df52iV0vgHCfBwLhDWevLn95w5v6Q==",
++      "funding": [
++        {
++          "type": "individual",
++          "url": "https://github.com/sponsors/RubenVerborgh"
++        }
++      ],
++      "engines": {
++        "node": ">=4.0"
++      },
++      "peerDependenciesMeta": {
++        "debug": {
++          "optional": true
++        }
++      }
++    },
++    "node_modules/form-data": {
++      "version": "4.0.0",
++      "resolved": "https://registry.npmjs.org/form-data/-/form-data-4.0.0.tgz",
++      "integrity": "sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==",
++      "dependencies": {
++        "asynckit": "^0.4.0",
++        "combined-stream": "^1.0.8",
++        "mime-types": "^2.1.12"
++      },
++      "engines": {
++        "node": ">= 6"
++      }
++    },
+     "node_modules/fsevents": {
+       "version": "2.3.3",
+       "resolved": "https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz",
+@@ -732,6 +819,11 @@
+         "node": "^8.16.0 || ^10.6.0 || >=11.0.0"
+       }
+     },
++    "node_modules/jwt-decode": {
++      "version": "3.1.2",
++      "resolved": "https://registry.npmjs.org/jwt-decode/-/jwt-decode-3.1.2.tgz",
++      "integrity": "sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A=="
++    },
+     "node_modules/magic-string": {
+       "version": "0.30.5",
+       "resolved": "https://registry.npmjs.org/magic-string/-/magic-string-0.30.5.tgz",
+@@ -743,6 +835,33 @@
+         "node": ">=12"
+       }
+     },
++    "node_modules/mime-db": {
++      "version": "1.52.0",
++      "resolved": "https://registry.npmjs.org/mime-db/-/mime-db-1.52.0.tgz",
++      "integrity": "sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg==",
++      "engines": {
++        "node": ">= 0.6"
++      }
++    },
++    "node_modules/mime-types": {
++      "version": "2.1.35",
++      "resolved": "https://registry.npmjs.org/mime-types/-/mime-types-2.1.35.tgz",
++      "integrity": "sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==",
++      "dependencies": {
++        "mime-db": "1.52.0"
++      },
++      "engines": {
++        "node": ">= 0.6"
++      }
++    },
++    "node_modules/ms": {
++      "version": "3.0.0-canary.1",
++      "resolved": "https://registry.npmjs.org/ms/-/ms-3.0.0-canary.1.tgz",
++      "integrity": "sha512-kh8ARjh8rMN7Du2igDRO9QJnqCb2xYTJxyQYK7vJJS4TvLLmsbyhiKpSW+t+y26gyOyMd0riphX0GeWKU3ky5g==",
++      "engines": {
++        "node": ">=12.13"
++      }
++    },
+     "node_modules/nanoid": {
+       "version": "3.3.7",
+       "resolved": "https://registry.npmjs.org/nanoid/-/nanoid-3.3.7.tgz",
+@@ -842,6 +961,11 @@
+         "node": "^10 || ^12 || >=14"
+       }
+     },
++    "node_modules/proxy-from-env": {
++      "version": "1.1.0",
++      "resolved": "https://registry.npmjs.org/proxy-from-env/-/proxy-from-env-1.1.0.tgz",
++      "integrity": "sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg=="
++    },
+     "node_modules/rollup": {
+       "version": "3.29.4",
+       "resolved": "https://registry.npmjs.org/rollup/-/rollup-3.29.4.tgz",
+@@ -941,6 +1065,15 @@
+         }
+       }
+     },
++    "node_modules/vue-axios": {
++      "version": "3.5.2",
++      "resolved": "https://registry.npmjs.org/vue-axios/-/vue-axios-3.5.2.tgz",
++      "integrity": "sha512-GP+dct7UlAWkl1qoP3ppw0z6jcSua5/IrMpjB5O8bh089iIiJ+hdxPYH2NPEpajlYgkW5EVMP95ttXWdas1O0g==",
++      "peerDependencies": {
++        "axios": "*",
++        "vue": "^3.0.0 || ^2.0.0"
++      }
++    },
+     "node_modules/vue-router": {
+       "version": "4.2.5",
+       "resolved": "https://registry.npmjs.org/vue-router/-/vue-router-4.2.5.tgz",
+Index: cookingSchoolFrontend/cookingSchool/src/router/index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { createRouter, createWebHistory } from 'vue-router'\r\nimport AdminLayout from '../layouts/AdminLayout.vue'\r\nimport UserLayout from '../layouts/UserLayout.vue'\r\nimport HomeView from '../views/user/HomeView.vue'\r\nimport CourseView from '../views/user/CourseView.vue'\r\nimport RecipeView from '../views/user/RecipeView.vue'\r\nimport AboutView from '../views/user/AboutView.vue'\r\nimport LoginView from '../views/admin/LoginView.vue'\r\nimport AdminCourseView from '../views/admin/AdminCourseView.vue'\r\nimport AdminRecipeView from '../views/admin/AdminRecipeView.vue'\r\nimport AdminUserView from '../views/admin/AdminUserView.vue'\r\n\r\nconst routes = [\r\n    {\r\n      path: '/',\r\n      component: UserLayout,\r\n      children: [\r\n        {\r\n          path: '/',\r\n          component: HomeView\r\n        },\r\n        {\r\n          path: '/courses',\r\n          component: CourseView\r\n        },\r\n        {\r\n          path: '/recipes',\r\n          component: RecipeView\r\n        },\r\n        {\r\n          path: '/about',\r\n          component: AboutView\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      path: '/admin',\r\n      component: AdminLayout,\r\n      children: [\r\n        {\r\n          path: '/',\r\n          component: LoginView\r\n        },\r\n        {\r\n          path: '/courses',\r\n          component: AdminCourseView\r\n        },\r\n        {\r\n          path: '/recipes',\r\n          component: AdminRecipeView\r\n        },\r\n        {\r\n          path: '/users',\r\n          component: AdminUserView\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n\r\nconst router = createRouter({\r\n  routes,\r\n  history: createWebHistory()\r\n})\r\n\r\nexport {router}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cookingSchoolFrontend/cookingSchool/src/router/index.js b/cookingSchoolFrontend/cookingSchool/src/router/index.js
+--- a/cookingSchoolFrontend/cookingSchool/src/router/index.js	(revision 87ce2d67de9e393156432a7aa9edc4fc1ce400fb)
++++ b/cookingSchoolFrontend/cookingSchool/src/router/index.js	(date 1702918009708)
+@@ -5,7 +5,8 @@
+ import CourseView from '../views/user/CourseView.vue'
+ import RecipeView from '../views/user/RecipeView.vue'
+ import AboutView from '../views/user/AboutView.vue'
+-import LoginView from '../views/admin/LoginView.vue'
++import RegistrationView from '../views/user/RegistrationView.vue'
++import AdminView from '../views/admin/AdminView.vue'
+ import AdminCourseView from '../views/admin/AdminCourseView.vue'
+ import AdminRecipeView from '../views/admin/AdminRecipeView.vue'
+ import AdminUserView from '../views/admin/AdminUserView.vue'
+@@ -16,7 +17,7 @@
+       component: UserLayout,
+       children: [
+         {
+-          path: '/',
++          path: '',
+           component: HomeView
+         },
+         {
+@@ -30,6 +31,10 @@
+         {
+           path: '/about',
+           component: AboutView
++        },
++        {
++          path: '/register',
++          component: RegistrationView
+         }
+       ]
+     },
+@@ -39,7 +44,7 @@
+       children: [
+         {
+           path: '/',
+-          component: LoginView
++          component: AdminView
+         },
+         {
+           path: '/courses',
+Index: cookingSchoolFrontend/cookingSchool/src/views/user/HomeView.vue
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><script setup>\r\n</script>\r\n\r\n<template>\r\n  <h3 class=\"text\">Welcome</h3>\r\n    \r\n  <p class=\"text\">\r\n    This project is served and bundled with Vite. The\r\n    recommended IDE setup is\r\n    VSCode +\r\n    Volar. If\r\n    you need to test your components and web pages, check out Cypress and Cypress Component Testing.\r\n    <br />\r\n    More instructions are available in README.md.\r\n    <br />\r\n    Get official tools and libraries for your project: Pinia, Vue Router, Vue Test Utils, and Vue Dev Tools. \r\n    If you need more resources, we suggest paying Awesome Vue a visit.\r\n  </p>\r\n</template>\r\n\r\n<style scoped>\r\n.text {\r\n  margin-top: 2rem;\r\n  display: flex;\r\n  flex: 1;\r\n  margin-left: 1rem;\r\n}\r\n\r\nh3 {\r\n  font-size: 1.5rem;\r\n  font-weight: 500;\r\n  margin-bottom: 0.4rem;\r\n  color: var(--color-heading);\r\n}\r\n\r\n</style>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cookingSchoolFrontend/cookingSchool/src/views/user/HomeView.vue b/cookingSchoolFrontend/cookingSchool/src/views/user/HomeView.vue
+--- a/cookingSchoolFrontend/cookingSchool/src/views/user/HomeView.vue	(revision 87ce2d67de9e393156432a7aa9edc4fc1ce400fb)
++++ b/cookingSchoolFrontend/cookingSchool/src/views/user/HomeView.vue	(date 1702918009711)
+@@ -1,10 +1,13 @@
+ <script setup>
++import LoginCard from '@/components/LoginCard.vue'
+ </script>
+ 
+ <template>
+-  <h3 class="text">Welcome</h3>
++  <div class="container">
++    <div class="item">
++    <h3 class="text">Welcome</h3>
+     
+-  <p class="text">
++    <p class="text">
+     This project is served and bundled with Vite. The
+     recommended IDE setup is
+     VSCode +
+@@ -15,22 +18,14 @@
+     <br />
+     Get official tools and libraries for your project: Pinia, Vue Router, Vue Test Utils, and Vue Dev Tools. 
+     If you need more resources, we suggest paying Awesome Vue a visit.
+-  </p>
++    </p>
++    </div>
++  <div class="item">
++    <LoginCard />
++  </div>
++  </div>
+ </template>
+ 
+ <style scoped>
+ .text {
+-  margin-top: 2rem;
+-  display: flex;
+-  flex: 1;
+-  margin-left: 1rem;
+-}
+-
+-h3 {
+-  font-size: 1.5rem;
+-  font-weight: 500;
+-  margin-bottom: 0.4rem;
+-  color: var(--color-heading);
+-}
+-
+-</style>
+\ No newline at end of file
++  margin-top: 2r
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"29cbc65d-7dae-4e36-ab78-e1841a5ed636\" name=\"Changes\" comment=\"\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"AnnotationType\" />\r\n        <option value=\"Class\" />\r\n        <option value=\"Interface\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 1\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2YAG77FQsTA3djSJ5uzR057G2PK\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RequestMappingsPanelOrder0\": \"0\",\r\n    \"RequestMappingsPanelOrder1\": \"1\",\r\n    \"RequestMappingsPanelWidth0\": \"75\",\r\n    \"RequestMappingsPanelWidth1\": \"75\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"WebServerToolWindowFactoryState\": \"false\",\r\n    \"git-widget-placeholder\": \"main\",\r\n    \"last_opened_file_path\": \"/Users/stellab/Documents/webdev/codersbay/cookingschool\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"project.structure.last.edited\": \"Modules\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.0\",\r\n    \"spring.configuration.checksum\": \"ab34ddadcffe0d2dfdc145de21d27cdb\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  },\r\n  \"keyToStringList\": {\r\n    \"DatabaseDriversLRU\": [\r\n      \"derby\"\r\n    ]\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CreateClassDialog.RecentsKey\">\r\n      <recent name=\"Cooking.School.Project.cookingSchool\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration default=\"true\" type=\"JetRunConfigurationType\">\r\n      <module name=\"cookingschool\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"KotlinStandaloneScriptRunConfigurationType\">\r\n      <module name=\"cookingschool\" />\r\n      <option name=\"filePath\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Main\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <option name=\"ALTERNATIVE_JRE_PATH\" value=\"openjdk-20\" />\r\n      <option name=\"ALTERNATIVE_JRE_PATH_ENABLED\" value=\"true\" />\r\n      <module name=\"cookingSchoolBackend\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"Cooking.School.Project.cookingSchool.Main\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"SvnConfiguration\">\r\n    <configuration />\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"29cbc65d-7dae-4e36-ab78-e1841a5ed636\" name=\"Changes\" comment=\"\" />\r\n      <created>1699960799412</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1699960799412</updated>\r\n      <workItem from=\"1699960800614\" duration=\"459000\" />\r\n      <workItem from=\"1699966014127\" duration=\"1577000\" />\r\n      <workItem from=\"1699976733997\" duration=\"1584000\" />\r\n      <workItem from=\"1700160225503\" duration=\"10515000\" />\r\n      <workItem from=\"1700211003929\" duration=\"524000\" />\r\n      <workItem from=\"1700587753404\" duration=\"7195000\" />\r\n      <workItem from=\"1700671289621\" duration=\"142000\" />\r\n      <workItem from=\"1700906112322\" duration=\"132000\" />\r\n      <workItem from=\"1700906288104\" duration=\"351000\" />\r\n      <workItem from=\"1701706785972\" duration=\"16000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Boilerplate fixed.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1699960958766</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1699960958766</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Entities added\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1699966278625</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1699966278625</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Email detail added\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1699977960898</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1699977960898</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"doppelte appache gelöscht, grundstruktur erstellt\">\r\n      <created>1700165585993</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700165585993</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"doppelte appache gelöscht, grundstruktur erstellt\">\r\n      <created>1700165599642</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700165599642</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"läuft halb\">\r\n      <created>1700171384799</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700171384799</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"delete course hinzugefügt bei admin controller\">\r\n      <created>1700596549682</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700596549682</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"delete course by id fixed\">\r\n      <created>1700596642881</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700596642881</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Ingredient und Tag entities written. Beziehungen fehlen\">\r\n      <created>1700597034599</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700597034599</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"Courses und User überarbeitet nach neuem ER Diagramm\">\r\n      <created>1700597410171</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700597410171</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"11\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Boilerplate fixed.\" />\r\n    <MESSAGE value=\"Entities added\" />\r\n    <MESSAGE value=\"Email detail added\" />\r\n    <MESSAGE value=\"doppelte appache gelöscht, grundstruktur erstellt\" />\r\n    <MESSAGE value=\"läuft halb\" />\r\n    <MESSAGE value=\"delete course hinzugefügt bei admin controller\" />\r\n    <MESSAGE value=\"delete course by id fixed\" />\r\n    <MESSAGE value=\"Ingredient und Tag entities written. Beziehungen fehlen\" />\r\n    <MESSAGE value=\"Courses und User überarbeitet nach neuem ER Diagramm\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Courses und User überarbeitet nach neuem ER Diagramm\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 87ce2d67de9e393156432a7aa9edc4fc1ce400fb)
++++ b/.idea/workspace.xml	(date 1702918009678)
+@@ -41,54 +41,41 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RequestMappingsPanelOrder0": "0",
+-    "RequestMappingsPanelOrder1": "1",
+-    "RequestMappingsPanelWidth0": "75",
+-    "RequestMappingsPanelWidth1": "75",
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "WebServerToolWindowFactoryState": "false",
+-    "git-widget-placeholder": "main",
+-    "last_opened_file_path": "/Users/stellab/Documents/webdev/codersbay/cookingschool",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "project.structure.last.edited": "Modules",
+-    "project.structure.proportion": "0.0",
+-    "project.structure.side.proportion": "0.0",
+-    "spring.configuration.checksum": "ab34ddadcffe0d2dfdc145de21d27cdb",
+-    "vue.rearranger.settings.migration": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
++    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
++    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
++    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
++    &quot;last_opened_file_path&quot;: &quot;/Users/stellab/Documents/webdev/codersbay/cookingschool&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
++    &quot;spring.configuration.checksum&quot;: &quot;ab34ddadcffe0d2dfdc145de21d27cdb&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   },
+-  "keyToStringList": {
+-    "DatabaseDriversLRU": [
+-      "derby"
++  &quot;keyToStringList&quot;: {
++    &quot;DatabaseDriversLRU&quot;: [
++      &quot;derby&quot;
+     ]
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="CreateClassDialog.RecentsKey">
+       <recent name="Cooking.School.Project.cookingSchool" />
+     </key>
+   </component>
+   <component name="RunManager">
+-    <configuration default="true" type="JetRunConfigurationType">
+-      <module name="cookingschool" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+-      <module name="cookingschool" />
+-      <option name="filePath" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+     <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-20" />
+       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />

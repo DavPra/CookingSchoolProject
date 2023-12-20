@@ -1,0 +1,139 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"29cbc65d-7dae-4e36-ab78-e1841a5ed636\" name=\"Changes\" comment=\"\">\r\n      <change afterPath=\"$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/htmlToPdf/html/Rechnung.html\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/htmlToPdf/html/htmltopdf.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/jarRepositories.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/jarRepositories.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/cookingSchoolBackend/pom.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/cookingSchoolBackend/pom.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/controller/DownloadController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/controller/DownloadController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/derby.log\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/derby.log\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"AnnotationType\" />\r\n        <option value=\"Interface\" />\r\n        <option value=\"HTML File\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 1\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2YAG77FQsTA3djSJ5uzR057G2PK\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"DefaultHtmlFileTemplate\": \"HTML File\",\r\n    \"RequestMappingsPanelOrder0\": \"0\",\r\n    \"RequestMappingsPanelOrder1\": \"1\",\r\n    \"RequestMappingsPanelWidth0\": \"75\",\r\n    \"RequestMappingsPanelWidth1\": \"75\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"WebServerToolWindowFactoryState\": \"false\",\r\n    \"git-widget-placeholder\": \"pdf__mit__html\",\r\n    \"last_opened_file_path\": \"/Users/stellab/Documents/webdev/codersbay/cookingschool\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"project.structure.last.edited\": \"Modules\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.0\",\r\n    \"settings.editor.selected.configurable\": \"reference.settings.project.maven.repository.indices\",\r\n    \"spring.configuration.checksum\": \"ab34ddadcffe0d2dfdc145de21d27cdb\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  },\r\n  \"keyToStringList\": {\r\n    \"DatabaseDriversLRU\": [\r\n      \"derby\"\r\n    ]\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CreateClassDialog.RecentsKey\">\r\n      <recent name=\"Cooking.School.Project.cookingSchool\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Spring Boot.Main\">\r\n    <configuration name=\"Rechnung.html\" type=\"JavascriptDebugType\" temporary=\"true\" nameIsGenerated=\"true\" uri=\"http://localhost:63342/CookingSchool/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/htmlToPdf/html/Rechnung.html\" useBuiltInWebServerPort=\"true\">\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"JetRunConfigurationType\">\r\n      <module name=\"cookingschool\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"KotlinStandaloneScriptRunConfigurationType\">\r\n      <module name=\"cookingschool\" />\r\n      <option name=\"filePath\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Main\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <option name=\"ALTERNATIVE_JRE_PATH\" value=\"openjdk-20\" />\r\n      <option name=\"ALTERNATIVE_JRE_PATH_ENABLED\" value=\"true\" />\r\n      <module name=\"cookingSchoolBackend\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"Cooking.School.Project.cookingSchool.Main\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"JavaScript Debug.Rechnung.html\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"SvnConfiguration\">\r\n    <configuration />\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"29cbc65d-7dae-4e36-ab78-e1841a5ed636\" name=\"Changes\" comment=\"\" />\r\n      <created>1699960799412</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1699960799412</updated>\r\n      <workItem from=\"1699960800614\" duration=\"459000\" />\r\n      <workItem from=\"1699966014127\" duration=\"1577000\" />\r\n      <workItem from=\"1699976733997\" duration=\"1584000\" />\r\n      <workItem from=\"1700160225503\" duration=\"10515000\" />\r\n      <workItem from=\"1700211003929\" duration=\"524000\" />\r\n      <workItem from=\"1700587753404\" duration=\"7195000\" />\r\n      <workItem from=\"1700671289621\" duration=\"142000\" />\r\n      <workItem from=\"1700906112322\" duration=\"132000\" />\r\n      <workItem from=\"1700906288104\" duration=\"351000\" />\r\n      <workItem from=\"1701706785972\" duration=\"16000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Boilerplate fixed.\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1699960958766</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1699960958766</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Entities added\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1699966278625</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1699966278625</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Email detail added\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1699977960898</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1699977960898</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"doppelte appache gelöscht, grundstruktur erstellt\">\r\n      <created>1700165585993</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700165585993</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"doppelte appache gelöscht, grundstruktur erstellt\">\r\n      <created>1700165599642</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700165599642</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"läuft halb\">\r\n      <created>1700171384799</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700171384799</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"delete course hinzugefügt bei admin controller\">\r\n      <created>1700596549682</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700596549682</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"delete course by id fixed\">\r\n      <created>1700596642881</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700596642881</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Ingredient und Tag entities written. Beziehungen fehlen\">\r\n      <created>1700597034599</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700597034599</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"Courses und User überarbeitet nach neuem ER Diagramm\">\r\n      <created>1700597410171</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1700597410171</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"UserDTO1 created\">\r\n      <created>1702321793500</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1702321793500</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"12\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Boilerplate fixed.\" />\r\n    <MESSAGE value=\"Entities added\" />\r\n    <MESSAGE value=\"Email detail added\" />\r\n    <MESSAGE value=\"doppelte appache gelöscht, grundstruktur erstellt\" />\r\n    <MESSAGE value=\"läuft halb\" />\r\n    <MESSAGE value=\"delete course hinzugefügt bei admin controller\" />\r\n    <MESSAGE value=\"delete course by id fixed\" />\r\n    <MESSAGE value=\"Ingredient und Tag entities written. Beziehungen fehlen\" />\r\n    <MESSAGE value=\"Courses und User überarbeitet nach neuem ER Diagramm\" />\r\n    <MESSAGE value=\"UserDTO1 created\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"UserDTO1 created\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 9b42c4f251974518028a94ce87586ba65be4d0da)
++++ b/.idea/workspace.xml	(date 1702917858885)
+@@ -4,15 +4,7 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/htmlToPdf/html/Rechnung.html" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/htmlToPdf/html/htmltopdf.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/cookingSchoolBackend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolBackend/pom.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/controller/DownloadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/controller/DownloadController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/derby.log" beforeDir="false" afterPath="$PROJECT_DIR$/derby.log" afterDir="false" />
+-    </list>
++    <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -50,37 +42,37 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "DefaultHtmlFileTemplate": "HTML File",
+-    "RequestMappingsPanelOrder0": "0",
+-    "RequestMappingsPanelOrder1": "1",
+-    "RequestMappingsPanelWidth0": "75",
+-    "RequestMappingsPanelWidth1": "75",
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "WebServerToolWindowFactoryState": "false",
+-    "git-widget-placeholder": "pdf__mit__html",
+-    "last_opened_file_path": "/Users/stellab/Documents/webdev/codersbay/cookingschool",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "project.structure.last.edited": "Modules",
+-    "project.structure.proportion": "0.0",
+-    "project.structure.side.proportion": "0.0",
+-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+-    "spring.configuration.checksum": "ab34ddadcffe0d2dfdc145de21d27cdb",
+-    "vue.rearranger.settings.migration": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
++    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
++    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
++    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
++    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;pdf__mit__html&quot;,
++    &quot;last_opened_file_path&quot;: &quot;/Users/stellab/Documents/webdev/codersbay/cookingschool&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
++    &quot;spring.configuration.checksum&quot;: &quot;ab34ddadcffe0d2dfdc145de21d27cdb&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   },
+-  "keyToStringList": {
+-    "DatabaseDriversLRU": [
+-      "derby"
++  &quot;keyToStringList&quot;: {
++    &quot;DatabaseDriversLRU&quot;: [
++      &quot;derby&quot;
+     ]
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="CreateClassDialog.RecentsKey">
+       <recent name="Cooking.School.Project.cookingSchool" />
+@@ -89,19 +81,6 @@
+   <component name="RunManager" selected="Spring Boot.Main">
+     <configuration name="Rechnung.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/CookingSchool/cookingSchoolBackend/src/main/java/Cooking/School/Project/cookingSchool/htmlToPdf/html/Rechnung.html" useBuiltInWebServerPort="true">
+       <method v="2" />
+-    </configuration>
+-    <configuration default="true" type="JetRunConfigurationType">
+-      <module name="cookingschool" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+-      <module name="cookingschool" />
+-      <option name="filePath" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+     </configuration>
+     <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-20" />
+@@ -220,7 +199,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1702321793500</updated>
+     </task>
+-    <option name="localTasksCounter" value="12" />
++    <task id="LOCAL-00012" summary="html to pdf implemented not yet working">
++      <created>1702326015963</created>
++      <option name="number" value="00012" />
++      <option name="presentableId" value="LOCAL-00012" />
++      <option name="project" value="LOCAL" />
++      <updated>1702326015963</updated>
++    </task>
++    <option name="localTasksCounter" value="13" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -237,6 +223,7 @@
+     <MESSAGE value="Ingredient und Tag entities written. Beziehungen fehlen" />
+     <MESSAGE value="Courses und User überarbeitet nach neuem ER Diagramm" />
+     <MESSAGE value="UserDTO1 created" />
+-    <option name="LAST_COMMIT_MESSAGE" value="UserDTO1 created" />
++    <MESSAGE value="html to pdf implemented not yet working" />
++    <option name="LAST_COMMIT_MESSAGE" value="html to pdf implemented not yet working" />
+   </component>
+ </project>
+\ No newline at end of file
