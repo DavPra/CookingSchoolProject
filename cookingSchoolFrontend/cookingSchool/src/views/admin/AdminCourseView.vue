@@ -1,5 +1,5 @@
 <script setup>
-import { useCourseStore } from "@/stores/courseStore.js";
+import { useCourseStore } from "@/stores/CourseStore.js";
 import { createApiUrl } from "@/helper/ApiHelper.js";
 import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
@@ -27,7 +27,7 @@ async function createCourse() {
     console.log('createCourse function called');
     try {
         await courseStore.createCourse(data.value);
-        await router.push(createApiUrl('admin/courses'));
+        await router.push('/admin');
     } catch (err) {
         if (err.isAxiosError && err.status === 401) {
             console.log(err);
@@ -45,30 +45,65 @@ showCourses();
 
 <template>
   <!-- Übersicht aller Kurse zum Bearbeiten für den Admin -->
-    <h1>create Course 1</h1>
+    <h1>create Course </h1>
     <div>
         <form @submit.prevent = "createCourse">
             <label>title
-                <input type="text" v-model ="data.courseTitle">
+                <input type="text" class="input" v-model ="data.courseTitle">
             </label>
             <label>description
-                <input type="text" v-model="data.description">
+                <input type="text" class="input" v-model="data.description">
             </label>
             <label>teacher
-                <input type="text" v-model="data.teacher">
+                <input type="text" class="input" v-model="data.teacher">
             </label>
             <label>startDate
-                <input type="text" v-model="data.startDate">
+                <input type="text" class="input" v-model="data.startDate">
             </label>
             <label>maxAttendants
-                <input type="number" v-model="data.maxAttendants">
+                <input type="number" class="input" v-model="data.maxAttendants">
             </label>
             <label>price
-                <input type="number" v-model="data.price">
+                <input type="number" class="input" v-model="data.price">
             </label>
             <button type="submit">save</button>
         </form>
     </div>
+<div>
+  <v-sheet width="300" class="mx-auto">
+    <h2>wo ist das vuetify input</h2>
+    <v-form @submit.prevent = "createCourse">
+      <v-text-field
+          v-model="data.courseTitle"
+          label="title"
+      ></v-text-field>
+      <v-text-field
+          v-model="data.description"
+          label="description"
+      ></v-text-field>
+      <v-text-field
+          v-model="data.teacher"
+          label="teacher"
+      ></v-text-field>
+      <v-text-field
+          v-model="data.startDate"
+          label="start Date"
+      ></v-text-field>
+      <v-text-field
+          v-model.number="data.maxAttendants"
+          label="max Attendants"
+      ></v-text-field>
+      <v-text-field
+          v-model.number="data.price"
+          label="price"
+      ></v-text-field>
+
+      <v-btn type="submit" block class="mt-2">Save</v-btn>
+    </v-form>
+  </v-sheet>
+</div>
+
+
 
 
 
@@ -89,3 +124,8 @@ showCourses();
     </div>
 
 </template>
+<style scoped>
+.input {
+border: 1px solid black;
+}
+</style>

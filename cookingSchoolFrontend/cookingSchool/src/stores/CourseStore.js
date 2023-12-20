@@ -9,7 +9,7 @@ export const useCourseStore = defineStore('course', {
     actions: {
         async showCourses() {
             try {
-                const courseResponse = await axios.get('http://localhost:8082/courses');
+                const courseResponse = await axios.get('http://localhost:8082/admin/courses');
                 console.log(courseResponse.data);
                 this.courses = courseResponse.data;
                 console.log('course geladen', courseResponse.data);
