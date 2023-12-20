@@ -22,8 +22,7 @@ import HeaderIcon from '@/components/HeaderIcon.vue'
         </nav>
       </div>
       <div class="item">
-        <button class="button">
-          Login
+        <button class="button"> 
         </button>
       </div>
     </div>

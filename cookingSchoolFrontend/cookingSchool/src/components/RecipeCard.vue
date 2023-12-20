@@ -15,8 +15,7 @@ const recipe = ref({
 
 async function getRecipe() {
     try {
-        recipe = await recipeStore.getRecipe()
-        
+        await recipeStore.getRecipe(recipe.value)
     } catch (err) {
         console.log(err)
     }
@@ -25,8 +24,6 @@ async function getRecipe() {
 </script>
 
 <template>
-
-    <button getRecipe > getRecipe </button>
 
     recipe title: {{ recipe.title }}                             <br>
     recipe description: {{ recipe.description }}             <br>
