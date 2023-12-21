@@ -1,6 +1,7 @@
 package Cooking.School.Project.cookingSchool.Services;
 
 import Cooking.School.Project.cookingSchool.entities.Course;
+import Cooking.School.Project.cookingSchool.entities.Recipe;
 import Cooking.School.Project.cookingSchool.entities.User;
 import Cooking.School.Project.cookingSchool.exceptions.*;
 import Cooking.School.Project.cookingSchool.repository.CourseRepository;
@@ -10,8 +11,10 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Supplier;
 
 @Service
@@ -97,6 +100,23 @@ public class UserService {
             return userRepository.save(user);
         }
     }
+
+
+    @Transactional
+    public Set<Recipe> getRecipesForUser(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("User not found with ID: " + userId));
+
+        Set<Course> userCourses = user.getCourses();
+        Set<Recipe> recipes = new HashSet<>();
+
+        for (Course course : userCourses) {
+            recipes.addAll(course.getRecipes());
+        }
+
+        return recipes;
+    }
+
 }
 
 

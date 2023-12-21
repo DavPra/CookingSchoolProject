@@ -1,6 +1,7 @@
 package Cooking.School.Project.cookingSchool.controller;
 
 import Cooking.School.Project.cookingSchool.Services.UserService;
+import Cooking.School.Project.cookingSchool.entities.Recipe;
 import Cooking.School.Project.cookingSchool.entities.User;
 import Cooking.School.Project.cookingSchool.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Set;
 
 @RestController
 public class UserController {
@@ -54,5 +57,11 @@ public class UserController {
     public ResponseEntity<?> registration(@RequestBody User user){
             userService.registration(user);
             return ResponseEntity.ok("successfully registered");
+    }
+
+    @GetMapping("/users/{userId}/recipes")
+    public ResponseEntity<Set<Recipe>> getRecipesForUser(@PathVariable Long userId) {
+        Set<Recipe> recipes = userService.getRecipesForUser(userId);
+        return ResponseEntity.ok(recipes);
     }
 }

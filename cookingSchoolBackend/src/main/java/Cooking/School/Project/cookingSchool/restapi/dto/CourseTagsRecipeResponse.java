@@ -3,6 +3,7 @@ package Cooking.School.Project.cookingSchool.restapi.dto;
 import Cooking.School.Project.cookingSchool.entities.Course;
 import Cooking.School.Project.cookingSchool.entities.CourseTag;
 import Cooking.School.Project.cookingSchool.entities.Recipe;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,7 +40,7 @@ public class CourseTagsRecipeResponse {
 
     private Set<Recipe> recipes;
 
-    public LocalDateTime getStartDateAsLocalDateTime(){
+   public LocalDateTime getStartDateAsLocalDateTime(){
         if(this.startDate == null){
             return null;
         }
@@ -53,6 +54,7 @@ public class CourseTagsRecipeResponse {
         this.description = course.getDescription();
         this.teacher = course.getTeacher();
         this.startDate = course.getStartDate().format(START_DATE_FORMAT);
+       // this.startDate = course.getStartDate();
         this.maxAttendants = course.getMaxAttendants();
         this.price = course.getPrice();
     }
