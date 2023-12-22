@@ -45,33 +45,10 @@ showCourses();
 
 <template>
   <!-- Übersicht aller Kurse zum Bearbeiten für den Admin -->
-    <h1>create Course </h1>
-    <div>
-        <form @submit.prevent = "createCourse">
-            <label>title
-                <input type="text" class="input" v-model ="data.courseTitle">
-            </label>
-            <label>description
-                <input type="text" class="input" v-model="data.description">
-            </label>
-            <label>teacher
-                <input type="text" class="input" v-model="data.teacher">
-            </label>
-            <label>startDate
-                <input type="text" class="input" v-model="data.startDate">
-            </label>
-            <label>maxAttendants
-                <input type="number" class="input" v-model="data.maxAttendants">
-            </label>
-            <label>price
-                <input type="number" class="input" v-model="data.price">
-            </label>
-            <button type="submit">save</button>
-        </form>
-    </div>
+
 <div>
   <v-sheet width="300" class="mx-auto">
-    <h2>wo ist das vuetify input</h2>
+    <h2>Create a new Course</h2>
     <v-form @submit.prevent = "createCourse">
       <v-text-field
           v-model="data.courseTitle"
