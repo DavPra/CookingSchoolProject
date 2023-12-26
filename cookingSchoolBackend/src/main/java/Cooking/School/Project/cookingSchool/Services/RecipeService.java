@@ -43,22 +43,22 @@ public class RecipeService {
     public RecipeCourse addRecipeToCourse(RecipeCourse recipeCourse) {
         Set<Course> courses = loadCourses(recipeCourse.getCourseIds());
         Set<Ingredient> ingredients = loadIngredients(recipeCourse.getIngredients());
+
         Recipe recipe = new Recipe();
         recipe.setTitle(recipeCourse.getTitle());
-        recipe.setDescription(recipe.getDescription());
-        recipe.setDifficulty(recipe.getDifficulty());
-        recipe.setPreparation(recipe.getPreparation());
+        recipe.setDescription(recipeCourse.getDescription());
+        recipe.setDifficulty(recipeCourse.getDifficulty());
+        recipe.setPreparation(recipeCourse.getPreparation());
+
+        recipe = recipeRepository.save(recipe);
 
         recipe.setCourses(courses);
         recipe.setIngredients(ingredients);
 
-        recipe = recipeRepository.save(recipe);
         recipeCourse.setRecipeId(recipe.getRecipeId());
-
 
         return recipeCourse;
     }
-
     private Set<Course> loadCourses(Set<Long> courseIds) {
         Set<Course> courses = new HashSet<>();
         for (Long courseId : courseIds) {
