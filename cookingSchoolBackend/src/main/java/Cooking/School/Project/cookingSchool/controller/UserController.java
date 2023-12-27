@@ -1,8 +1,10 @@
 package Cooking.School.Project.cookingSchool.controller;
 
 import Cooking.School.Project.cookingSchool.Services.CourseService;
+import Cooking.School.Project.cookingSchool.Services.RecipeService;
 import Cooking.School.Project.cookingSchool.Services.UserService;
 import Cooking.School.Project.cookingSchool.entities.Course;
+import Cooking.School.Project.cookingSchool.entities.Recipe;
 import Cooking.School.Project.cookingSchool.entities.User;
 import Cooking.School.Project.cookingSchool.exceptions.UserNotFoundException;
 import Cooking.School.Project.cookingSchool.restapi.dto.CourseRequest;
@@ -13,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Set;
+
 @RestController
 public class UserController {
 
@@ -20,6 +24,8 @@ public class UserController {
     private UserService userService;
 
     private CourseService courseService;
+
+    private RecipeService recipeService;
 
 
     @GetMapping("/users/{id}")
@@ -67,5 +73,7 @@ public class UserController {
         Course course = courseService.getUserCourseById(courseId);
         return ResponseEntity.ok(course);
     }*/
+
+
 }
 

@@ -3,14 +3,14 @@ package Cooking.School.Project.cookingSchool.Services;
 import Cooking.School.Project.cookingSchool.entities.Course;
 import Cooking.School.Project.cookingSchool.entities.Ingredient;
 import Cooking.School.Project.cookingSchool.entities.Recipe;
-import Cooking.School.Project.cookingSchool.exceptions.CourseNotFoundException;
-import Cooking.School.Project.cookingSchool.exceptions.IngredientNotFoundException;
-import Cooking.School.Project.cookingSchool.exceptions.PrimaryIdNullOrEmptyException;
-import Cooking.School.Project.cookingSchool.exceptions.RecipeNotFoundException;
+import Cooking.School.Project.cookingSchool.entities.User;
+import Cooking.School.Project.cookingSchool.exceptions.*;
 import Cooking.School.Project.cookingSchool.repository.CourseRepository;
 import Cooking.School.Project.cookingSchool.repository.IngredientRepository;
 import Cooking.School.Project.cookingSchool.repository.RecipeRepository;
+import Cooking.School.Project.cookingSchool.repository.UserRepository;
 import Cooking.School.Project.cookingSchool.restapi.dto.RecipeCourse;
+import Cooking.School.Project.cookingSchool.restapi.dto.RecipeDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +31,9 @@ public class RecipeService {
 
     @Autowired
     CourseRepository courseRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
 
     public RecipeService() {
@@ -161,6 +164,25 @@ public class RecipeService {
         recipe.getIngredients().forEach(ingredient -> ingredientRepository.deleteById(ingredient.getIngredientId()));
 
         recipeRepository.deleteById(recipeId);
+    }
+
+    @Transactional
+
+    public Set<Recipe> getUserRecipes(Long userId) throws UserNotFoundException {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("User with Id  " + userId + " not found"));
+
+        Set<Course> userCourses = user.getCourses();
+        Set<Recipe> userRecipes = new HashSet<>();
+
+        for( Course course : userCourses){
+            Set<Recipe> recipesFromCourse = course. getRecipes();
+            if (recipesFromCourse != null ){
+                userRecipes.addAll(recipesFromCourse);
+            }
+        }
+
+        return userRecipes;
     }
 }
 
