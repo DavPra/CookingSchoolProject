@@ -1,5 +1,6 @@
 package Cooking.School.Project.cookingSchool.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -52,6 +53,7 @@ public class User implements UserDetails {
     @Setter
     private String email;
 
+    @JsonIgnore
    // @Setter
     private String password;
 
@@ -77,6 +79,7 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "courseId"))
     private Set<Course> courses = new HashSet<>();
 
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
@@ -87,21 +90,25 @@ public class User implements UserDetails {
         return this.username;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isEnabled() {
         return true;
