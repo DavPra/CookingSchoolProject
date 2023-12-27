@@ -14,6 +14,7 @@ import Cooking.School.Project.cookingSchool.restapi.dto.CourseTagsRecipeResponse
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -38,9 +39,16 @@ public class CourseService {
         return course;
     }
 
-    public Course getCourseById(Long id) {
-        return courseRepository.findById(id).get();
+    public Course getCourseById(Long courseId) {
+        return courseRepository.findById(courseId)
+                .orElseThrow(() -> new CourseNotFoundException("Course not found with ID: " + courseId));
     }
+
+    public Course getCourseDetails(Long courseId) {
+        return courseRepository.findById(courseId)
+                .orElseThrow(() -> new CourseNotFoundException("Course not found with ID: " + courseId));
+    }
+
 
 
     public void deleteCourseById(Long id) {

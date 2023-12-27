@@ -1,8 +1,11 @@
 package Cooking.School.Project.cookingSchool.controller;
 
+import Cooking.School.Project.cookingSchool.Services.CourseService;
 import Cooking.School.Project.cookingSchool.Services.UserService;
+import Cooking.School.Project.cookingSchool.entities.Course;
 import Cooking.School.Project.cookingSchool.entities.User;
 import Cooking.School.Project.cookingSchool.exceptions.UserNotFoundException;
+import Cooking.School.Project.cookingSchool.restapi.dto.CourseRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
@@ -15,6 +18,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    private CourseService courseService;
 
 
     @GetMapping("/users/{id}")
@@ -55,4 +60,12 @@ public class UserController {
             userService.registration(user);
             return ResponseEntity.ok("successfully registered");
     }
+
+    /*
+    @GetMapping("/courses/{courseId}")
+    public ResponseEntity<Course> getUserCourseById(@PathVariable Long courseId) {
+        Course course = courseService.getUserCourseById(courseId);
+        return ResponseEntity.ok(course);
+    }*/
 }
+
