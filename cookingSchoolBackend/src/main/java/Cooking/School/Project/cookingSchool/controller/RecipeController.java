@@ -71,4 +71,11 @@ public class RecipeController {
         return ResponseEntity.ok(recipes);
     }
 
+    //TODO Soll der user auch im Pfad sein?
+    @GetMapping("/recipes/{recipeId}")
+    public ResponseEntity<?> getUserRecipesDetails(@PathVariable  Long recipeId){
+        Recipe recipe = recipeService.getRecipeById(recipeId);
+        return ResponseEntity.ok(recipe);
+    }
+
 }
