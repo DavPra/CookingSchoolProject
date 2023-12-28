@@ -67,7 +67,7 @@ public class UserController {
             return ResponseEntity.ok("successfully registered");
     }
 
-    /*
+    /* doppelt
     @GetMapping("/courses/{courseId}")
     public ResponseEntity<Course> getUserCourseById(@PathVariable Long courseId) {
         Course course = courseService.getUserCourseById(courseId);
