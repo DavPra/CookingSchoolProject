@@ -1,8 +1,13 @@
 package Cooking.School.Project.cookingSchool.controller;
 
+import Cooking.School.Project.cookingSchool.Services.CourseService;
+import Cooking.School.Project.cookingSchool.Services.RecipeService;
 import Cooking.School.Project.cookingSchool.Services.UserService;
+import Cooking.School.Project.cookingSchool.entities.Course;
+import Cooking.School.Project.cookingSchool.entities.Recipe;
 import Cooking.School.Project.cookingSchool.entities.User;
 import Cooking.School.Project.cookingSchool.exceptions.UserNotFoundException;
+import Cooking.School.Project.cookingSchool.restapi.dto.CourseRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
@@ -10,11 +15,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Set;
+
 @RestController
 public class UserController {
 
     @Autowired
     private UserService userService;
+
+    private CourseService courseService;
+
+    private RecipeService recipeService;
 
 
     @GetMapping("/users/{id}")
@@ -55,4 +66,14 @@ public class UserController {
             userService.registration(user);
             return ResponseEntity.ok("successfully registered");
     }
+
+    /*
+    @GetMapping("/courses/{courseId}")
+    public ResponseEntity<Course> getUserCourseById(@PathVariable Long courseId) {
+        Course course = courseService.getUserCourseById(courseId);
+        return ResponseEntity.ok(course);
+    }*/
+
+
 }
+

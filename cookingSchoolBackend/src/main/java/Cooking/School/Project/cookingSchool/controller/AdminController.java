@@ -48,7 +48,9 @@ public class AdminController {
             return ResponseEntity.ok("course successfully created  "+courseId);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("nonono");
-        }
+         }catch (TagNotFoundException tnfe){
+        return new ResponseEntity<>(tnfe.getMessage(), HttpStatus.NOT_FOUND);
+         }
     }
 
     /**
