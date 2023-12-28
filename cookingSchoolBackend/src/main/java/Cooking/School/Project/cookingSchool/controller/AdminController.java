@@ -6,6 +6,7 @@ import Cooking.School.Project.cookingSchool.exceptions.*;
 
 import Cooking.School.Project.cookingSchool.restapi.dto.CourseRequest;
 import Cooking.School.Project.cookingSchool.restapi.dto.CourseTagsRecipeResponse;
+import Cooking.School.Project.cookingSchool.restapi.dto.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Set;
-
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -133,10 +134,17 @@ public class AdminController {
 
     //--------------------------- Admin users administration
 
+    /**
+     * wandelt user daten in ein dto und gibt als Liste aus
+     * @return
+     */
     @GetMapping("/admin/users")
-    public ResponseEntity<List<User>> getAllUsers(){
+    public ResponseEntity<List<UserResponse>> getAllUsers(){
         List<User> users = userService.getAllUsers();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+        List<UserResponse> userResponses = users.stream()
+                .map(UserResponse::fromUser)
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(userResponses, HttpStatus.OK);
     }
 
     @Transactional

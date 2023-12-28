@@ -53,7 +53,7 @@ public class User implements UserDetails {
     @Setter
     private String email;
 
-    @JsonIgnore
+   // @JsonIgnore
    // @Setter
     private String password;
 
