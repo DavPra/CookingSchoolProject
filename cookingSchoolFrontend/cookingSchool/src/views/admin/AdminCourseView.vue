@@ -25,9 +25,24 @@ const data = { //ref entfernt
 
 async function createCourse() {
     console.log('createCourse function called');
+  const formattedDate = new Date(data.startDate).toISOString('en-US', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    timeZone: 'UTC'
+  });
+
+  // Erstellen der Daten für die Anfrage ans Backend
+  const requestData = {
+    ...data,
+    startDate: formattedDate
+  };
     try {
-        await courseStore.createCourse(data); //value entfernt
-        await router.push('/admin');
+        await courseStore.createCourse(requestData); //value entfernt
+        //await router.push('/admin');
     } catch (err) {
         if (err.isAxiosError && err.status === 401) {
             console.log(err);
