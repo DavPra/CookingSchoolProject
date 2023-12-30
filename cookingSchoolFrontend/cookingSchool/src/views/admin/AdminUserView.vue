@@ -21,7 +21,7 @@ const data = ref({
   address: '',
   mobile: '',
   email: '',
-  passwort: '',
+  password: '',
   username: '',
   admin: ''
 });
@@ -76,7 +76,7 @@ und zum Upgraden eines Users zum Admin -->
             label="email"
         ></v-text-field>
         <v-text-field
-            v-model="data.passwort"
+            v-model="data.password"
             label="passwort"
         ></v-text-field>
         <v-text-field
@@ -110,4 +110,51 @@ und zum Upgraden eines Users zum Admin -->
     </ul>
   </div>
 
+  <div>
+    <v-table>
+      <thead>
+      <tr>
+        <th class="text-left">
+          user Id
+        </th>
+        <th class="text-left">
+          firstname
+        </th>
+        <th class="text-left">
+          lastname
+        </th>
+        <th class="text-left">
+          address
+        </th>
+        <th class="text-left">
+          mobile
+        </th>
+        <th class="text-left">
+          email
+        </th>
+        <th class="text-left">
+          username
+        </th>
+        <th class="text-left">
+          is Admin
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr
+          v-for="user in userStore.users"
+          :key="user.userId"
+      >
+        <td>{{ user.userId }}</td>
+        <td>{{ user.firstname }}</td>
+        <td>{{ user.lastname }}</td>
+        <td>{{ user.address }}</td>
+        <td>{{ user.mobile }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.isAdmin }}</td>
+      </tr>
+      </tbody>
+    </v-table>
+  </div>
 </template>
