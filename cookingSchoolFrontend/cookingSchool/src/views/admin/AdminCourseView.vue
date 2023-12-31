@@ -34,6 +34,7 @@ async function createCourse() {
     try {
         await courseStore.createCourse(requestData); //value entfernt
         //await router.push('/admin');
+      await showCourses();
     } catch (err) {
         if (err.isAxiosError && err.status === 401) {
             console.log(err);
@@ -47,6 +48,14 @@ async function showCourses() {
 }
 
 showCourses();
+
+//TODO funktioniert nur in chrome
+async function deleteCourse(courseId){
+
+  console.log('Deleted')
+  await courseStore.deleteCourse(courseId)
+}
+
 </script>
 
 <template>
