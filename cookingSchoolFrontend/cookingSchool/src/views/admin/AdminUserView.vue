@@ -15,7 +15,7 @@ onMounted(() => {
 
 
 const err = false;
-const data = ref({
+const userData = ref({
   firstname: '',
   lastname : '',
   address: '',
@@ -29,18 +29,23 @@ const data = ref({
 async function createUser() {
   console.log('createUser function called');
   try {
-    await userStore.createUser(data.value);
+    await userStore.createUser(userData.value);
+    console.log('User created:', userData.value);
     await router.push('/admin');
   } catch (err) {
     if (err.isAxiosError && err.status === 401) {
-      console.log(err);
+      console.log('Error creating user:', err);
       return (err = true);
     }
   }
 }
-
 async function showUsers() {
-  await userStore.showUsers();
+  try {
+    await userStore.showUsers();
+    console.log('Users loaded in showUsers:', userStore.users);
+  } catch (error) {
+    console.error('Error loading users in showUsers:', error);
+  }
 }
 
 showUsers();
@@ -56,35 +61,35 @@ und zum Upgraden eines Users zum Admin -->
       <h2>Create a new User</h2>
       <v-form @submit.prevent = "createUser">
         <v-text-field
-            v-model="data.firstname"
+            v-model="userData.firstname"
             label="firstname"
         ></v-text-field>
         <v-text-field
-            v-model="data.lastname"
+            v-model="userData.lastname"
             label="lastname"
         ></v-text-field>
         <v-text-field
-            v-model="data.address"
+            v-model="userData.address"
             label="address"
         ></v-text-field>
         <v-text-field
-            v-model.number="data.mobile"
+            v-model.number="userData.mobile"
             label="mobile"
         ></v-text-field>
         <v-text-field
-            v-model="data.email"
+            v-model="userData.email"
             label="email"
         ></v-text-field>
         <v-text-field
-            v-model="data.password"
+            v-model="userData.password"
             label="passwort"
         ></v-text-field>
         <v-text-field
-            v-model="data.username"
+            v-model="userData.username"
             label="username"
         ></v-text-field>
         <v-checkbox
-            v-model="data.admin"
+            v-model="userData.admin"
             label="is admin"
         ></v-checkbox>
 

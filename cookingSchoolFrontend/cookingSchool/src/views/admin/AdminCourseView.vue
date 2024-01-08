@@ -16,34 +16,7 @@ onMounted(() => {
 
 
 const err = false;
-/*const data = { //ref entfernt
-  courseTitle: '',
-  description: '',
-  teacher: '',
-  startDate: '',
-  maxAttendants: '',
-  price: '',
-};
 
-async function createCourse() {
-  console.log('createCourse function called');
-  const formattedDate = new Date(data.startDate).toISOString();
-
-  const requestData = {
-    ...data,
-    startDate: formattedDate
-  };
-  try {
-    await courseStore.createCourse(requestData); //value entfernt
-    //await router.push('/admin');
-    await showCourses();
-  } catch (err) {
-    if (err.isAxiosError && err.status === 401) {
-      console.log(err);
-      return (err = true);
-    }
-  }
-}*/
 
 async function showCourses() {
   await courseStore.showCourses();
