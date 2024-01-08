@@ -2,20 +2,13 @@
 
 
 import {useRouter} from "vue-router";
-import {onMounted, ref} from "vue";
+import {onMounted, reactive, ref} from "vue";
 import {useUserStore} from "@/stores/UserStore";
 
 const userStore = useUserStore()
 const router = useRouter();
-
-onMounted(() => {
-  showUsers();
-  console.log('mounted');
-});
-
-
 const err = false;
-const userData = ref({
+const userData = ref({ //ref in reactive geändert geht gar nicht
   firstname: '',
   lastname : '',
   address: '',
@@ -25,13 +18,23 @@ const userData = ref({
   username: '',
   admin: ''
 });
+onMounted(async () => {
+  try {
+    await userStore.showUsers();
+    console.log('Component mounted');
+  } catch (error) {
+    console.error('Error loading users in component mount:', error);
+  }
+});
+
+
 
 async function createUser() {
   console.log('createUser function called');
   try {
     await userStore.createUser(userData.value);
     console.log('User created:', userData.value);
-    await router.push('/admin');
+   // await router.push('/admin/users');
   } catch (err) {
     if (err.isAxiosError && err.status === 401) {
       console.log('Error creating user:', err);
@@ -43,6 +46,7 @@ async function showUsers() {
   try {
     await userStore.showUsers();
     console.log('Users loaded in showUsers:', userStore.users);
+
   } catch (error) {
     console.error('Error loading users in showUsers:', error);
   }

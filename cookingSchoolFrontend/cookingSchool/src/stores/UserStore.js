@@ -12,7 +12,9 @@ export const useUserStore = defineStore('user', {
                 const userResponse = await axios.get('http://localhost:8082/admin/users');
                 console.log(userResponse.data);
                 this.users = userResponse.data;
-                console.log('users geladen', userResponse.data);
+
+               console.log('users geladen', userResponse.data);
+                return userResponse.data;
             } catch (error) {
                 console.error('Error loading users:', error);
             }
