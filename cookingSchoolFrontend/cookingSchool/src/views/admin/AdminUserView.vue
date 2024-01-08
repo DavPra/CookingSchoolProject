@@ -34,7 +34,7 @@ async function createUser() {
   try {
     await userStore.createUser(userData.value);
     console.log('User created:', userData.value);
-   // await router.push('/admin/users');
+    await userStore.showUsers()
   } catch (err) {
     if (err.isAxiosError && err.status === 401) {
       console.log('Error creating user:', err);
