@@ -13,8 +13,10 @@ export const useCourseStore = defineStore('course', {
                 console.log(courseResponse.data);
                 this.courses = courseResponse.data;
                 console.log('course geladen', courseResponse.data);
+
             } catch (error) {
                 console.error('Error loading courses:', error);
+                console.log('Response Body:', error.response.data);
             }
         },
         async createCourse(data) {
@@ -37,6 +39,11 @@ export const useCourseStore = defineStore('course', {
             } catch (error) {
                 console.error('Error creating course:', error);
             }
+        },
+        async deleteCourse(courseId){
+            const deleteResponse = await axios.delete('http://localhost:8082/admin/courses/'+courseId)
+            console.log('Course deleted', courseId)
+            this.showCourses()
         }
     }
 });
