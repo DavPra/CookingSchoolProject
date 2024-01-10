@@ -6,7 +6,7 @@ import { useRoute, useRouter } from "vue-router";
 import CourseForm from "@/components/CourseForm.vue";
 
 const courseStore = useCourseStore()
-const router = useRouter();
+const router = useRouter(); // router
 const isVisible = ref(false)
 
 onMounted(() => {
