@@ -9,6 +9,7 @@ const courseStore = useCourseStore()
 const router = useRouter();
 const isVisible = ref(false)
 
+
 onMounted(() => {
   showCourses();
   console.log('mounted');

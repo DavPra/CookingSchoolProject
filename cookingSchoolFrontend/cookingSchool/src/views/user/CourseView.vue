@@ -4,7 +4,7 @@ import { createApiUrl } from "@/helper/ApiHelper.js";
 import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import CourseForm from "@/components/CourseForm.vue";
-import CourseCard from 'cookingSchoolFrontend/cookingSchool/src/components/CourseCard'
+import CourseCard from "@/components/CourseCard.vue";
 
 const courseStore = useCourseStore()
 const router = useRouter(); // router
@@ -29,26 +29,9 @@ showCourses();
 
 <template>
   <!-- Übersicht aller Kurse für User und Besucher -->
-
-  <div>
-    <CourseCard/>
-  </div>
-
-  <div>
-    <h1>Course List</h1>
-    <ul>
-      <li v-for="course in courseStore.courses" :key="course.courseId">
-        {{ course.courseId }}
-        {{ course.courseTitle }}
-        {{ course.description }}
-        {{course.maxAttendants}}
-        {{course.price}}
-        {{course.startDate}}
-        {{course.teacher}}
-
-      </li>
-    </ul>
-  </div>
+<div>
+  <CourseCard v-for="course in courseStore.courses" :key="course.courseId"/>
+</div>
 
 
 
