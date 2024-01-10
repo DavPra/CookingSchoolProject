@@ -4,6 +4,7 @@ import { createApiUrl } from "@/helper/ApiHelper.js";
 import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import CourseForm from "@/components/CourseForm.vue";
+import CourseCard from 'cookingSchoolFrontend/cookingSchool/src/components/CourseCard'
 
 const courseStore = useCourseStore()
 const router = useRouter(); // router
@@ -29,6 +30,9 @@ showCourses();
 <template>
   <!-- Übersicht aller Kurse für User und Besucher -->
 
+  <div>
+    <CourseCard/>
+  </div>
 
   <div>
     <h1>Course List</h1>
