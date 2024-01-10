@@ -1,10 +1,27 @@
 <script setup>
 
 import { onMounted, ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
 import { useCourseStore } from "@/stores/CourseStore.js";
 
+const courseStore = useCourseStore()
+
+onMounted(() => {
+  showCourses();
+  console.log('mounted');
+});
+
 const show = ref(false)
+
+const err = false;
+
+
+async function showCourses() {
+  await courseStore.showCourses();
+}
+
+showCourses();
 
 </script>
 
@@ -21,7 +38,7 @@ const show = ref(false)
             src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
         ></v-img>
 
-        <v-card-title>Eierspeise und Omelett leicht gemacht</v-card-title>
+        <v-card-title></v-card-title>
         <v-card-text></v-card-text>
         <v-card-actions>
           <v-btn color="primary">Kursbeschreibung</v-btn>
@@ -37,7 +54,7 @@ const show = ref(false)
         <v-expand-transition>
           <div v-show="show">
             <v-divider></v-divider>
-            <v-card-text>Du wolltest schon immer die perfekte Eierspeise und das fluffigste Omelett zubereiten. In diesem Kurs lernst du alles darüber von unserem Profi Markus. Auch ein paar exotische Varianten wie das japanische Tamagoyaki werden euch vorgestellt und reichlich Tricks und Kniffe gezeigt, wie es immer gelingt.</v-card-text>
+            <v-card-text></v-card-text>
           <v-btn
           variant="text" 
           color="primary">
