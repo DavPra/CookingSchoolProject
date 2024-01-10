@@ -16,7 +16,7 @@ const userData = ref({ //ref in reactive geändert geht gar nicht
   email: '',
   password: '',
   username: '',
-  admin: ''
+  admin: true
 });
 onMounted(async () => {
   try {
