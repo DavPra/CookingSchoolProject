@@ -147,7 +147,7 @@ public class AdminController {
         return new ResponseEntity<>(userResponses, HttpStatus.OK);
     }
 
-    @Transactional
+
     @PostMapping("/admin/users")
     public ResponseEntity<?> addUser(@RequestBody User user){
         try{
