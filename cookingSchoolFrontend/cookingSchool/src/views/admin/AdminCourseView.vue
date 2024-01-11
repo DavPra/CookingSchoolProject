@@ -51,9 +51,9 @@ function showForm(){
 
    <div>
 
-    <div class="course-list">
-      <h1>Course List</h1>
-      <v-row>
+    <div id="course-list" >
+      <h1>Your upcoming Courses</h1>
+      <v-row class="d-flex">
         <v-col v-for="course in courseStore.courses" :key="course.courseId" cols="12" sm="6" md="4" lg="3">
           <v-card>
             <v-img

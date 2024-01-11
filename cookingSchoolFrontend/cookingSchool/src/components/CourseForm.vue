@@ -20,7 +20,7 @@ onMounted(() => {
   console.log('Initial startDate in CourseForm:', data.value.startDate);
 });
 
-//TODO Zeit stimmt nicht
+
 async function createCourse() {
   console.log('createCourse function called');
   console.log('Original startDate:', data.value.startDate);
