@@ -17,7 +17,6 @@ onMounted(() => {
   console.log('mounted');
 });
 
-
 async function showCourses() {
   await courseStore.showCourses();
 }
