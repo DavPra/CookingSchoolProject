@@ -9,29 +9,39 @@ const data = ref({
   courseTitle: '',
   description: '',
   teacher: '',
-  startDate: '',
+  startDate: new Date(),
   maxAttendants: '',
   price: '',
 })
+
+
 onMounted(() => {
   console.log('CourseForm mounted');
-  console.log('Initial startDate in CourseForm:', data.startDate);
+  console.log('Initial startDate in CourseForm:', data.value.startDate);
 });
 
-//TODO Zeit stimmt nicht
+
 async function createCourse() {
   console.log('createCourse function called');
-  console.log('Original startDate:', data.startDate);
+  console.log('Original startDate:', data.value.startDate);
 
-  if (data.startDate instanceof Date && !isNaN(data.startDate.getTime())) {
+  if (data.value.startDate instanceof Date && !isNaN(data.value.startDate.getTime())) {
+    const formattedDate = data.value.startDate.toISOString();
     const requestData = {
-      courseTitle: data.courseTitle,
-      description: data.description,
-      teacher: data.teacher,
-      startDate: data.startDate,
-      maxAttendants: data.maxAttendants,
-      price: data.price,
+      courseTitle: data.value.courseTitle,
+      description: data.value.description,
+      teacher: data.value.teacher,
+      startDate: formattedDate,
+      maxAttendants: data.value.maxAttendants,
+      price: data.value.price,
     };
+
+    const secondObj = {
+      ...data.value,
+      startDate: formattedDate
+    };
+
+    console.log(secondObj);
 
     try {
       await courseStore.createCourse(requestData);
@@ -47,9 +57,17 @@ async function createCourse() {
   }
 }
 
+// edit course or add and updateCourse?
+
+
+
+
+
+
 </script>
 
 <template>
+  <div>
 
     <v-sheet width="300" class="mx-auto">
       <h2>Add a new Course</h2>
@@ -69,8 +87,12 @@ async function createCourse() {
         <v-date-picker
             v-model="data.startDate"
             label="Start Date">
-
         </v-date-picker>
+      <!--  <v-text-field
+            v-model="data.startDate"
+            label="start date"
+        ></v-text-field> -->
+
       <v-text-field
           v-model.number="data.maxAttendants"
           label="max Attendants"
@@ -82,6 +104,7 @@ async function createCourse() {
         <v-btn type="submit" block class="mt-2">Save</v-btn>
       </v-form>
     </v-sheet>
+  </div>
 
 </template>
 
