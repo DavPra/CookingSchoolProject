@@ -6,19 +6,16 @@ import { useRoute, useRouter } from "vue-router";
 import CourseForm from "@/components/CourseForm.vue";
 import AdminCourseCard from "@/components/AdminCourseCard.vue";
 
+//TODO v-cklick-outside npm error
 const courseStore = useCourseStore()
 const router = useRouter();
 const isVisible = ref(false)
-
+const err = false;
 
 onMounted(() => {
   showCourses();
   console.log('mounted');
 });
-
-
-const err = false;
-
 
 async function showCourses() {
   await courseStore.showCourses();
@@ -26,29 +23,33 @@ async function showCourses() {
 
 showCourses();
 
-
-
 function showForm(){
   console.log('showForm called');
   isVisible.value = true
   console.log('isVisible', isVisible.value)
 }
 
+function closeForm() {
+  isVisible.value = false;
+}
 </script>
 
 <template>
+  <div class="ma-2">
   <!-- Übersicht aller Kurse zum Bearbeiten für den Admin -->
+  <div >
+    <h1 class ="text-h3">Welcome back, Stella !</h1>
+    <h3 class ="text-h6">what's your daily struggle?</h3>
+  </div>
   <div>
-    <v-btn @click ="showForm">Add new Course</v-btn>
+    <v-btn class="ma-2" @click ="showForm">Add new Course</v-btn>
     <p v-if="isVisible">CourseForm is visible</p>
     <CourseForm v-if="isVisible" style="display: block;"  />
-  </div>
+    </div>
 
-
-
-  <div id="course-list" >
-    <h1>Your upcoming Courses</h1>
-    <v-row class="d-flex">
+  <div id="course-list" class="ma-2" >
+    <h1 class="mx-auto">Your upcoming Courses</h1>
+    <v-row class="d-flex ma-2">
       <v-col v-for="course in courseStore.courses" :key="course.courseId" cols="12" sm="6" md="4" lg="3"> -->
         <AdminCourseCard
                          :key="course.courseId"
@@ -78,12 +79,23 @@ function showForm(){
       </li>
     </ul>
   </div>
-
+  </div>
 
 
 </template>
 <style scoped>
 
+/*
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}*/
 </style>
 
 
