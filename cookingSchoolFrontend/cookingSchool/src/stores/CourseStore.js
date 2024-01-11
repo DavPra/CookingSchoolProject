@@ -47,7 +47,9 @@ export const useCourseStore = defineStore('course', {
         },
 
         async updateCourse(courseId){
-            const updateCourseResponse = await axios.put()
+            const updateCourseResponse = await axios.put('http://localhost:8082/admin/courses/'+courseId)
+            console.log('Course updated')
+            this.showCourses()
         }
     }
 });
