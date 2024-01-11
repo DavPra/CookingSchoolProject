@@ -45,6 +45,7 @@ async function createCourse() {
 
     try {
       await courseStore.createCourse(requestData);
+      await courseStore.showCourses()
     } catch (err) {
       if (err.isAxiosError && err.response.status === 401) {
         console.error('Error creating course:', err);
