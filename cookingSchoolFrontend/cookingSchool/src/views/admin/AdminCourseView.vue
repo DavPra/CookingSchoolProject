@@ -6,18 +6,16 @@ import { useRoute, useRouter } from "vue-router";
 import CourseForm from "@/components/CourseForm.vue";
 import AdminCourseCard from "@/components/AdminCourseCard.vue";
 
+//TODO v-cklick-outside npm error
 const courseStore = useCourseStore()
 const router = useRouter();
 const isVisible = ref(false)
-
+const err = false;
 
 onMounted(() => {
   showCourses();
   console.log('mounted');
 });
-
-
-const err = false;
 
 
 async function showCourses() {
@@ -26,14 +24,15 @@ async function showCourses() {
 
 showCourses();
 
-
-
 function showForm(){
   console.log('showForm called');
   isVisible.value = true
   console.log('isVisible', isVisible.value)
 }
 
+function closeForm() {
+  isVisible.value = false;
+}
 </script>
 
 <template>
@@ -42,7 +41,15 @@ function showForm(){
     <v-btn @click ="showForm">Add new Course</v-btn>
     <p v-if="isVisible">CourseForm is visible</p>
     <CourseForm v-if="isVisible" style="display: block;"  />
-  </div>
+    </div>
+
+    <!-- <CourseForm v-if="isVisible" style="display: block;"  /> -->
+
+
+    <!--
+    <v-card v-if="isVisible" @click="closeForm"   class="modal-overlay">
+      <CourseForm style="display: block;" />
+    </v-card> -->
 
 
 
@@ -84,6 +91,17 @@ function showForm(){
 </template>
 <style scoped>
 
+/*
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}*/
 </style>
 
 

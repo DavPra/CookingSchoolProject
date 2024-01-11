@@ -4,7 +4,7 @@ import {useCourseStore} from "@/stores/CourseStore";
 
 const courseStore = useCourseStore()
 
-
+const isPickerVisible = ref(false)
 const data = ref({
   courseTitle: '',
   description: '',
@@ -58,19 +58,17 @@ async function createCourse() {
   }
 }
 
+
+
 // edit course or add and updateCourse?
-
-
-
-
 
 
 </script>
 
 <template>
-  <div>
+  <div >
 
-    <v-sheet width="300" class="mx-auto">
+    <v-sheet width="400"   class="mx-auto">
       <h2>Add a new Course</h2>
       <v-form @submit.prevent = "createCourse">
       <v-text-field
@@ -85,14 +83,12 @@ async function createCourse() {
           v-model="data.teacher"
           label="teacher"
       ></v-text-field>
-        <v-date-picker
-            v-model="data.startDate"
-            label="Start Date">
-        </v-date-picker>
-      <!--  <v-text-field
-            v-model="data.startDate"
-            label="start date"
-        ></v-text-field> -->
+
+
+   <v-text-field
+             v-model="data.startDate"
+             label="start date"
+         ></v-text-field>
 
       <v-text-field
           v-model.number="data.maxAttendants"
@@ -103,6 +99,7 @@ async function createCourse() {
           label="price"
       ></v-text-field>
         <v-btn type="submit" block class="mt-2">Save</v-btn>
+
       </v-form>
     </v-sheet>
   </div>
