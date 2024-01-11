@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,4 +64,18 @@ public class RecipeController {
             recipeService.deleteRecipeById(recipeId);
             return new ResponseEntity<>("Recipe erfolgreich gelöscht", HttpStatus.OK);
     }
+
+    @GetMapping("/users/recipes/{userId}")
+    public ResponseEntity<Set<Recipe>> getUserRecipes(@PathVariable Long userId){
+        Set<Recipe> recipes = recipeService.getUserRecipes(userId);
+        return ResponseEntity.ok(recipes);
+    }
+
+    //TODO Soll der user auch im Pfad sein?
+    @GetMapping("/recipes/{recipeId}")
+    public ResponseEntity<?> getUserRecipesDetails(@PathVariable  Long recipeId){
+        Recipe recipe = recipeService.getRecipeById(recipeId);
+        return ResponseEntity.ok(recipe);
+    }
+
 }
