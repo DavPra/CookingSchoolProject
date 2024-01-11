@@ -35,26 +35,21 @@ function closeForm() {
 </script>
 
 <template>
+  <div class="ma-2">
   <!-- Übersicht aller Kurse zum Bearbeiten für den Admin -->
+  <div >
+    <h1 class ="text-h3">Welcome back, Stella !</h1>
+    <h3 class ="text-h6">what's your daily struggle?</h3>
+  </div>
   <div>
-    <v-btn @click ="showForm">Add new Course</v-btn>
+    <v-btn class="ma-2" @click ="showForm">Add new Course</v-btn>
     <p v-if="isVisible">CourseForm is visible</p>
     <CourseForm v-if="isVisible" style="display: block;"  />
     </div>
 
-    <!-- <CourseForm v-if="isVisible" style="display: block;"  /> -->
-
-
-    <!--
-    <v-card v-if="isVisible" @click="closeForm"   class="modal-overlay">
-      <CourseForm style="display: block;" />
-    </v-card> -->
-
-
-
-  <div id="course-list" >
-    <h1>Your upcoming Courses</h1>
-    <v-row class="d-flex">
+  <div id="course-list" class="ma-2" >
+    <h1 class="mx-auto">Your upcoming Courses</h1>
+    <v-row class="d-flex ma-2">
       <v-col v-for="course in courseStore.courses" :key="course.courseId" cols="12" sm="6" md="4" lg="3"> -->
         <AdminCourseCard
                          :key="course.courseId"
@@ -84,7 +79,7 @@ function closeForm() {
       </li>
     </ul>
   </div>
-
+  </div>
 
 
 </template>

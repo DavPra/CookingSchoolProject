@@ -3,7 +3,7 @@ import {onMounted, ref} from 'vue';
 import {useCourseStore} from "@/stores/CourseStore";
 
 const courseStore = useCourseStore()
-
+//TODO zurück btn
 const isPickerVisible = ref(false)
 const data = ref({
   courseTitle: '',
@@ -83,16 +83,17 @@ async function createCourse() {
           v-model="data.teacher"
           label="teacher"
       ></v-text-field>
-
-
-
-
-   <v-text-field
+        <v-text-field
              v-model="data.startDate"
              label="start date"
          ></v-text-field>
+        <v-date-picker
+            v-model="data.startDate"
+            label="Start Date">
+        </v-date-picker>
 
-      <v-text-field
+
+        <v-text-field
           v-model.number="data.maxAttendants"
           label="max Attendants"
       ></v-text-field>
@@ -100,7 +101,8 @@ async function createCourse() {
           v-model.number="data.price"
           label="price"
       ></v-text-field>
-        <v-btn type="submit" block class="mt-2">Save</v-btn>
+        <v-btn type="submit"  class="ma-2" variant="tonal">Save</v-btn>
+        <v-btn type="submit"  @click = "" variant="outlined"  class="ma-2">Back</v-btn>
 
       </v-form>
     </v-sheet>
