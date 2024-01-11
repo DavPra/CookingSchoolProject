@@ -30,15 +30,16 @@ export const useUserStore = defineStore('user', {
                     email: data.email,
                     password: data.password,
                     username: data.username,
-                    isAdmin: data.admin //isAdmin zu admin
+                    isAdmin: data.isAdmin //isAdmin zu admin
                 };
 
                 console.log(userData);
 
                 const userResponse = await axios.post('http://localhost:8082/admin/users', userData);
                 console.log(userResponse.data);
+                //this.users.push(userResponse.data);
+                return userResponse.data;
 
-                this.users.push(userResponse.data);
             } catch (error) {
                 console.error('Error creating user:', error);
             }

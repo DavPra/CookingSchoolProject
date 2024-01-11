@@ -28,13 +28,14 @@ onMounted(async () => {
   }
 });
 
+//TODO User kommt doppelt
 async function createUser() {
   console.log('createUser function called');
   try {
-    await userStore.createUser(data.value);
+    await userStore.createUser(userData.value);
     await userStore.createUser(userData.value);
     console.log('User created:', userData.value);
-    await router.push('/admin');
+    await userStore.showUsers()
   } catch (err) {
     if (err.isAxiosError && err.status === 401) {
       console.log(err);
@@ -44,7 +45,16 @@ async function createUser() {
   }
 }
 
+async function showUsers() {
+  try {
+    await userStore.showUsers();
+    console.log('Users loaded in showUsers:', userStore.users);
 
+  } catch (error) {
+    console.error('Error loading users in showUsers:', error);
+  }
+}
+showUsers();
 
 /*
 
@@ -74,17 +84,7 @@ async function createUserOrEditUser() {
     }
   }
 }*/
-async function showUsers() {
-  try {
-    await userStore.showUsers();
-    console.log('Users loaded in showUsers:', userStore.users);
 
-  } catch (error) {
-    console.error('Error loading users in showUsers:', error);
-  }
-}
-
-showUsers();
 </script>
 
 
@@ -124,12 +124,11 @@ und zum Upgraden eines Users zum Admin -->
             v-model="userData.username"
             label="username"
         ></v-text-field>
-        <!--<v-checkbox
+        <v-checkbox
             v-model="userData.admin"
             label="is admin"
-        ></v-checkbox> -->
-        <input type="checkbox" id ="checkbox" v-model ="userData.isAdmin">
-        <label for="checkbox">{{userData.isAdmin}}</label>
+        ></v-checkbox>
+
 
 
         <v-btn type="submit" block class="mt-2">Save</v-btn>

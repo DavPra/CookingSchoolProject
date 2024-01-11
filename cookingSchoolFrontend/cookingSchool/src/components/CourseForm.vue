@@ -12,6 +12,7 @@ const data = ref({
   startDate: new Date(),
   maxAttendants: '',
   price: '',
+
 })
 
 
