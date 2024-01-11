@@ -28,8 +28,8 @@ public class CourseController {
     }
 
     @GetMapping("/courses/{id}")
-    public ResponseEntity<Course> getCourseById(@PathVariable Long id) {
-        Course course = courseService.getCourseById(id);
+    public ResponseEntity<Course> getCourseDetails(@PathVariable Long id) {
+        Course course = courseService.getCourseDetails(id);
         return new ResponseEntity<>(course, HttpStatus.OK);
     }
 

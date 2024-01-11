@@ -14,6 +14,7 @@ import Cooking.School.Project.cookingSchool.restapi.dto.CourseTagsRecipeResponse
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -38,9 +39,16 @@ public class CourseService {
         return course;
     }
 
-    public Course getCourseById(Long id) {
-        return courseRepository.findById(id).get();
+    public Course getCourseById(Long courseId) {
+        return courseRepository.findById(courseId)
+                .orElseThrow(() -> new CourseNotFoundException("Course not found with ID: " + courseId));
     }
+
+    public Course getCourseDetails(Long courseId) {
+        return courseRepository.findById(courseId)
+                .orElseThrow(() -> new CourseNotFoundException("Course not found with ID: " + courseId));
+    }
+
 
 
     public void deleteCourseById(Long id) {
@@ -53,13 +61,13 @@ public class CourseService {
     }
 
     /**
-     * creates a course including course categories and saves it to the database
+     * creates a course including course tags and saves it to the database
      *
      * @param request a JSON holding the information to create a course
      * @return the  course Id
      */
 
-//TODO: Coursedata kommt als null an. ??? aktuell???
+
     @Transactional
     public Long createCourse(CourseRequest request) {
         Course course = new Course();
@@ -71,8 +79,14 @@ public class CourseService {
         course.setPrice(request.getPrice());
 
         Set<CourseTag> courseTags = request.getCourseTags();
-        course.setCourseTags(courseTags);
+        if (courseTags != null && !courseTags.isEmpty()) {
+            for (CourseTag tag : courseTags) {
+                CourseTag courseTag = courseTagRepository.findById(tag.getCourseTagId())
+                        .orElseThrow(() -> new TagNotFoundException("Course tag not found" ));
+            }
+        }
 
+        course.setCourseTags(courseTags);
 
         Course savedCourse = courseRepository.save(course);
 

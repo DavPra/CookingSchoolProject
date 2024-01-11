@@ -20,6 +20,7 @@ export const useUserStore = defineStore('user', {
             }
         },
         async createUser(data) {
+            console.log("!!!", data, data.admin)
             try {
                 const userData = {
                     firstname: data.firstname,
@@ -32,7 +33,7 @@ export const useUserStore = defineStore('user', {
                     isAdmin: data.admin //isAdmin zu admin
                 };
 
-                console.log(data);
+                console.log(userData);
 
                 const userResponse = await axios.post('http://localhost:8082/admin/users', userData);
                 console.log(userResponse.data);
