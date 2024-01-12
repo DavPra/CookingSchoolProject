@@ -1,10 +1,13 @@
 import {defineStore} from "pinia";
 import axios from "axios";
+import {useCourseStore} from "@/stores/CourseStore";
+
 
 
 export const useRecipeStore = defineStore('recipe', {
     state: () => ({
-        recipes: []
+        recipes: [],
+        courseStore: useCourseStore(),
     }),
     actions: {
         async showRecipes() {
@@ -31,6 +34,8 @@ export const useRecipeStore = defineStore('recipe', {
                     ingredients: data.ingredients
                 };
 
+                const courseIds = await this.getCourseIds();
+
                 console.log(data);
 
                 const recipeResponse = await axios.post('http://localhost:8082/admin/addRecipe', recipeData);
@@ -51,6 +56,13 @@ export const useRecipeStore = defineStore('recipe', {
             const updateRecipeResponse = await axios.put('http://localhost:8082/admin/updateRecipe/' + recipeId)
             console.log('recipe updated')
             this.showRecipes()
+        },
+        async getCourseIds() {
+          await this.courseStore.showCourses()
+            //await courseStore.showCourses()
+            console.log('kurse für rezepte geladen')
+            return this.courseStore.courses.map(course => course.courseIds);
+
         }
     }
 })
