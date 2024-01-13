@@ -2,14 +2,20 @@
 
 
 import {useRouter} from "vue-router";
-import {onMounted, reactive, ref} from "vue";
+import {onMounted, ref} from "vue";
 import {useUserStore} from "@/stores/UserStore";
 
 const userStore = useUserStore()
 const router = useRouter();
-const err = false;
 
-const userData = ref({ //ref in reactive geändert geht gar nicht
+onMounted(() => {
+  showUsers();
+  console.log('mounted');
+});
+
+
+const err = false;
+const data = ref({
   firstname: '',
   lastname : '',
   address: '',
@@ -17,74 +23,27 @@ const userData = ref({ //ref in reactive geändert geht gar nicht
   email: '',
   password: '',
   username: '',
-  admin: true
-});
-onMounted(async () => {
-  try {
-    await userStore.showUsers();
-    console.log('Component mounted');
-  } catch (error) {
-    console.error('Error loading users in component mount:', error);
-  }
+  admin: ''
 });
 
-//TODO User kommt doppelt
 async function createUser() {
   console.log('createUser function called');
   try {
-    await userStore.createUser(userData.value);
-    await userStore.createUser(userData.value);
-    console.log('User created:', userData.value);
-    await userStore.showUsers()
+    await userStore.createUser(data.value);
+    await router.push('/admin');
   } catch (err) {
     if (err.isAxiosError && err.status === 401) {
       console.log(err);
-      console.log('Error creating user:', err);
       return (err = true);
     }
   }
 }
 
 async function showUsers() {
-  try {
-    await userStore.showUsers();
-    console.log('Users loaded in showUsers:', userStore.users);
-
-  } catch (error) {
-    console.error('Error loading users in showUsers:', error);
-  }
+  await userStore.showUsers();
 }
+
 showUsers();
-
-/*
-
-async function createUserOrEditUser() {
-  console.log('createUser function called');
-  if(user.value === undefined)
-  try {
-    //const isAdmin = userData.admin;
-    await userStore.createUser(userData.value);
-    /*await userStore.createUser({
-        ...userData,
-  isAdmin: isAdmin,
-  })
-    console.log('User created:', userData.value);
-    await userStore.showUsers()
-  } catch (err) {
-    if (err.isAxiosError && err.status === 401) {
-      console.log('Error creating user:', err);
-      return (err = true);
-    }
-  } else {
-    try{
-      await userStore.updateUser(user.value.userId, userData.value)
-      //TODO da weiter functionen zusammenlegen
-    }catch(err){
-      console.error(err)
-    }
-  }
-}*/
-
 </script>
 
 
@@ -97,39 +56,37 @@ und zum Upgraden eines Users zum Admin -->
       <h2>Create a new User</h2>
       <v-form @submit.prevent = "createUser">
         <v-text-field
-            v-model="userData.firstname"
+            v-model="data.firstname"
             label="firstname"
         ></v-text-field>
         <v-text-field
-            v-model="userData.lastname"
+            v-model="data.lastname"
             label="lastname"
         ></v-text-field>
         <v-text-field
-            v-model="userData.address"
+            v-model="data.address"
             label="address"
         ></v-text-field>
         <v-text-field
-            v-model.number="userData.mobile"
+            v-model.number="data.mobile"
             label="mobile"
         ></v-text-field>
         <v-text-field
-            v-model="userData.email"
+            v-model="data.email"
             label="email"
         ></v-text-field>
         <v-text-field
-            v-model="userData.password"
+            v-model="data.password"
             label="passwort"
         ></v-text-field>
         <v-text-field
-            v-model="userData.username"
+            v-model="data.username"
             label="username"
         ></v-text-field>
         <v-checkbox
-            v-model="userData.admin"
+            v-model="data.admin"
             label="is admin"
         ></v-checkbox>
-
-
 
         <v-btn type="submit" block class="mt-2">Save</v-btn>
       </v-form>
@@ -181,9 +138,6 @@ und zum Upgraden eines Users zum Admin -->
         <th class="text-left">
           is Admin
         </th>
-        <th class="text-left">
-          update
-        </th>
       </tr>
       </thead>
       <tbody>
@@ -199,7 +153,6 @@ und zum Upgraden eines Users zum Admin -->
         <td>{{ user.email }}</td>
         <td>{{ user.username }}</td>
         <td>{{ user.isAdmin }}</td>
-        <td><v-btn icon="mdi-pencil" size ="x-small" @click ="updateUser(user.userId)"></v-btn></td>
       </tr>
       </tbody>
     </v-table>
