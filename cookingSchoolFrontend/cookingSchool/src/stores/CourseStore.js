@@ -44,6 +44,12 @@ export const useCourseStore = defineStore('course', {
             const deleteResponse = await axios.delete('http://localhost:8082/admin/courses/'+courseId)
             console.log('Course deleted', courseId)
             this.showCourses()
-        }
+        },
+        async updateCourse(courseId){
+            const updateCourseResponse = await axios.put('http://localhost:8082/admin/courses/'+courseId)
+            console.log('Course updated')
+            this.showCourses()
+
     }
+}   
 });
