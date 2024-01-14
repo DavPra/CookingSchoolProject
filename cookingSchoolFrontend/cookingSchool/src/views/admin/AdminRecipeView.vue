@@ -37,7 +37,7 @@ showRecipes();
             :key="recipe.recipeId"
             :title="recipe.title"
             :difficulty="recipe.difficulty"
-            :preparation ="recipe.preparation"
+            :preparation="recipe.preparation"
             :description="recipe.description"
             :recipeId="recipe.recipeId"
 

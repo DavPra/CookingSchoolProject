@@ -3,7 +3,7 @@
 
 <template>
     <header class="header">
-    <img alt="CookingSchool logo" class="logo" src="@/assets/CookingAcademyBanner.svg"/>
+    <img alt="CookingSchool Banner" class="banner" src="@/assets/CookingAcademyBanner.svg"/>
   </header>
 </template>
 
@@ -12,7 +12,7 @@
   width: 100%;
 }
 
-.logo {
+.banner {
   width: 100%; /* Ensure the image fills the container width */
   height: 200px; /* Set the desired height */
   overflow: hidden; /* Hide any overflow */
