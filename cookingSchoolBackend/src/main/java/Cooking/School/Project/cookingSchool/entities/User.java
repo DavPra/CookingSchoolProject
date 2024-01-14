@@ -63,7 +63,7 @@ public class User implements UserDetails {
     private String username;
 
     @Setter
-    @JsonProperty
+    @JsonProperty //springboot streicht is und macht sonst admin daraus, kA warum!
     private boolean isAdmin;
 
     @Setter
