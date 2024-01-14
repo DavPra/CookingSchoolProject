@@ -74,7 +74,6 @@ async function createCourse() {
 <template>
   <div >
 
-    <v-sheet width="300" class="mx-auto">
     <v-sheet width="400"   class="mx-auto">
       <h2>Add a new Course</h2>
       <v-form @submit.prevent = "createCourse">
@@ -96,6 +95,7 @@ async function createCourse() {
           v-model.number="data.maxAttendants"
           label="max Attendants"
       ></v-text-field>
+        <v-text-field
           v-model.number="data.price"
           label="price"
       ></v-text-field>

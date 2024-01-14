@@ -3,7 +3,7 @@
 
 <template>
     <header class="header">
-    <img alt="CookingSchool logo" class="logo" src="@/assets/banner.svg"/>
+    <img alt="CookingSchool logo" class="logo" src="@/assets/CookingAcademyBanner.svg"/>
   </header>
 </template>
 

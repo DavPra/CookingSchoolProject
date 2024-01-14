@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import AdminLayout from '../layouts/AdminLayout.vue'
 import UserLayout from '../layouts/UserLayout.vue'
-import HomeView from '../views/user/HomeView.vue'
+import HomeView from '../views/guest/HomeView.vue'
 import ProfileView from '../views/user/ProfileView.vue'
 import CourseView from '../views/user/CourseView.vue'
 import RecipeView from '../views/user/RecipeView.vue'
