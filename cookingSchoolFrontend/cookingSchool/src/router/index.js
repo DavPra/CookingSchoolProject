@@ -4,14 +4,15 @@ import UserLayout from '../layouts/UserLayout.vue'
 import GuestLayout from '../layouts/GuestLayout.vue'
 import HomeView from '../views/guest/HomeView.vue'
 import ProfileView from '../views/user/ProfileView.vue'
-import UserCourseView from '../views/user/CourseView.vue'
+import UserCourseView from '../views/user/UserCourseView.vue'
 import RecipeView from '../views/user/RecipeView.vue'
-import AboutView from '../views/user/AboutView.vue'
+import AboutView from '../views/guest/AboutView.vue'
 import RegistrationView from '../views/user/RegistrationView.vue'
 import AdminCourseView from '../views/admin/AdminCourseView.vue'
 import AdminRecipeView from '../views/admin/AdminRecipeView.vue'
 import AdminUserView from '../views/admin/AdminUserView.vue'
 import UserHomeView from '../views/user/UserHomeView.vue'
+import GuestCourseView from '../views/guest/GuestCourseView.vue'
 import UserAboutView from '../views/user/UserAboutView.vue'
 
 const routes = [
@@ -77,7 +78,7 @@ const routes = [
         },
         {
           path: '/courses',
-          component: CourseView
+          component: GuestCourseView
         }
       ]
     }
