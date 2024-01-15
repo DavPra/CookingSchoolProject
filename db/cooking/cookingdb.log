@@ -1,4 +1,4 @@
-/*C12*/SET SCHEMA PUBLIC
+/*C2*/SET SCHEMA PUBLIC
 drop table if exists authorities CASCADE 
 drop table if exists authorities_app_users CASCADE 
 drop table if exists benutzer CASCADE 
@@ -59,105 +59,157 @@ INSERT INTO RECIPE VALUES(1,'Beschreibung 1',3,120,'Rezept 1')
 INSERT INTO RECIPE_INGREDIENT VALUES(1,1)
 ALTER SEQUENCE PUBLIC.RECIPE_SEQUENCE RESTART WITH 2
 COMMIT
-INSERT INTO BENUTZER VALUES(1,NULL,'Email 1',NULL,'admin 1',TRUE,'Nachname 1',NULL,'$2a$10$Nkw5.krtWn5vVu4yVB0mxuPC.9MZbP8BvDo3oPfYcRCgMVY789k5O',NULL)
+INSERT INTO BENUTZER VALUES(1,NULL,'Email 1',NULL,'admin 1',TRUE,'Nachname 1',NULL,'$2a$10$/3hf19Y2oOkywGMGhKIVfONf4Evz9Y2fl5WUP8WK5J1MmdyPjEZCS',NULL)
 ALTER SEQUENCE PUBLIC.USER_SEQUENCE RESTART WITH 2
 COMMIT
-/*C17*/SET SCHEMA PUBLIC
+INSERT INTO COURSE VALUES(2,'Kochen f\u00fcr Anf\u00e4nger 3','Wie man eine eierspeis kocht 3',0,0,'2023-11-20 14:30:00.000000','Martin')
+ALTER SEQUENCE PUBLIC.COURSE_SEQUENCE RESTART WITH 3
+COMMIT
+DELETE FROM RECIPE WHERE RECIPE_ID=1
+INSERT INTO RECIPE VALUES(1,'Meine Kasnocken',3,60,'Kasnocken 55553')
+COMMIT
+/*C3*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C19*/SET SCHEMA PUBLIC
+/*C9*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C14*/SET SCHEMA PUBLIC
+/*C10*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C20*/SET SCHEMA PUBLIC
+/*C8*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C6*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C7*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C4*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C5*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C11*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C2*/DISCONNECT
+/*C12*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C13*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C21*/SET SCHEMA PUBLIC
+/*C14*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C15*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C16*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C12*/DISCONNECT
+/*C17*/SET SCHEMA PUBLIC
+DISCONNECT
 /*C18*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C22*/SET SCHEMA PUBLIC
+/*C19*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C28*/SET SCHEMA PUBLIC
+/*C20*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C21*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C22*/SET SCHEMA PUBLIC
+drop table if exists authorities CASCADE 
+drop table if exists authorities_app_users CASCADE 
+drop table if exists benutzer CASCADE 
+drop table if exists course CASCADE 
+drop table if exists course_recipe CASCADE 
+drop table if exists course_tag CASCADE 
+drop table if exists coursetag CASCADE 
+drop table if exists ingredient CASCADE 
+drop table if exists recipe CASCADE 
+drop table if exists recipe_ingredient CASCADE 
+drop table if exists recipe_tag CASCADE 
+drop table if exists recipetag CASCADE 
+drop table if exists user_course CASCADE 
+drop sequence authorities_sequence if exists
+drop sequence course_sequence if exists
+drop sequence ingredient_sequence if exists
+drop sequence recipe_sequence if exists
+drop sequence tag_sequence if exists
+drop sequence user_sequence if exists
+create sequence authorities_sequence start with 1 increment by 1
+create sequence course_sequence start with 1 increment by 1
+create sequence ingredient_sequence start with 1 increment by 1
+create sequence recipe_sequence start with 1 increment by 1
+create sequence tag_sequence start with 1 increment by 1
+create sequence user_sequence start with 1 increment by 1
+create table authorities (id bigint not null, authority varchar(255), primary key (id))
+create table authorities_app_users (authority_id bigint not null, app_user_id bigint not null, primary key (authority_id, app_user_id))
+create table benutzer (user_id bigint not null, address varchar(255), email varchar(255), finished_courses bigint, firstname varchar(255), is_admin boolean not null, lastname varchar(255), mobile varchar(255), password varchar(255), username varchar(255), primary key (user_id))
+create table course (course_id bigint not null, course_title varchar(255), description varchar(255), max_attendants integer not null, price integer not null, start_date timestamp, teacher varchar(255), primary key (course_id))
+create table course_recipe (course_id bigint not null, recipe_id bigint not null, primary key (course_id, recipe_id))
+create table course_tag (course_id bigint not null, course_tag_id bigint not null, primary key (course_id, course_tag_id))
+create table coursetag (course_tag_id bigint not null, course_tag_title varchar(255), primary key (course_tag_id))
+create table ingredient (ingredient_id bigint not null, quantity integer not null, title varchar(255), unit varchar(255), primary key (ingredient_id))
+create table recipe (recipe_id bigint not null, description varchar(255), difficulty integer not null, preparation integer not null, title varchar(255), primary key (recipe_id))
+create table recipe_ingredient (recipe_id bigint not null, ingredient_id bigint not null, primary key (recipe_id, ingredient_id))
+create table recipe_tag (recipe_id bigint not null, tag_id bigint not null, primary key (recipe_id, tag_id))
+create table recipetag (tag_id bigint not null, title varchar(255), primary key (tag_id))
+create table user_course (user_id bigint not null, course_id bigint not null, primary key (user_id, course_id))
+alter table authorities_app_users add constraint FKpbjcoayhls5qyyc7kptf46mhh foreign key (app_user_id) references benutzer
+alter table authorities_app_users add constraint FKhk2g9sg0sicao6rxlf6nww4gi foreign key (authority_id) references authorities
+alter table course_recipe add constraint FKfylffpsua44wsau9g9vusk3c1 foreign key (recipe_id) references recipe
+alter table course_recipe add constraint FKevhkr6as82kjt1eo1kyvqrnll foreign key (course_id) references course
+alter table course_tag add constraint FK10d69c1fms84jhuxmttgcufq5 foreign key (course_tag_id) references coursetag
+alter table course_tag add constraint FK3tta6lkm8fr0rgfyr4y3xrr3u foreign key (course_id) references course
+alter table recipe_ingredient add constraint FK9b3oxoskt0chwqxge0cnlkc29 foreign key (ingredient_id) references ingredient
+alter table recipe_ingredient add constraint FKgu1oxq7mbcgkx5dah6o8geirh foreign key (recipe_id) references recipe
+alter table recipe_tag add constraint FK3p6lhtdgiie1y0ddhgh6i0isq foreign key (tag_id) references recipetag
+alter table recipe_tag add constraint FKshildcupwo2vlv8sjyxjlpi8l foreign key (recipe_id) references recipe
+alter table user_course add constraint FKka18m18kpimodvy8yg2icu083 foreign key (course_id) references course
+alter table user_course add constraint FK98iw0dviy2ocqo44u5x46gwen foreign key (user_id) references benutzer
+INSERT INTO COURSE VALUES(1,'Kurs 1','Beschreibung 1',10,100,'2023-11-20 14:30:00.000000','Lehrer 1')
+ALTER SEQUENCE PUBLIC.COURSE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO INGREDIENT VALUES(1,0,'Zutat 1','Einheit 1')
+ALTER SEQUENCE PUBLIC.INGREDIENT_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO RECIPE VALUES(1,'Beschreibung 1',3,120,'Rezept 1')
+INSERT INTO RECIPE_INGREDIENT VALUES(1,1)
+ALTER SEQUENCE PUBLIC.RECIPE_SEQUENCE RESTART WITH 2
+COMMIT
+INSERT INTO BENUTZER VALUES(1,NULL,'Email 1',NULL,'admin 1',TRUE,'Nachname 1',NULL,'$2a$10$d.Qq58bp6s1HOMVGFHUPk.8P/SZRv7.w/FJZcrK4AQFTrGpHQvUEu',NULL)
+ALTER SEQUENCE PUBLIC.USER_SEQUENCE RESTART WITH 2
+COMMIT
+DELETE FROM RECIPE WHERE RECIPE_ID=1
+INSERT INTO RECIPE VALUES(1,'Meine Kasnocken',3,60,'Kasnocken 55553')
+COMMIT
+INSERT INTO BENUTZER VALUES(2,'sjdhfgjk','calea@example.at',NULL,'calea',FALSE,'schlaf','nulkjhdsgfkuhl','$2a$10$/BjOUwuvDkttjOAIlu9xLOislWNcWFML9JGcozHlJbPCVGNo.IC5G','calea')
+ALTER SEQUENCE PUBLIC.USER_SEQUENCE RESTART WITH 3
+COMMIT
+DELETE FROM COURSE WHERE COURSE_ID=1
+INSERT INTO COURSE VALUES(1,'Kurs 1','Beschreibung 1',9,100,'2023-11-20 14:30:00.000000','Lehrer 1')
+COMMIT
+DELETE FROM COURSE WHERE COURSE_ID=1
+INSERT INTO COURSE VALUES(1,'Kurs 1','Beschreibung 1',8,100,'2023-11-20 14:30:00.000000','Lehrer 1')
+COMMIT
+INSERT INTO INGREDIENT VALUES(2,500,'Milch','ml')
+INSERT INTO INGREDIENT VALUES(3,500,'Mehl','g')
+INSERT INTO RECIPE VALUES(2,'Meine Kasnocken',3,60,'Kasnocken 55556')
+INSERT INTO RECIPE_INGREDIENT VALUES(2,2)
+INSERT INTO RECIPE_INGREDIENT VALUES(2,3)
+ALTER SEQUENCE PUBLIC.INGREDIENT_SEQUENCE RESTART WITH 4
+ALTER SEQUENCE PUBLIC.RECIPE_SEQUENCE RESTART WITH 3
+COMMIT
+INSERT INTO COURSE VALUES(2,'Kochen f\u00fcr Anf\u00e4nger 3','Wie man eine eierspeis kocht 3',0,0,NULL,'Martin')
+ALTER SEQUENCE PUBLIC.COURSE_SEQUENCE RESTART WITH 3
+COMMIT
+/*C26*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C31*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C30*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C23*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C26*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C24*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C25*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C29*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C31*/SET SCHEMA PUBLIC
+/*C28*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C27*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C30*/SET SCHEMA PUBLIC
+/*C29*/SET SCHEMA PUBLIC
 DISCONNECT
-/*C33*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C36*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C35*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C34*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C32*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C39*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C40*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C37*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C38*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C41*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C44*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C46*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C42*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C45*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C43*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C47*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C48*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C49*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C50*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C51*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C54*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C52*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C55*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C53*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C57*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C56*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C59*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C58*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C60*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C61*/SET SCHEMA PUBLIC
-DISCONNECT
+/*C22*/DISCONNECT
