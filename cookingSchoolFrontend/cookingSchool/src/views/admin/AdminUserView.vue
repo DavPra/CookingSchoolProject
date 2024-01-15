@@ -2,20 +2,15 @@
 
 
 import {useRouter} from "vue-router";
-import {onMounted, ref} from "vue";
+import {onMounted, ref, reactive} from "vue";
 import {useUserStore} from "@/stores/UserStore";
 
 const userStore = useUserStore()
 const router = useRouter();
 
-onMounted(() => {
-  showUsers();
-  console.log('mounted');
-});
-
 
 const err = false;
-const userData = ref({
+const userData = ref({  //ref in reactive fge-ndert geht far nicht
   firstname: '',
   lastname : '',
   address: '',
@@ -23,32 +18,78 @@ const userData = ref({
   email: '',
   password: '',
   username: '',
-  admin: ''
+  admin: true
 });
+
+onMounted(async () => {
+  try {
+    await userStore.showUsers();
+    console.log('Component mounted');
+  } catch (error) {
+    console.error('Error loading users in component mount:', error);
+  }
+})
+
+//TODO User kommt doppelt
 
 async function createUser() {
   console.log('createUser function called');
   try {
     await userStore.createUser(userData.value);
-    console.log('User created:', userData.value);
-    await router.push('/admin');
+    console.log('user created:', userData.value);
+    await userStore.showUsers();
   } catch (err) {
     if (err.isAxiosError && err.status === 401) {
-      console.log('Error creating user:', err);
+      console.log(err);
+      console.error('Error creating user:', err);
       return (err = true);
     }
   }
 }
+
 async function showUsers() {
   try {
     await userStore.showUsers();
     console.log('Users loaded in showUsers:', userStore.users);
+
   } catch (error) {
     console.error('Error loading users in showUsers:', error);
   }
 }
 
+
 showUsers();
+
+/*
+
+async function createUserOrEditUser() {
+  console.log('createUser function called');
+  if(user.value === undefined)
+  try {
+    //const isAdmin = userData.admin;
+    await userStore.createUser(userData.value);
+    /*await userStore.createUser({
+        ...userData,
+  isAdmin: isAdmin,
+  })
+    console.log('User created:', userData.value);
+    await userStore.showUsers()
+  } catch (err) {
+    if (err.isAxiosError && err.status === 401) {
+      console.log('Error creating user:', err);
+      return (err = true);
+    }
+  } else {
+    try{
+      await userStore.updateUser(user.value.userId, userData.value)
+      //TODO da weiter functionen zusammenlegen
+    }catch(err){
+      console.error(err)
+    }
+  }
+}*/
+
+
 </script>
 
 
@@ -143,6 +184,10 @@ und zum Upgraden eines Users zum Admin -->
         <th class="text-left">
           is Admin
         </th>
+        <th class="text-left">
+          update
+        </th>
+
       </tr>
       </thead>
       <tbody>
@@ -158,6 +203,8 @@ und zum Upgraden eines Users zum Admin -->
         <td>{{ user.email }}</td>
         <td>{{ user.username }}</td>
         <td>{{ user.isAdmin }}</td>
+        <td><v-btn icon="mdi-pencil" size ="x-small" @click ="updateUser(user.userId)"></v-btn></td>
+
       </tr>
       </tbody>
     </v-table>
