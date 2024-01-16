@@ -30,7 +30,7 @@ onMounted(async () => {
   }
 })
 
-//TODO User kommt doppelt
+
 
 async function createUser() {
   console.log('createUser function called');
@@ -60,35 +60,9 @@ async function showUsers() {
 
 showUsers();
 
-/*
+async function updateUser(){
 
-async function createUserOrEditUser() {
-  console.log('createUser function called');
-  if(user.value === undefined)
-  try {
-    //const isAdmin = userData.admin;
-    await userStore.createUser(userData.value);
-    /*await userStore.createUser({
-        ...userData,
-  isAdmin: isAdmin,
-  })
-    console.log('User created:', userData.value);
-    await userStore.showUsers()
-  } catch (err) {
-    if (err.isAxiosError && err.status === 401) {
-      console.log('Error creating user:', err);
-      return (err = true);
-    }
-  } else {
-    try{
-      await userStore.updateUser(user.value.userId, userData.value)
-      //TODO da weiter functionen zusammenlegen
-    }catch(err){
-      console.error(err)
-    }
-  }
-}*/
-
+}
 
 </script>
 

@@ -3,17 +3,19 @@ import {useCourseStore} from "@/stores/CourseStore";
 const courseStore = useCourseStore()
 const course = defineProps(['courseTitle','startDate','description', 'courseId'])
 
-/*async function updateCourse(courseId){
-  console.log('updateCourse function called')
-  await courseStore.updateCourse(courseId)
-  // await courseStore.showCourses()
-}*/
 
 async function deleteCourse(courseId){
 
   console.log('Deleted')
   await courseStore.deleteCourse(courseId)
 }
+
+
+function editCourse(courseId) {
+  console.log('Edit course:', courseId);
+  emit('editCourse', courseId);
+}
+
 </script>
 
 <template>
@@ -32,7 +34,7 @@ async function deleteCourse(courseId){
           <v-card-actions>
 
 
-            <v-btn @click="showForm" icon>
+            <v-btn @click="$emit('editCourse', courseId)" icon>
               <v-icon>mdi-pencil</v-icon>
             </v-btn>
             <v-btn @click="deleteCourse(course.courseId)" icon>

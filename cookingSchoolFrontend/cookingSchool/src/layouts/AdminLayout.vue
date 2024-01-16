@@ -1,6 +1,7 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HeaderIcon from '@/components/HeaderIcon.vue'
+
 </script>
 
 <template>
@@ -29,6 +30,7 @@ import HeaderIcon from '@/components/HeaderIcon.vue'
       </div>
     </div>
   <RouterView />
+
 </template>
 
 <style scoped>

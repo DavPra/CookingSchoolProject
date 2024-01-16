@@ -58,8 +58,8 @@ loadCourses();
 <template>
   Erstelle ein neues Rezept:
 
-  <div >
-    <v-container>
+  <div class="d-flex flex-row flex-wrap w-75 elevation-2 mx-auto ">
+    <v-container >
       <v-form @submit.prevent="addRecipe">
         <v-row>
           <v-col>

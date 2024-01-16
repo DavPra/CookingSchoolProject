@@ -14,6 +14,7 @@ const err = false;
 
 onMounted(() => {
   showCourses();
+  getTags();
   console.log('mounted');
 });
 
@@ -22,6 +23,15 @@ async function showCourses() {
 }
 showCourses();
 
+async function getTags(){
+  await courseStore.getTags();
+}
+getTags();
+async function editCourse(courseId) {
+  console.log('Editing course with ID:', courseId);
+  isVisible.value = true;
+
+}
 function showForm(){
   console.log('showForm called');
   isVisible.value = true
@@ -40,7 +50,8 @@ function closeForm(){
   <div>
     <v-btn class="ma-2" @click ="showForm">Add new Course</v-btn>
     <p v-if="isVisible">CourseForm is visible</p>
-    <CourseForm v-if="isVisible" style="display: block;" />
+    <CourseForm v-if="isVisible" style="display: block;" :courseId="courseId" />
+
 
     <div id="course-list" class="ma-2" >
       <h1 class="mx-auto">Your upcoming Courses</h1>
@@ -53,6 +64,7 @@ function closeForm(){
                            :description="course.description"
                            :courseId="course.courseId"
                            :showForm = "showForm"
+                           @editCourse="editCourse"
           />
         </v-col>
       </v-row>
@@ -76,11 +88,19 @@ function closeForm(){
     </ul>
   </div>
   </div>
+    <div>
+      <h1>tag List</h1>
+      <ul>
+        <li v-for="tag in courseStore.tags" :key="tag.courseTagId">
+          {{ tag.courseTagId }}
+          {{ tag.courseTagTitle }}
+        </li>
+      </ul>
+    </div>
   </div>
-
-
-
 </template>
+
+
 <style scoped>
 
 /*
