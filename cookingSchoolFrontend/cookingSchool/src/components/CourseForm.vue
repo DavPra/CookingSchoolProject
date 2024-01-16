@@ -6,6 +6,11 @@ import {useCourseStore} from "@/stores/CourseStore";
 const courseStore = useCourseStore()
 const courseId= defineProps(['courseId'])
 
+const selectedTag = ref([])
+console.log("Tags in CourseForm:", courseStore.tags);
+
+
+
 //TODO zurück btn
 const isPickerVisible = ref(false)
 const data = ref({
@@ -14,9 +19,10 @@ const data = ref({
   teacher: '',
   startDate: new Date(),
   maxAttendants: '',
-  price: '',
+  price: ''
 
 })
+
 
 /*async function loadCourseData() {
   try {
@@ -28,7 +34,9 @@ const data = ref({
   }
 }*/
 
+
 onMounted(() => {
+  console.log(selectedTag.value)
   console.log('CourseForm mounted');
   console.log('Initial startDate in CourseForm:', data.value.startDate);
 });
@@ -74,9 +82,6 @@ async function saveOrUpdateCourse() {
 }*/
 
 
-
-
-
    async function createCourse() {
      console.log('createCourse function called');
      console.log('Original startDate:', data.value.startDate);
@@ -91,6 +96,7 @@ async function saveOrUpdateCourse() {
          startDate: formattedDate,
          maxAttendants: data.value.maxAttendants,
          price: data.value.price,
+         tags: [selectedTag.value]
        };
 
        const secondObj = {
@@ -156,6 +162,16 @@ async function saveOrUpdateCourse() {
           v-model.number="data.price"
           label="price"
       ></v-text-field>
+        <!-- items: courseStore.tags, courseStore.tags.value"-->
+        <v-select
+            v-model="selectedTag"
+            :items="tags"
+            item-text="courseTagTitle"
+            item-value="courseTagId"
+            label="Select Tag"
+            @change="onTagChange"
+        ></v-select>
+
         <v-btn type="submit"  class="ma-2" variant="outlined">Save</v-btn>
         <v-btn type="submit"  @click = "" variant="tonal"  class="ma-2">Back</v-btn>
 

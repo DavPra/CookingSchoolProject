@@ -28,7 +28,8 @@ export const useCourseStore = defineStore('course', {
                     teacher: data.teacher,
                     startDate: data.startDate,
                     maxAttendants: data.maxAttendants,
-                    price: data.price
+                    price: data.price,
+                    tags: [selectedTag]
                 };
 
                 console.log(data);

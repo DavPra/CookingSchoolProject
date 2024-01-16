@@ -13,8 +13,8 @@ const isVisible = ref(false)
 const err = false;
 
 onMounted(() => {
-  showCourses();
   getTags();
+  showCourses();
   console.log('mounted');
 });
 
