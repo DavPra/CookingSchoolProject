@@ -60,36 +60,6 @@ async function showUsers() {
 
 showUsers();
 
-/*
-
-async function createUserOrEditUser() {
-  console.log('createUser function called');
-  if(user.value === undefined)
-  try {
-    //const isAdmin = userData.admin;
-    await userStore.createUser(userData.value);
-    /*await userStore.createUser({
-        ...userData,
-  isAdmin: isAdmin,
-  })
-    console.log('User created:', userData.value);
-    await userStore.showUsers()
-  } catch (err) {
-    if (err.isAxiosError && err.status === 401) {
-      console.log('Error creating user:', err);
-      return (err = true);
-    }
-  } else {
-    try{
-      await userStore.updateUser(user.value.userId, userData.value)
-      //TODO da weiter functionen zusammenlegen
-    }catch(err){
-      console.error(err)
-    }
-  }
-}*/
-
-
 </script>
 
 
@@ -150,7 +120,7 @@ und zum Upgraden eines Users zum Admin -->
         {{user.email}}
         {{user.password}}
         {{user.username}}
-        {{user.isAdmin}}
+        {{ user.isAdmin ? 'Yes' : 'No' }}
 
       </li>
     </ul>
@@ -202,7 +172,7 @@ und zum Upgraden eines Users zum Admin -->
         <td>{{ user.mobile }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.username }}</td>
-        <td>{{ user.isAdmin }}</td>
+        {{ user.isAdmin ? 'Yes' : 'No' }}
         <td><v-btn icon="mdi-pencil" size ="x-small" @click ="updateUser(user.userId)"></v-btn></td>
 
       </tr>
