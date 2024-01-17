@@ -39,6 +39,15 @@ export const useUserStore = defineStore('user', {
             } catch (error) {
                 console.error('Error creating user:', error);
             }
+        }, async updateUser(userId, updatedUser) {
+            console.log('goshhhh')
+            try {
+                const updateUserResponse = await axios.put(`http://localhost:8082/admin/users/${userId}`, updatedUser);
+                console.log('User updated successfully:', updateUserResponse.data);
+            } catch (error) {
+                console.error('Error updating user:', error);
+            }
+
         }
     }
 });

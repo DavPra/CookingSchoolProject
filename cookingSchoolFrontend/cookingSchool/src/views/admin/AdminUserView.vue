@@ -7,7 +7,7 @@ import {useUserStore} from "@/stores/UserStore";
 
 const userStore = useUserStore()
 const router = useRouter();
-
+const editingUser = ref(false);
 
 const err = false;
 const userData = ref({  //ref in reactive fge-ndert geht far nicht
@@ -30,21 +30,43 @@ onMounted(async () => {
   }
 })
 
-//TODO User kommt doppelt
 
-async function createUser() {
+async function createOrUpdateUser() {
   console.log('createUser function called');
-  try {
-    await userStore.createUser(userData.value);
-    console.log('user created:', userData.value);
-    await userStore.showUsers();
-  } catch (err) {
-    if (err.isAxiosError && err.status === 401) {
-      console.log(err);
-      console.error('Error creating user:', err);
-      return (err = true);
+  if(editingUser.value){
+    try{
+      await userStore.updateUser(editingUser.userId, userData.value);
+    }catch (e){
+      console.error(e)
+    }
+
+  }else{
+    try {
+      await userStore.createUser(userData.value);
+      console.log('user created:', userData.value);
+      await userStore.showUsers();
+    } catch (err) {
+      if (err.isAxiosError && err.status === 401) {
+        console.log(err);
+        console.error('Error creating user:', err);
+        return (err = true);
+      }
     }
   }
+}
+const editUser = (user) => {
+  console.log('editUser function called userId: ', user)
+  console.log(userData.value)
+  editingUser.value = true;
+ // editingUser.userId = user.userId;
+  userData.firstname = user.firstname;
+  userData.lastname = user.lastname;
+  userData.address = user.address;
+  userData.mobile = user.mobile;
+  userData.email = user.email;
+  userData.password = user.password;
+  userData.username = user.username;
+  userData.admin = user.isAdmin;
 }
 
 async function showUsers() {
@@ -60,6 +82,7 @@ async function showUsers() {
 
 showUsers();
 
+
 </script>
 
 
@@ -69,8 +92,8 @@ showUsers();
 und zum Upgraden eines Users zum Admin -->
   <div>
     <v-sheet width="300" class="mx-auto">
-      <h2>Create a new User</h2>
-      <v-form @submit.prevent = "createUser">
+      <h2>Create or update a User</h2>
+      <v-form @submit.prevent = "createOrUpdateUser">
         <v-text-field
             v-model="userData.firstname"
             label="firstname"
@@ -104,27 +127,11 @@ und zum Upgraden eines Users zum Admin -->
             label="is admin"
         ></v-checkbox>
 
-        <v-btn type="submit" block class="mt-2">Save</v-btn>
+        <v-btn type="submit" block class="mt-2">{{ editingUser ? 'Update' : 'Save' }}</v-btn>
       </v-form>
     </v-sheet>
   </div>
-  <div>
-    <h1>Users List</h1>
-    <ul>
-      <li v-for="user in userStore.users" :key="user.userId">
-        {{ user.userId }}
-        {{ user.firstname }}
-        {{ user.lastname }}
-        {{user.address}}
-        {{user.mobile}}
-        {{user.email}}
-        {{user.password}}
-        {{user.username}}
-        {{ user.isAdmin ? 'Yes' : 'No' }}
 
-      </li>
-    </ul>
-  </div>
 
   <div>
     <v-table>
@@ -173,7 +180,7 @@ und zum Upgraden eines Users zum Admin -->
         <td>{{ user.email }}</td>
         <td>{{ user.username }}</td>
         {{ user.isAdmin ? 'Yes' : 'No' }}
-        <td><v-btn icon="mdi-pencil" size ="x-small" @click ="updateUser(user.userId)"></v-btn></td>
+        <td><v-btn icon="mdi-pencil" size ="x-small" @click ="editUser(user.userId)"></v-btn></td>
 
       </tr>
       </tbody>
