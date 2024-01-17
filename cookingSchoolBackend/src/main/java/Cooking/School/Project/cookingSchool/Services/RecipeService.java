@@ -15,10 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class RecipeService {
@@ -57,6 +54,16 @@ public class RecipeService {
         recipe = recipeRepository.save(recipe);
 
         recipe.setCourses(courses);
+
+        for(Course course : new HashSet<>(courses)) {
+            Set<Recipe> recipes = course.getRecipes();
+            if(recipes == null) {
+                recipes = new HashSet<>();
+            }
+            recipes.add(recipe);
+
+            course = this.courseRepository.save(course);
+        }
 
 
         recipeCourse.setRecipeId(recipe.getRecipeId());
