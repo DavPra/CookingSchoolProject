@@ -25,6 +25,7 @@ public class GlobalExceptionHandler{
 
     @ExceptionHandler(CourseNotFoundException.class)
     public final ResponseEntity<?> handleCourseNotFoundException(CourseNotFoundException ex) {
+        System.out.println("hallo1");
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
@@ -35,20 +36,24 @@ public class GlobalExceptionHandler{
 
     @ExceptionHandler(EntityNotFoundException.class)
     public final ResponseEntity<?> handleEntityNotFoundException(EntityNotFoundException ex) {
+        System.out.println("hallo2");
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
     @ExceptionHandler(RecipeNotFoundException.class)
     public final ResponseEntity<?> handleRecipeNotFoundException(RecipeNotFoundException ex) {
+        System.out.println("hallo3");
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
     @ExceptionHandler(PrimaryIdNullOrEmptyException.class)
     public final ResponseEntity<ErrorResponse> handlePrimaryIdNullOrEmptyException(PrimaryIdNullOrEmptyException ex) {
+        System.out.println("hallo4");
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
     @ExceptionHandler(DuplicateKeyException.class)
     public final ResponseEntity<ErrorResponse> handleDuplicateKeyException(DuplicateKeyException ex) {
+        System.out.println("hallo5");
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.CONFLICT.value(), ex.getMessage());
         return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
     }
