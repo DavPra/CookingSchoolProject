@@ -131,10 +131,14 @@ public class CourseService {
         if (startDate.isBefore(currentDate)) {
             throw new InvalidStartDateException("Please enter a valid start date");
         }
-        for (CourseTag courseTag : courseTags) {
-            CourseTag existingCourseTag = courseTagRepository.findById(courseTag.getCourseTagId())
-                    .orElseThrow(() -> new TagNotFoundException("Course tag not found"));
+
+        if (courseTags != null) {
+            for (CourseTag courseTag : courseTags) {
+                CourseTag existingCourseTag = courseTagRepository.findById(courseTag.getCourseTagId())
+                        .orElseThrow(() -> new TagNotFoundException("Course tag not found"));
+            }
         }
+
         existingCourse.setCourseTitle(title);
         existingCourse.setDescription(description);
         existingCourse.setTeacher(teacher);
@@ -144,7 +148,6 @@ public class CourseService {
         existingCourse.setCourseTags(courseTags);
 
         return courseRepository.save(existingCourse);
-
     }
 
 
