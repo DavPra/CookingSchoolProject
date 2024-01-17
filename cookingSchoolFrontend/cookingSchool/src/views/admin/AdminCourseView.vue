@@ -12,6 +12,7 @@ const router = useRouter();
 const isVisible = ref(false)
 const err = false;
 
+
 onMounted(() => {
   showCourses();
   console.log('mounted');
