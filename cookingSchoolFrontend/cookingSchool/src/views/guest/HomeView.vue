@@ -1,5 +1,4 @@
 <script setup>
-import LoginCard from '@/components/LoginCard.vue'
 </script>
 
 <template>
@@ -11,9 +10,7 @@ import LoginCard from '@/components/LoginCard.vue'
     Willkommen zur Cooking Academy. Hier finden Sie viele tolle Rezepte und können sich für unsere Kochkurse anmelden.
     </p>
     </div>
-  <div class="item">
-    <LoginCard />
-  </div>
+  
   </div>
 </template>
 
