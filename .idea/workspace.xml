@@ -4,25 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="Courses und User überarbeitet nach neuem ER Diagramm">
-      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/components/Logo.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/guest/LoginView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="Logo transparent auf GuestLayout eingefügt, branch registration und login zusammengeführt">
+      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/notes/kathyApplicationLayout.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/notes/kathyAuthStore.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/notes/kathyHomeView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/notes/kathyLoginView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/notes/stellaAuthStore.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/notes/stellaLogin.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/AdminLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/AdminLayout.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/GuestLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/GuestLayout.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/UserLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/UserLayout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/stores/AuthStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/stores/AuthStore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/stores/UserStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/stores/UserStore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/guest/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/guest/HomeView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/RegistrationView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/RegistrationView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.log" beforeDir="false" afterPath="$PROJECT_DIR$/db/cooking/cookingdb.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.properties" beforeDir="false" afterPath="$PROJECT_DIR$/db/cooking/cookingdb.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.script" beforeDir="false" afterPath="$PROJECT_DIR$/db/cooking/cookingdb.script" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +129,7 @@
       <workItem from="1704988031371" duration="225000" />
       <workItem from="1704988375176" duration="988000" />
       <workItem from="1705421686863" duration="471000" />
-      <workItem from="1705494382513" duration="1042000" />
+      <workItem from="1705494382513" duration="4374000" />
     </task>
     <task id="LOCAL-00001" summary="Boilerplate fixed.">
       <option name="closed" value="true" />
@@ -213,11 +204,30 @@
       <option name="project" value="LOCAL" />
       <updated>1700597410171</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Logo transparent auf GuestLayout eingefügt, branch registration und login zusammengeführt">
+      <option name="closed" value="true" />
+      <created>1705495626172</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1705495626172</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Boilerplate fixed." />
@@ -229,6 +239,7 @@
     <MESSAGE value="delete course by id fixed" />
     <MESSAGE value="Ingredient und Tag entities written. Beziehungen fehlen" />
     <MESSAGE value="Courses und User überarbeitet nach neuem ER Diagramm" />
-    <option name="LAST_COMMIT_MESSAGE" value="Courses und User überarbeitet nach neuem ER Diagramm" />
+    <MESSAGE value="Logo transparent auf GuestLayout eingefügt, branch registration und login zusammengeführt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Logo transparent auf GuestLayout eingefügt, branch registration und login zusammengeführt" />
   </component>
 </project>
