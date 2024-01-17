@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="Logo transparent auf GuestLayout eingefügt, branch registration und login zusammengeführt">
-      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/notes/kathyApplicationLayout.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/notes/kathyAuthStore.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/notes/kathyHomeView.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/notes/kathyLoginView.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/notes/stellaAuthStore.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/notes/stellaLogin.vue" afterDir="false" />
+    <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="Navbar in Toolbar angepasst für Guests, Users und Admins">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/GuestLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/GuestLayout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/UserLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/UserLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/guest/LoginView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/guest/LoginView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +122,7 @@
       <workItem from="1704988031371" duration="225000" />
       <workItem from="1704988375176" duration="988000" />
       <workItem from="1705421686863" duration="471000" />
-      <workItem from="1705494382513" duration="4374000" />
+      <workItem from="1705494382513" duration="5292000" />
     </task>
     <task id="LOCAL-00001" summary="Boilerplate fixed.">
       <option name="closed" value="true" />
@@ -212,7 +205,23 @@
       <option name="project" value="LOCAL" />
       <updated>1705495626172</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Navbar in Toolbar angepasst für Guests, Users und Admins">
+      <option name="closed" value="true" />
+      <created>1705503635729</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1705503635729</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Navbar in Toolbar angepasst für Guests, Users und Admins">
+      <option name="closed" value="true" />
+      <created>1705503703301</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1705503703301</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,6 +249,7 @@
     <MESSAGE value="Ingredient und Tag entities written. Beziehungen fehlen" />
     <MESSAGE value="Courses und User überarbeitet nach neuem ER Diagramm" />
     <MESSAGE value="Logo transparent auf GuestLayout eingefügt, branch registration und login zusammengeführt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Logo transparent auf GuestLayout eingefügt, branch registration und login zusammengeführt" />
+    <MESSAGE value="Navbar in Toolbar angepasst für Guests, Users und Admins" />
+    <option name="LAST_COMMIT_MESSAGE" value="Navbar in Toolbar angepasst für Guests, Users und Admins" />
   </component>
 </project>
