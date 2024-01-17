@@ -15,5 +15,7 @@ public class WebConfig implements WebMvcConfigurer {
                 //.allowedOrigins("http://localhost:5174")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowCredentials(true);
+                //.allowedHeaders("*"); // Erlaube alle Header für PUT-Anfragen
+
     }
 }
