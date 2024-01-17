@@ -14,8 +14,6 @@ export const useUserStore = defineStore('user', {
                 this.users = userResponse.data;
                 console.log('users geladen', userResponse.data);
                 return userResponse.data;
-
-
             } catch (error) {
                 console.error('Error loading users:', error);
             }
@@ -33,14 +31,11 @@ export const useUserStore = defineStore('user', {
                     username: data.username,
                     isAdmin: data.isAdmin
                 };
-
                 console.log(userData);
-
                   const userResponse = await axios.post('http://localhost:8082/admin/users', userData);
                 console.log(userResponse.data);
                //this.users.push(userResponse.data);
                return userResponse.data;
-
             } catch (error) {
                 console.error('Error creating user:', error);
             }

@@ -12,16 +12,25 @@ export const useAuthStore = defineStore('authentication', {
     actions: {
         async login({username, password}) {
             const response = await axios.post(createApiUrl('authenticate'),{username:username, password:password})
-            if(response.status !== 200){
+            if(response.status === 403){
                 throw new Error('User nicht gefunden')
             }
-            const user = response.data.user
-            if(!user) {
-                throw new Error('User nicht gefunden')
+            const token = response.data
+            if(token === '') {
+                throw new Error('Token nicht gefunden')
             }
-            this.user = user
-            this.accessToken = response.data.accessToken
-            window.localStorage.setItem('accessToken', this.accessToken)
+            this.token = token
+            console.log(token)
+            window.localStorage.setItem('accessToken', token)
+        },
+        async getUser() {
+          const config = {
+              headers: {
+                  Authorization: 'Bearer ' + accessToken
+              }
+          }
+          const response = await axios.get(createApiUrl('/user'), config)
+          this.user = response.data.user
         },
         logout() {
             this.user = null
