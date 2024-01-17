@@ -27,6 +27,5 @@ import Logo from '@/components/Logo.vue'
   <Logo/>
 </template>
 
-
 <style scoped>
 </style>

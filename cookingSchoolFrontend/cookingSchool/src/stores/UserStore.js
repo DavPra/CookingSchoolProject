@@ -40,24 +40,5 @@ export const useUserStore = defineStore('user', {
                 console.error('Error creating user:', error);
             }
         }
-        /*
-        async addUser(userData) {
-            try {
-                const response = await axios.post(createApiUrl('/registration'), userData);
-
-                if (response.status !== 200) {
-                    console.error('Fehler beim Registrieren:', response.statusText);
-                    return;
-                }
-
-                const responseData = response.data;
-                console.log('Benutzer erfolgreich registriert:', responseData);
-                return responseData.data;
-            } catch (error) {
-                console.error('Ein Fehler ist aufgetreten:', error);
-            }
-        }
-
-         */
     }
 });
