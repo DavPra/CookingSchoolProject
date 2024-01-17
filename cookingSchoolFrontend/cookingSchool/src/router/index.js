@@ -28,19 +28,19 @@ const routes = [
           component: UserHomeView
         },
         {
-          path: '/profile',
+          path: 'profile',
           component: ProfileView
         },
         {
-          path: '/courses',
+          path: 'courses',
           component: UserCourseView
         },
         {
-          path: '/recipes',
+          path: 'recipes',
           component: RecipeView
         },
         {
-          path: '/about',
+          path: 'about',
           component: UserAboutView
         }
       ]
@@ -72,19 +72,19 @@ const routes = [
           component: HomeView
         },
         {
-          path: '/about',
+          path: 'about',
           component: AboutView
         },
         {
-          path: '/register',
+          path: 'register',
           component: RegistrationView
         },
         {
-          path: '/courses',
+          path: 'courses',
           component: GuestCourseView
         },
         {
-          path: '/login',
+          path: 'login',
           component: LoginView
         }
       ]

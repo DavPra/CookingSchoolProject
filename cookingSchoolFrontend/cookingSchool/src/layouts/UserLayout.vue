@@ -1,6 +1,7 @@
 <script setup>
 import HeaderIcon from '@/components/HeaderIcon.vue'
 import Logo from "@/components/Logo.vue";
+import {useRouter} from 'vue-router';
 
 //TODO: Kathy - Add logout function and link to guest home view
 </script>
@@ -10,7 +11,7 @@ import Logo from "@/components/Logo.vue";
   <HeaderIcon/>
   <v-toolbar>
     <v-toolbar-items>
-      <v-btn to="/user"><v-icon>home</v-icon></v-btn>
+      <v-btn to="/user/profile">Profil</v-btn>
     </v-toolbar-items>
     <v-spacer></v-spacer>
     <v-toolbar-items>
@@ -26,7 +27,7 @@ import Logo from "@/components/Logo.vue";
     </v-toolbar-items>
     <v-spacer></v-spacer>
     <v-toolbar-items>
-      <v-btn to="/logout"><v-icon>logout-variant</v-icon></v-btn>
+      <v-btn><v-icon>logout-variant</v-icon></v-btn>
     </v-toolbar-items>
   </v-toolbar>
   <RouterView />

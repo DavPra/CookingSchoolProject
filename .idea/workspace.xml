@@ -4,18 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="Navbar in Toolbar angepasst für Guests, Users und Admins">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="fix login">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/GuestLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/GuestLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/AdminLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/AdminLayout.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/UserLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/UserLayout.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/stores/AuthStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/stores/AuthStore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/stores/UserStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/stores/UserStore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/guest/LoginView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/guest/LoginView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/RegistrationView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/guest/RegistrationView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.log" beforeDir="false" afterPath="$PROJECT_DIR$/db/cooking/cookingdb.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.properties" beforeDir="false" afterPath="$PROJECT_DIR$/db/cooking/cookingdb.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.lck" beforeDir="false" afterPath="$PROJECT_DIR$/db/cooking/cookingdb.lck" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,7 +235,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705503703301</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="fix login">
+      <option name="closed" value="true" />
+      <created>1705514961867</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1705514961867</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,6 +272,7 @@
     <MESSAGE value="Courses und User überarbeitet nach neuem ER Diagramm" />
     <MESSAGE value="Logo transparent auf GuestLayout eingefügt, branch registration und login zusammengeführt" />
     <MESSAGE value="Navbar in Toolbar angepasst für Guests, Users und Admins" />
-    <option name="LAST_COMMIT_MESSAGE" value="Navbar in Toolbar angepasst für Guests, Users und Admins" />
+    <MESSAGE value="fix login" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix login" />
   </component>
 </project>
