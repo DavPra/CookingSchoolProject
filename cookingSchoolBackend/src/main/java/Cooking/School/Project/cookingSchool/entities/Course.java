@@ -50,9 +50,12 @@ public class Course {
    private String teacher;
 
    @Setter
+  // @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
    private LocalDateTime startDate;
 
     @Setter
+
+
     private int maxAttendants;
 
     //TODO BigDecimal to be used with respect to prices

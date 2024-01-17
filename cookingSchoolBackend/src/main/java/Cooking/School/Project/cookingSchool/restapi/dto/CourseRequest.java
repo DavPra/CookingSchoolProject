@@ -1,12 +1,15 @@
 package Cooking.School.Project.cookingSchool.restapi.dto;
 
+import Cooking.School.Project.cookingSchool.entities.Course;
 import Cooking.School.Project.cookingSchool.entities.CourseTag;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 @Getter
@@ -14,12 +17,16 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CourseRequest {
+
+    //private static final DateTimeFormatter START_DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
     private String courseTitle;
 
     private String description;
 
     private String teacher;
 
+    //@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     private LocalDateTime startDate;
 
     private int maxAttendants;
@@ -28,7 +35,21 @@ public class CourseRequest {
 
     private Set<CourseTag> courseTags;
 
+    /*public LocalDateTime getStartDateAsLocalDateTime(){
+        if(this.startDate == null){
+            return null;
+        }
+        return LocalDateTime.parse(this.startDate, START_DATE_FORMAT);
+    }
 
+    public void setCourse(Course course) {
+        this.courseTitle = course.getCourseTitle();
+        this.description = course.getDescription();
+        this.teacher = course.getTeacher();
+        this.startDate = course.getStartDate().format(START_DATE_FORMAT);
+        this.maxAttendants = course.getMaxAttendants();
+        this.price = course.getPrice();
+    }*/
 
 
 }

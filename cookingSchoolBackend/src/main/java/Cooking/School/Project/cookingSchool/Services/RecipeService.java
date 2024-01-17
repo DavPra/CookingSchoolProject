@@ -15,10 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class RecipeService {
@@ -53,10 +50,21 @@ public class RecipeService {
         recipe.setDifficulty(recipeCourse.getDifficulty());
         recipe.setPreparation(recipeCourse.getPreparation());
 
+        recipe.setIngredients(ingredients);
         recipe = recipeRepository.save(recipe);
 
         recipe.setCourses(courses);
-        recipe.setIngredients(ingredients);
+
+        for(Course course : new HashSet<>(courses)) {
+            Set<Recipe> recipes = course.getRecipes();
+            if(recipes == null) {
+                recipes = new HashSet<>();
+            }
+            recipes.add(recipe);
+
+            course = this.courseRepository.save(course);
+        }
+
 
         recipeCourse.setRecipeId(recipe.getRecipeId());
 
@@ -76,19 +84,30 @@ public class RecipeService {
         Set<Ingredient> loadedIngredients = new HashSet<>();
 
         for (Ingredient ingredient : ingredients) {
+            /*
             if (ingredient.getIngredientId() == null) {
                 ingredientRepository.save(ingredient);
             }
+             */
 
             Optional<Ingredient> loadedIngredientOptional = ingredientRepository.findBy(
                     ingredient.getTitle(),
                     ingredient.getUnit(),
                     ingredient.getQuantity());
 
-            Ingredient loadedIngredient = loadedIngredientOptional.orElseThrow(() ->
-                    new IngredientNotFoundException("Ingredient not found"));
+            if(!loadedIngredientOptional.isPresent()) {
+                ingredient = ingredientRepository.save(ingredient);
+            } else {
+                ingredient = loadedIngredientOptional.get();
+            }
 
-            loadedIngredients.add(loadedIngredient);
+
+
+            /*
+            Ingredient loadedIngredient = loadedIngredientOptional.orElseThrow(() ->
+                    new IngredientNotFoundException("Ingredient not found"));*/
+
+            loadedIngredients.add(ingredient);
         }
 
         return loadedIngredients;

@@ -83,6 +83,7 @@ public class Main implements CommandLineRunner {
 		user.setLastname("Nachname 1");
 		user.setEmail("Email 1");
 		user.setPassword("Passwort 1");
+		user.setUsername("test");
 		user.setAdmin(true);
 		userRepository.save(user);
 	}

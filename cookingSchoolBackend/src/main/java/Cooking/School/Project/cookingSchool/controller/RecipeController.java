@@ -29,6 +29,7 @@ public class RecipeController {
 
     @PostMapping("/admin/addRecipe")
     public ResponseEntity<?> addRecipeToCourse(@RequestBody RecipeCourse recipeCourse) {
+        System.out.println("Hallo-controller");
         RecipeCourse response = recipeService.addRecipeToCourse(recipeCourse);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
