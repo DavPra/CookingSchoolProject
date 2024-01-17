@@ -23,6 +23,15 @@ export const useAuthStore = defineStore('authentication', {
             this.accessToken = response.data.accessToken
             window.localStorage.setItem('accessToken', this.accessToken)
         },
+        async getUser() {
+          const config = {
+              headers: {
+                  Authorization: 'Bearer ' + accessToken
+              }
+          }
+          const response = await axios.get(createApiUrl('/user'), config)
+          this.user = response.data.user
+        },
         logout() {
             this.user = null
             window.localStorage.clear()

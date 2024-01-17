@@ -4,26 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/ProfileView.vue" afterDir="false" />
+    <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="Courses und User überarbeitet nach neuem ER Diagramm">
+      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/components/Logo.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/guest/LoginView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/components/CourseCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/components/CourseCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/components/LoginCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/components/LoginCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/helper/ApiHelper.js" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/helper/ApiHelper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/AdminLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/AdminLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/GuestLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/GuestLayout.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/UserLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/UserLayout.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/admin/AdminCourseView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/admin/AdminCourseView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/admin/AdminRecipeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/admin/AdminRecipeView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/admin/AdminUserView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/admin/AdminUserView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/admin/AdminView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/AboutView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/AboutView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/CourseView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/CourseView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/HomeView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/RecipeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/RecipeView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/stores/AuthStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/stores/AuthStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/stores/UserStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/stores/UserStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/guest/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/guest/HomeView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/RegistrationView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/RegistrationView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.lck" beforeDir="false" afterPath="$PROJECT_DIR$/db/cooking/cookingdb.lck" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.lck" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.log" beforeDir="false" afterPath="$PROJECT_DIR$/db/cooking/cookingdb.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.properties" beforeDir="false" afterPath="$PROJECT_DIR$/db/cooking/cookingdb.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.script" beforeDir="false" afterPath="$PROJECT_DIR$/db/cooking/cookingdb.script" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +41,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="login" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -63,6 +62,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.HSQLDBStarter.executor&quot;: &quot;Run&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
     &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
@@ -70,18 +70,22 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.Main.executor&quot;: &quot;Run&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/kathy/Desktop/CodingKurs/binder_endproject/cookingschool&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;login-registration&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/katharinabinder/Desktop/Kursprojekt/cookingschool&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;ab34ddadcffe0d2dfdc145de21d27cdb&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -130,6 +134,11 @@
       <workItem from="1702726466770" duration="34000" />
       <workItem from="1702726514101" duration="1003000" />
       <workItem from="1702918702689" duration="6312000" />
+      <workItem from="1704987929932" duration="94000" />
+      <workItem from="1704988031371" duration="225000" />
+      <workItem from="1704988375176" duration="988000" />
+      <workItem from="1705421686863" duration="471000" />
+      <workItem from="1705494382513" duration="1042000" />
     </task>
     <task id="LOCAL-00001" summary="Boilerplate fixed.">
       <option name="closed" value="true" />

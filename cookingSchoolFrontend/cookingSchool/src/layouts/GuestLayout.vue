@@ -1,42 +1,38 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HeaderIcon from '@/components/HeaderIcon.vue'
-import LoginCard from '@/components/LoginCard.vue'
+import Logo from '@/components/Logo.vue'
+
+//TODO: Kathy - change navbar to toolbar
 </script>
 
 <template>
-  <!-- Grundgerüst des Headers und Navbar für die Ansicht der User -->
+  <!-- Grundgerüst des Headers und Navbar für die Ansicht der Guests -->
   <HeaderIcon/>
   <div class="container">
       <div class="item">
         <nav>
-            <v-btn to="" ><v-icon>home</v-icon></v-btn>
+          <v-btn to="" ><v-icon>home</v-icon></v-btn>
         </nav>
       </div>
       <div class="item">
         <nav>
-        <RouterLink to="/courses">Kurse</RouterLink>
+          <RouterLink to="/courses">Kurse</RouterLink>
         </nav>
       </div>
       <div class="item">
         <nav>
-        <RouterLink to="/about">About Us</RouterLink>
+          <RouterLink to="/about">About Us</RouterLink>
         </nav>
       </div>
       <div class="item">
-        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-          Login
-        </button>
-        <div class="dropdown-menu">
-            <ul>
-              <li>
-                <LoginCard />
-              </li>
-            </ul>
-        </div>
+        <nav>
+          <RouterLink to="/login">Login</RouterLink>
+        </nav>
       </div>
     </div>
   <RouterView />
+  <Logo/>
 </template>
 
 

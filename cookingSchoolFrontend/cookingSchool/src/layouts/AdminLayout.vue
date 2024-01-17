@@ -1,6 +1,9 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HeaderIcon from '@/components/HeaderIcon.vue'
+
+//TODO: Kathy - Add logout function and link to guest home view
+//TODO: Kathy - change navbar to toolbar
 </script>
 
 <template>
@@ -24,7 +27,7 @@ import HeaderIcon from '@/components/HeaderIcon.vue'
       </div>
       <div class="item">
         <button class="button">
-          Login
+          Logout
         </button>
       </div>
     </div>
