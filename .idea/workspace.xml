@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="fix login">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/AdminLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/AdminLayout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/UserLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/layouts/UserLayout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.lck" beforeDir="false" afterPath="$PROJECT_DIR$/db/cooking/cookingdb.lck" afterDir="false" />
-    </list>
+    <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="fixed router index" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -243,7 +237,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705514961867</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="fixed router index">
+      <option name="closed" value="true" />
+      <created>1705515727119</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1705515727119</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -273,6 +275,7 @@
     <MESSAGE value="Logo transparent auf GuestLayout eingefügt, branch registration und login zusammengeführt" />
     <MESSAGE value="Navbar in Toolbar angepasst für Guests, Users und Admins" />
     <MESSAGE value="fix login" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix login" />
+    <MESSAGE value="fixed router index" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed router index" />
   </component>
 </project>
