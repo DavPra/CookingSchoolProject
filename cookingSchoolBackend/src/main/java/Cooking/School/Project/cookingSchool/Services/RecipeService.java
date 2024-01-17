@@ -53,10 +53,11 @@ public class RecipeService {
         recipe.setDifficulty(recipeCourse.getDifficulty());
         recipe.setPreparation(recipeCourse.getPreparation());
 
+        recipe.setIngredients(ingredients);
         recipe = recipeRepository.save(recipe);
 
         recipe.setCourses(courses);
-        recipe.setIngredients(ingredients);
+
 
         recipeCourse.setRecipeId(recipe.getRecipeId());
 
@@ -76,19 +77,30 @@ public class RecipeService {
         Set<Ingredient> loadedIngredients = new HashSet<>();
 
         for (Ingredient ingredient : ingredients) {
+            /*
             if (ingredient.getIngredientId() == null) {
                 ingredientRepository.save(ingredient);
             }
+             */
 
             Optional<Ingredient> loadedIngredientOptional = ingredientRepository.findBy(
                     ingredient.getTitle(),
                     ingredient.getUnit(),
                     ingredient.getQuantity());
 
-            Ingredient loadedIngredient = loadedIngredientOptional.orElseThrow(() ->
-                    new IngredientNotFoundException("Ingredient not found"));
+            if(!loadedIngredientOptional.isPresent()) {
+                ingredient = ingredientRepository.save(ingredient);
+            } else {
+                ingredient = loadedIngredientOptional.get();
+            }
 
-            loadedIngredients.add(loadedIngredient);
+
+
+            /*
+            Ingredient loadedIngredient = loadedIngredientOptional.orElseThrow(() ->
+                    new IngredientNotFoundException("Ingredient not found"));*/
+
+            loadedIngredients.add(ingredient);
         }
 
         return loadedIngredients;
