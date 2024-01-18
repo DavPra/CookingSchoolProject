@@ -4,6 +4,7 @@ import axios  from "axios";
 
 export const useUserStore = defineStore('user', {
     state: () => ({
+        newUser:'',
         users: []
     }),
     actions: {
@@ -21,8 +22,20 @@ export const useUserStore = defineStore('user', {
             } catch (error) {
                 console.error('Error loading users:', error);
             }
+        },  async creatUser(newUser){
+            console.log(newUser)
+
+            const userResponse = await axios.post('http://localhost:8082/admin/users', newUser )
+            this.users.push(userResponse.data)
+
+        }, async updateUser(userId, user){
+
+            const updateUser = await axios.put('http://localhost:8082/admin/users'+userId,user)
+
+
         },
-        async createUser(data) {
+
+        /*async createUser(data) {
             console.log("!!!", data, data.admin);
             try {
                 const userData = {
@@ -43,8 +56,9 @@ export const useUserStore = defineStore('user', {
             } catch (error) {
                 console.error('Error creating user:', error);
             }
+            // editingUser, .value, .userId
         }, async updateUser(userId, updatedUser) {
-            console.log('goshhhh')
+            console.log('goshhhh', userId)
             try {
                 const updateUserResponse = await axios.put(`http://localhost:8082/admin/users/${userId}`, updatedUser);
                 console.log('User updated successfully:', updateUserResponse.data);
@@ -52,7 +66,7 @@ export const useUserStore = defineStore('user', {
                 console.error('Error updating user:', error)
             }
 
-        }, async deleteUser(userId) {
+        },*/ async deleteUser(userId) {
             try {
                 console.log('userId in deleteUser der UserStore:', userId)
                 const deleteUserResponse = await axios.delete(`http://localhost:8082/admin/users/${userId}`);
