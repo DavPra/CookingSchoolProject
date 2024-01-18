@@ -89,9 +89,12 @@ async function createCourse() {
             v-model="data.startDate"
             label="Start Date">
         </v-date-picker>
+      <!--  <v-text-field
+            v-model="data.startDate"
+            label="start date"
+        ></v-text-field> -->
 
-
-        <v-text-field
+      <v-text-field
           v-model.number="data.maxAttendants"
           label="max Attendants"
       ></v-text-field>
@@ -107,4 +110,3 @@ async function createCourse() {
   </div>
 
 </template>
-
