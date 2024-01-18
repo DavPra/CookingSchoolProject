@@ -82,14 +82,14 @@ async function showUsers() {
 showUsers();
 
 async function deleteUser(userId){
-  try{
-    await userStore.deleteUser(userId)
-    console.log('user gelöscht, mit der id', userId)
-  }catch (err){
+  console.log('userId vor dem Funktionsaufruf:', userId);
+  try {
+    await userStore.deleteUser(userId);
+    console.log('user gelöscht, mit der id', userId);
+  } catch (err) {
     console.error('Error delete user', err);
   }
 }
-
 
 </script>
 
@@ -195,7 +195,7 @@ und zum Upgraden eines Users zum Admin -->
         <td>{{ user.username }}</td>
         {{ user.isAdmin ? 'Yes' : 'No' }}
         <td><v-btn icon="mdi-pencil" size ="x-small" @click ="editUser(user.userId)"></v-btn></td>
-        <td><v-btn icon="mdi-delete" size ="x-small" @click="deleteUser(userData.userId)"></v-btn></td>
+        <td><v-btn icon="mdi-delete" size ="x-small" @click="deleteUser(user.userId)"></v-btn></td>
 
       </tr>
       </tbody>
