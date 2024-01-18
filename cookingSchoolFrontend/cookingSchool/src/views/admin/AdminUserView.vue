@@ -91,7 +91,7 @@ showUsers();
   <!-- Übersicht aller User zur Bearbeitung für den Admin
 und zum Upgraden eines Users zum Admin -->
   <div>
-    <v-sheet width="300" class="mx-auto">
+    <v-sheet width="300" :elevation="4" rounded class="mx-auto pa-5  ma-4">
       <h2>Create or update a User</h2>
       <v-form @submit.prevent = "createOrUpdateUser">
         <v-text-field

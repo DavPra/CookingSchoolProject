@@ -74,7 +74,7 @@ async function createCourse() {
 <template>
   <div >
 
-    <v-sheet width="400"   class="mx-auto">
+    <v-sheet width="400"  :elevation="9" rounded class="mx-auto pa-5">
       <h2>Add a new Course</h2>
       <v-form @submit.prevent = "createCourse">
       <v-text-field
