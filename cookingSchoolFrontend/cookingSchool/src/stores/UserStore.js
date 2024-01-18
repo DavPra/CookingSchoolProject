@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-import axios from "axios";
+import axios  from "axios";
 
 
 export const useUserStore = defineStore('user', {
@@ -11,7 +11,9 @@ export const useUserStore = defineStore('user', {
             try {
                 const userResponse = await axios.get('http://localhost:8082/admin/users');
                 console.log(userResponse.data);
-                this.users = userResponse.data;
+                //this.users = userResponse.data;
+                this.users = userResponse.data
+                const userId =userResponse.data.userId //hinzugefügt weil id undefined für delete und put
                 console.log('users geladen', userResponse.data);
                 return userResponse.data;
             } catch (error) {
@@ -48,6 +50,10 @@ export const useUserStore = defineStore('user', {
                 console.error('Error updating user:', error);
             }
 
+        }, async deleteUser(userId){
+            console.log(userId)
+            const deleteUserResponse = await axios.delete('http://localhost:8082/admin/users/'+userId)
+            this.showUsers()
         }
     }
 });

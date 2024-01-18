@@ -79,8 +79,16 @@ async function showUsers() {
   }
 }
 
-
 showUsers();
+
+async function deleteUser(userId){
+  try{
+    await userStore.deleteUser(userId)
+    console.log('user gelöscht, mit der id', userId)
+  }catch (err){
+    console.error('Error delete user', err);
+  }
+}
 
 
 </script>
@@ -91,7 +99,7 @@ showUsers();
   <!-- Übersicht aller User zur Bearbeitung für den Admin
 und zum Upgraden eines Users zum Admin -->
   <div>
-    <v-sheet width="300" :elevation="4" rounded class="mx-auto pa-5  ma-4">
+    <v-sheet width="300" :elevation="3" rounded class="mx-auto pa-5  ma-4">
       <h2>Create or update a User</h2>
       <v-form @submit.prevent = "createOrUpdateUser">
         <v-text-field
@@ -128,11 +136,14 @@ und zum Upgraden eines Users zum Admin -->
         ></v-checkbox>
 
         <v-btn type="submit" block class="mt-2">{{ editingUser ? 'Update' : 'Save' }}</v-btn>
+
+
+
       </v-form>
     </v-sheet>
   </div>
 
-
+<v-sheet width="90%" elevation="3" class="mx-auto">
   <div>
     <v-table>
       <thead>
@@ -164,6 +175,9 @@ und zum Upgraden eines Users zum Admin -->
         <th class="text-left">
           update
         </th>
+        <th class="text-left">
+          delete
+        </th>
 
       </tr>
       </thead>
@@ -181,9 +195,12 @@ und zum Upgraden eines Users zum Admin -->
         <td>{{ user.username }}</td>
         {{ user.isAdmin ? 'Yes' : 'No' }}
         <td><v-btn icon="mdi-pencil" size ="x-small" @click ="editUser(user.userId)"></v-btn></td>
+        <td><v-btn icon="mdi-delete" size ="x-small" @click="deleteUser(userData.userId)"></v-btn></td>
 
       </tr>
       </tbody>
     </v-table>
   </div>
+</v-sheet>
+
 </template>
