@@ -11,6 +11,9 @@ const router = useRouter();
 const user = computed(() => userStore.users.find(u=> u.userId === parseInt(route.params.user)))
 const editingUser = ref(null);
 const route = useRoute()
+const rules = {
+  required: value => !!value || 'Field is required',
+}
 
 const err = false;
 const userData = ref({
@@ -42,6 +45,7 @@ onMounted(async () => {
     console.error('Error loading users in component mount:', error);
   }
 })
+//TODO ...versuchen auf newUser
 const editUser = (user) => {
   console.log('editUser function called userId: ', user)
   console.log(userData.value)
@@ -231,6 +235,11 @@ und zum Upgraden eines Users zum Admin -->
       <v-text-field
           v-model="newUser.password"
           label="passwort"
+          hint="Passwort muss angegeben werden"
+
+          :rules="[rules.required]"
+
+
       ></v-text-field>
       <v-text-field
           v-model="newUser.username"
