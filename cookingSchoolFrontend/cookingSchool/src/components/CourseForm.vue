@@ -1,11 +1,14 @@
 <script setup>
 
-import {computed, onMounted, ref} from 'vue';
+import {computed, onMounted, ref, watchEffect} from 'vue';
 import {useCourseStore} from "@/stores/CourseStore";
+import {useTagStore} from "@/stores/TagStore";
 
 const courseStore = useCourseStore()
+const tagStore = useTagStore()
 let courseErr = ref(false)
 let timeError = ref(false)
+const availableTags = tagStore.availableTags;
 
 const data = ref({
   courseTitle: '',
@@ -14,13 +17,19 @@ const data = ref({
   startDate: '',
   maxAttendants: '',
   price: '',
+  selectedTag: [{}]
 
 })
 
-
+onMounted(async () => {
+  const availableTags = JSON.parse(JSON.stringify(tagStore.availableTags));
+  await tagStore.fetchAvailableTags();
+  console.log('Available Tags:', tagStore.availableTags)
+});
 
 onMounted(() => {
   console.log('CourseForm mounted');
+  console.log('Available Tags in CourseForm:', tagStore.availableTags)
   console.log('Initial startDate in CourseForm:', data.value.startDate);
 });
 
@@ -39,8 +48,9 @@ async function createCourse() {
       startDate: new Date(data.value.startDate).toISOString(),
       maxAttendants: data.value.maxAttendants,
       price: data.value.price,
+      tags: data.value.selectedTag || []
     };
-
+console.log('Form', )
     try {
       await courseStore.createCourse(requestData);
       await courseStore.showCourses()
@@ -78,6 +88,14 @@ async function createCourse() {
 
           <v-text-field v-model.number="data.maxAttendants" label="max Attendants"></v-text-field>
           <v-text-field v-model.number="data.price" label="price"></v-text-field>
+          <v-select
+              v-model="data.selectedTag"
+              :items="tagStore.availableTags"
+              item-text="courseTagTitle"
+              item-value="courseTagId"
+              label="Select a Tag"
+              multiple
+          ></v-select>
 
           <v-alert
               closable

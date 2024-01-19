@@ -21,13 +21,17 @@ export const useCourseStore = defineStore('course', {
         },
         async createCourse(data) {
             try {
+                const selectedTags = data.selectedTag.map(tag => tag['item-value']);
+                console.log('courseStore', selectedTags)
+
                 const courseData = {
                     courseTitle: data.courseTitle,
                     description: data.description,
                     teacher: data.teacher,
                     startDate: new Date(data.startDate),
                     maxAttendants: data.maxAttendants,
-                    price: data.price
+                    price: data.price,
+                    tags: data.selectedTag,
                 };
 
                 console.log(data);
@@ -50,6 +54,6 @@ export const useCourseStore = defineStore('course', {
             console.log('Course updated')
             this.showCourses()
 
-    }
+        },
 }   
 });
