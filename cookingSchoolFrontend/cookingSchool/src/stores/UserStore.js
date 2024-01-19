@@ -30,7 +30,7 @@ export const useUserStore = defineStore('user', {
 
         }, async updateUser(userId, user){
 
-            const updateUser = await axios.put('http://localhost:8082/admin/users'+userId,user)
+            const updateUser = await axios.put('http://localhost:8082/admin/users/'+userId,user)
 
 
         },

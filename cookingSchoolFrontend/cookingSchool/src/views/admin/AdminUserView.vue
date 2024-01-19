@@ -45,7 +45,7 @@ onMounted(async () => {
 const editUser = (user) => {
   console.log('editUser function called userId: ', user)
   console.log(userData.value)
-  editingUser.userId = user //user.id,user
+  editingUser.value = user //user.id,user
   userData.firstname = user.firstname;
   userData.lastname = user.lastname;
   userData.address = user.address;
@@ -54,31 +54,27 @@ const editUser = (user) => {
   userData.password = user.password;
   userData.username = user.username;
   userData.admin = user.isAdmin;
-  console.log('VIEW editUser function called userId: ', user)
+
 }
-async function createOrUpdateUser(){``
-  if (user.value === undefined) {
-    try {
-      await userStore.creatUser(newUser.value)
-      router.push('/admin/users')
-      console.log('created User')
-    } catch (err) {
-      if (err.isAxiosError && err.status === 401){
-        return err = true
-      }
+async function createOrUpdateUser() {
+  try {
+    if (editingUser.value === null) {
+      await userStore.creatUser(newUser.value);
+      console.log('User created successfully');
+    } else {
+      await userStore.updateUser(editingUser.value.userId, newUser.value);
+      console.log('User updated successfully');
+      // Hier kannst du editingUser auf null setzen, um den Bearbeitungsmodus zu beenden
+      editingUser.value = null;
     }
-  } else {
-    try {
-      await userStore.updateUser(user.value.userId, newUser.value)
-      //router.push('/home')
-      console.log('updateUser done')
-    }catch (err) {
-      if (err.isAxiosError && err.status === 401 && 403 & 404){
-        return err =true
-      }
-    }
+    // Hier könntest du auch router.push('/home') hinzufügen, wenn gewünscht
+  } catch (error) {
+    console.error('Error creating or updating user:', error);
+    // Du könntest hier auch auf den Fehler reagieren, z.B. eine Meldung anzeigen
+    throw error; // Falls du den Fehler weiter nach oben reichen möchtest
   }
 }
+
 
 /*
 async function createOrUpdateUser() {
@@ -298,7 +294,7 @@ und zum Upgraden eines Users zum Admin -->
         <td>{{ user.email }}</td>
         <td>{{ user.username }}</td>
         {{ user.isAdmin ? 'Yes' : 'No' }}
-        <td><v-btn icon="mdi-pencil" size ="x-small" @click ="editUser(user.userId)"></v-btn></td>
+        <td><v-btn icon="mdi-pencil" size ="x-small" @click ="editUser(user)"></v-btn></td>
         <td><v-btn icon="mdi-delete" size ="x-small" @click="deleteUser(user.userId)"></v-btn></td>
 
       </tr>
