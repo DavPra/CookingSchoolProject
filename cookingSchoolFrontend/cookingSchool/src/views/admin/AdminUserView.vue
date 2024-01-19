@@ -13,7 +13,7 @@ const editingUser = ref(null);
 const route = useRoute()
 
 const err = false;
-const userData = ref({  //ref in reactive fge-ndert geht far nicht
+const userData = ref({
   firstname: '',
   lastname : '',
   address: '',
@@ -36,8 +36,8 @@ const newUser = ref({
 
 onMounted(async () => {
   try {
-    await userStore.showUsers();
-    console.log('Component mounted');
+    const users = await userStore.showUsers();
+    console.log('user Component mounted', users);
   } catch (error) {
     console.error('Error loading users in component mount:', error);
   }
@@ -61,17 +61,18 @@ async function createOrUpdateUser() {
     if (editingUser.value === null) {
       await userStore.creatUser(newUser.value);
       console.log('User created successfully');
+      await userStore.showUsers()
     } else {
       await userStore.updateUser(editingUser.value.userId, newUser.value);
       console.log('User updated successfully');
-      // Hier kannst du editingUser auf null setzen, um den Bearbeitungsmodus zu beenden
+
       editingUser.value = null;
+      await userStore.showUsers()
     }
-    // Hier könntest du auch router.push('/home') hinzufügen, wenn gewünscht
+   //await router.push('admin/users')
   } catch (error) {
     console.error('Error creating or updating user:', error);
-    // Du könntest hier auch auf den Fehler reagieren, z.B. eine Meldung anzeigen
-    throw error; // Falls du den Fehler weiter nach oben reichen möchtest
+    throw error;
   }
 }
 
@@ -201,8 +202,8 @@ und zum Upgraden eines Users zum Admin -->
     </v-sheet>
   </div> -->
   <v-sheet width="300" :elevation="3" rounded class="mx-auto pa-5  ma-4">
-    <h2>Create or update a User</h2>
-    <v-form @submit.prevent = "createOrUpdateUser">
+    <h2>Create or update an User</h2>
+    <v-form  @submit.prevent = "createOrUpdateUser">
       <v-text-field
           v-model="newUser.firstname"
           label="firstname"
@@ -218,10 +219,14 @@ und zum Upgraden eines Users zum Admin -->
       <v-text-field
           v-model.number="newUser.mobile"
           label="mobile"
+          type="tel"
+
       ></v-text-field>
       <v-text-field
           v-model="newUser.email"
-          label="email"
+          label="email address"
+          type="email"
+          placeholder="johndoe@gmail.com"
       ></v-text-field>
       <v-text-field
           v-model="newUser.password"
@@ -236,7 +241,7 @@ und zum Upgraden eines Users zum Admin -->
           label="is admin"
       ></v-checkbox>
 
-      <v-btn type="submit" block class="mt-2">Save</v-btn>
+      <v-btn type="submit" block class="mt-2">{{ editingUser ? 'Update' : 'Save' }}</v-btn>
 
 
 
@@ -245,6 +250,7 @@ und zum Upgraden eines Users zum Admin -->
 
 <v-sheet width="90%" elevation="3" class="mx-auto">
   <div>
+   <!-- <v-text-field v-model="search" label="Search" @input="filterUsers"></v-text-field> -->
     <v-table>
       <thead>
       <tr>
@@ -278,10 +284,12 @@ und zum Upgraden eines Users zum Admin -->
         <th class="text-left">
           delete
         </th>
-
       </tr>
       </thead>
+
       <tbody>
+
+
       <tr
           v-for="user in userStore.users"
           :key="user.userId"
