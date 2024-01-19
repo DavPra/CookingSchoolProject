@@ -77,6 +77,10 @@ async function createCourse() {
     <v-sheet width="400"  :elevation="9" rounded class="mx-auto pa-5">
       <h2>Add a new Course</h2>
       <v-form @submit.prevent = "createCourse">
+        <v-text-field
+            v-model="data.courseTitle"
+            label="Titel"
+        ></v-text-field>
       <v-text-field
           v-model="data.teacher"
           label="teacher"
@@ -103,7 +107,7 @@ async function createCourse() {
           label="price"
       ></v-text-field>
         <v-btn type="submit"  class="ma-2" variant="tonal">Save</v-btn>
-        <v-btn type="submit"  @click = "" variant="outlined"  class="ma-2">Back</v-btn>
+        <v-btn type="button"  @click = "" variant="outlined"  class="ma-2">Back</v-btn>
 
       </v-form>
     </v-sheet>
