@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <!-- Willkommensseite für alle User mit Login-Möglichkeit -->
+  <!-- Willkommensseite für alle Guests -->
   <div class="container">
     <div class="item">
     

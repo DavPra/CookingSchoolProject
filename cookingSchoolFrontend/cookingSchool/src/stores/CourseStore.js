@@ -1,5 +1,6 @@
 import {defineStore} from "pinia";
 import axios from "axios";
+import {createApiUrl} from "@/helper/ApiHelper";
 
 
 export const useCourseStore = defineStore('course', {
@@ -45,11 +46,41 @@ export const useCourseStore = defineStore('course', {
             console.log('Course deleted', courseId)
             this.showCourses()
         },
-        async updateCourse(courseId){
-            const updateCourseResponse = await axios.put('http://localhost:8082/admin/courses/'+courseId)
-            console.log('Course updated')
-            this.showCourses()
-
-    }
+        async getCourses({commit}) {
+            try {
+                const response = await axios.get(createApiUrl('/admin/courses'));
+                const courses = response.data;
+                commit('setCourses', courses);
+            } catch (error) {
+                console.error('Error fetching courses:', error);
+            }
+        },
+        async updateCourse({ commit }, updatedCourse) {
+            commit('updateCourse', updatedCourse);
+            try {
+                const response = await axios.put(createApiUrl(`/courses/${updatedCourse.id}`), updatedCourse);
+                console.log('Course updated:', response.data);
+            } catch (error) {
+                console.error('Error updating course:', error);
+            }
+        },
+        mutations: {
+            setCourses(state, courses) {
+                state.courses = courses;
+            },
+            updateCourse(state, updatedCourse) {
+                const index = state.courses.findIndex(course => course.id === updatedCourse.id);
+                if (index !== -1) {
+                    state.courses[index] = { ...updatedCourse };
+                    axios.put(createApiUrl(`/courses/${updatedCourse.id}`), updatedCourse)
+                        .then(response => {
+                            console.log('Course updated:', response.data);
+                        })
+                        .catch(error => {
+                            console.error('Error updating course:', error);
+                        });
+                }
+            }
+        }
 }   
 });

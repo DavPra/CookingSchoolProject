@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="fixed router index" />
+    <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="fixed router index">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/components/LoginCard.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/stores/CourseStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/stores/CourseStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/guest/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/guest/HomeView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.lck" beforeDir="false" afterPath="$PROJECT_DIR$/db/cooking/cookingdb.lck" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.log" beforeDir="false" afterPath="$PROJECT_DIR$/db/cooking/cookingdb.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.properties" beforeDir="false" afterPath="$PROJECT_DIR$/db/cooking/cookingdb.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.script" beforeDir="false" afterPath="$PROJECT_DIR$/db/cooking/cookingdb.script" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,7 +62,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;Spring Boot.Main.executor&quot;: &quot;Run&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;login-registration&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;edit-functions&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/katharinabinder/Desktop/Kursprojekt/cookingschool&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -94,13 +103,6 @@
       </method>
     </configuration>
   </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-20.0.2-azul-20.0.2-f644763e9732-2383794a" />
-      </set>
-    </attachedChunks>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
@@ -131,6 +133,7 @@
       <workItem from="1705421686863" duration="471000" />
       <workItem from="1705494382513" duration="5292000" />
       <workItem from="1705510242957" duration="317000" />
+      <workItem from="1705666147098" duration="511000" />
     </task>
     <task id="LOCAL-00001" summary="Boilerplate fixed.">
       <option name="closed" value="true" />

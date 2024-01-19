@@ -5,6 +5,7 @@ import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import CourseForm from "@/components/CourseForm.vue";
 import AdminCourseCard from "../../components/AdminCourseCard.vue";
+import { storeToRefs } from "pinia";
 
 //TODO v-cklick-outside npm error
 const courseStore = useCourseStore()
@@ -32,6 +33,15 @@ function showForm(){
 function closeForm(){
   isVisible.value = false
 }
+
+// TODO: Kathy -- einbauen Edit Funktion - wenn funktioniert (letztes div und nachfolgender Script-Teil)
+
+const props = defineProps(['course']);
+const editedCourse = ref({...props.course});
+
+const saveChanges = () => {
+  props.emit('save-changes', editedCourse.value);
+};
 
 </script>
 
@@ -79,6 +89,17 @@ function closeForm(){
   </div>
   </div>
 
+  <!-- Oben implementieren -->
+  <div>
+    <v-form @submit.prevent="saveChanges">
+      <v-text-field v-model="editedCourse.title" label="Titel"></v-text-field>
+      <v-text-field v-model="editedCourse.description" label="Beschreibung"></v-text-field>
+      <v-text-field v-model="editedCourse.date" label="Datum"></v-text-field>
+      <v-text-field v-model="editedCourse.participants" label="Teilnehmer"></v-text-field>
+
+      <v-btn type="submit" color="primary">Änderungen speichern</v-btn>
+    </v-form>
+  </div>
 
 
 </template>
