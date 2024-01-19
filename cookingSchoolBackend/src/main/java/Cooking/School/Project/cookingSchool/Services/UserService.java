@@ -64,6 +64,26 @@ public class UserService {
 
 
     }
+    @Transactional
+    public User editUser(Long userId, User updatedUser) throws PrimaryIdNullOrEmptyException {
+        if (userId == null) {
+            throw new PrimaryIdNullOrEmptyException("User Id is null or empty");
+        }
+        User existingUser = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
+
+        existingUser.setFirstname(updatedUser.getFirstname());
+        existingUser.setLastname(updatedUser.getLastname());
+        existingUser.setAddress(updatedUser.getAddress());
+        existingUser.setPassword(updatedUser.getPassword());
+        existingUser.setUsername(updatedUser.getUsername());
+        existingUser.setAdmin(updatedUser.isAdmin());
+
+        userRepository.save(existingUser);
+
+        return existingUser;
+    }
+
 
     public List<User> getAllUsers() {
         return userRepository.findAll();

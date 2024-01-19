@@ -50,7 +50,7 @@ public class Course {
    private String teacher;
 
    @Setter
-  // @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
    private LocalDateTime startDate;
 
     @Setter

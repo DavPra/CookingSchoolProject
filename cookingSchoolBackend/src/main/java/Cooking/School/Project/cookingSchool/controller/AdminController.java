@@ -181,6 +181,20 @@ public class AdminController {
 
     }
 
+    @Transactional
+    @PutMapping("admin/users/editUser")
+    public ResponseEntity<?> editUser(@RequestParam Long userId, @RequestBody User updatedUser) {
+        try {
+            userService.editUser(userId, updatedUser);
+            return new ResponseEntity<>("User updated successfully", HttpStatus.OK);
+        } catch (UserNotFoundException unfe) {
+            return new ResponseEntity<>(unfe.getMessage(), HttpStatus.NOT_FOUND);
+        } catch (PrimaryIdNullOrEmptyException pe) {
+            return new ResponseEntity<>(pe.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
     @GetMapping("/admin/users/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id){
         User user = userService.getUserById(id);
