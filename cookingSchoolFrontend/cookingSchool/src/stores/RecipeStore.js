@@ -14,8 +14,12 @@ export const useRecipeStore = defineStore('recipe', {
             try {
                 const recipeResponse = await axios.get('http://localhost:8082/admin/getAllRecipes');
                 console.log(recipeResponse.data);
-                this.recipes = recipeResponse.data;
+               // this.recipes = recipeResponse.data.recipes
+                this.recipes = recipeResponse.data
                 console.log('recipes geladen', recipeResponse.data);
+                //const recipeId = recipeResponse.data.recipeId
+
+
 
             } catch (error) {
                 console.error('Error loading recipes:', error);

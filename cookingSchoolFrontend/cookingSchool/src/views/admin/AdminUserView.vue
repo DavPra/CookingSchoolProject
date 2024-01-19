@@ -1,16 +1,22 @@
 <script setup>
 
 
-import {useRouter} from "vue-router";
-import {onMounted, ref, reactive} from "vue";
+import {useRoute, useRouter} from "vue-router";
+import {onMounted, ref, reactive, computed} from "vue";
 import {useUserStore} from "@/stores/UserStore";
 
 const userStore = useUserStore()
 const router = useRouter();
-
+//const editingUser = ref(false);
+const user = computed(() => userStore.users.find(u=> u.userId === parseInt(route.params.user)))
+const editingUser = ref(null);
+const route = useRoute()
+const rules = {
+  required: value => !!value || 'Field is required',
+}
 
 const err = false;
-const userData = ref({  //ref in reactive fge-ndert geht far nicht
+const userData = ref({
   firstname: '',
   lastname : '',
   address: '',
@@ -20,33 +26,112 @@ const userData = ref({  //ref in reactive fge-ndert geht far nicht
   username: '',
   admin: true
 });
+const newUser = ref({
+  firstname: user.value?.firstname,
+  lastname : user.value?.lastname,
+  address: user.value?.address,
+  mobile: user.value?.mobile,
+  email: user.value?.email,
+  password: user.value?.password,
+  username: user.value?.username,
+  admin: user.value?.admin
+})
 
 onMounted(async () => {
   try {
-    await userStore.showUsers();
-    console.log('Component mounted');
+    const users = await userStore.showUsers();
+    console.log('user Component mounted', users);
   } catch (error) {
     console.error('Error loading users in component mount:', error);
   }
 })
+//TODO ...versuchen auf newUser
+const editUser = (user) => {
+  console.log('editUser function called userId: ', user)
+  console.log(userData.value)
+  editingUser.value = user //user.id,user
+  userData.firstname = user.firstname;
+  userData.lastname = user.lastname;
+  userData.address = user.address;
+  userData.mobile = user.mobile;
+  userData.email = user.email;
+  userData.password = user.password;
+  userData.username = user.username;
+  userData.admin = user.isAdmin;
 
-//TODO User kommt doppelt
-
-async function createUser() {
-  console.log('createUser function called');
+}
+async function createOrUpdateUser() {
   try {
-    await userStore.createUser(userData.value);
-    console.log('user created:', userData.value);
-    await userStore.showUsers();
-  } catch (err) {
-    if (err.isAxiosError && err.status === 401) {
-      console.log(err);
-      console.error('Error creating user:', err);
-      return (err = true);
+    if (editingUser.value === null) {
+      await userStore.creatUser(newUser.value);
+      console.log('User created successfully');
+      await userStore.showUsers()
+    } else {
+      await userStore.updateUser(editingUser.value.userId, newUser.value);
+      console.log('User updated successfully');
+
+      editingUser.value = null;
+      await userStore.showUsers()
+    }
+   //await router.push('admin/users')
+  } catch (error) {
+    console.error('Error creating or updating user:', error);
+    throw error;
+  }
+}
+
+
+/*
+async function createOrUpdateUser() {
+  console.log('editingUser.value:', editingUser.value);
+  console.log('editingUser.value.userId:', editingUser.value.userId);
+
+  console.log('createUser function called')
+  if(editingUser.value){
+    console.log('editingUser.value:', editingUser.value);
+    console.log('editingUser.value.userId:', editingUser.value.userId);
+
+    console.log('1', editingUser.value)
+    try{
+      console.log('2')
+      await userStore.updateUser(editingUser.value.userId, userData.value)
+      console.log('3')
+      console.log('EdittingUserId',editingUser.value.userId)
+    }catch (e){
+      console.error(e)
+    }
+
+  }else{
+    try {
+      await userStore.createUser(userData.value);
+      console.log('user created:', userData.value);
+      await userStore.showUsers();
+    } catch (err) {
+      if (err.isAxiosError && err.status === 401) {
+        console.log(err);
+        console.error('Error creating user:', err);
+        return (err = true);
+      }
     }
   }
 }
 
+async function editUser(user){
+  console.log('editUser function called userId: ', user)
+  console.log(userData.value)
+  editingUser.value = true;
+  editingUser.userId = user //user.id,user
+  userData.firstname = user.firstname;
+  userData.lastname = user.lastname;
+  userData.address = user.address;
+  userData.mobile = user.mobile;
+  userData.email = user.email;
+  userData.password = user.password;
+  userData.username = user.username;
+  userData.admin = user.isAdmin;
+  console.log('VIEW editUser function called userId: ', user)
+}
+*/
 async function showUsers() {
   try {
     await userStore.showUsers();
@@ -57,38 +142,17 @@ async function showUsers() {
   }
 }
 
-
 showUsers();
 
-/*
-
-async function createUserOrEditUser() {
-  console.log('createUser function called');
-  if(user.value === undefined)
+async function deleteUser(userId){
+  console.log('userId vor dem Funktionsaufruf:', userId);
   try {
-    //const isAdmin = userData.admin;
-    await userStore.createUser(userData.value);
-    /*await userStore.createUser({
-        ...userData,
-  isAdmin: isAdmin,
-  })
-    console.log('User created:', userData.value);
-    await userStore.showUsers()
+    await userStore.deleteUser(userId);
+    console.log('user gelöscht, mit der id', userId);
   } catch (err) {
-    if (err.isAxiosError && err.status === 401) {
-      console.log('Error creating user:', err);
-      return (err = true);
-    }
-  } else {
-    try{
-      await userStore.updateUser(user.value.userId, userData.value)
-      //TODO da weiter functionen zusammenlegen
-    }catch(err){
-      console.error(err)
-    }
+    console.error('Error delete user', err);
   }
-}*/
-
+}
 
 </script>
 
@@ -97,10 +161,10 @@ async function createUserOrEditUser() {
 <template>
   <!-- Übersicht aller User zur Bearbeitung für den Admin
 und zum Upgraden eines Users zum Admin -->
-  <div>
-    <v-sheet width="300" class="mx-auto">
-      <h2>Create a new User</h2>
-      <v-form @submit.prevent = "createUser">
+ <!--<div>
+    <v-sheet width="300" :elevation="3" rounded class="mx-auto pa-5  ma-4">
+      <h2>Create or update a User</h2>
+      <v-form @submit.prevent = "createOrUpdateUser">
         <v-text-field
             v-model="userData.firstname"
             label="firstname"
@@ -134,29 +198,68 @@ und zum Upgraden eines Users zum Admin -->
             label="is admin"
         ></v-checkbox>
 
-        <v-btn type="submit" block class="mt-2">Save</v-btn>
+        <v-btn type="submit" block class="mt-2">{{ editingUser ? 'Update' : 'Save' }}</v-btn>
+
+
+
       </v-form>
     </v-sheet>
-  </div>
-  <div>
-    <h1>Users List</h1>
-    <ul>
-      <li v-for="user in userStore.users" :key="user.userId">
-        {{ user.userId }}
-        {{ user.firstname }}
-        {{ user.lastname }}
-        {{user.address}}
-        {{user.mobile}}
-        {{user.email}}
-        {{user.password}}
-        {{user.username}}
-        {{user.isAdmin}}
+  </div> -->
+  <v-sheet width="300" :elevation="3" rounded class="mx-auto pa-5  ma-4">
+    <h2>Create or update an User</h2>
+    <v-form  @submit.prevent = "createOrUpdateUser">
+      <v-text-field
+          v-model="newUser.firstname"
+          label="firstname"
+      ></v-text-field>
+      <v-text-field
+          v-model="newUser.lastname"
+          label="lastname"
+      ></v-text-field>
+      <v-text-field
+          v-model="newUser.address"
+          label="address"
+      ></v-text-field>
+      <v-text-field
+          v-model.number="newUser.mobile"
+          label="mobile"
+          type="tel"
 
-      </li>
-    </ul>
-  </div>
+      ></v-text-field>
+      <v-text-field
+          v-model="newUser.email"
+          label="email address"
+          type="email"
+          placeholder="johndoe@gmail.com"
+      ></v-text-field>
+      <v-text-field
+          v-model="newUser.password"
+          label="passwort"
+          hint="Passwort muss angegeben werden"
 
+          :rules="[rules.required]"
+
+
+      ></v-text-field>
+      <v-text-field
+          v-model="newUser.username"
+          label="username"
+      ></v-text-field>
+      <v-checkbox
+          v-model="newUser.admin"
+          label="is admin"
+      ></v-checkbox>
+
+      <v-btn type="submit" block class="mt-2">{{ editingUser ? 'Update' : 'Save' }}</v-btn>
+
+
+
+    </v-form>
+  </v-sheet>
+
+<v-sheet width="90%" elevation="3" class="mx-auto">
   <div>
+   <!-- <v-text-field v-model="search" label="Search" @input="filterUsers"></v-text-field> -->
     <v-table>
       <thead>
       <tr>
@@ -187,10 +290,15 @@ und zum Upgraden eines Users zum Admin -->
         <th class="text-left">
           update
         </th>
-
+        <th class="text-left">
+          delete
+        </th>
       </tr>
       </thead>
+
       <tbody>
+
+
       <tr
           v-for="user in userStore.users"
           :key="user.userId"
@@ -202,11 +310,14 @@ und zum Upgraden eines Users zum Admin -->
         <td>{{ user.mobile }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.username }}</td>
-        <td>{{ user.isAdmin }}</td>
-        <td><v-btn icon="mdi-pencil" size ="x-small" @click ="updateUser(user.userId)"></v-btn></td>
+        {{ user.isAdmin ? 'Yes' : 'No' }}
+        <td><v-btn icon="mdi-pencil" size ="x-small" @click ="editUser(user)"></v-btn></td>
+        <td><v-btn icon="mdi-delete" size ="x-small" @click="deleteUser(user.userId)"></v-btn></td>
 
       </tr>
       </tbody>
     </v-table>
   </div>
+</v-sheet>
+
 </template>

@@ -53,6 +53,7 @@ function closeForm(){
                            :startDate="course.startDate"
                            :description="course.description"
                            :courseId="course.courseId"
+                           :teacher = "course.teacher"
                            :showForm = "showForm"
           />
         </v-col>
