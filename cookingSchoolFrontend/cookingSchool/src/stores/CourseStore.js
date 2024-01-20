@@ -50,6 +50,12 @@ export const useCourseStore = defineStore('course', {
             console.log('Course updated')
             this.showCourses()
 
-    }
+    },
+
+    async bookCourse(courseId, userId){
+        const bookCourseResponse = await axios.put('http://localhost:8082/users/courses/'+courseId+'/book-course/'+userId)
+        console.log('Course booked')
+        this.showCourses()
+    },
 }   
 });
