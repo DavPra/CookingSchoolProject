@@ -14,11 +14,10 @@ export const useRecipeStore = defineStore('recipe', {
             try {
                 const recipeResponse = await axios.get('http://localhost:8082/admin/getAllRecipes');
                 console.log(recipeResponse.data);
-               // this.recipes = recipeResponse.data.recipes
+                // this.recipes = recipeResponse.data.recipes
                 this.recipes = recipeResponse.data
                 console.log('recipes geladen', recipeResponse.data);
                 //const recipeId = recipeResponse.data.recipeId
-
 
 
             } catch (error) {
@@ -38,7 +37,7 @@ export const useRecipeStore = defineStore('recipe', {
                     ingredients: data.ingredients
                 };
 
-                const courseIds = await this.getCourseIds();
+                const courseIds = data.courseIds;
 
                 console.log(data);
 
@@ -61,12 +60,24 @@ export const useRecipeStore = defineStore('recipe', {
             console.log('recipe updated')
             this.showRecipes()
         },
-        async getCourseIds() {
+        /*async getCourseIds() {
           await this.courseStore.showCourses()
             //await courseStore.showCourses()
             console.log('kurse für rezepte geladen')
             return this.courseStore.courses.map(course => course.courseIds);
 
-        }
+        },
+        async fetchAvailableCoursesForRecipes() {
+            try {
+                await this.courseStore.showCourses();
+                console.log('Kurse für Rezepte geladen');
+                this.availableCourses = this.courseStore.courses.map(course => ({
+                    courseId: course.courseId,
+                    title: course.title
+                }));
+            } catch (error) {
+                console.error('Fehler beim Abrufen von Kursen für Rezepte:', error);
+            }
+        }*/
     }
 })

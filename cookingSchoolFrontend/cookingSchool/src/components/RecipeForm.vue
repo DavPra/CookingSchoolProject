@@ -13,45 +13,63 @@ const recipeData = ref({
   description: '',
   difficulty: 1,
   preparation: 0,
-  courseIds: [],
+  selectedCourses: [],
   ingredients: [],
 });
+const courseOptions = ref([])
 
-const courses = ref([])
+//const courses = ref([])
 const isCoursesLoaded = ref(false);
 
 onMounted(async () => {
   await loadCourses();
+
 });
 
 
 const loadCourses = async () => {
   try {
-    console.log('load Courses', recipeStore.courseStore.courses);
-    courses.value = await recipeStore.getCourseIds();
-    isCoursesLoaded.value = true;
+    await courseStore.showCourses();
+    courseOptions.value = courseStore.courses.map(course => ({
+      courseId: course.courseId,
+      title: course.courseTitle
+    }));
   } catch (err) {
-    console.error('Error loading courses:', err);
+    console.error("Fehler beim Laden der Kurse:", err);
   }
-}
+};
 
-    const ingredients = [
-      // Hier die verfügbaren Zutaten einfügen
-    ];
+    const ingredients = [];
 
 const addRecipe = async () => {
   console.log('addRecipe function called');
   try {
-    await recipeStore.addRecipe(recipeData.value);
-    console.log('recipe created:', recipeData.value);
+    console.dir(recipeData.value.selectedCourses);
+    //const selectedCourseIds = recipeData.value.selectedCourses.map(course => course.courseId);
+
+    let courseIds = [];
+    courseIds.push(recipeData.value.selectedCourses);
+
+    const recipeDataToSend = {
+      title: recipeData.value.title,
+      description: recipeData.value.description,
+      difficulty: recipeData.value.difficulty,
+      preparation: recipeData.value.preparation,
+      courseIds: courseIds,
+      ingredients: recipeData.value.ingredients
+    };
+
+    await recipeStore.addRecipe(recipeDataToSend);
+    console.log('recipe created:', recipeDataToSend)
     await recipeStore.showRecipes();
   } catch (err) {
-    // Handle error
     console.error('Error creating recipe:', err);
   }
 }
 
+
 loadCourses();
+
 
 </script>
 
@@ -81,12 +99,6 @@ loadCourses();
           <v-row>
             <v-col>
               <v-row>
-                <!--<v-select
-                    v-model="recipeData.ingredients"
-                    :items="ingredients"
-                    label="Zutaten"
-                    multiple
-                ></v-select> -->
 
                 <!-- Eingabefeld für Zutaten -->
 
@@ -104,12 +116,13 @@ loadCourses();
 
             <v-col>
               <v-select
-                  v-model="recipeData.courseIds"
-                  :items="courses"
+                  v-model="recipeData.selectedCourses"
+                  :items="courseOptions"
                   label="Kurse"
-                  multiple
-                  item-text="courseTitle"
-              ></v-select>
+
+                  item-value="courseId"
+                 ></v-select>
+
             </v-col>
 
           </v-row>
