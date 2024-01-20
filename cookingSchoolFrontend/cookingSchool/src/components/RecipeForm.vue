@@ -36,7 +36,6 @@ const loadCourses = async () => {
 }
 
     const ingredients = [
-      // Hier die verfügbaren Zutaten einfügen
     ];
 
 const addRecipe = async () => {
@@ -46,7 +45,6 @@ const addRecipe = async () => {
     console.log('recipe created:', recipeData.value);
     await recipeStore.showRecipes();
   } catch (err) {
-    // Handle error
     console.error('Error creating recipe:', err);
   }
 }
