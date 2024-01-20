@@ -24,7 +24,7 @@ public class EmailController {
             User user = userService.getUserById(id);
             emailService.sendEmail(user.getEmail(), "Buchungsbestätigung Cooking Academy", "Hey " + user.getFirstname() + ",\n\n" +
                     "vielen Dank für deine Buchung bei der Cooking Academy. Wir freuen uns auf dich!\n\n" +
-                    "Viele Grüße,\n" +
+                    "Liebe Grüße,\n" +
                     "dein Cooking Academy Team");
             return ResponseEntity.ok("Email sent successfully");
         } catch (IllegalArgumentException e) {
