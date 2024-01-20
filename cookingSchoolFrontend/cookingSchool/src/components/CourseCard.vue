@@ -6,6 +6,7 @@ import { useRoute, useRouter } from "vue-router";
 import { useCourseStore } from "@/stores/CourseStore.js";
 
 const courseStore = useCourseStore()
+const course = defineProps(['courseTitle','startDate','description','teacher'])
 
 onMounted(() => {
   showCourses();
@@ -15,10 +16,13 @@ onMounted(() => {
 const show = ref(false)
 
 const err = false;
+const courses = ref([]);
 
 
 async function showCourses() {
   await courseStore.showCourses();
+  courses = courseStore.courses;
+  console.log(courses);
 }
 
 showCourses();
@@ -28,9 +32,6 @@ showCourses();
 <template>
 
 <div class="course-list">
-  <h1>Course List</h1>
-  <v-row>
-    <v-col cols="12" sm="6" md="4" lg="3">
       <v-card>
         <v-img
             cover
@@ -38,8 +39,11 @@ showCourses();
             src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
         ></v-img>
 
-        <v-card-title></v-card-title>
-        <v-card-text></v-card-text>
+        <v-card-title>
+          {{ courseTitle }}
+        </v-card-title>
+        <v-card-text>{{ startDate }}</v-card-text>
+        <v-card-text>{{ teacher }}</v-card-text>
         <v-card-actions>
           <v-btn color="primary">Kursbeschreibung</v-btn>
 
@@ -54,17 +58,15 @@ showCourses();
         <v-expand-transition>
           <div v-show="show">
             <v-divider></v-divider>
-            <v-card-text></v-card-text>
-          <v-btn
+            <v-card-text>{{description}}</v-card-text>
+          <v-btn @click="bookCourse"
           variant="text" 
           color="primary">
-          Details
+          Buchen
           </v-btn>
           </div>
         </v-expand-transition>
 
       </v-card>
-    </v-col>
-  </v-row>
 </div>
 </template>
