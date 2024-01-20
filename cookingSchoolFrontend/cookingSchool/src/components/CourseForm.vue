@@ -17,7 +17,7 @@ const data = ref({
   startDate: '',
   maxAttendants: '',
   price: '',
-  selectedTag: [{}]
+  selectedTag: [] // [],
 
 })
 
@@ -91,10 +91,9 @@ console.log('Form', )
           <v-select
               v-model="data.selectedTag"
               :items="tagStore.availableTags"
-              item-text="courseTagTitle"
-              item-value="courseTagId"
-              label="Select a Tag"
-              multiple
+             item-title="courseTagTitle"
+             item-value="courseTagTitle"
+              multiple=true
           ></v-select>
 
           <v-alert
