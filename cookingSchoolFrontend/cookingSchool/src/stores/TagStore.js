@@ -3,18 +3,17 @@ import axios from "axios";
 
 export const useTagStore = defineStore('tag', {
     state: () => ({
-        availableTags: [],
+        availableTags: []
     }),
     actions: {
         async fetchAvailableTags() {
             try {
 
                 const response = await axios.get('http://localhost:8082/admin/courseTag');
-              /*  this.availableTags = response.data.map(tag => ({
+                this.availableTags = response.data.map(tag => ({
                     'item-title': tag.courseTagTitle,
                     'item-value': tag.courseTagId
-                }));*/
-                this.availableTags =response.data
+                }));
                 console.log('tagStore', response.data)
             } catch (error) {
                 console.error('Error fetching tags:', error)
