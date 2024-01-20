@@ -6,7 +6,7 @@ import { useRoute, useRouter } from "vue-router";
 import { useCourseStore } from "@/stores/CourseStore.js";
 
 const courseStore = useCourseStore()
-const course = defineProps(['courseTitle','startDate','description','teacher'])
+const course = defineProps(['courseTitle','startDate','description','teacher','courseId'])
 
 onMounted(() => {
   showCourses();
@@ -26,6 +26,11 @@ async function showCourses() {
 }
 
 showCourses();
+
+async function bookCourse() {
+  await courseStore.bookCourse(courseId, userId);
+  console.log(course.courseId);
+}
 
 </script>
 
@@ -59,7 +64,7 @@ showCourses();
           <div v-show="show">
             <v-divider></v-divider>
             <v-card-text>{{description}}</v-card-text>
-          <v-btn @click="bookCourse"
+          <v-btn @click="bookCourse(courseId, userId)"
           variant="text" 
           color="primary">
           Buchen

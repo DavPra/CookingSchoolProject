@@ -37,12 +37,13 @@ showCourses();
   <v-row class="d-flex ma-2 ">
     <v-col v-for="course in courses" :key="course.courseId" cols="12" sm="6" md="4" lg="3">
       <CourseCard
-                  :key="course.courseId"
+              
                   :courseTitle="course.courseTitle"
                   :startDate="course.startDate"
                   :description="course.description"
                   :courseId="course.courseId"
                   :teacher = "course.teacher"
+                  :user = 
       />
     </v-col>
   </v-row>
