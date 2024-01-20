@@ -10,9 +10,6 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
-import Cooking.School.Project.cookingSchool.Services.UserService;
-import Cooking.School.Project.cookingSchool.restapi.dto.UserMail;
-
 import java.io.File;
 
 @Service
