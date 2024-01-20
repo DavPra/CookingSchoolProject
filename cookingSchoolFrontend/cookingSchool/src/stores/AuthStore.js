@@ -1,7 +1,7 @@
 import {defineStore} from 'pinia';
 import axios from 'axios';
 import {createApiUrl} from '@/helper/ApiHelper';
-import jwtDecode from 'jwt-decode';
+import foo from 'jwt-decode';
 
 const accessToken = window.localStorage.getItem('accessToken')
 
@@ -24,7 +24,7 @@ export const useAuthStore = defineStore('authentication', {
             console.log(token)
             window.localStorage.setItem('accessToken', token)
             function parseJwt (token) {
-                console.log('\n\n\nHallo: ' + jwtDecode(token));
+                console.log('\n\n\nHallo: ' + foo(token));
 
                return "";
             }
@@ -32,7 +32,7 @@ export const useAuthStore = defineStore('authentication', {
         },
 
         async decodeToken(token) {
-            const decodedToken = jwtDecode(window.localStorage.getItem('accessToken', token))
+            const decodedToken = foo(window.localStorage.getItem('accessToken', token))
             console.log(decodedToken)
             return decodedToken
         },

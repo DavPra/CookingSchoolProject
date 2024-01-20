@@ -53,7 +53,7 @@ export const useCourseStore = defineStore('course', {
     },
 
     async bookCourse(courseId, userId){
-        const bookCourseResponse = await axios.put('http://localhost:8082/users/courses/'+courseId+'/book-course/'+userId)
+        const bookCourseResponse = await axios.put('http://localhost:8082/users/'+userId+'/book-course/'+courseId)
         console.log('Course booked')
         this.showCourses()
     },

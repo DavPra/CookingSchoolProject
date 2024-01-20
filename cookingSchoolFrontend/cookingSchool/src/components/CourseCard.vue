@@ -4,9 +4,11 @@ import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import { useCourseStore } from "@/stores/CourseStore.js";
+import { useAuthStore } from "@/stores/AuthStore.js";
 
 const courseStore = useCourseStore()
 const course = defineProps(['courseTitle','startDate','description','teacher','courseId'])
+const authStore = useAuthStore();
 
 onMounted(() => {
   showCourses();
@@ -17,6 +19,8 @@ const show = ref(false)
 
 const err = false;
 const courses = ref([]);
+const userId = course.userId;
+const courseId = course.courseId;
 
 
 async function showCourses() {
@@ -28,8 +32,9 @@ async function showCourses() {
 showCourses();
 
 async function bookCourse() {
-  await courseStore.bookCourse(courseId, userId);
-  console.log(course.courseId);
+  console.log(userId);
+  await courseStore.bookCourse(courseId,userId);
+  console.log(courses.courseId);
 }
 
 </script>

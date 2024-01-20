@@ -27,9 +27,16 @@ const err = false;
 
 async function showCourses() {
   await courseStore.showCourses();
+  await authStore.decodeToken(window.localStorage.getItem('accessToken'));
 }
 
 showCourses();
+
+function getUserId() {
+  return authStore.decodeToken(window.localStorage.getItem('accessToken')).userId;
+}
+
+getUserId();
 
 </script>
 
