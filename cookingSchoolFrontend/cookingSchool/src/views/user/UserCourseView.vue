@@ -43,7 +43,7 @@ showCourses();
                   :description="course.description"
                   :courseId="course.courseId"
                   :teacher = "course.teacher"
-                  :user = 
+                  
       />
     </v-col>
   </v-row>
