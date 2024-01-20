@@ -26,11 +26,17 @@ export const useAuthStore = defineStore('authentication', {
             function parseJwt (token) {
                 console.log('\n\n\nHallo: ' + jwtDecode(token));
 
-                console.dir(jwtDecode(token));
                return "";
             }
             parseJwt(token);
         },
+
+        async decodeToken(token) {
+            const decodedToken = jwtDecode(window.localStorage.getItem('accessToken', token))
+            console.log(decodedToken)
+            return decodedToken
+        },
+
         async getUser() {
           const config = {
               headers: {

@@ -5,10 +5,12 @@ import { onMounted, ref, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import CourseForm from "@/components/CourseForm.vue";
 import CourseCard from "@/components/CourseCard.vue";
+import { useAuthStore } from "@/stores/AuthStore.js";
 
 const courseStore = useCourseStore()
 const router = useRouter(); // router
 const isVisible = ref(false);
+const authStore = useAuthStore();
 
 
 const courses = computed(() => courseStore.courses);
