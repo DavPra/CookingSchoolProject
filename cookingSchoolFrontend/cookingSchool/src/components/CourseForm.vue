@@ -1,11 +1,17 @@
 <script setup>
 
-import {computed, onMounted, ref} from 'vue';
+import {computed, onMounted, onUnmounted, ref} from 'vue';
 import {useCourseStore} from "@/stores/CourseStore";
+import vClickOutside from "click-outside-vue3";
 
 const courseStore = useCourseStore()
 let courseErr = ref(false)
 let timeError = ref(false)
+const props = defineProps(['closeForm'])
+const { emit } = defineEmits();
+
+
+
 
 const data = ref({
   courseTitle: '',
@@ -53,18 +59,21 @@ async function createCourse() {
         console.error('Unexpected error:', err.response.data);
 
       }
-    }
 
+    }}
+function closeForm() {
+  console.log('closeForm called');
+  props.closeForm()
+  // Hier können Sie weitere Aktionen vor dem Schließen des Formulars durchführen
 }
-
 
 
 </script>
 
 <template>
 
-    <div>
-      <v-sheet width="400" :elevation="9" rounded class="mx-auto pa-5">
+    <div >
+      <v-card width="400" :elevation="9" rounded class="mx-auto pa-5"  >
         <h2>Add a new Course</h2>
         <v-form @submit.prevent="createCourse">
           <v-text-field v-model="data.courseTitle" label="Titel"></v-text-field>
@@ -96,8 +105,8 @@ async function createCourse() {
               v-model="timeError"
           ></v-alert>
           <v-btn type="submit" class="ma-2" variant="tonal">Save</v-btn>
-          <v-btn type="button" @click="" variant="outlined" class="ma-2">Back</v-btn>
+          <v-btn type="button" @click="closeForm" variant="outlined" class="ma-2">Back</v-btn>
         </v-form>
-      </v-sheet>
+      </v-card>
     </div>
 </template>
