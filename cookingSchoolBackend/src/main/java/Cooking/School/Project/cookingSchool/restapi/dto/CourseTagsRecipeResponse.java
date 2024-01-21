@@ -28,6 +28,8 @@ public class CourseTagsRecipeResponse {
 
     private String teacher;
 
+    private String image;
+
     //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private String startDate;
 
@@ -38,6 +40,8 @@ public class CourseTagsRecipeResponse {
     private Set<CourseTag> courseTags;
 
     private Set<Recipe> recipes;
+
+
 
     public LocalDateTime getStartDateAsLocalDateTime(){
         if(this.startDate == null){
@@ -55,6 +59,7 @@ public class CourseTagsRecipeResponse {
         this.startDate = course.getStartDate().format(START_DATE_FORMAT);
         this.maxAttendants = course.getMaxAttendants();
         this.price = course.getPrice();
+        this.image = course.getImage();
     }
 
 }

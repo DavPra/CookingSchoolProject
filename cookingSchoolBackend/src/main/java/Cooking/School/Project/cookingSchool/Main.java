@@ -52,6 +52,7 @@ public class Main implements CommandLineRunner {
 		course.setCourseTitle("Kurs 1");
 		course.setDescription("Beschreibung 1");
 		course.setTeacher("Lehrer 1");
+		course.setImage("https://cdn.pixabay.com/photo/2016/02/05/15/34/pasta-1181189_640.jpg");
 		course.setMaxAttendants(10);
 		course.setPrice(100);
 		course.setStartDate(LocalDateTime.parse("2023-11-20T14:30:00", formatter));
