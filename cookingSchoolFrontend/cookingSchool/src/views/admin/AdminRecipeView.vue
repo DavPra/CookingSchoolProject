@@ -40,6 +40,7 @@ showRecipes();
             :preparation="recipe.preparation"
             :description="recipe.description"
             :recipeId="recipe.recipeId"
+            :ingredients="recipe.ingredients"
 
         />
       </v-col>
