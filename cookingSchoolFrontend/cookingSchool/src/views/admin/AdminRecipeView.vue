@@ -32,7 +32,7 @@ showRecipes();
   <div id="recipes-list" class="ma-2" >
     <h1 class="mx-auto">Recipes:</h1>
     <v-row class="d-flex ma-2">
-      <v-col v-for="recipe in recipeStore.recipes" :key="recipe.recipeId" cols="12" sm="6" md="4" lg="3"> -->
+      <v-col v-for="recipe in recipeStore.recipes" :key="recipe.recipeId" cols="12" sm="6" md="4" lg="3">
         <RecipeComponent
             :key="recipe.recipeId"
             :title="recipe.title"

@@ -91,6 +91,12 @@ loadCourses();
           <v-col>
             <v-text-field v-model="recipeData.title" label="Titel"></v-text-field>
           </v-col>
+
+        <!-- Kurs -->
+
+          <v-col>
+            <v-select v-model="recipeData.selectedCourses" :items="courseOptions" label="Kurs" item-value="courseId"></v-select>
+          </v-col>
         </v-row>
 
         <!-- Beschreibung -->
@@ -105,10 +111,10 @@ loadCourses();
           <v-col>
             <v-text-field v-model="recipeData.difficulty" label="Schwierigkeitsgrad" type="number"></v-text-field>
           </v-col>
-        </v-row>
+
 
         <!-- Vorbereitungszeit -->
-        <v-row>
+
           <v-col>
             <v-text-field v-model="recipeData.preparation" label="Vorbereitungszeit (in Minuten)" type="number"></v-text-field>
           </v-col>
@@ -134,12 +140,7 @@ loadCourses();
           </v-col>
         </v-row>
 
-        <!-- Kurs -->
-        <v-row>
-          <v-col>
-            <v-select v-model="recipeData.selectedCourses" :items="courseOptions" label="Kurs" item-value="courseId"></v-select>
-          </v-col>
-        </v-row>
+
 
         <!-- Zutatenliste -->
         <v-row>

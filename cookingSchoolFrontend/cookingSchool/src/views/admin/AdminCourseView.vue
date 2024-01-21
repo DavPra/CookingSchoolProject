@@ -59,6 +59,7 @@ function closeForm(){
                            :courseId="course.courseId"
                            :teacher = "course.teacher"
                            :showForm = "showForm"
+                           :image = "course.image"
 
           />
         </v-col>
@@ -78,6 +79,7 @@ function closeForm(){
         {{course.price}}
         {{course.startDate}}
         {{course.teacher}}
+        {{course.image}}
 
       </li>
     </ul>

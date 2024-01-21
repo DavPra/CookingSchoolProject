@@ -20,6 +20,7 @@ const data = ref({
   startDate: '',
   maxAttendants: '',
   price: '',
+  image: ''
 
 })
 
@@ -45,6 +46,7 @@ async function createCourse() {
       startDate: new Date(data.value.startDate).toISOString(),
       maxAttendants: data.value.maxAttendants,
       price: data.value.price,
+      image: data.value.image
     };
 
     try {
@@ -84,6 +86,7 @@ function closeForm() {
               label="Start Date and Time"
               placeholder="yyyy-MM-dd HH:mm:ss"
           ></v-text-field>
+          <v-text-field v-model="data.image" label="imageUrl"></v-text-field>
 
           <v-text-field v-model.number="data.maxAttendants" label="max Attendants"></v-text-field>
           <v-text-field v-model.number="data.price" label="price"></v-text-field>
