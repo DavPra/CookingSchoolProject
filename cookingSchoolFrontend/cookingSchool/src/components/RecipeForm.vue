@@ -14,8 +14,10 @@ const recipeData = ref({
   difficulty: 1,
   preparation: 0,
   selectedCourses: [],
-  ingredients: [],
-});
+  ingredients: [
+    {title: '', quantity: '', unit: ''}
+  ]
+})
 const courseOptions = ref([])
 const isCoursesLoaded = ref(false);
 
@@ -65,6 +67,13 @@ const addRecipe = async () => {
   }
 }
 
+const addIngredientRow = () => {
+  if (!recipeData.value.ingredients) {
+    recipeData.value.ingredients = []
+  }
+  recipeData.value.ingredients.push({ title: '', quantity: '', unit: '' });
+};
+
 
 loadCourses();
 
@@ -73,67 +82,89 @@ loadCourses();
 
 <template>
   <v-sheet elevation="4" width="80%" class="mx-auto mt-5">
-<h1>Erstelle ein neues Rezept:</h1>
-      <v-container>
-        <v-form @submit.prevent="addRecipe">
-          <v-row>
-            <v-col>
-              <v-text-field v-model="recipeData.title" label="Titel"></v-text-field>
-            </v-col>
-            <v-col>
-              <v-text-field v-model="recipeData.difficulty" label="Schwierigkeitsgrad" type="number"></v-text-field>
-            </v-col>
-          </v-row>
+    <h1>Erstelle ein neues Rezept:</h1>
+    <v-container>
+      <v-form @submit.prevent="addRecipe">
 
-          <v-row>
-            <v-col>
-              <v-text-field v-model="recipeData.description" label="Beschreibung"></v-text-field>
-            </v-col>
-            <v-col>
-              <v-text-field v-model="recipeData.preparation" label="Vorbereitungszeit (in Minuten)" type="number"></v-text-field>
-            </v-col>
-          </v-row>
+        <!-- Titel -->
+        <v-row>
+          <v-col>
+            <v-text-field v-model="recipeData.title" label="Titel"></v-text-field>
+          </v-col>
+        </v-row>
 
-          <v-row>
-            <v-col>
-              <v-row>
-                <!-- Eingabefeld für Zutaten -->
-                <v-text-field v-model="newIngredient" label="Zutat" @keydown.enter.prevent="addIngredient"></v-text-field>
-                <v-text-field v-model="newQuantity" label="Menge"></v-text-field>
-                <v-text-field v-model="newUnit" label="Einheit"></v-text-field>
+        <!-- Beschreibung -->
+        <v-row>
+          <v-col>
+            <v-textarea v-model="recipeData.description" label="Beschreibung" rows="5"></v-textarea>
+          </v-col>
+        </v-row>
 
+        <!-- Schwierigkeitsgrad -->
+        <v-row>
+          <v-col>
+            <v-text-field v-model="recipeData.difficulty" label="Schwierigkeitsgrad" type="number"></v-text-field>
+          </v-col>
+        </v-row>
 
-              </v-row>
+        <!-- Vorbereitungszeit -->
+        <v-row>
+          <v-col>
+            <v-text-field v-model="recipeData.preparation" label="Vorbereitungszeit (in Minuten)" type="number"></v-text-field>
+          </v-col>
+        </v-row>
 
-            </v-col>
+        <!-- Zutaten -->
+        <v-row v-for="(ingredient, index) in recipeData.ingredients" :key="index">
+          <v-col>
+            <v-text-field v-model="ingredient.title" label="Zutat"></v-text-field>
+          </v-col>
+          <v-col>
+            <v-text-field v-model="ingredient.quantity" label="Menge"></v-text-field>
+          </v-col>
+          <v-col>
+            <v-text-field v-model="ingredient.unit" label="Einheit"></v-text-field>
+          </v-col>
+        </v-row>
 
-            <v-col>
-              <v-select
-                  v-model="recipeData.selectedCourses"
-                  :items="courseOptions"
-                  label="Kurs"
+        <!-- Neue Zutat hinzufügen -->
+        <v-row>
+          <v-col>
+            <v-btn @click="addIngredientRow">Neue Zutat hinzufügen</v-btn>
+          </v-col>
+        </v-row>
 
-                  item-value="courseId"
-                 ></v-select>
+        <!-- Kurs -->
+        <v-row>
+          <v-col>
+            <v-select v-model="recipeData.selectedCourses" :items="courseOptions" label="Kurs" item-value="courseId"></v-select>
+          </v-col>
+        </v-row>
 
-            </v-col>
+        <!-- Zutatenliste -->
+        <v-row>
+          <v-col>
+            <div>
+              Zutatenliste:
+              <ul>
+                <li v-for="(ingredient, index) in recipeData.ingredients" :key="index">
+                  {{ ingredient.quantity }} - {{ ingredient.unit }} - {{ ingredient.title }}
+                </li>
+              </ul>
+            </div>
+          </v-col>
+        </v-row>
 
-          </v-row>
-          Zutatenliste:
-          <ul>
-            <li v-for="(ingredient, index) in ingredients" :key="index">
-              {{ ingredient.quantity }} - Menge: {{ ingredient.unit }} {{ ingredient.title }}
-            </li>
-          </ul>
-          <div>
+        <!-- Submit-Button -->
+        <v-row>
+          <v-col>
+            <v-btn type="submit">Rezept erstellen</v-btn>
+          </v-col>
+        </v-row>
 
-          </div>
-          <v-btn type="submit">Rezept erstellen</v-btn>
-        </v-form>
-      </v-container>
+      </v-form>
+    </v-container>
   </v-sheet>
-
-
 </template>
 
 <style scoped>
