@@ -44,7 +44,7 @@ showCourses();
                   :startDate="course.startDate"
                   :description="course.description"
                   :courseId="course.courseId"
-                  :teacher = "course.teacher"
+                  :teacher="course.teacher"
                   
       />
     </v-col>
