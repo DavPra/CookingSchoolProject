@@ -54,7 +54,8 @@ export const useCourseStore = defineStore('course', {
 
     async bookCourse(userId, courseId){
         const bookCourseResponse = await axios.post('http://localhost:8082/users/'+userId+'/book-course/'+courseId);
-        console.log('Course booked', bookCourseResponse.data);
+        const sentMail = await axios.post('http://localhost:8082/send-email/'+userId);
+        console.log(bookCourseResponse.data, sentMail.data);
         this.showCourses();
     },
 }   
