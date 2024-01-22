@@ -1,8 +1,9 @@
 <script setup>
 import {useCourseStore} from "@/stores/CourseStore";
-import {ref} from "vue";
+import {ref, toRaw} from "vue";
 const courseStore = useCourseStore()
-const course = defineProps(['courseTitle','startDate','description', 'courseId','teacher'])
+const course = defineProps(['courseTitle','startDate','description', 'courseId','teacher','image'])
+//const getImage = toRaw(image);
 
 /*async function updateCourse(courseId){
   console.log('updateCourse function called')
@@ -25,7 +26,7 @@ const show = ref(false)
           <v-img
               cover
               height="250"
-              src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+              :src="course.image"
           ></v-img>
 
           <v-card-title>{{ course.courseTitle }}</v-card-title>

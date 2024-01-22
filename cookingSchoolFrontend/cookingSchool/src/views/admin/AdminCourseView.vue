@@ -6,7 +6,6 @@ import { useRoute, useRouter } from "vue-router";
 import CourseForm from "@/components/CourseForm.vue";
 import AdminCourseCard from "../../components/AdminCourseCard.vue";
 
-//TODO v-cklick-outside npm error
 const courseStore = useCourseStore()
 const router = useRouter();
 const isVisible = ref(false)
@@ -30,8 +29,11 @@ function showForm(){
 }
 
 function closeForm(){
+  console.log('closeForm called')
   isVisible.value = false
+
 }
+
 
 </script>
 
@@ -41,12 +43,14 @@ function closeForm(){
   <div>
     <v-btn class="ma-2" @click ="showForm">Add new Course</v-btn>
     <p v-if="isVisible">CourseForm is visible</p>
-    <CourseForm v-if="isVisible" style="display: block;" />
+  <CourseForm v-if="isVisible"  :closeForm="closeForm" style="display: block;"/>
+
+
 
     <div id="course-list" class="ma-2" >
       <h1 class="mx-auto">Your upcoming Courses</h1>
       <v-row class="d-flex ma-2">
-        <v-col v-for="course in courseStore.courses" :key="course.courseId" cols="12" sm="6" md="4" lg="3"> -->
+        <v-col v-for="course in courseStore.courses" :key="course.courseId" cols="12" sm="6" md="4" lg="3">
           <AdminCourseCard
                            :key="course.courseId"
                            :courseTitle="course.courseTitle"
@@ -55,6 +59,8 @@ function closeForm(){
                            :courseId="course.courseId"
                            :teacher = "course.teacher"
                            :showForm = "showForm"
+                           :image = "course.image"
+
           />
         </v-col>
       </v-row>
@@ -73,6 +79,7 @@ function closeForm(){
         {{course.price}}
         {{course.startDate}}
         {{course.teacher}}
+        {{course.image}}
 
       </li>
     </ul>

@@ -90,13 +90,14 @@ async function createOrUpdateUser() {
         password: '',
         username: '',
         admin: true
-      };
-
-
+      }
       await userStore.showUsers()
     }
    //await router.push('admin/users')
   } catch (error) {
+    if(error.response && error.response.status === 409){
+      console.log('Email address already exists')
+    }
     console.error('Error creating or updating user:', error);
     throw error;
   }
@@ -172,7 +173,7 @@ async function deleteUser(userId){
           v-model="newUser.admin"
           label="is admin"
       ></v-checkbox>
-      <v-alert closable close-label="Close Alert" type="error" title="Error whtever" text="" v-model="err">
+      <v-alert closable close-label="Close Alert" type="error" title="Error" text="User konnte nicht erstellt werden" v-model="userErr">
       </v-alert>
 
       <v-btn type="submit" block class="mt-2">{{ editingUser ? 'Update' : 'Save' }}</v-btn>

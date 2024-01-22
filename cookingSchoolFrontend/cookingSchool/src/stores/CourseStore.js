@@ -27,7 +27,8 @@ export const useCourseStore = defineStore('course', {
                     teacher: data.teacher,
                     startDate: new Date(data.startDate),
                     maxAttendants: data.maxAttendants,
-                    price: data.price
+                    price: data.price,
+                    image: data.image
                 };
 
                 console.log(data);
