@@ -20,7 +20,7 @@ onMounted(() => {
 const show = ref(false)
 
 const err = false;
-const courses = ref([]);
+let courses = ref([]);
 const courseId = course.courseId;
 let decodedUserId = '';
 
