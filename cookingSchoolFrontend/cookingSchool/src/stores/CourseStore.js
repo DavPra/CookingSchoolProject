@@ -41,21 +41,21 @@ export const useCourseStore = defineStore('course', {
             }
         },
         async deleteCourse(courseId){
-            const deleteResponse = await axios.delete('http://localhost:8082/admin/courses/'+courseId)
-            console.log('Course deleted', courseId)
-            this.showCourses()
+            const deleteResponse = await axios.delete('http://localhost:8082/admin/courses/'+courseId);
+            console.log('Course deleted', courseId, deleteResponse.data);
+            this.showCourses();
         },
         async updateCourse(courseId){
-            const updateCourseResponse = await axios.put('http://localhost:8082/admin/courses/'+courseId)
-            console.log('Course updated')
-            this.showCourses()
+            const updateCourseResponse = await axios.put('http://localhost:8082/admin/courses/'+courseId);
+            console.log('Course updated', updateCourseResponse.data);
+            this.showCourses();
 
     },
 
-    async bookCourse(courseId, userId){
-        const bookCourseResponse = await axios.put('http://localhost:8082/users/'+userId+'/book-course/'+courseId)
-        console.log('Course booked')
-        this.showCourses()
+    async bookCourse(userId, courseId){
+        const bookCourseResponse = await axios.post('http://localhost:8082/users/'+userId+'/book-course/'+courseId);
+        console.log('Course booked', bookCourseResponse.data);
+        this.showCourses();
     },
 }   
 });
