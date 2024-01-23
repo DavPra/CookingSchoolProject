@@ -25,10 +25,12 @@ export const useCourseStore = defineStore('course', {
                     courseTitle: data.courseTitle,
                     description: data.description,
                     teacher: data.teacher,
+                    image: data.image,
                     startDate: new Date(data.startDate),
+                   // startDate:data.startDate,
                     maxAttendants: data.maxAttendants,
                     price: data.price,
-                    image: data.image
+
                 };
 
                 console.log(data);

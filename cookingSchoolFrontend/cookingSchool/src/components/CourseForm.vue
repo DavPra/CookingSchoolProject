@@ -36,7 +36,7 @@ async function createCourse() {
   console.log('createCourse function called');
   console.log('Original startDate:', data.value.startDate);
 
-  //if (data.value.startDate instanceof Date && !isNaN(data.value.startDate.getTime())) {
+  if (data.value.startDate instanceof Date && !isNaN(data.value.startDate.getTime())) {
     //const formattedDate = data.value.startDate.toISOString();
     const requestData = {
 
@@ -62,11 +62,14 @@ async function createCourse() {
 
       }
 
-    }}
-function closeForm() {
-  console.log('closeForm called');
-  props.closeForm()
-  // Hier können Sie weitere Aktionen vor dem Schließen des Formulars durchführen
+    }
+  }
+
+  function closeForm() {
+    console.log('closeForm called');
+    props.closeForm()
+    // Hier können Sie weitere Aktionen vor dem Schließen des Formulars durchführen
+  }
 }
 
 
@@ -80,7 +83,7 @@ function closeForm() {
         <v-form @submit.prevent="createCourse">
           <v-text-field v-model="data.courseTitle" label="Titel"></v-text-field>
           <v-text-field v-model="data.teacher" label="teacher"></v-text-field>
-
+          <v-text-field v-model="data.description" label="Beschreibung"></v-text-field>
           <v-text-field
               v-model="data.startDate"
               label="Start Date and Time"
