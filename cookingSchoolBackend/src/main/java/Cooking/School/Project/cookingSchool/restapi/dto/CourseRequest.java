@@ -26,7 +26,9 @@ public class CourseRequest {
 
     private String teacher;
 
-    //@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    private String image;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private LocalDateTime startDate;
 
     private int maxAttendants;

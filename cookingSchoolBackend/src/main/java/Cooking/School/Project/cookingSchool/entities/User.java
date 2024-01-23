@@ -14,7 +14,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
@@ -66,6 +65,7 @@ public class User implements UserDetails {
     @JsonProperty //springboot streicht is von isAdmin und macht sonst admin daraus, kA warum!
     private boolean isAdmin;
 
+    // last booked Course
     @Setter
     private Long finishedCourses;
 
@@ -73,13 +73,16 @@ public class User implements UserDetails {
     @ManyToMany(mappedBy = "users")
     Set<GrantedAuthorityImpl> authorities;
 
+    @JsonIgnore
     @Setter
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(
             name = "user_course",
             joinColumns = @JoinColumn(name = "userId"),
             inverseJoinColumns = @JoinColumn(name = "courseId"))
     private Set<Course> courses = new HashSet<>();
+
+
 
     @JsonIgnore
     @Override
@@ -116,9 +119,7 @@ public class User implements UserDetails {
         return true;
     }
 
-    /*public void setPassword(String password) {
-        this.password = new BCryptPasswordEncoder().encode(password);
-    }*/
+
 
     public void setPassword(String password) {
         this.password = new BCryptPasswordEncoder().encode(password);

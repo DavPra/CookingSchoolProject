@@ -1,10 +1,15 @@
 package Cooking.School.Project.cookingSchool.restapi.dto;
 
+import Cooking.School.Project.cookingSchool.entities.Course;
 import Cooking.School.Project.cookingSchool.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @Getter
@@ -23,6 +28,8 @@ public class UserResponse {
     private String username;
     private boolean isAdmin;
     private Long finishedCourses;
+    //private Set<Course> courses = new HashSet<>();
+    private Set<Long> courseIds = new HashSet<>();
 
 
     public static UserResponse fromUser(User user) {
@@ -36,7 +43,16 @@ public class UserResponse {
         userResponse.setUsername(user.getUsername());
         userResponse.setAdmin(user.isAdmin());
         userResponse.setFinishedCourses(user.getFinishedCourses());
+       // userResponse.setCourses(user.getCourses());
+
+        userResponse.setCourseIds(
+                user.getCourses().stream()
+                        .map(Course::getCourseId)
+                        .collect(Collectors.toSet())
+        );
         return userResponse;
+       // userResponse.setCourseIds(courseIds);
+        //return userResponse;
     }
 }
 

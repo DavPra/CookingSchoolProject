@@ -11,6 +11,8 @@ import Cooking.School.Project.cookingSchool.repository.CourseRepository;
 import Cooking.School.Project.cookingSchool.repository.CourseTagRepository;
 import Cooking.School.Project.cookingSchool.restapi.dto.CourseRequest;
 import Cooking.School.Project.cookingSchool.restapi.dto.CourseTagsRecipeResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +25,7 @@ import java.util.Set;
 
 @Service
 public class CourseService {
+    private static final Logger logger = LoggerFactory.getLogger(CourseService.class);
 
     @Autowired
     CourseRepository courseRepository;
@@ -74,6 +77,7 @@ public class CourseService {
         course.setCourseTitle(request.getCourseTitle());
         course.setDescription(request.getDescription());
         course.setTeacher(request.getTeacher());
+        course.setImage(request.getImage());
         course.setStartDate(request.getStartDate());
         course.setMaxAttendants(request.getMaxAttendants());
         course.setPrice(request.getPrice());
@@ -107,8 +111,14 @@ public class CourseService {
             Set<Recipe> recipes = course.getRecipes();
             response.setCourseTags(tags);
             response.setRecipes(recipes);
+
+            logger.info("Course ID: {}", response.getCourseId());
+            logger.info("Course Title: {}", response.getCourseTitle());
+            logger.info("Image: {}", response.getImage());
+
             responseList.add(response);
         }
+
 
 
         return responseList;
