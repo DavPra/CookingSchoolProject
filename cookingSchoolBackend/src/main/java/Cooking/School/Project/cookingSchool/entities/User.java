@@ -65,6 +65,7 @@ public class User implements UserDetails {
     @JsonProperty //springboot streicht is von isAdmin und macht sonst admin daraus, kA warum!
     private boolean isAdmin;
 
+    // last booked Course
     @Setter
     private Long finishedCourses;
 
@@ -118,9 +119,7 @@ public class User implements UserDetails {
         return true;
     }
 
-    /*public void setPassword(String password) {
-        this.password = new BCryptPasswordEncoder().encode(password);
-    }*/
+
 
     public void setPassword(String password) {
         this.password = new BCryptPasswordEncoder().encode(password);
