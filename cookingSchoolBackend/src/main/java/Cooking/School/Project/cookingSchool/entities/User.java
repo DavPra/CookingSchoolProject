@@ -14,7 +14,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
@@ -73,6 +72,7 @@ public class User implements UserDetails {
     @ManyToMany(mappedBy = "users")
     Set<GrantedAuthorityImpl> authorities;
 
+    @JsonIgnore
     @Setter
     @ManyToMany
     @JoinTable(
@@ -80,6 +80,8 @@ public class User implements UserDetails {
             joinColumns = @JoinColumn(name = "userId"),
             inverseJoinColumns = @JoinColumn(name = "courseId"))
     private Set<Course> courses = new HashSet<>();
+
+
 
     @JsonIgnore
     @Override

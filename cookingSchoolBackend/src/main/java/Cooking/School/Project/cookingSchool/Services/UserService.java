@@ -5,6 +5,7 @@ import Cooking.School.Project.cookingSchool.entities.User;
 import Cooking.School.Project.cookingSchool.exceptions.*;
 import Cooking.School.Project.cookingSchool.repository.CourseRepository;
 import Cooking.School.Project.cookingSchool.repository.UserRepository;
+import Cooking.School.Project.cookingSchool.restapi.dto.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 @Service
 public class UserService {
@@ -31,11 +31,10 @@ public class UserService {
         return user;
     }
 
-    public User getUserById(Long id) {
-       // return userRepository.findById(id).get();
+    public UserResponse getUserById(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User not found " +id));
-        return user;
+        return UserResponse.fromUser(user);
     }
 
     public void deleteUserById(Long id) {

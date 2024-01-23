@@ -8,6 +8,7 @@ import Cooking.School.Project.cookingSchool.entities.Recipe;
 import Cooking.School.Project.cookingSchool.entities.User;
 import Cooking.School.Project.cookingSchool.exceptions.UserNotFoundException;
 import Cooking.School.Project.cookingSchool.restapi.dto.CourseRequest;
+import Cooking.School.Project.cookingSchool.restapi.dto.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
@@ -29,9 +30,9 @@ public class UserController {
 
 
     @GetMapping("/users/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id){
-            User user = userService.getUserById(id);
-            return new ResponseEntity<>(user, HttpStatus.OK);
+    public ResponseEntity<UserResponse> getUserById(@PathVariable Long id){
+            UserResponse userResponse = userService.getUserById(id);
+            return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
 
     @DeleteMapping("/users/{id}")
