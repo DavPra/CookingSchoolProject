@@ -103,6 +103,11 @@ public class UserService {
             course.getUsers().add(user);
             course.setMaxAttendants(course.getMaxAttendants() - 1);
             courseRepository.save(course);
+
+            user.getCourses().add(course);
+            user.setFinishedCourses(courseId);
+            userRepository.save(user);
+
         } else {
             throw new MaxAttendantsReachedException(maxNumberOfAttendants);
         }

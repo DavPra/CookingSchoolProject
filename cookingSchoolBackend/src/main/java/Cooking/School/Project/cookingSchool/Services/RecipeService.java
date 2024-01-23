@@ -64,8 +64,6 @@ public class RecipeService {
 
             course = this.courseRepository.save(course);
         }
-
-
         recipeCourse.setRecipeId(recipe.getRecipeId());
 
         return recipeCourse;
