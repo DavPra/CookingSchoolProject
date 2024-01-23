@@ -34,26 +34,7 @@ showCourses();
 </script>
 
 <template>
-
-  <h2 class="mx-auto">Verfügbare Kurse:</h2>
-<div>
-  <v-row class="d-flex ma-2 ">
-    <v-col v-for="course in courses" :key="course.courseId" cols="12" sm="6" md="4" lg="3">
-      <CourseCard
-              
-                  :courseTitle="course.courseTitle"
-                  :startDate="course.startDate"
-                  :description="course.description"
-                  :courseId="course.courseId"
-                  :teacher="course.teacher"
-                  
-      />
-    </v-col>
-  </v-row>
-</div>
-
-<h2 class="mx-auto">Meine Kurse:</h2>
-
+  <!-- Übersicht aller Kurse für User und Besucher -->
 <div>
   <v-row class="d-flex ma-2 ">
     <v-col v-for="course in courses" :key="course.courseId" cols="12" sm="6" md="4" lg="3">
