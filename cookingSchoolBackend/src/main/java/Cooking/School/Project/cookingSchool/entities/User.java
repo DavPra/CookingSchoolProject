@@ -75,7 +75,7 @@ public class User implements UserDetails {
 
     @JsonIgnore
     @Setter
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(
             name = "user_course",
             joinColumns = @JoinColumn(name = "userId"),
