@@ -27,11 +27,15 @@ public class CourseController {
         return new ResponseEntity<>(courses, HttpStatus.OK);
     }
 
-    @GetMapping("/courses/{id}")
+    @GetMapping("/courses/details/{id}")
     public ResponseEntity<Course> getCourseDetails(@PathVariable Long id) {
         Course course = courseService.getCourseDetails(id);
         return new ResponseEntity<>(course, HttpStatus.OK);
     }
-
+    @GetMapping("/courses/{id}")
+    public ResponseEntity<Course> getCourseById(@PathVariable Long id) {
+        Course course = courseService.getCourseById(id);
+        return new ResponseEntity<>(course, HttpStatus.OK);
+    }
 
 }
