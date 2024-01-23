@@ -58,5 +58,11 @@ export const useCourseStore = defineStore('course', {
         console.log(bookCourseResponse.data, sentMail.data);
         this.showCourses();
     },
+
+    async showUserCourses(userId){
+        const userCoursesResponse = await axios.get('http://localhost:8082/admin/users/'+userId);
+        console.log(userCoursesResponse.data);
+        this.courses = userCoursesResponse.data.courses;
+    }
 }   
 });

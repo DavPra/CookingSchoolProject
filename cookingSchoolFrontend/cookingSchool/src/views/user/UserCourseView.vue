@@ -18,6 +18,7 @@ const courses = computed(() => courseStore.courses);
 
 onMounted(() => {
   showCourses();
+  showUserCourses();
   console.log('mounted');
 });
 
@@ -31,11 +32,17 @@ async function showCourses() {
 
 showCourses();
 
+async function showUSerCourses() {
+  await courseStore.showUserCourses();
+}
+
+showUSerCourses();
+
 </script>
 
 <template>
-  <!-- Übersicht aller Kurse für User und Besucher -->
 <div>
+  <h2 style="text-align: center;" class="mx-auto">Verfügbare Kurse: </h2>
   <v-row class="d-flex ma-2 ">
     <v-col v-for="course in courses" :key="course.courseId" cols="12" sm="6" md="4" lg="3">
       <CourseCard
@@ -49,6 +56,25 @@ showCourses();
       />
     </v-col>
   </v-row>
+</div>
+
+<div>
+  <h2 style="text-align: center;" class="mx-auto">Gebuchte Kurse: </h2>
+  <v-row class="d-flex ma-2 ">
+    <v-col v-for="course in courses" :key="course.courseId" cols="12" sm="6" md="4" lg="3">
+      <CourseCard
+              
+                  :courseTitle="course.courseTitle"
+                  :startDate="course.startDate"
+                  :description="course.description"
+                  :courseId="course.courseId"
+                  :teacher="course.teacher"
+                  
+      />
+    </v-col>
+  </v-row>
+
+
 </div>
 
 
