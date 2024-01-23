@@ -16,7 +16,6 @@ onMounted(() => {
 const show = ref(false)
 let courses = [];
 const err = false;
-//const courses = ref([]);
 
 
 async function showCourses() {
