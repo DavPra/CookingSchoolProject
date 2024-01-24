@@ -7,6 +7,7 @@ export const useCourseStore = defineStore('course', {
     state: () => ({
         courses: [],
         userCourses: [],
+        userRecipes: [],
     }),
     actions: {
         async showCourses() {
@@ -73,10 +74,12 @@ export const useCourseStore = defineStore('course', {
                 userId: userCoursesResponse.data.userId,
                 firstname: userCoursesResponse.data.firstname,
                 lastname: userCoursesResponse.lastname,
-                courses: userCoursesResponse.data.courses
+                courses: userCoursesResponse.data.courses,
+                recipes: userCoursesResponse.data.recipes
             };
 
             this.userCourses = userData.courses;
+            this.userRecipes = userData.recipes;
 
             console.log(userData);
         
