@@ -3,8 +3,6 @@ import axios from 'axios';
 import {createApiUrl} from '@/helper/ApiHelper';
 import jwtDecode from 'jwt-decode';
 
-const accessToken = window.localStorage.getItem('accessToken')
-
 export const useAuthStore = defineStore('authentication', {
     state: () => ({
         user: null,

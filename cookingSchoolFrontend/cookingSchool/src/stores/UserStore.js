@@ -65,7 +65,7 @@ export const useUserStore = defineStore('user', {
         },*/ async deleteUser(userId) {
             try {
                 console.log('userId in deleteUser der UserStore:', userId)
-                const deleteUserResponse = await axios.delete(`http://localhost:8082/admin/users/${userId}`);
+                await axios.delete(`http://localhost:8082/admin/users/${userId}`);
                 await this.showUsers()
             } catch (error) {
                 console.error('Fehler beim Löschen des Benutzers:', error)

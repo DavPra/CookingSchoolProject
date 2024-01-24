@@ -15,7 +15,7 @@
   async function login() {
     try {
       isLoginInProgress.value = true;
-      const response = await authentication.login(credentials.value);
+      await authentication.login(credentials.value);
       await router.push('/user/courses');
     } catch (error) {
       areCredentialsInvalid.value = true;
