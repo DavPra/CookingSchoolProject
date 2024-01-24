@@ -28,7 +28,7 @@ public class UserResponse {
     private String username;
     private boolean isAdmin;
     private Long finishedCourses;
-    //private Set<Course> courses = new HashSet<>();
+    private Set<Course> courses = new HashSet<>();
     private Set<Long> courseIds = new HashSet<>();
 
 
@@ -43,7 +43,7 @@ public class UserResponse {
         userResponse.setUsername(user.getUsername());
         userResponse.setAdmin(user.isAdmin());
         userResponse.setFinishedCourses(user.getFinishedCourses());
-       // userResponse.setCourses(user.getCourses());
+        userResponse.setCourses(user.getCourses());
 
         userResponse.setCourseIds(
                 user.getCourses().stream()
