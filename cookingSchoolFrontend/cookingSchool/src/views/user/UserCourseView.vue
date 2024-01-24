@@ -16,7 +16,7 @@ const authStore = useAuthStore();
 
 
 const courses = computed(() => courseStore.courses);
-//const userCourses = computed(() => courseStore.userCourses);
+const userCourses = computed(() => courseStore.userCourses);
 const userId = jwtDecode(localStorage.getItem("accessToken")).userId;
 
 onBeforeMount(() => {
@@ -32,6 +32,7 @@ onMounted(() => {
   showCourses();
   showUserCourses(userId);
   console.log('mounted');
+  console.log('userCourses = ' + userCourses.data);
 });
 
 
