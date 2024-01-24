@@ -46,3 +46,6 @@ showRecipes();
   </div>
 
 </template>
+
+
+//Backend hat eine Funktion um Rezepte von Usern zu bekommen

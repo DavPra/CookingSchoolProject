@@ -1,9 +1,9 @@
 <script setup>
 import { useCourseStore } from "@/stores/CourseStore.js";
+import {useUserStore} from "@/stores/UserStore.js";
 import { createApiUrl } from "@/helper/ApiHelper.js";
 import { onMounted, ref, computed, onBeforeMount } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import CourseForm from "@/components/CourseForm.vue";
 import CourseCard from "@/components/CourseCard.vue";
 import { useAuthStore } from "@/stores/AuthStore.js";
 
@@ -12,7 +12,7 @@ import jwtDecode from "jwt-decode";
 const courseStore = useCourseStore()
 const router = useRouter(); // router
 const isVisible = ref(false);
-const authStore = useAuthStore();
+const userStore = useUserStore();
 
 
 const courses = computed(() => courseStore.courses);

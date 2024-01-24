@@ -81,7 +81,10 @@ export const useCourseStore = defineStore('course', {
             this.userCourses = userData.courses;
             this.userRecipes = userData.recipes;
 
+            const userRecipes1 = ref(userData.recipes);
+
             console.log(userData);
+            console.log('UserRecipes: ' + userRecipes1.recipes);
         
 //for vielleicht zur view verschieben
     }
