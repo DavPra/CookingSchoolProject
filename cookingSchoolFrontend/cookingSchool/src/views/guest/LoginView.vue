@@ -17,9 +17,6 @@
       isLoginInProgress.value = true;
       const response = await authentication.login(credentials.value);
       await router.push('/user/courses');
-      //if (response.status === 200) {
-       // await router.push('/user/courses');
-      //}
     } catch (error) {
       areCredentialsInvalid.value = true;
       console.error('Fehler beim Login:', error);
@@ -27,9 +24,6 @@
       isLoginInProgress.value = false;
     }
   }
-
-  //TODO: Kathy - Fix registration button and link to registration page
-
 </script>
 
 <template>

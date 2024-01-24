@@ -11,23 +11,16 @@ import RegistrationView from '../views/guest/RegistrationView.vue'
 import AdminCourseView from '../views/admin/AdminCourseView.vue'
 import AdminRecipeView from '../views/admin/AdminRecipeView.vue'
 import AdminUserView from '../views/admin/AdminUserView.vue'
-import UserHomeView from '../views/user/UserHomeView.vue'
 import GuestCourseView from '../views/guest/GuestCourseView.vue'
 import UserAboutView from '../views/user/UserAboutView.vue'
 import LoginView from "../views/guest/LoginView.vue";
 import AdminHomeView from "@/views/admin/AdminHomeView.vue";
-
-//TODO: Kathy - add function that checks if user/admin is logged in and redirects to login page if not
 
 const routes = [
     {
       path: '/user',
       component: UserLayout,
       children: [
-        {
-          path: '',
-          component: UserHomeView
-        },
         {
           path: 'profile',
           component: ProfileView

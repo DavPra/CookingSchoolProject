@@ -11,6 +11,9 @@ export const useAuthStore = defineStore('authentication', {
         accessToken: null
     }),
     actions: {
+        getUserId() {
+            return jwtDecode(window.localStorage.getItem('accessToken'))?.userId;
+        },
         async login({username, password}) {
             const response = await axios.post(createApiUrl('authenticate'),{username:username, password:password})
             if(response.status === 403){
@@ -25,26 +28,14 @@ export const useAuthStore = defineStore('authentication', {
             window.localStorage.setItem('accessToken', token)
             function parseJwt (token) {
                 console.log('\n\n\nHallo: ' + jwtDecode(token));
-
                return "";
             }
             parseJwt(token);
         },
-
-        async decodeToken(token) {
-            const decodedToken = jwtDecode(window.localStorage.getItem('accessToken', token))
-            console.log(decodedToken)
-            return decodedToken
-        },
-
-        async getUser() {
-          const config = {
-              headers: {
-                  Authorization: 'Bearer ' + accessToken
-              }
-          }
-          const response = await axios.get(createApiUrl('/user'), config)
-          this.user = response.data.user
+        async getUser(userId) {
+          const response = await axios.get(createApiUrl(`/admin/users/${userId}`))
+          this.user = await response.data
+          console.log(this.user)
         },
         logout() {
             this.user = null

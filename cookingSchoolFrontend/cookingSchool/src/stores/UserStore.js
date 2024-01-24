@@ -1,6 +1,7 @@
 import {defineStore} from "pinia";
 import axios  from "axios";
-
+import {useAuthStore} from "@/stores/AuthStore.js";
+import {createApiUrl} from "@/helper/ApiHelper";
 
 export const useUserStore = defineStore('user', {
     state: () => ({
@@ -27,11 +28,6 @@ export const useUserStore = defineStore('user', {
 
             const userResponse = await axios.post('http://localhost:8082/admin/users', newUser )
             this.users.push(userResponse.data)
-
-        }, async updateUser(userId, user){
-
-            const updateUser = await axios.put('http://localhost:8082/admin/users/'+userId,user)
-
 
         },
 
@@ -74,10 +70,29 @@ export const useUserStore = defineStore('user', {
             } catch (error) {
                 console.error('Fehler beim Löschen des Benutzers:', error)
             }
-        }/*async deleteUser(userId){
+        },
+        /*async deleteUser(userId){
             console.log(userId)
             const deleteUserResponse = await axios.delete('http://localhost:8082/admin/users/'+userId)
             this.showUsers()
         }'*/
+        async findUser(userId) {
+            const authStore = useAuthStore();
+            console.log('cccc', userId)
+            return authStore.getUser(userId)
+        },
+        async updateUser(userId, updatedUserDto) {
+            if('userId' in updatedUserDto) {
+                delete updatedUserDto.userId;
+            }
+            await axios.put(createApiUrl(`/admin/users/${userId}`), updatedUserDto);
+            const user = this.users.find(user => user.userId === userId);
+            if(user >= 0) {
+                this.users.splice(user, 1, {
+                    userId: userId,
+                    ...updatedUserDto
+                })
+            }
+        }
     }
 });
