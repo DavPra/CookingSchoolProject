@@ -40,7 +40,7 @@ const newUser = ref({
 
 onMounted(async () => {
   try {
-    const users = await userStore.showUsers();
+    const users = await userStore.loadAllUsers();
     console.log('user Component mounted', users);
   } catch (error) {
     console.error('Error loading users in component mount:', error);
@@ -77,7 +77,7 @@ async function createOrUpdateUser() {
         username: '',
         admin: true
       };
-      await userStore.showUsers()
+      await userStore.loadAllUsers()
     } else {
       await userStore.updateUser(editingUser.value.userId, newUser.value);
       console.log('User updated successfully');
@@ -91,7 +91,7 @@ async function createOrUpdateUser() {
         username: '',
         admin: true
       }
-      await userStore.showUsers()
+      await userStore.loadAllUsers()
     }
    //await router.push('admin/users')
   } catch (error) {
@@ -105,7 +105,7 @@ async function createOrUpdateUser() {
 
 async function showUsers() {
   try {
-    await userStore.showUsers();
+    await userStore.loadAllUsers();
     console.log('Users loaded in showUsers:', userStore.users);
 
   } catch (error) {

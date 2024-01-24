@@ -30,21 +30,20 @@ export const useAuthStore = defineStore('authentication', {
             }
             parseJwt(token);
         },
-
         async decodeToken(token) {
             const decodedToken = jwtDecode(window.localStorage.getItem('accessToken', token))
             console.log(decodedToken)
             return decodedToken
         },
-
-        async getUser() {
-          const config = {
-              headers: {
-                  Authorization: 'Bearer ' + accessToken
-              }
-          }
-          const response = await axios.get(createApiUrl('/user'), config)
-          this.user = response.data.user
+        async getUser(userId) {
+            const accessToken = window.localStorage.getItem('accessToken')
+            const config = {
+                headers: {
+                    Authorization: 'Bearer ' + accessToken
+                }
+            }
+            const response = await axios.get(createApiUrl(`/users/${userId}`), config);
+            this.user = await response.data;
         },
         logout() {
             this.user = null

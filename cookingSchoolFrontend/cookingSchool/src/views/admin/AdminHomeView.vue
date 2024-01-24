@@ -15,7 +15,7 @@ onMounted(async () =>{
 
 const fetchUserCount = async () =>{
   try{
-    await userStore.showUsers()
+    await userStore.loadAllUsers()
     userCount.value = userStore.users.length
   }catch (error){
     console.error("Fehler beim Laden der Benutzer" , error)

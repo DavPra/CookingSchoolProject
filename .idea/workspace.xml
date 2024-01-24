@@ -4,17 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="updated from logout-security branch">
-      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/notes/escuelaVue.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_01_24__08_27__Changes_.xml" beforeDir="false" />
+    <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="erster Versuch Profil">
+      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/components/ProfileForm.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/notes/ProfieView2.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/notes/ProfileView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/notes/UserStore2.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/notes/escuelaVueStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/notes/escuelaVueStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/stores/AuthStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/stores/AuthStore.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/stores/UserStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/stores/UserStore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/guest/RegistrationView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/guest/RegistrationView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/admin/AdminHomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/admin/AdminHomeView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/admin/AdminUserView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/admin/AdminUserView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/ProfileView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/ProfileView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.lck" beforeDir="false" afterPath="$PROJECT_DIR$/db/cooking/cookingdb.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.log" beforeDir="false" afterPath="$PROJECT_DIR$/db/cooking/cookingdb.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.properties" beforeDir="false" afterPath="$PROJECT_DIR$/db/cooking/cookingdb.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.script" beforeDir="false" afterPath="$PROJECT_DIR$/db/cooking/cookingdb.script" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -268,7 +270,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705928961176</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="erster Versuch Profil">
+      <option name="closed" value="true" />
+      <created>1706101697350</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1706101697353</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -300,6 +310,7 @@
     <MESSAGE value="fix login" />
     <MESSAGE value="fixed router index" />
     <MESSAGE value="updated from logout-security branch" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated from logout-security branch" />
+    <MESSAGE value="erster Versuch Profil" />
+    <option name="LAST_COMMIT_MESSAGE" value="erster Versuch Profil" />
   </component>
 </project>
