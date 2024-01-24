@@ -5,7 +5,7 @@ import {useCourseStore} from "@/stores/CourseStore";
 
 const recipeStore = useRecipeStore()
 const courseStore = useCourseStore()
-const error = false
+const err = false
 const ingredients = [];
 
 const recipeData = ref({
@@ -55,7 +55,6 @@ const addRecipe = async () => {
       description: recipeData.value.description,
       difficulty: recipeData.value.difficulty,
       preparation: recipeData.value.preparation,
-      //was ist jetzt
       courseIds: courseIds,
       ingredients: recipeData.value.ingredients
     };
@@ -65,8 +64,6 @@ const addRecipe = async () => {
     await recipeStore.showRecipes();
   } catch (err) {
     console.error('Error creating recipe:', err);
-    console.error('Backend', err.response.data.message)
-
   }
 }
 
@@ -164,9 +161,6 @@ loadCourses();
           <v-col>
             <v-btn type="submit">Rezept erstellen</v-btn>
           </v-col>
-          <v-alert v-if="error" type="error">
-            {{ error }}
-          </v-alert>
         </v-row>
 
       </v-form>
