@@ -64,19 +64,21 @@ export const useCourseStore = defineStore('course', {
     async showUserCourses(userId){
         console.log('store' + this.userCourses);
         
+        console.log("UserId " + userId);
         const userCoursesResponse = await axios.get('http://localhost:8082/admin/users/'+userId);
         
-        console.log("Array mit CourseIds " + userCoursesResponse.data.courseIds);
-        
-        for (let i = 0; i < userCoursesResponse.data.courseIds.length; i++) {
-            const courseId = userCoursesResponse.data.courseIds[i];
-            console.log("CourseId " + courseId);
-            const courseResponse = await axios.get('http://localhost:8082/admin/courses/'+courseId);
-            console.log("Course " + courseResponse.data);
-            this.userCourses = userCoursesResponse.data;
-            console.log("show me this " + userCoursesResponse.data.courseIds[i]);
+        console.log("Array mit Courses " + userCoursesResponse);
 
-        }
+            const userData = {
+                userId: userCoursesResponse.data.userId,
+                firstname: userCoursesResponse.data.firstname,
+                lastname: userCoursesResponse.lastname,
+                courses: userCoursesResponse.data.courses
+            };
+
+            this.userCourses = userData.courses;
+
+            console.log(userData);
         
 //for vielleicht zur view verschieben
     }
