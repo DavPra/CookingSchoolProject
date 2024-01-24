@@ -38,8 +38,7 @@ public class Recipe {
         private int preparation;
 
         //Löscht rezepte ohne Kurse zu löschen
-       @ManyToMany(mappedBy = "recipes", cascade = CascadeType.REMOVE)
-
+       @ManyToMany(mappedBy = "recipes", cascade = CascadeType.ALL)
        private Set<Course> courses;
 
        @ManyToMany(cascade = CascadeType.REMOVE)
@@ -49,7 +48,7 @@ public class Recipe {
                inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
          private Set<Ingredient> ingredients;
 
-       @ManyToMany(cascade = CascadeType.REMOVE)
+       @ManyToMany(cascade = CascadeType.ALL)
          @JoinTable(
                 name = "recipe_tag",
                 joinColumns = @JoinColumn(name = "recipe_id"),
