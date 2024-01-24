@@ -1,11 +1,13 @@
 <script setup>
 import { useCourseStore } from "@/stores/CourseStore.js";
 import { createApiUrl } from "@/helper/ApiHelper.js";
-import { onMounted, ref, computed } from "vue";
+import { onMounted, ref, computed, onBeforeMount } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import CourseForm from "@/components/CourseForm.vue";
 import CourseCard from "@/components/CourseCard.vue";
 import { useAuthStore } from "@/stores/AuthStore.js";
+
+import jwtDecode from "jwt-decode";
 
 const courseStore = useCourseStore()
 const router = useRouter(); // router
@@ -14,11 +16,23 @@ const authStore = useAuthStore();
 
 
 const courses = computed(() => courseStore.courses);
+const userCourses = computed(() => courseStore.userCourses);
+const userId = jwtDecode(localStorage.getItem("accessToken")).userId;
+
+onBeforeMount(() => {
+  const userId = jwtDecode(localStorage.getItem("accessToken")).userId;
+  console.log(userId);
+  console.log('before mount');
+});
 
 
 onMounted(() => {
+  const userId = jwtDecode(localStorage.getItem("accessToken")).userId;
+  console.log(userId);
   showCourses();
+  showUserCourses(userId);
   console.log('mounted');
+  console.log('userCourses = ' + userCourses.data);
 });
 
 
@@ -31,12 +45,17 @@ async function showCourses() {
 
 showCourses();
 
+async function showUserCourses() {
+  await courseStore.showUserCourses(userId);
+}
+
+showUserCourses();
+
 </script>
 
 <template>
-
-  <h2 class="mx-auto">Verfügbare Kurse:</h2>
 <div>
+  <h2 style="text-align: center;" class="mx-auto">Verfügbare Kurse: </h2>
   <v-row class="d-flex ma-2 ">
     <v-col v-for="course in courses" :key="course.courseId" cols="12" sm="6" md="4" lg="3">
       <CourseCard
@@ -52,23 +71,23 @@ showCourses();
   </v-row>
 </div>
 
-<h2 class="mx-auto">Meine Kurse:</h2>
-
 <div>
+  <h2 style="text-align: center;" class="mx-auto">Gebuchte Kurse: </h2>
   <v-row class="d-flex ma-2 ">
-    <v-col v-for="course in courses" :key="course.courseId" cols="12" sm="6" md="4" lg="3">
+    <v-col v-for="course in userCourses" :key="course.courseId" cols="12" sm="6" md="4" lg="3">
       <CourseCard
-              
-                  :courseTitle="course.courseTitle"
-                  :startDate="course.startDate"
-                  :description="course.description"
-                  :courseId="course.courseId"
-                  :teacher="course.teacher"
-                  
+        :courseTitle="course.courseTitle"
+        :startDate="course.startDate"
+        :description="course.description"
+        :courseId="course.courseId"
+        :teacher="course.teacher"
       />
     </v-col>
   </v-row>
 </div>
+
+
+<v-btn @click="courseStore.showUserCourses(userId)">test</v-btn>
 
 
 
