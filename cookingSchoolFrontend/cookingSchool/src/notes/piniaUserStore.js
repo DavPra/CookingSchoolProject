@@ -5,7 +5,16 @@ import {createApiUrl} from "@/helper/ApiHelper";
 export const useUserStore = defineStore('user', {
     state: () => ({
         /** @type {{ userId: number, firstname: string, lastname: string, address: string, mobile: string, email: string, username: string, isAdmin: boolean }[]} */
-        users: []
+        users: [],
+        user: {
+            firstname: {},
+            lastname: {},
+            address: {},
+            mobile: {},
+            email: {},
+            username: {},
+            isAdmin: false
+        }
     }),
     getters: {
         finishedTodos(state) {
@@ -52,6 +61,7 @@ export const useUserStore = defineStore('user', {
             })
         },
         async deleteUser(userId) {
+            //TODO: Kathy - userId aus accessToken holen
             const deleteUser = await axios.delete(createApiUrl('/admin/users/' + userId))
             this.users = this.users.filter(user => user.userId !== userId)
         }
