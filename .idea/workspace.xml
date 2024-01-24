@@ -5,14 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="29cbc65d-7dae-4e36-ab78-e1841a5ed636" name="Changes" comment="updated from logout-security branch">
-      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/notes/escuelaVueStore.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/notes/piniaTodo.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/notes/piniaTodoStore.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/notes/src/piniaUserStore.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/notes/escuelaVue.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_01_24__08_27__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/notes/escuelaVueStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/notes/escuelaVueStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/stores/UserStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/stores/UserStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/guest/RegistrationView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/guest/RegistrationView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/ProfileView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/cookingSchoolFrontend/cookingSchool/src/views/user/ProfileView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.lck" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.log" beforeDir="false" afterPath="$PROJECT_DIR$/db/cooking/cookingdb.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.properties" beforeDir="false" afterPath="$PROJECT_DIR$/db/cooking/cookingdb.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/cooking/cookingdb.script" beforeDir="false" afterPath="$PROJECT_DIR$/db/cooking/cookingdb.script" afterDir="false" />

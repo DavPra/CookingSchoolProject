@@ -1,20 +1,61 @@
 <script setup>
 import { useRouter } from 'vue-router';
-import { ref } from 'vue';
+import {onMounted, ref} from 'vue';
 import axios from "axios";
 import { createApiUrl } from "@/helper/ApiHelper";
+import {useUserStore} from "@/stores/userStore.js";
+import jwtDecode from "jwt-decode";
 
 const router = useRouter();
+const userStore = useUserStore();
+const user = ref(null);
+const updatedUserData = ref({
+  firstname: '',
+  lastname: '',
+  address: '',
+  mobile: '',
+  email: '',
+  username: '',
+  password: '',
+  isAdmin: false
+})
 
-//TODO: Kathy - get user data from backend
-const firstname = ref('');
-const lastname = ref('');
-const address = ref('');
-const mobile = ref('');
-const email = ref('');
-const username = ref('');
-const password = ref('');
-const isAdmin = ref(false);
+
+const updateUserProfile = async () => {
+  try {
+    // Hier Benutzerdaten aus dem Formular abrufen und updateUser im Store aufrufen
+    await userStore.updateUser(/* Benutzerdaten aus dem Formular */);
+    // Feedback an den Benutzer geben, dass die Aktualisierung erfolgreich war
+  } catch (error) {
+    console.error('Fehler beim Aktualisieren des Benutzerprofils', error);
+    // Feedback an den Benutzer geben, dass die Aktualisierung fehlgeschlagen ist
+  }
+  try {
+    // Kopie der aktualisierten Benutzerdaten erstellen, um den Store zu aktualisieren
+    const updatedUserCopy = { ...updatedUserData.value };
+
+    // Hier Benutzerdaten aus dem Formular abrufen und updateUser im Store aufrufen
+    await userStore.updateUser(updatedUserCopy);
+    // Feedback an den Benutzer geben, dass die Aktualisierung erfolgreich war
+  } catch (error) {
+    console.error('Fehler beim Aktualisieren des Benutzerprofils', error);
+    // Feedback an den Benutzer geben, dass die Aktualisierung fehlgeschlagen ist
+  }
+};
+
+// Ladet Benutzerdaten beim Komponentenstart
+onMounted(async () => {
+  const token = window.localStorage.getItem('accessToken');
+  const decodedToken = jwtDecode(window.localStorage.getItem('accessToken', token));
+  const id = decodedToken.userId;
+  await userStore.getUser(id);
+  user.value = userStore.user;
+
+  // Initialisiert das updatedUserData-Objekt mit den aktuellen Benutzerdaten
+  Object.assign(updatedUserData.value, userStore.user);
+});
+
+
 
 async function updateUser() {
   try {
@@ -52,40 +93,91 @@ async function updateUser() {
   }
 }
 
-//TODO: Kathy - v-text-field should be filled with user data, password should be hidden characters
+
+//TODO: Kathy - v-text-field should be filled with user data
+//TODO: Kathy - password should be hidden characters
 </script>
 
 <template>
   <!-- User kann sich seine Daten ansehen/bearbeiten und welche Kurse er bereits gebucht hat -->
 
-  <v-container>
-    <v-form @submit.prevent="updateUser">
-      <v-row>
-        <v-col cols="12" md="6">
-          <v-text-field v-model="firstname" label="Vorname" required></v-text-field>
-        </v-col>
-        <v-col cols="12" md="6">
-          <v-text-field v-model="lastname" label="Nachname" required></v-text-field>
-        </v-col>
-        <v-col cols="12">
-          <v-text-field v-model="address" label="Adresse" required></v-text-field>
-        </v-col>
-        <v-col cols="12" md="6">
-          <v-text-field v-model="mobile" label="Handynummer" required></v-text-field>
-        </v-col>
-        <v-col cols="12" md="6">
-          <v-text-field v-model="email" label="E-Mail" type="email" required></v-text-field>
-        </v-col>
-        <v-col cols="12" md="6">
-          <v-text-field v-model="username" label="Benutzername" required></v-text-field>
-        </v-col>
-        <v-col cols="12" md="6">
-          <v-text-field v-model="password" label="Passwort" type="password" required></v-text-field>
-        </v-col>
-        <v-col cols="12">
-          <v-btn type="submit" color="primary">Änderungen speichern</v-btn>
+    <v-container>
+      <v-row justify="center">
+        <v-col cols="12" md="8">
+          <v-card>
+            <v-card-title class="headline">Profilansicht</v-card-title>
+
+            <v-card-text v-if="user">
+              <v-row>
+                <v-col cols="12">
+                  <v-subheader>Benutzername: {{ user.username }}</v-subheader>
+                </v-col>
+
+                <v-col cols="6">
+                  <v-subheader>Vorname: {{ user.firstname }}</v-subheader>
+                </v-col>
+
+                <v-col cols="6">
+                  <v-subheader>Nachname: {{ user.lastname }}</v-subheader>
+                </v-col>
+
+                <v-col cols="12">
+                  <v-subheader>Adresse: {{ user.address }}</v-subheader>
+                </v-col>
+
+                <v-col cols="12">
+                  <v-subheader>Mobil: {{ user.mobile }}</v-subheader>
+                </v-col>
+
+                <v-col cols="12">
+                  <v-subheader>E-Mail: {{ user.email }}</v-subheader>
+                </v-col>
+
+                <v-col cols="12">
+                  <v-subheader>Admin: {{ user.isAdmin ? 'Ja' : 'Nein' }}</v-subheader>
+                </v-col>
+
+                <v-col cols="12">
+                  <v-form @submit.prevent="updateUserProfile">
+                    <v-row>
+                      <v-col cols="12" md="6">
+                        <v-text-field v-model="updatedUserData.firstname" label="Vorname" />
+                      </v-col>
+
+                      <v-col cols="12" md="6">
+                        <v-text-field v-model="updatedUserData.lastname" label="Nachname" />
+                      </v-col>
+
+                      <v-col cols="12">
+                        <v-text-field v-model="updatedUserData.address" label="Adresse" />
+                      </v-col>
+
+                      <v-col cols="12" md="6">
+                        <v-text-field v-model="updatedUserData.mobile" label="Mobil" />
+                      </v-col>
+
+                      <v-col cols="12" md="6">
+                        <v-text-field v-model="updatedUserData.email" label="E-Mail" />
+                      </v-col>
+
+                      <v-col cols="12" md="6">
+                        <v-text-field v-model="updatedUserData.username" label="E-Mail" />
+                      </v-col>
+
+                      <v-col cols="12" md="6">
+                        <v-text-field v-model="updatedUserData.password" label="E-Mail" />
+                      </v-col>
+
+                      <v-col cols="12">
+                        <v-btn type="submit" color="primary">Änderungen speichern</v-btn>
+                      </v-col>
+                    </v-row>
+                  </v-form>
+                </v-col>
+              </v-row>
+            </v-card-text>
+          </v-card>
         </v-col>
       </v-row>
-    </v-form>
-  </v-container>
+    </v-container>
 </template>

@@ -1,0 +1,21 @@
+<!-- Component.vue -->
+<script setup>
+import {useCounterStore} from '../stores/counter';
+const store = useCounterStore();
+</script>
+
+<!-- Component.vue -->
+<template>
+  <h2>Total Clics: {{ store.totalClicks }}</h2>
+  <div class="card">
+    <button type="button" @click="store.increment('a')">
+      Option A clicked {{ store.options['a'] }} times
+    </button>
+    <button type="button" @click="store.delayedIncrement('b')">
+      Option B clicked {{ store.options['b'] }} times
+    </button>
+    <button type="button" @click="store.increment('c')">
+      Option C clicked {{ store.options['c'] }} times
+    </button>
+  </div>
+</template>

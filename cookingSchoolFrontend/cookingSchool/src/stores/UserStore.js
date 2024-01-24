@@ -4,7 +4,8 @@ import axios  from "axios";
 export const useUserStore = defineStore('user', {
     state: () => ({
         newUser:'',
-        users: []
+        users: [],
+        user: null
     }),
     actions: {
         async showUsers() {
@@ -21,18 +22,13 @@ export const useUserStore = defineStore('user', {
             } catch (error) {
                 console.error('Error loading users:', error);
             }
-        },  async creatUser(newUser){
+        },  async creatUser(newUser) {
             console.log(newUser)
 
-            const userResponse = await axios.post('http://localhost:8082/admin/users', newUser )
+            const userResponse = await axios.post('http://localhost:8082/admin/users', newUser)
             this.users.push(userResponse.data)
-
-        }, async updateUser(userId, user){
-
-            const updateUser = await axios.put('http://localhost:8082/admin/users/'+userId,user)
-
-
         },
+
 
         /*async createUser(data) {
             console.log("!!!", data, data.admin);
@@ -73,10 +69,46 @@ export const useUserStore = defineStore('user', {
             } catch (error) {
                 console.error('Fehler beim Löschen des Benutzers:', error)
             }
-        }/*async deleteUser(userId){
+        },/*async deleteUser(userId){
             console.log(userId)
             const deleteUserResponse = await axios.delete('http://localhost:8082/admin/users/'+userId)
             this.showUsers()
         }'*/
+        async getUser(userId) {
+            try {
+                // Hier sollten Sie den API-Aufruf zum Backend machen, um die Benutzerdaten abzurufen
+                const response = await fetch(`/api/users/${userId}`);
+                const data = await response.json();
+
+                if (response.ok) {
+                    this.user = data;
+                } else {
+                    console.error('Fehler beim Abrufen der Benutzerdaten');
+                }
+            } catch (error) {
+                console.error('Fehler beim Netzwerkaufruf', error);
+            }
+        },
+        async updateUser(updatedUserData) {
+            try {
+                // Hier sollten Sie den API-Aufruf zum Backend machen, um die Benutzerdaten zu aktualisieren
+                const response = await fetch(`/api/users/${updatedUserData.id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(updatedUserData),
+                });
+
+                if (response.ok) {
+                    // Aktualisieren Sie den lokalen Store mit den aktualisierten Daten
+                    this.user = updatedUserData;
+                } else {
+                    console.error('Fehler beim Aktualisieren der Benutzerdaten');
+                }
+            } catch (error) {
+                console.error('Fehler beim Netzwerkaufruf', error);
+            }
+        }
     }
 });
