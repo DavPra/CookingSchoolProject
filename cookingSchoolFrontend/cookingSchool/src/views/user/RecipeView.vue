@@ -4,25 +4,26 @@ import {useCourseStore} from "@/stores/CourseStore";
 import {useRouter} from "vue-router";
 import {onMounted, ref} from "vue";
 import {useRecipeStore} from "@/stores/RecipeStore";
-import RecipeComponent from "@/components/RecipeComponent.vue";
-import RecipeForm from "@/components/RecipeForm.vue";
 import UserRecipeCard from "../../components/UserRecipeCard.vue";
+
+import jwtDecode from "jwt-decode";
 
 const recipeStore = useRecipeStore()
 const router = useRouter();
 const isVisible = ref(false)
 const err = false;
 
+const userId = jwtDecode(localStorage.getItem("accessToken")).userId;
+
 onMounted(() => {
-  showRecipes();
+  showUserRecipes();
   console.log('mounted');
 });
 
-async function showRecipes() {
-  await recipeStore.showRecipes();
+async function showUserRecipes() {
+  await recipeStore.showUserRecipes(userId);
 }
 
-showRecipes();
 
 </script>
 
@@ -44,6 +45,13 @@ showRecipes();
       </v-col>
     </v-row>
   </div>
+
+  <v-btn
+      class="mx-auto"
+      color="primary"
+      @click="recipeStore.showUserRecipes(userId)"
+
+  >Test recipes</v-btn>
 
 </template>
 

@@ -67,6 +67,20 @@ export const useRecipeStore = defineStore('recipe', {
             console.log('kurse für rezepte geladen')
             return this.courseStore.courses.map(course => course.courseIds);
 
+        },
+
+        async showUserRecipes(userId) {
+            console.log('store' + this.userRecipes);
+
+            try {
+                const userRecipeResponse = await axios.get('http://localhost:8082/users/recipes/' + userId);
+                console.log(userRecipeResponse.data);
+                this.recipes = userRecipeResponse.data;
+                console.log('userRecipes geladen', userRecipeResponse.data);
+            } catch (error) {
+                console.error('Error loading userRecipes:', error);
+                console.log('Response Body:', error.response.data);
+            }
         }
     }
 })
