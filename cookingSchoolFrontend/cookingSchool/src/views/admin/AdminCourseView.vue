@@ -114,6 +114,8 @@ const closeDialog = () => {
       </v-col>
     </v-row>
   </v-container>
+
+
   <v-dialog v-model="dialog" max-width="500">
     <v-card>
       <v-card-title>{{ editMode ? 'Edit Course' : 'Add New Course' }}</v-card-title>

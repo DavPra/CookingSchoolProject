@@ -1,147 +1,240 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useRecipeStore } from '@/stores/RecipeStore';
-
-const recipeStore = useRecipeStore();
+import {useRecipeStore} from "@/stores/RecipeStore";
+import {useRouter} from "vue-router";
+import {onMounted, ref} from "vue";
+import {useCourseStore} from "@/stores/CourseStore";
+const courseStore =useCourseStore()
+const recipeStore = useRecipeStore()
 const recipes = ref([]);
 const dialog = ref(false);
 const editMode = ref(false);
-const editedRecipe = ref({
+const recipeData = ref({
   title: '',
   description: '',
   difficulty: 1,
   preparation: 0,
   selectedCourses: [],
   ingredients: [
-    { title: '', quantity: '', unit: '' }
+    {title: '', quantity: '', unit: ''}
   ]
-});
-const validRecipe = ref(true);
+})
+const courseOptions = ref([])
 
 onMounted(() => {
   recipeStore.showRecipes()
-  fetchRecipes();
-});
+  loadCourses()
+  fetchRecipes()
 
-const fetchRecipes = async () => {
-  await recipeStore.showRecipes();
-  recipes.value = recipeStore.recipes;
+});
+const loadCourses = async () => {
+  try {
+    await courseStore.showCourses();
+    courseOptions.value = courseStore.courses.map(course => ({
+      courseId: course.courseId,
+      title: course.courseTitle
+    }));
+  } catch (err) {
+    console.error("Fehler beim Laden der Kurse:", err);
+  }
+};
+const valid = ref(true)
+
+const addIngredientRow = () => {
+  if (!recipeData.value.ingredients) {
+    recipeData.value.ingredients = []
+  }
+  recipeData.value.ingredients.push({ title: '', quantity: '', unit: '' });
 };
 
-const openRecipeDialog = () => {
+const fetchRecipes= async () =>{
+  await recipeStore.showRecipes()
+  recipes.value = recipeStore.recipes;
+}
+
+const openDialog = () => {
   editMode.value = false;
-  editedRecipe.value = {
+ recipeData.value = {
     title: '',
     description: '',
     difficulty: 1,
     preparation: 0,
     selectedCourses: [],
     ingredients: [
-      { title: '', quantity: '', unit: '' }
+      {title: '', quantity: '', unit: ''}
     ]
-  };
+  }
   dialog.value = true;
 };
 
 const editRecipe = (recipe) => {
   editMode.value = true;
-  editedRecipe.value = { ...recipe };
+  recipeData.value = { ...recipe };
   dialog.value = true;
 };
+const saveRecipe = async () => {
+  try {
+    console.log('Before update/create REcipe');
+    if (editMode.value) {
+      console.log('update Recipe called');
+      console.log(recipeData.value.recipeId);
+      await recipeStore.updateRecipe(recipeData.value.recipeId, recipeData.value);
+    } else {
+      console.log('create REcipe called');
+      console.log(recipeData.value.recipeId);
+      await recipeStore.addRecipe(recipeData.value);
+    }
 
-const saveRecipe = () => {
-  if (editMode.value) {
-    // Update existing recipe
-    const index = recipes.value.findIndex((recipe) => recipe.recipeId === editedRecipe.value.recipeId);
-    recipes.value[index] = { ...editedRecipe.value };
-  } else {
-    // Add new recipe
-    recipes.value.push({ id: recipes.value.length + 1, ...editedRecipe.value });
+    console.log('Before showRecipes');
+    await recipeStore.showRecipes();
+    console.log('After showrecipes');
+  } catch (error) {
+    console.error('Error saving recipe:', error);
+  } finally {
+    closeDialog();
   }
-
-  closeDialog();
 };
-
+async function deleteRecipe(recipeId){
+  console.log('recipeId delete' ,recipeId)
+  await recipeStore.deleteRecipe(recipeId)
+  await recipeStore.showRecipes()
+}
 const closeDialog = () => {
   dialog.value = false;
-  validRecipe.value = true;
-  editedRecipe.value = {
+  valid.value = true;
+  recipeData.value = {
     title: '',
     description: '',
     difficulty: 1,
     preparation: 0,
     selectedCourses: [],
     ingredients: [
-      { title: '', quantity: '', unit: '' }
+      {title: '', quantity: '', unit: ''}
     ]
   };
 };
 
-const deleteRecipe = (recipeId) => {
-  const index = recipes.value.findIndex((recipe) => recipe.id === recipeId);
-  recipes.value.splice(index, 1);
-};
-</script>
 
-<template>
-  <div>
-    <h1>Recipes</h1>
-    <v-container>
-      <v-row>
-        <v-col v-for="recipe in recipes" :key="recipe.recipeId" cols="12" md="4">
-          <v-card>
-            <v-card-title>{{ recipe.title }}</v-card-title>
-            <v-card-subtitle>Difficulty: {{ recipe.difficulty }}</v-card-subtitle>
-            <v-card-subtitle>Preparation: {{ recipe.preparation }}</v-card-subtitle>
-            <v-card-subtitle>Kurs Ids: {{ recipe.courseIds }}</v-card-subtitle>
-            <v-card-text>
-              Ingredients:
-              <ul>
-                <li v-for="(ingredient, index) in recipe.ingredients" :key="index">
-                  {{ ingredient.quantity }} - {{ ingredient.unit }} - {{ ingredient.title }}
-                </li>
-              </ul>
-            </v-card-text>
-            <v-card-text>Description: {{ recipe.description }}</v-card-text>
-            <v-card-actions>
-              <v-btn icon="mdi-pencil" size="small" @click="editRecipe"></v-btn>
-              <v-btn icon="mdi-delete" size="small" @click="deleteRecipe"></v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-      </v-row>
-      <v-dialog v-model="dialog" max-width="500">
+</script>
+  <template>
+
+     <v-container>
+       <v-row>
+         <v-col v-for="recipe in recipes" :key="recipe.id" cols="12" md="4">
+           <v-card>
+             <v-card-title>{{recipe.title}}</v-card-title>
+             <v-card-subtitle>Difficulty: {{recipe.difficulty}} </v-card-subtitle>
+             <v-card-subtitle> Preparation: {{recipe.preparation}}</v-card-subtitle>
+             <v-card-subtitle> Kurs Ids: {{recipe.courseIds}}</v-card-subtitle>
+             <v-card-text>
+               Zutaten:
+               <ul>
+                 <li v-for="(ingredient, index) in recipeData.ingredients" :key="index">
+                   {{ ingredient.quantity }} - {{ ingredient.unit }} - {{ ingredient.title }}
+                 </li>
+               </ul>
+             </v-card-text>
+             <v-card-text>Beschreibung: {{recipe.description}}</v-card-text>
+             <v-card-actions>
+               <v-btn icon="mdi-pencil" size="small" @click="editRecipe(recipe)"></v-btn>
+               <v-btn icon="mdi-delete" size="small" @click="deleteRecipe(recipe.recipeId)"></v-btn>
+             </v-card-actions>
+           </v-card>
+         </v-col>
+       </v-row>
+     </v-container>
+
+      <v-dialog v-model="dialog" max-width="600">
         <v-card>
-          <v-card-title v-if="!editMode.value">Add New Recipe</v-card-title>
-          <v-card-title v-else>Edit Recipe</v-card-title>
-          <v-card-text>
-            <v-form ref="recipeForm" v-model="validRecipe" lazy-validation>
-              <v-text-field v-model="editedRecipe.title" label="Title" required></v-text-field>
-              <v-text-field v-model="editedRecipe.difficulty" label="Difficulty" type="number"></v-text-field>
-              <v-text-field v-model="editedRecipe.preparation" label="Preparation" type="number"></v-text-field>
-              <v-row v-for="(ingredient, index) in editedRecipe.ingredients" :key="index">
-                <v-col>
-                  <v-text-field v-model="ingredient.title" label="Ingredient"></v-text-field>
-                </v-col>
-                <v-col>
-                  <v-text-field v-model="ingredient.quantity" label="Quantity"></v-text-field>
-                </v-col>
-                <v-col>
-                  <v-text-field v-model="ingredient.unit" label="Unit"></v-text-field>
-                </v-col>
-              </v-row>
-              <v-btn @click="addIngredientRow">Add New Ingredient</v-btn>
-            </v-form>
-          </v-card-text>
-          <v-card-actions>
-            <v-btn @click="saveRecipe" :disabled="!validRecipe">Save</v-btn>
-            <v-btn @click="closeDialog">Cancel</v-btn>
-          </v-card-actions>
+        <v-card-title>{{ editMode ? 'Edit Recipe' : 'Add New recipe' }}</v-card-title>
+        <v-card-text>
+          <v-form ref="form" v-model="valid" lazy-validation>
+
+            <!-- Titel -->
+            <v-row>
+              <v-col>
+                <v-text-field v-model="recipeData.title" label="Titel"></v-text-field>
+              </v-col>
+
+              <!-- Kurs -->
+
+              <v-col>
+                <v-select v-model="recipeData.selectedCourses" :items="courseOptions" label="Kurs" item-value="courseId"></v-select>
+              </v-col>
+            </v-row>
+
+            <!-- Beschreibung -->
+            <v-row>
+              <v-col>
+                <v-textarea v-model="recipeData.description" label="Beschreibung" rows="5"></v-textarea>
+              </v-col>
+            </v-row>
+
+            <!-- Schwierigkeitsgrad -->
+            <v-row>
+              <v-col>
+                <v-text-field v-model="recipeData.difficulty" label="Schwierigkeitsgrad" type="number"></v-text-field>
+              </v-col>
+
+
+              <!-- Vorbereitungszeit -->
+
+              <v-col>
+                <v-text-field v-model="recipeData.preparation" label="Vorbereitungszeit (in Minuten)" type="number"></v-text-field>
+              </v-col>
+            </v-row>
+
+            <!-- Zutaten -->
+            <v-row v-for="(ingredient, index) in recipeData.ingredients" :key="index">
+              <v-col>
+                <v-text-field v-model="ingredient.title" label="Zutat"></v-text-field>
+              </v-col>
+              <v-col>
+                <v-text-field v-model="ingredient.quantity" label="Menge"></v-text-field>
+              </v-col>
+              <v-col>
+                <v-text-field v-model="ingredient.unit" label="Einheit"></v-text-field>
+              </v-col>
+            </v-row>
+
+            <!-- Neue Zutat hinzufügen -->
+            <v-row>
+              <v-col>
+                <v-btn @click="addIngredientRow">Neue Zutat hinzufügen</v-btn>
+              </v-col>
+            </v-row>
+
+
+
+            <!-- Zutatenliste -->
+            <v-row>
+              <v-col>
+                <div>
+                  Zutatenliste:
+                  <ul>
+                    <li v-for="(ingredient, index) in recipeData.ingredients" :key="index">
+                      {{ ingredient.quantity }} - {{ ingredient.unit }} - {{ ingredient.title }}
+                    </li>
+                  </ul>
+                </div>
+              </v-col>
+            </v-row>
+
+            <!-- Submit-Button -->
+            <v-row>
+
+            </v-row>
+
+          </v-form>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn @click="saveRecipe" :disabled="!valid">Save</v-btn>
+          <v-btn @click="closeDialog">Cancel</v-btn>
+        </v-card-actions>
         </v-card>
       </v-dialog>
-      <v-btn @click="openRecipeDialog">Add New Recipe</v-btn>
-    </v-container>
-  </div>
+      <v-btn @click="openDialog">Add New Recipe</v-btn>
+
+
 </template>
 
 <style scoped>

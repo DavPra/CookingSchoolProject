@@ -28,6 +28,7 @@ export const useRecipeStore = defineStore('recipe', {
             }
         },
         async addRecipe(data) {
+            console.log('store 1', data)
             try {
                 const recipeData = {
                     recipeId: data.recipeId,
@@ -41,8 +42,7 @@ export const useRecipeStore = defineStore('recipe', {
 
                 const courseIds = await this.getCourseIds();
 
-                console.log(data);
-
+                console.log('store 2', data)
                 const recipeResponse = await axios.post('http://localhost:8082/admin/addRecipe', recipeData);
                 console.log(recipeResponse.data);
 
@@ -57,8 +57,8 @@ export const useRecipeStore = defineStore('recipe', {
             this.showRecipes()
         },
 
-        async updateRecipe(recipeId) {
-            const updateRecipeResponse = await axios.put('http://localhost:8082/admin/updateRecipe/' + recipeId)
+        async updateRecipe(recipeId, updatedRecipe) {
+            const updateRecipeResponse = await axios.put('http://localhost:8082/admin/updateRecipe/' + recipeId, updatedRecipe)
             console.log('recipe updated')
             this.showRecipes()
         },

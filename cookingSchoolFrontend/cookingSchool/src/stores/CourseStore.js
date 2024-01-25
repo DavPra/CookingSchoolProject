@@ -40,7 +40,6 @@ export const useCourseStore = defineStore('course', {
         async updateCourse(courseId, updatedCourse) {
             try {
                 const courseResponse = await axios.put(`http://localhost:8082/admin/courses/${courseId}`, updatedCourse);
-                // Update the course in the local array
                 const index = this.courses.findIndex(course => course.courseId === courseId);
                 if (index !== -1) {
                     this.courses[index] = courseResponse.data;
