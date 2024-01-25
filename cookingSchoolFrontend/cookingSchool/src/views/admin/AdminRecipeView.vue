@@ -26,17 +26,28 @@ onMounted(() => {
   fetchRecipes()
 
 });
+
+
 const loadCourses = async () => {
   try {
+    console.log('Before loading courses');
     await courseStore.showCourses();
+    console.log('After loading courses');
+
+    console.log('Courses loaded:', courseStore.courses);
+
     courseOptions.value = courseStore.courses.map(course => ({
       courseId: course.courseId,
       title: course.courseTitle
     }));
+
+    console.log('courseOptions:', courseOptions.value);
+    console.log('courseID for recipes loaded');
   } catch (err) {
-    console.error("Fehler beim Laden der Kurse:", err);
+    console.error("Error loading courses:", err);
   }
 };
+
 const valid = ref(true)
 
 const addIngredientRow = () => {
@@ -73,26 +84,48 @@ const editRecipe = (recipe) => {
 };
 const saveRecipe = async () => {
   try {
-    console.log('Before update/create REcipe');
+    console.log('Selected Courses:', recipeData.value.selectedCourses);
+    console.dir(recipeData.value.selectedCourses);
+    let courseIds = [];
+    courseIds.push(recipeData.value.selectedCourses);
+
+    console.log('Before update/create Recipe');
     if (editMode.value) {
       console.log('update Recipe called');
       console.log(recipeData.value.recipeId);
-      await recipeStore.updateRecipe(recipeData.value.recipeId, recipeData.value);
+
+      await recipeStore.updateRecipe(recipeData.value.recipeId, {
+        title: recipeData.value.title,
+        description: recipeData.value.description,
+        difficulty: recipeData.value.difficulty,
+        preparation: recipeData.value.preparation,
+        courseIds: courseIds,
+        ingredients: recipeData.value.ingredients
+      });
     } else {
-      console.log('create REcipe called');
-      console.log(recipeData.value.recipeId);
-      await recipeStore.addRecipe(recipeData.value);
+      console.log('create Recipe called');
+
+      // Use the formatted recipeDataToSend
+      await recipeStore.addRecipe({
+        title: recipeData.value.title,
+        description: recipeData.value.description,
+        difficulty: recipeData.value.difficulty,
+        preparation: recipeData.value.preparation,
+        courseIds: courseIds,
+        ingredients: recipeData.value.ingredients
+      });
     }
 
     console.log('Before showRecipes');
     await recipeStore.showRecipes();
-    console.log('After showrecipes');
+    console.log('After showRecipes');
   } catch (error) {
     console.error('Error saving recipe:', error);
   } finally {
     closeDialog();
   }
 };
+
 async function deleteRecipe(recipeId){
   console.log('recipeId delete' ,recipeId)
   await recipeStore.deleteRecipe(recipeId)
@@ -157,12 +190,24 @@ const closeDialog = () => {
 
               <!-- Kurs -->
 
-              <v-col>
+             <!-- <v-col>
                 <v-select v-model="recipeData.selectedCourses" :items="courseOptions" label="Kurs" item-value="courseId"></v-select>
+                <div>{{ recipeData.selectedCourses }}</div>
               </v-col>
+            </v-row> -->
+              <v-col>
+                <v-select
+                    v-model="recipeData.selectedCourses"
+                    :items="courseOptions"
+                    label="Kurse"
+                    item-value="courseId"
+                ></v-select>
+
+              </v-col>
+
             </v-row>
 
-            <!-- Beschreibung -->
+              <!-- Beschreibung -->
             <v-row>
               <v-col>
                 <v-textarea v-model="recipeData.description" label="Beschreibung" rows="5"></v-textarea>

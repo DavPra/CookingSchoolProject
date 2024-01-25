@@ -28,7 +28,6 @@ export const useRecipeStore = defineStore('recipe', {
             }
         },
         async addRecipe(data) {
-            console.log('store 1', data)
             try {
                 const recipeData = {
                     recipeId: data.recipeId,
@@ -37,16 +36,18 @@ export const useRecipeStore = defineStore('recipe', {
                     difficulty: data.difficulty,
                     preparation: data.preparation,
                     courseIds: data.courseIds,
-                    ingredients: data.ingredients
+                    ingredients: data.ingredients,
                 };
 
                 const courseIds = await this.getCourseIds();
+                console.log('storeData', data)
 
-                console.log('store 2', data)
                 const recipeResponse = await axios.post('http://localhost:8082/admin/addRecipe', recipeData);
                 console.log(recipeResponse.data);
+                const createdRecipe = recipeResponse.data;
+                console.log('store recipe created!', recipeResponse.data);
+                this.recipes.push(createdRecipe);
 
-                this.recipes.push(recipeResponse.data);
             } catch (error) {
                 console.error('Error creating recipe:', error);
             }
