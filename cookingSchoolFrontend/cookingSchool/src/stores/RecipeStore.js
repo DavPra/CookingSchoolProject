@@ -12,6 +12,7 @@ export const useRecipeStore = defineStore('recipe', {
     actions: {
         async showRecipes() {
             try {
+                this.recipes = [];
                 const recipeResponse = await axios.get('http://localhost:8082/admin/getAllRecipes');
                 console.log(recipeResponse.data);
                // this.recipes = recipeResponse.data.recipes

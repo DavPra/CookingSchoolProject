@@ -1,9 +1,9 @@
 <script setup>
 
-
 import { ref, onMounted } from 'vue';
-import { useCourseStore } from '@/stores/CourseStore';
+
 import { useRoute } from 'vue-router';
+import {useCourseStore} from "@/stores/CourseStore";
 
 const courseStore = useCourseStore();
 const route = useRoute();
@@ -12,7 +12,7 @@ const courses = ref([]);
 const dialog = ref(false);
 const editMode = ref(false);
 const editedCourse = ref({
-  title: '',
+  courseTitle: '',
   teacher:'',
   startDate: '',
   description: '',
@@ -34,7 +34,7 @@ const fetchCourses = async () => {
 
 const openDialog = () => {
   editMode.value = false;
-  editedCourse.value = { title: '',teacher:'', startDate: '', description: '', image: '', maxAttendants:'',price:'' };
+  editedCourse.value = { courseTitle: '',teacher:'', startDate: '', description: '', image: '', maxAttendants:'',price:'' };
   dialog.value = true;
 };
 
@@ -44,25 +44,38 @@ const editCourse = (course) => {
   dialog.value = true;
 };
 
-const saveCourse = () => {
-  if (editMode.value) {
-    const index = courses.value.findIndex((course) => course.courseId === editedCourse.value.courseId);
-    courses.value[index] = { ...editedCourse.value };
-  } else {
-    courses.value.push({ id: courses.value.length + 1, ...editedCourse.value });
-  }
+const saveCourse = async () => {
+  try {
+    console.log('Before update/create Course');
+    if (editMode.value) {
+      console.log('update Course called');
+      console.log(editedCourse.value.courseId)
+      await courseStore.updateCourse(editedCourse.value.courseId, editedCourse.value);
+    } else {
+      console.log('create Course called');
+      console.log(editedCourse.value.courseId)
+      await courseStore.createCourse(editedCourse.value);
+    }
 
-  closeDialog();
+    console.log('Before showCourses');
+    await courseStore.showCourses();
+    console.log('After showCourses');
+
+    closeDialog();
+  } catch (error) {
+    console.error('Error saving course:', error);
+  }
 };
+
 
 const closeDialog = () => {
   dialog.value = false;
   valid.value = true;
-  editedCourse.value = { title: '',teacher:'', startDate: '', description: '', image: '', maxAttendants:'' ,price:'' };
+  editedCourse.value = { courseTitle: '',teacher:'', startDate: '', description: '', image: '', maxAttendants:'' ,price:'' };
 };
 
 const deleteCourse = (courseId) => {
-  const index = courses.value.findIndex((course) => course.id === courseId);
+  const index = courses.value.findIndex((course) => course.courseId === courseId);
   courses.value.splice(index, 1);
 };
 
@@ -72,11 +85,15 @@ const deleteCourse = (courseId) => {
   <v-container>
     <v-row>
       <v-col v-for="course in courses" :key="course.id" cols="12" md="4">
+
+
+
         <v-card>
           <v-img :src="course.image" height="200"></v-img>
-          <v-card-title>{{ course.title }}</v-card-title>
+          <v-card-title>{{ course.courseTitle }}</v-card-title>
           <v-card-subtitle>{{ course.startDate }}</v-card-subtitle>
           <v-card-text>{{ course.description }}</v-card-text>
+
           <v-card-actions>
             <v-btn @click="editCourse(course)">Edit</v-btn>
             <v-btn @click="deleteCourse(course.id)">Delete</v-btn>
@@ -90,11 +107,11 @@ const deleteCourse = (courseId) => {
       <v-card-title>{{ editMode ? 'Edit Course' : 'Add New Course' }}</v-card-title>
       <v-card-text>
         <v-form ref="form" v-model="valid" lazy-validation>
-          <v-text-field v-model="editedCourse.title" label="Title" required></v-text-field>
-          <v-text-field v-model="editedCourse.teacher" label="Title" required></v-text-field>
+          <v-text-field v-model="editedCourse.courseTitle" label="Title" required></v-text-field>
+          <v-text-field v-model="editedCourse.teacher" label="teacher" required></v-text-field>
           <v-text-field v-model="editedCourse.startDate" label="Start Date" required></v-text-field>
           <v-text-field v-model="editedCourse.description" label="Description" required></v-text-field>
-          <v-text-field v-model="editedCourse.image" label="Image URL" required></v-text-field>
+          <v-text-field v-model="editedCourse.image" label="Image URL" ></v-text-field>
           <v-text-field v-model.number="editedCourse.maxAttendants" label="max Attendants"></v-text-field>
           <v-text-field v-model.number="editedCourse.price" label="price"></v-text-field>
 
