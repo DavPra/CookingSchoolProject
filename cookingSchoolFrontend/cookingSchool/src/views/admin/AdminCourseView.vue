@@ -111,8 +111,6 @@ const deleteCourse = (courseId) => {
 </template>
 <style scoped>
 
-
-
 </style>
 
 
