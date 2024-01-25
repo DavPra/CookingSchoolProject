@@ -22,6 +22,7 @@ const editedCourse = ref({
 });
 const valid = ref(true);
 
+
 onMounted(() => {
  courseStore.showCourses()
   fetchCourses();
@@ -49,35 +50,46 @@ const saveCourse = async () => {
     console.log('Before update/create Course');
     if (editMode.value) {
       console.log('update Course called');
-      console.log(editedCourse.value.courseId)
+      console.log(editedCourse.value.courseId);
       await courseStore.updateCourse(editedCourse.value.courseId, editedCourse.value);
     } else {
       console.log('create Course called');
-      console.log(editedCourse.value.courseId)
+      console.log(editedCourse.value.courseId);
       await courseStore.createCourse(editedCourse.value);
     }
 
     console.log('Before showCourses');
     await courseStore.showCourses();
     console.log('After showCourses');
-
-    closeDialog();
   } catch (error) {
     console.error('Error saving course:', error);
+  } finally {
+    closeDialog();
   }
 };
 
 
+async function deleteCourse(courseId){
+  console.log('courseId delete' ,courseId)
+  await courseStore.deleteCourse(courseId)
+  await courseStore.showCourses()
+}
+
 const closeDialog = () => {
   dialog.value = false;
   valid.value = true;
-  editedCourse.value = { courseTitle: '',teacher:'', startDate: '', description: '', image: '', maxAttendants:'' ,price:'' };
+  editedCourse.value = {
+    courseTitle: '',
+    teacher: '',
+    startDate: '',
+    description: '',
+    image: '',
+    maxAttendants: '',
+    price: '',
+  };
 };
 
-const deleteCourse = (courseId) => {
-  const index = courses.value.findIndex((course) => course.courseId === courseId);
-  courses.value.splice(index, 1);
-};
+
 
 </script>
 
@@ -96,7 +108,7 @@ const deleteCourse = (courseId) => {
 
           <v-card-actions>
             <v-btn @click="editCourse(course)">Edit</v-btn>
-            <v-btn @click="deleteCourse(course.id)">Delete</v-btn>
+            <v-btn @click="deleteCourse(course.courseId)">Delete</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>

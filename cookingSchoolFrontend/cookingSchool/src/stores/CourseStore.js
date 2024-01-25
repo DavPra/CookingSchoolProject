@@ -50,8 +50,14 @@ export const useCourseStore = defineStore('course', {
                 console.error('Error updating course:', error);
             }
         },
+        async deleteCourse(courseId){
+            const deleteResponse = await axios.delete('http://localhost:8082/admin/courses/'+courseId);
+            console.log('Course deleted', courseId, deleteResponse.data);
+            this.showCourses();
+        },
 
-    async bookCourse(courseId, userId){
+
+        async bookCourse(courseId, userId){
         const bookCourseResponse = await axios.put('http://localhost:8082/users/courses/'+courseId+'/book-course/'+userId)
         console.log('Course booked')
         this.showCourses()
