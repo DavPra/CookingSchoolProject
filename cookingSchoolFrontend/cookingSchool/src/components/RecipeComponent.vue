@@ -26,7 +26,7 @@ const deleteRecipe = async () => {
   <v-card-title>{{title}}</v-card-title>
   <v-card-subtitle>Difficulty: {{difficulty}} </v-card-subtitle>
   <v-card-subtitle> Preparation: {{preparation}}</v-card-subtitle>
-  <v-card-subtitle> Kurs Nummer: {{courseIds}}</v-card-subtitle>
+  <v-card-subtitle> Kurs Ids: {{courseIds}}</v-card-subtitle>
   <v-card-text>
     Zutaten:
     <ul>
