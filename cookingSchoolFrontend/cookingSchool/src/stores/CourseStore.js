@@ -1,10 +1,12 @@
 import {defineStore} from "pinia";
 import axios from "axios";
+import {ref} from "vue";
 
 
 export const useCourseStore = defineStore('course', {
     state: () => ({
-        courses: []
+        courses: [],
+        userCourses: [],
     }),
     actions: {
         async showCourses() {
@@ -25,8 +27,7 @@ export const useCourseStore = defineStore('course', {
                     teacher: data.teacher,
                     startDate: data.startDate,
                     maxAttendants: data.maxAttendants,
-                    price: data.price,
-                    image: data.image
+                    price: data.price
                 };
                 console.log('store 2', data)
                 const courseResponse = await axios.post('http://localhost:8082/admin/courses', courseData);
@@ -61,5 +62,27 @@ export const useCourseStore = defineStore('course', {
         console.log('Course booked')
         this.showCourses()
     },
+
+    async showUserCourses(userId){
+        console.log('store' + this.userCourses);
+        
+        console.log("UserId " + userId);
+        const userCoursesResponse = await axios.get('http://localhost:8082/admin/users/'+userId);
+        
+        console.log("Array mit Courses " + userCoursesResponse);
+
+            const userData = {
+                userId: userCoursesResponse.data.userId,
+                firstname: userCoursesResponse.data.firstname,
+                lastname: userCoursesResponse.lastname,
+                courses: userCoursesResponse.data.courses
+            };
+
+            this.userCourses = userData.courses;
+
+            console.log(userData);
+        
+//for vielleicht zur view verschieben
+    }
 }   
 });

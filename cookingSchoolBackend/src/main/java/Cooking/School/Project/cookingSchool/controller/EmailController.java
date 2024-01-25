@@ -1,6 +1,7 @@
 package Cooking.School.Project.cookingSchool.controller;
 
 import Cooking.School.Project.cookingSchool.entities.User;
+import Cooking.School.Project.cookingSchool.restapi.dto.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +22,8 @@ public class EmailController {
     @PostMapping("/send-email/{id}")
     public ResponseEntity<?> sendEmail(@PathVariable long id) {
         try {
-            User user = userService.getUserById(id);
-            emailService.sendEmail(user.getEmail(), "Buchungsbestätigung Cooking Academy", "Hey " + user.getFirstname() + ",\n\n" +
+            UserResponse userResponse = userService.getUserById(id);
+            emailService.sendEmail(userResponse.getEmail(), "Buchungsbestätigung Cooking Academy", "Hey " + userResponse.getFirstname() + ",\n\n" +
                     "vielen Dank für deine Buchung bei der Cooking Academy. Wir freuen uns auf dich!\n\n" +
                     "Liebe Grüße,\n" +
                     "dein Cooking Academy Team");

@@ -4,19 +4,25 @@ import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import { useCourseStore } from "@/stores/CourseStore.js";
+import { useAuthStore } from "@/stores/AuthStore.js";
+import jwtdecode from "jwt-decode";
 
 const courseStore = useCourseStore()
 const course = defineProps(['courseTitle','startDate','description','teacher','courseId'])
+const authStore = useAuthStore();
 
 onMounted(() => {
   showCourses();
   console.log('mounted');
+ 
 });
 
 const show = ref(false)
 
 const err = false;
-//const courses = ref([]);
+let courses = ref([]);
+const courseId = course.courseId;
+let decodedUserId = '';
 
 
 async function showCourses() {
@@ -28,8 +34,10 @@ async function showCourses() {
 showCourses();
 
 async function bookCourse() {
-  await courseStore.bookCourse(courseId, userId);
-  console.log(course.courseId);
+  decodedUserId = jwtdecode(localStorage.getItem("accessToken")).userId;
+  console.log(decodedUserId);
+  await courseStore.bookCourse(decodedUserId, courseId);
+  console.log(courses.courseId);
 }
 
 </script>
@@ -64,7 +72,7 @@ async function bookCourse() {
           <div v-show="show">
             <v-divider></v-divider>
             <v-card-text>{{description}}</v-card-text>
-          <v-btn @click="bookCourse(courseId, userId)"
+          <v-btn @click="bookCourse"
           variant="text" 
           color="primary">
           Buchen

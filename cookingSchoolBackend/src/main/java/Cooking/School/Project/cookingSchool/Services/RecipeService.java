@@ -64,8 +64,6 @@ public class RecipeService {
 
             course = this.courseRepository.save(course);
         }
-
-
         recipeCourse.setRecipeId(recipe.getRecipeId());
 
         return recipeCourse;
@@ -180,6 +178,9 @@ public class RecipeService {
         Recipe recipe = recipeRepository.findById(recipeId)
                 .orElseThrow(() -> new RecipeNotFoundException("Recipe with Id " + recipeId + " not found"));
 
+        recipe.getCourses().forEach(course -> course.getRecipes().remove(recipe));
+        //recipe.getCourses().forEach(courseRepository::save);
+        recipe.getRecipeTags().forEach(recipeTag -> recipeTag.getRecipes().remove(recipe));
         recipe.getIngredients().forEach(ingredient -> ingredientRepository.deleteById(ingredient.getIngredientId()));
 
         recipeRepository.deleteById(recipeId);

@@ -37,17 +37,18 @@ public class Recipe {
 
         private int preparation;
 
-       @ManyToMany(mappedBy = "recipes")
+        //Löscht rezepte ohne Kurse zu löschen
+       @ManyToMany(mappedBy = "recipes", cascade = CascadeType.ALL)
        private Set<Course> courses;
 
-       @ManyToMany
+       @ManyToMany(cascade = CascadeType.REMOVE)
        @JoinTable(
                name = "recipe_ingredient",
                joinColumns = @JoinColumn(name = "recipe_id"),
                inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
          private Set<Ingredient> ingredients;
 
-       @ManyToMany
+       @ManyToMany(cascade = CascadeType.ALL)
          @JoinTable(
                 name = "recipe_tag",
                 joinColumns = @JoinColumn(name = "recipe_id"),

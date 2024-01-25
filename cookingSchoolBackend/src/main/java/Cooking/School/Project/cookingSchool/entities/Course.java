@@ -50,6 +50,9 @@ public class Course {
    private String teacher;
 
    @Setter
+   private String image;
+
+   @Setter
    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
    private LocalDateTime startDate;
 
