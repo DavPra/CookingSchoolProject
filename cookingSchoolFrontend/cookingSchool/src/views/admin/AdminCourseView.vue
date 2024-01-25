@@ -1,108 +1,117 @@
 <script setup>
-import { useCourseStore } from "@/stores/CourseStore.js";
-import { createApiUrl } from "@/helper/ApiHelper.js";
-import { onMounted, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import CourseForm from "@/components/CourseForm.vue";
-import AdminCourseCard from "../../components/AdminCourseCard.vue";
 
-const courseStore = useCourseStore()
-const router = useRouter();
-const isVisible = ref(false)
-const err = false;
 
+import { ref, onMounted } from 'vue';
+import { useCourseStore } from '@/stores/CourseStore';
+import { useRoute } from 'vue-router';
+
+const courseStore = useCourseStore();
+const route = useRoute();
+
+const courses = ref([]);
+const dialog = ref(false);
+const editMode = ref(false);
+const editedCourse = ref({
+  title: '',
+  teacher:'',
+  startDate: '',
+  description: '',
+  image: '',
+  maxAttendants: '',
+  price: '',
+});
+const valid = ref(true);
 
 onMounted(() => {
-  showCourses();
-  console.log('mounted');
+ courseStore.showCourses()
+  fetchCourses();
 });
 
-async function showCourses() {
+const fetchCourses = async () => {
   await courseStore.showCourses();
-}
-showCourses();
+  courses.value = courseStore.courses;
+};
 
-function showForm(){
-  console.log('showForm called');
-  isVisible.value = true
-  console.log('isVisible', isVisible.value)
-}
+const openDialog = () => {
+  editMode.value = false;
+  editedCourse.value = { title: '',teacher:'', startDate: '', description: '', image: '', maxAttendants:'',price:'' };
+  dialog.value = true;
+};
 
-function closeForm(){
-  console.log('closeForm called')
-  isVisible.value = false
+const editCourse = (course) => {
+  editMode.value = true;
+  editedCourse.value = { ...course };
+  dialog.value = true;
+};
 
-}
+const saveCourse = () => {
+  if (editMode.value) {
+    const index = courses.value.findIndex((course) => course.courseId === editedCourse.value.courseId);
+    courses.value[index] = { ...editedCourse.value };
+  } else {
+    courses.value.push({ id: courses.value.length + 1, ...editedCourse.value });
+  }
 
+  closeDialog();
+};
+
+const closeDialog = () => {
+  dialog.value = false;
+  valid.value = true;
+  editedCourse.value = { title: '',teacher:'', startDate: '', description: '', image: '', maxAttendants:'' ,price:'' };
+};
+
+const deleteCourse = (courseId) => {
+  const index = courses.value.findIndex((course) => course.id === courseId);
+  courses.value.splice(index, 1);
+};
 
 </script>
 
 <template>
-  <div class="ma-2">
-  <!-- Übersicht aller Kurse zum Bearbeiten für den Admin -->
-  <div>
-    <v-btn class="ma-2" @click ="showForm">Add new Course</v-btn>
-    <p v-if="isVisible">CourseForm is visible</p>
-  <CourseForm v-if="isVisible"  :closeForm="closeForm" style="display: block;"/>
+  <v-container>
+    <v-row>
+      <v-col v-for="course in courses" :key="course.id" cols="12" md="4">
+        <v-card>
+          <v-img :src="course.image" height="200"></v-img>
+          <v-card-title>{{ course.title }}</v-card-title>
+          <v-card-subtitle>{{ course.startDate }}</v-card-subtitle>
+          <v-card-text>{{ course.description }}</v-card-text>
+          <v-card-actions>
+            <v-btn @click="editCourse(course)">Edit</v-btn>
+            <v-btn @click="deleteCourse(course.id)">Delete</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
+  <v-dialog v-model="dialog" max-width="500">
+    <v-card>
+      <v-card-title>{{ editMode ? 'Edit Course' : 'Add New Course' }}</v-card-title>
+      <v-card-text>
+        <v-form ref="form" v-model="valid" lazy-validation>
+          <v-text-field v-model="editedCourse.title" label="Title" required></v-text-field>
+          <v-text-field v-model="editedCourse.teacher" label="Title" required></v-text-field>
+          <v-text-field v-model="editedCourse.startDate" label="Start Date" required></v-text-field>
+          <v-text-field v-model="editedCourse.description" label="Description" required></v-text-field>
+          <v-text-field v-model="editedCourse.image" label="Image URL" required></v-text-field>
+          <v-text-field v-model.number="editedCourse.maxAttendants" label="max Attendants"></v-text-field>
+          <v-text-field v-model.number="editedCourse.price" label="price"></v-text-field>
 
-
-
-    <div id="course-list" class="ma-2" >
-      <h1 class="mx-auto">Your upcoming Courses</h1>
-      <v-row class="d-flex ma-2">
-        <v-col v-for="course in courseStore.courses" :key="course.courseId" cols="12" sm="6" md="4" lg="3">
-          <AdminCourseCard
-                           :key="course.courseId"
-                           :courseTitle="course.courseTitle"
-                           :startDate="course.startDate"
-                           :description="course.description"
-                           :courseId="course.courseId"
-                           :teacher = "course.teacher"
-                           :showForm = "showForm"
-                           :image = "course.image"
-
-          />
-        </v-col>
-      </v-row>
-    </div>
-  
-
-
-  <div>
-    <h1>Course List</h1>
-    <ul>
-      <li v-for="course in courseStore.courses" :key="course.courseId">
-        {{ course.courseId }}
-        {{ course.courseTitle }}
-        {{ course.description }}
-        {{course.maxAttendants}}
-        {{course.price}}
-        {{course.startDate}}
-        {{course.teacher}}
-        {{course.image}}
-
-      </li>
-    </ul>
-  </div>
-  </div>
-  </div>
-
-
+        </v-form>
+      </v-card-text>
+      <v-card-actions>
+        <v-btn @click="saveCourse" :disabled="!valid">Save</v-btn>
+        <v-btn @click="closeDialog">Cancel</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+  <v-btn @click="openDialog">Add New Course</v-btn>
 
 </template>
 <style scoped>
 
-/*
 
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 999;
-}*/
 
 </style>
 
