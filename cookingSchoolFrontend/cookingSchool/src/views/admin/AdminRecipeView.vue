@@ -157,11 +157,16 @@ const closeDialog = () => {
              <v-card-title>{{recipe.title}}</v-card-title>
              <v-card-subtitle>Difficulty: {{recipe.difficulty}} </v-card-subtitle>
              <v-card-subtitle> Preparation: {{recipe.preparation}}</v-card-subtitle>
-             <v-card-subtitle> Kurs Ids: {{recipe.courseIds}}</v-card-subtitle>
+             <v-card-subtitle v-if="recipe.courses && recipe.courses.length > 0">
+               Kurs Ids: {{ recipe.courses.map(course => course.courseId).join(', ') }}
+             </v-card-subtitle>
+
+
+
              <v-card-text>
                Zutaten:
                <ul>
-                 <li v-for="(ingredient, index) in recipeData.ingredients" :key="index">
+                 <li v-for="(ingredient, index) in recipe.ingredients" :key="index">
                    {{ ingredient.quantity }} - {{ ingredient.unit }} - {{ ingredient.title }}
                  </li>
                </ul>
