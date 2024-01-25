@@ -12,6 +12,7 @@ export const useRecipeStore = defineStore('recipe', {
     actions: {
         async showRecipes() {
             try {
+                this.recipes = [];
                 const recipeResponse = await axios.get('http://localhost:8082/admin/getAllRecipes');
                 console.log(recipeResponse.data);
                // this.recipes = recipeResponse.data.recipes
@@ -35,17 +36,18 @@ export const useRecipeStore = defineStore('recipe', {
                     difficulty: data.difficulty,
                     preparation: data.preparation,
                     courseIds: data.courseIds,
-                    ingredients: data.ingredients
+                    ingredients: data.ingredients,
                 };
 
                 const courseIds = await this.getCourseIds();
-
-                console.log(data);
+                console.log('storeData', data)
 
                 const recipeResponse = await axios.post('http://localhost:8082/admin/addRecipe', recipeData);
                 console.log(recipeResponse.data);
+                const createdRecipe = recipeResponse.data;
+                console.log('store recipe created!', recipeResponse.data);
+                this.recipes.push(createdRecipe);
 
-                this.recipes.push(recipeResponse.data);
             } catch (error) {
                 console.error('Error creating recipe:', error);
             }
@@ -56,8 +58,8 @@ export const useRecipeStore = defineStore('recipe', {
             this.showRecipes()
         },
 
-        async updateRecipe(recipeId) {
-            const updateRecipeResponse = await axios.put('http://localhost:8082/admin/updateRecipe/' + recipeId)
+        async updateRecipe(recipeId, updatedRecipe) {
+            const updateRecipeResponse = await axios.put('http://localhost:8082/admin/updateRecipe/' + recipeId, updatedRecipe)
             console.log('recipe updated')
             this.showRecipes()
         },

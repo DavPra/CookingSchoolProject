@@ -12,34 +12,42 @@ export const useCourseStore = defineStore('course', {
         async showCourses() {
             try {
                 const courseResponse = await axios.get('http://localhost:8082/admin/courses');
-                console.log(courseResponse.data);
                 this.courses = courseResponse.data;
-                console.log('course geladen', courseResponse.data);
-
+                console.log('Courses loaded', this.courses);
             } catch (error) {
                 console.error('Error loading courses:', error);
-                console.log('Response Body:', error.response.data);
             }
         },
         async createCourse(data) {
+            console.log('store 1', data)
             try {
                 const courseData = {
                     courseTitle: data.courseTitle,
                     description: data.description,
                     teacher: data.teacher,
-                    startDate: new Date(data.startDate),
+                    startDate: data.startDate,
                     maxAttendants: data.maxAttendants,
                     price: data.price
                 };
-
-                console.log(data);
-
+                console.log('store 2', data)
                 const courseResponse = await axios.post('http://localhost:8082/admin/courses', courseData);
-                console.log(courseResponse.data);
-
+                const createdCourse = courseResponse.data;
                 this.courses.push(courseResponse.data);
+                console.log('Course created', courseResponse.data);
             } catch (error) {
                 console.error('Error creating course:', error);
+            }
+        },
+        async updateCourse(courseId, updatedCourse) {
+            try {
+                const courseResponse = await axios.put(`http://localhost:8082/admin/courses/${courseId}`, updatedCourse);
+                const index = this.courses.findIndex(course => course.courseId === courseId);
+                if (index !== -1) {
+                    this.courses[index] = courseResponse.data;
+                    console.log('Course updated', courseResponse.data);
+                }
+            } catch (error) {
+                console.error('Error updating course:', error);
             }
         },
         async deleteCourse(courseId){
@@ -47,18 +55,12 @@ export const useCourseStore = defineStore('course', {
             console.log('Course deleted', courseId, deleteResponse.data);
             this.showCourses();
         },
-        async updateCourse(courseId){
-            const updateCourseResponse = await axios.put('http://localhost:8082/admin/courses/'+courseId);
-            console.log('Course updated', updateCourseResponse.data);
-            this.showCourses();
 
-    },
 
-    async bookCourse(userId, courseId){
-        const bookCourseResponse = await axios.post('http://localhost:8082/users/'+userId+'/book-course/'+courseId);
-        const sentMail = await axios.post('http://localhost:8082/send-email/'+userId);
-        console.log(bookCourseResponse.data, sentMail.data);
-        this.showCourses();
+        async bookCourse(courseId, userId){
+        const bookCourseResponse = await axios.put('http://localhost:8082/users/courses/'+courseId+'/book-course/'+userId)
+        console.log('Course booked')
+        this.showCourses()
     },
 
     async showUserCourses(userId){

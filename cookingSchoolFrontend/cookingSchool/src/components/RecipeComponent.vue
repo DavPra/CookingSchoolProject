@@ -18,7 +18,7 @@ const deleteRecipe = async () => {
       console.error('Server response:', error.response.data);
     }
   }
-};
+}
 </script>
 
 <template>
