@@ -12,7 +12,7 @@ const route = useRoute()
 const show = ref(false)
 const rules = {
   required: value => !!value || 'Field is required',
-  min: v => v.length >= 6 || 'Min 6 characters'
+  min: v => (v && v.length >= 6) || 'Min 6 characters'
 }
 const firstTextField = ref(null);
 const shouldFocusFirstTextField = ref(false);
@@ -24,16 +24,16 @@ watch(shouldFocusFirstTextField, (newValue) => {
 const userErr = ref(false)
 const search = ref('');
 const headers = [
-  { text: "User ID", value: "userId" },
-  { text: "First Name", value: "firstname" },
-  { text: "Last Name", value: "lastname" },
-  { text: "Address", value: "address" },
-  { text: "Mobile", value: "mobile" },
-  { text: "Email", value: "email" },
-  { text: "Username", value: "username" },
-  { text: "Admin", value: "admin" },
-  { text: "Update", value: "update", sortable: false },
-  { text: "Delete", value: "delete", sortable: false },
+  { title: "User ID", value: "userId" },
+  { title: "Vorname", value: "firstname" },
+  { title: "Nachname", value: "lastname" },
+  { title: "Adresse", value: "address" },
+  { title: "Mobile", value: "mobile" },
+  { title: "Email", value: "email" },
+  { title: "Username", value: "username" },
+  { title: "Admin", value: "admin" },
+  { title: "Update", value: "update", sortable: false },
+  { title: "Löschen", value: "delete", sortable: false },
 ];
 
 const userData = ref({
@@ -68,22 +68,22 @@ onMounted(async () => {
 
 // userData durch newUser ersetzt
 const editUser = (user) => {
-  console.log('editUser function called userId: ', user)
-  console.log(userData.value)
-  editingUser.value = user
-  newUser.firstname = user.firstname;
-  newUser.lastname = user.lastname;
-  newUser.address = user.address;
-  newUser.mobile = user.mobile;
-  newUser.email = user.email;
-  newUser.password = user.password;
-  newUser.username = user.username;
-  newUser.admin = user.admin;
+  console.log('editUser function called userId: ', user);
+  console.log(userData.value);
+  editingUser.value = user;
+  newUser.value = {
+    firstname: user.firstname,
+    lastname: user.lastname,
+    address: user.address,
+    mobile: user.mobile,
+    email: user.email,
+    password: user.password,
+    username: user.username,
+    admin: user.admin,
+  };
   shouldFocusFirstTextField.value = true;
   shouldFocusFirstTextField.value = false;
-
-
-}
+};
 
 async function createOrUpdateUser() {
   try {
@@ -190,7 +190,7 @@ const matchesSearch = (user) => {
       <v-text-field
           v-model="newUser.password"
           :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-          :rules="[rules.required, rules.min]"
+          :rules="[rules.min]"
           label="Passwort"
           hint="Mindestens 6 Zeichen"
           @click:append="show = !show"
@@ -309,13 +309,13 @@ const matchesSearch = (user) => {
           <td>{{ item.username }}</td>
           <td>{{ item.admin ? 'Yes' : 'No' }}</td>
           <td>
-            <v-btn icon @click="editUser(item)">
-              <v-icon>mdi-pencil</v-icon>
+            <v-btn icon="mdi-pencil" variant="text" @click="editUser(item)">
+
             </v-btn>
           </td>
           <td>
-            <v-btn icon @click="deleteUser(item.userId)">
-              <v-icon>mdi-delete</v-icon>
+            <v-btn icon = "mdi-delete" variant="text"  @click="deleteUser(item.userId)">
+
             </v-btn>
           </td>
         </tr>
