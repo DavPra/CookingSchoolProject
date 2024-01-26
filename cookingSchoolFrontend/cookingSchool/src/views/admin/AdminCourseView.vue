@@ -153,9 +153,9 @@ const closeAdminCourseUserView = () => {
             <v-btn @click="deleteCourse(course.courseId)" icon>
               <v-icon>mdi-delete</v-icon>
             </v-btn>
-
-            <v-btn @click ="openAdminCourseUserView(course.courseId)">User hinzufügen</v-btn>
-
+            <v-btn @click="openAdminCourseUserView(course.courseId)" icon>
+              <v-icon>mdi-account-plus</v-icon>
+            </v-btn>
           </v-card-actions>
         </v-card>
 

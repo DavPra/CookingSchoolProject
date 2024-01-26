@@ -64,17 +64,18 @@ const fetchCourseCount = async () => {
       <v-main style="height: 500px"></v-main>
     </v-layout>
   </v-card> -->
-  <h1>Admin Home</h1>
 
-    <v-container class="bg-surface-variant">
+
+    <v-container class="bg-grey-lighten-5 ">
+      <h1>Hallo Admin</h1>
       <v-row no-gutters>
         <v-col>
-            <v-card class="pa-2 ma-2">
-              <v-card-title>User Gesamt</v-card-title>
+            <v-card class="pa-2 ma-2 bg-deep-orange-darken-3">
+              <v-card-title class="">User Gesamt</v-card-title>
               <v-card-text>
                 <v-row>
                   <v-col>
-                    <v-icon color="primary">mdi-account-multiple</v-icon>
+                    <v-icon color="white">mdi-account-multiple</v-icon>
                   </v-col>
                   <v-col>
                     <div>{{ userCount }}</div>
@@ -85,18 +86,21 @@ const fetchCourseCount = async () => {
         </v-col>
 
         <v-col cols="6">
-          <v-sheet class="pa-2 ma-2">
-            .v-col-6
-          </v-sheet>
+
+            <v-card class="pa-2 ma-2 text-white bg-yellow-darken-3">
+              <v-card-title>Profil</v-card-title>
+              <v-card-subtitle>Username</v-card-subtitle>
+            </v-card>
+
         </v-col>
 
         <v-col>
-          <v-card class="pa-2 ma-2">
+          <v-card class="pa-2 ma-2 bg-teal-darken-3 text-white ">
             <v-card-title>Kurse Gesamt</v-card-title>
             <v-card-text>
               <v-row>
                 <v-col>
-                  <v-icon color="primary">mdi-school</v-icon>
+                  <v-icon color="white">mdi-school</v-icon>
                 </v-col>
                 <v-col>
                   <div>{{ courseCount }}</div>

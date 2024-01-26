@@ -84,6 +84,12 @@ export const useCourseStore = defineStore('course', {
             this.userCourses = userData.courses;
         
 //for vielleicht zur view verschieben
-    }
+    }, async getCourseById(courseId){
+
+            const courseByIdResponse = await axios.get(`http://localhost:8082/admin/courses/${courseId}`);
+            console.log('API response:', courseByIdResponse.data);
+            return courseByIdResponse.data
+
+        }
 }   
 });
