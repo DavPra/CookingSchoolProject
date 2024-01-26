@@ -6,7 +6,7 @@ import {useUserStore} from "@/stores/UserStore";
 const userStore = useUserStore()
 const router = useRouter();
 
-const user = computed(() => userStore.users.find(u=> u.userId === parseInt(route.params.user)))
+const user = computed(() => userStore.users.find(u => u.userId === parseInt(route.params.user)))
 const editingUser = ref(null);
 const route = useRoute()
 const show = ref(false)
@@ -22,10 +22,23 @@ watch(shouldFocusFirstTextField, (newValue) => {
   }
 });
 const userErr = ref(false)
+const search = ref('');
+const headers = [
+  { text: "User ID", value: "userId" },
+  { text: "First Name", value: "firstname" },
+  { text: "Last Name", value: "lastname" },
+  { text: "Address", value: "address" },
+  { text: "Mobile", value: "mobile" },
+  { text: "Email", value: "email" },
+  { text: "Username", value: "username" },
+  { text: "Admin", value: "admin" },
+  { text: "Update", value: "update", sortable: false },
+  { text: "Delete", value: "delete", sortable: false },
+];
 
 const userData = ref({
   firstname: '',
-  lastname : '',
+  lastname: '',
   address: '',
   mobile: '',
   email: '',
@@ -35,7 +48,7 @@ const userData = ref({
 });
 const newUser = ref({
   firstname: user.value?.firstname,
-  lastname : user.value?.lastname,
+  lastname: user.value?.lastname,
   address: user.value?.address,
   mobile: user.value?.mobile,
   email: user.value?.email,
@@ -71,6 +84,7 @@ const editUser = (user) => {
 
 
 }
+
 async function createOrUpdateUser() {
   try {
     if (editingUser.value === null) {
@@ -102,9 +116,9 @@ async function createOrUpdateUser() {
       }
       await userStore.showUsers()
     }
-    //await router.push('admin/users')
+
   } catch (error) {
-    if(error.response && error.response.status === 409){
+    if (error.response && error.response.status === 409) {
       console.log('Email address already exists')
     }
     console.error('Error creating or updating user:', error);
@@ -125,7 +139,7 @@ async function showUsers() {
 
 showUsers();
 
-async function deleteUser(userId){
+async function deleteUser(userId) {
   console.log('userId vor dem Funktionsaufruf:', userId);
   try {
     await userStore.deleteUser(userId);
@@ -134,13 +148,19 @@ async function deleteUser(userId){
     console.error('Error delete user', err);
   }
 }
+const matchesSearch = (user) => {
+  const searchTerm = search.value.toLowerCase();
+  const fullName = `${user.firstname} ${user.lastname}`.toLowerCase();
+  return fullName.includes(searchTerm);
+};
+
 
 </script>
 
 <template>
   <v-sheet width="400" :elevation="3" rounded class="mx-auto pa-5  ma-4">
     <h2 class="ma-2">{{ editingUser ? 'Bearbeite einen neuen User' : 'Erstelle einen neuen User' }}</h2>
-    <v-form  @submit.prevent = "createOrUpdateUser">
+    <v-form @submit.prevent="createOrUpdateUser">
       <v-text-field
           v-model="newUser.firstname"
           label="Vorname"
@@ -174,9 +194,6 @@ async function deleteUser(userId){
           label="Passwort"
           hint="Mindestens 6 Zeichen"
           @click:append="show = !show"
-
-
-
       ></v-text-field>
       <v-text-field
           v-model="newUser.username"
@@ -186,19 +203,19 @@ async function deleteUser(userId){
           v-model="newUser.admin"
           label="is admin"
       ></v-checkbox>
-      <v-alert closable close-label="Close Alert" type="error" title="Error" text="User konnte nicht erstellt werden" v-model="userErr">
+      <v-alert closable close-label="Close Alert" type="error" title="Error" text="User konnte nicht erstellt werden"
+               v-model="userErr">
       </v-alert>
 
       <v-btn type="submit" block class="mt-2">{{ editingUser ? 'Update' : 'Save' }}</v-btn>
 
 
-
     </v-form>
   </v-sheet>
-
+<!--
   <v-sheet width="90%" elevation="3" class="mx-auto">
     <div>
-      <!-- <v-text-field v-model="search" label="Search" @input="filterUsers"></v-text-field> -->
+       <v-text-field v-model="search" label="Search" @input="filterUsers"></v-text-field>
       <v-table>
         <thead>
         <tr>
@@ -241,6 +258,8 @@ async function deleteUser(userId){
         <tr
             v-for="user in userStore.users"
             :key="user.userId"
+
+
         >
           <td>{{ user.userId }}</td>
           <td>{{ user.firstname }}</td>
@@ -250,13 +269,58 @@ async function deleteUser(userId){
           <td>{{ user.email }}</td>
           <td>{{ user.username }}</td>
           <td>{{ user.admin ? 'Yes' : 'No' }}</td>
-          <td><v-btn icon="mdi-pencil" size ="x-small" @click ="editUser(user)"></v-btn></td>
-          <td><v-btn icon="mdi-delete" size ="x-small" @click="deleteUser(user.userId)"></v-btn></td>
+          <td>
+            <v-btn icon="mdi-pencil" size="x-small" @click="editUser(user)"></v-btn>
+          </td>
+          <td>
+            <v-btn icon="mdi-delete" size="x-small" @click="deleteUser(user.userId)"></v-btn>
+          </td>
 
         </tr>
         </tbody>
       </v-table>
     </div>
-  </v-sheet>
+  </v-sheet> -->
+  <v-card width="90%" class="mx-auto"  tonal title="User Management">
+    <template v-slot:text>
+      <v-text-field
+          v-model="search"
+          label="Search"
+          prepend-inner-icon="mdi-magnify"
+          single-line
+          variant="outlined"
+          hide-details
+      ></v-text-field>
+    </template>
+
+    <v-data-table
+        :headers="headers"
+        :items="userStore.users"
+        :search="search"
+    >
+      <template v-slot:item="{ item }">
+        <tr>
+          <td>{{ item.userId }}</td>
+          <td>{{ item.firstname }}</td>
+          <td>{{ item.lastname }}</td>
+          <td>{{ item.address }}</td>
+          <td>{{ item.mobile }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.username }}</td>
+          <td>{{ item.admin ? 'Yes' : 'No' }}</td>
+          <td>
+            <v-btn icon @click="editUser(item)">
+              <v-icon>mdi-pencil</v-icon>
+            </v-btn>
+          </td>
+          <td>
+            <v-btn icon @click="deleteUser(item.userId)">
+              <v-icon>mdi-delete</v-icon>
+            </v-btn>
+          </td>
+        </tr>
+      </template>
+    </v-data-table>
+  </v-card>
 
 </template>
