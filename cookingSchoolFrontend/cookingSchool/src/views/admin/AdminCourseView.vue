@@ -6,6 +6,7 @@ import {useRoute, useRouter} from 'vue-router';
 import {useCourseStore} from "@/stores/CourseStore";
 import AdminCourseAddUserView from "@/views/admin/AdminCourseUserView.vue";
 
+const errorMsg = ref('');
 const courseStore = useCourseStore();
 const route = useRoute();
 const show = ref(false)
@@ -23,6 +24,9 @@ const editedCourse = ref({
   price: '',
 });
 const valid = ref(true);
+const setErrorMsg = (msg) => {
+  errorMsg.value = msg;
+};
 
 onMounted(() => {
  courseStore.showCourses()
@@ -66,8 +70,10 @@ const saveCourse = async () => {
     console.log('Before showCourses');
     await courseStore.showCourses();
     console.log('After showCourses');
+    setErrorMSg('')
   } catch (error) {
     console.error('Error saving course:', error);
+    setErrorMSg(error.response?.data?.message || 'Ein Fehler ist aufgetreten')
   } finally {
     closeDialog();
   }
@@ -97,17 +103,29 @@ const openAdminCourseUserView = (courseId) => {
   router.push({ name: 'adminCourseUserView' ,params: {courseId} });
 };
 
-const closeAdminCourseUserView = () => {
-  router.go(-1); // Zurück zur vorherigen Route
-};
-
 
 
 </script>
 
 <template>
   <v-container>
+
     <v-row>
+      <v-card @click="openDialog" class="add-course-card ma-3">
+        <v-img
+            class="align-end text-white"
+            height="250"
+            src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAJQAlAMBIgACEQEDEQH/xAAbAAEAAwEBAQEAAAAAAAAAAAAAAgQFAwEHBv/EADQQAAIBAgMFBgUCBwAAAAAAAAABAgMEERJSBRMhMZI0QVGBkbFUYWJxoULRFCIkY3Lh8P/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwD6Nnnrl1DPPXLqIgCWeeuXUM89cuoiAJZ565dQzz1y6iIAlnnrl1DPPXLqIgCWeeuXUM89cuoiAJZ565dQzz1y6iIAlnnrl1DPPXLqIgCWeeuXUM89cuoiAJZ565dQzz1y6iIAlnnrl1Hh4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAegeAlGMpvCEXJ/JHenY1580oL6mBWBZurSVvCMnNSxeDwXIrAAAAAAAAAAAAAAAFq0s5XEXPOoxxw5Yss0rW0VRQz7yXg3+wGYuLwS4+B3p2lxU5Uml4y4GqnQofyp06b8MUiFSpTnyu8q+mUQKsdnZVjWqqK70v3Pf6Cj/AHH6nsra0m8ZXUpP5zR5/CWfxL6ogHtCWVqjRwivly9CtUvLipzqvD6eBqU6lvSpxhCrTSX1LiVZ21nOblv8MXjgpLACWLudmNyeMo8381/ozDXt/wCGowcY14tS7nJHKFjbTeEK7b8FJAZoOlxT3VedNPFRZzAAAAAAAAAAADQ2VLHeU390crGO7v8ALpzL8ELGe7uoPx/lLjhl2rGXdKLf4wAp7Q43lTy9itgWdodtq+XsLS1lcOXFxiv1Yd4FbAYHWvRqUJ5aiw8H3M5geYF6xs41oOpVbwTwSRSLFtdzt00kpRfHBgL63VvUWVtxkuGPMlszta/xZxua87ieaXDhgku467M7XH7MDy/7ZU8vYrli/wC2VPL2K4AAAAAAAAAAAe4tNNc1yNrhUlQrLwf5RiGvs2ee1y6W1/3qBQv03fVFHm2kvQ1LaiqFFQ7/ANXzZVjBS2tUx7kn+C/iBGrShVg4TjivY4WtnChOUsc+PBJrkiyAKN1YKTc6GCenuM2ScJZZrBruZ+gOVehTrxwmuPc1zQGGWdm9sj9mRubWpbvGWDh3SRPZvbI/ZgRv+2VPL2K5Yv8AtlTy9iuAAAAAAAAAAAAvbKnhVnB/qWK8iiep4PFcH4gala0qyuXWpVVFsbi9+KM3eVNcvUbyeuXqBpbi9+KG4vfijN3k9cvUbyeuXqBpbi9+KG4vfijN3k9cvUbyeuXqBou3vGmncpp81gLSxlQqqcpp4J8EjO3k9cvUbyeuXqB1vu2VfuvYrnp4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/2Q=="
+            cover
+        ></v-img>
+
+        <v-card-title>Estelle einen neuen Kurs</v-card-title>
+        <v-card-text class="text-center">
+
+          <v-icon size="48">mdi-plus</v-icon>
+        </v-card-text>
+      </v-card>
+
       <v-col v-for="course in courses" :key="course.id" cols="12" md="4">
         <v-card>
           <v-img
@@ -167,26 +185,27 @@ const closeAdminCourseUserView = () => {
 
   <v-dialog v-model="dialog" max-width="500">
     <v-card>
-      <v-card-title>{{ editMode ? 'Edit Course' : 'Add New Course' }}</v-card-title>
+      <v-card-title>{{ editMode ? 'Bearbeite deinen Kurs' : 'Erstelle einen neuen Kurs' }}</v-card-title>
       <v-card-text>
         <v-form ref="form" v-model="valid" lazy-validation>
-          <v-text-field v-model="editedCourse.courseTitle" label="Title" required></v-text-field>
-          <v-text-field v-model="editedCourse.teacher" label="teacher" required></v-text-field>
-          <v-text-field v-model="editedCourse.startDate" label="Start Date" required></v-text-field>
-          <v-text-field v-model="editedCourse.description" label="Description" required></v-text-field>
-          <v-text-field v-model="editedCourse.image" label="Image URL" ></v-text-field>
-          <v-text-field v-model.number="editedCourse.maxAttendants" label="max Attendants"></v-text-field>
-          <v-text-field v-model.number="editedCourse.price" label="price"></v-text-field>
+          <v-text-field v-model="editedCourse.courseTitle" label="Kurs Titel" required></v-text-field>
+          <v-text-field v-model="editedCourse.teacher" label="Kochmentor" required></v-text-field>
+          <v-text-field v-model="editedCourse.startDate" label="Kursbeginn" hint="yyyy-MM-dd HH:mm:ss" required></v-text-field>
+          <v-text-field v-model="editedCourse.description" label="Beschreibung" required></v-text-field>
+          <v-text-field v-model="editedCourse.image" label="Bild URL" ></v-text-field>
+          <v-text-field v-model.number="editedCourse.maxAttendants" label="Max.Teilnehmer Anzahl"></v-text-field>
+          <v-text-field v-model.number="editedCourse.price" label="Preis"></v-text-field>
+          <v-alert v-if="errorMsg" closable text="..." type="error" variant="tonal">{{errorMsg}}</v-alert>
 
         </v-form>
       </v-card-text>
       <v-card-actions>
-        <v-btn @click="saveCourse" :disabled="!valid">Save</v-btn>
-        <v-btn @click="closeDialog">Cancel</v-btn>
+        <v-btn @click="saveCourse" :disabled="!valid" class="ma-2 elevation-2">Speichern</v-btn>
+        <v-btn @click="closeDialog" variant="tonal" class="ma-2">Zurück</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
-  <v-btn @click="openDialog">Add New Course</v-btn>
+
 
 </template>
 <style scoped>

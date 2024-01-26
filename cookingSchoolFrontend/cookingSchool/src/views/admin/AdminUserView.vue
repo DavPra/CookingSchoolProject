@@ -59,7 +59,7 @@ const editUser = (user) => {
   newUser.email = user.email;
   newUser.password = user.password;
   newUser.username = user.username;
-  newUser.admin = user.isAdmin;
+  newUser.admin = user.admin;
 
 }
 async function createOrUpdateUser() {
@@ -93,7 +93,7 @@ async function createOrUpdateUser() {
       }
       await userStore.showUsers()
     }
-   //await router.push('admin/users')
+    //await router.push('admin/users')
   } catch (error) {
     if(error.response && error.response.status === 409){
       console.log('Email address already exists')
@@ -183,69 +183,67 @@ async function deleteUser(userId){
     </v-form>
   </v-sheet>
 
-  <!-- USER Tabelle -->
+  <v-sheet width="90%" elevation="3" class="mx-auto">
+    <div>
+      <!-- <v-text-field v-model="search" label="Search" @input="filterUsers"></v-text-field> -->
+      <v-table>
+        <thead>
+        <tr>
+          <th class="text-left">
+            user Id
+          </th>
+          <th class="text-left">
+            firstname
+          </th>
+          <th class="text-left">
+            lastname
+          </th>
+          <th class="text-left">
+            address
+          </th>
+          <th class="text-left">
+            mobile
+          </th>
+          <th class="text-left">
+            email
+          </th>
+          <th class="text-left">
+            username
+          </th>
+          <th class="text-left">
+            is Admin
+          </th>
+          <th class="text-left">
+            update
+          </th>
+          <th class="text-left">
+            delete
+          </th>
+        </tr>
+        </thead>
 
-<v-sheet width="90%" elevation="3" class="mx-auto">
-  <div>
-   <!-- <v-text-field v-model="search" label="Search" @input="filterUsers"></v-text-field> -->
-    <v-table>
-      <thead>
-      <tr>
-        <th class="text-left">
-          user Id
-        </th>
-        <th class="text-left">
-          firstname
-        </th>
-        <th class="text-left">
-          lastname
-        </th>
-        <th class="text-left">
-          address
-        </th>
-        <th class="text-left">
-          mobile
-        </th>
-        <th class="text-left">
-          email
-        </th>
-        <th class="text-left">
-          username
-        </th>
-        <th class="text-left">
-          is Admin
-        </th>
-        <th class="text-left">
-          update
-        </th>
-        <th class="text-left">
-          delete
-        </th>
-      </tr>
-      </thead>
-
-      <tbody>
+        <tbody>
 
 
-      <tr
-          v-for="user in userStore.users"
-          :key="user.userId"
-      >
-        <td>{{ user.userId }}</td>
-        <td>{{ user.firstname }}</td>
-        <td>{{ user.lastname }}</td>
-        <td>{{ user.address }}</td>
-        <td>{{ user.mobile }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.username }}</td>
-        {{ user.isAdmin ? 'Yes' : 'No' }}
-        <td><v-btn icon="mdi-pencil" size ="x-small" @click ="editUser(user)"></v-btn></td>
-        <td><v-btn icon="mdi-delete" size ="x-small" @click="deleteUser(user.userId)"></v-btn></td>
+        <tr
+            v-for="user in userStore.users"
+            :key="user.userId"
+        >
+          <td>{{ user.userId }}</td>
+          <td>{{ user.firstname }}</td>
+          <td>{{ user.lastname }}</td>
+          <td>{{ user.address }}</td>
+          <td>{{ user.mobile }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.username }}</td>
+          {{ user.admin ? 'Yes' : 'No' }}
+          <td><v-btn icon="mdi-pencil" size ="x-small" @click ="editUser(user)"></v-btn></td>
+          <td><v-btn icon="mdi-delete" size ="x-small" @click="deleteUser(user.userId)"></v-btn></td>
 
-      </tr>
-      </tbody>
-    </v-table>
-  </div>
-</v-sheet>
+        </tr>
+        </tbody>
+      </v-table>
+    </div>
+  </v-sheet>
 
 </template>
