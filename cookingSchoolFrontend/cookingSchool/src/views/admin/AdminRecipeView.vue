@@ -21,10 +21,10 @@ const recipeData = ref({
 const courseOptions = ref([])
 
 onMounted(() => {
-  recipeStore.showRecipes()
-  loadCourses()
   fetchRecipes()
+  recipeStore.showRecipes()
 
+  loadCourses()
 });
 
 
@@ -92,6 +92,7 @@ const saveRecipe = async () => {
     console.log('Before update/create Recipe');
     if (editMode.value) {
       console.log('update Recipe called');
+
       console.log(recipeData.value.recipeId);
 
       await recipeStore.updateRecipe(recipeData.value.recipeId, {

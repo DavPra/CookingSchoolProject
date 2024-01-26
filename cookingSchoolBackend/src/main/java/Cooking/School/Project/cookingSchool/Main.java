@@ -39,7 +39,7 @@ public class Main implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		if(hbm2ddl != null && hbm2ddl.contains("update")){
+		if(hbm2ddl != null && hbm2ddl.contains("create")){
 			setUp();
 		}
 	}

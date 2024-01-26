@@ -126,7 +126,7 @@ public class CourseService {
 
 
     @Transactional
-    public Course updateCourse(Long courseId, String title, String description, String teacher, LocalDateTime startDate,
+    public Course updateCourse(Long courseId, String title, String description, String teacher, String image, LocalDateTime startDate,
                                int maxAttendants, int price, Set<CourseTag> courseTags)
             throws PrimaryIdNullOrEmptyException, InvalidStartDateException {
 
@@ -152,6 +152,7 @@ public class CourseService {
         existingCourse.setCourseTitle(title);
         existingCourse.setDescription(description);
         existingCourse.setTeacher(teacher);
+        existingCourse.setImage(image);
         existingCourse.setStartDate(startDate);
         existingCourse.setMaxAttendants(maxAttendants);
         existingCourse.setPrice(price);

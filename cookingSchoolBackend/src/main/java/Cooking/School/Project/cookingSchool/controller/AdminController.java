@@ -100,7 +100,7 @@ public class AdminController {
             Set<CourseTag> courseTags = param.getCourseTags();
 
             Course updatedCourse = courseService.updateCourse(courseId, param.getCourseTitle(),
-                    param.getDescription(), param.getTeacher(), param.getStartDate(),
+                    param.getDescription() ,param.getTeacher(),param.getImage(), param.getStartDate(),
                     param.getMaxAttendants(), param.getPrice(), courseTags);
             return new ResponseEntity<>("Kurs erfolgreich aktualisiert", HttpStatus.OK);
 
