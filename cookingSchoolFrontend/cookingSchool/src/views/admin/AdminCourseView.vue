@@ -7,7 +7,7 @@ import {useCourseStore} from "@/stores/CourseStore";
 
 const courseStore = useCourseStore();
 const route = useRoute();
-
+const show = ref(false)
 const courses = ref([]);
 const dialog = ref(false);
 const editMode = ref(false);
@@ -22,15 +22,16 @@ const editedCourse = ref({
 });
 const valid = ref(true);
 
-
 onMounted(() => {
  courseStore.showCourses()
+  console.log('comp mounted')
   fetchCourses();
 });
 
 const fetchCourses = async () => {
   await courseStore.showCourses();
   courses.value = courseStore.courses;
+
 };
 
 const openDialog = () => {
@@ -52,10 +53,12 @@ const saveCourse = async () => {
       console.log('update Course called');
       console.log(editedCourse.value.courseId);
       await courseStore.updateCourse(editedCourse.value.courseId, editedCourse.value);
+     // await courseStore.showCourses()
     } else {
       console.log('create Course called');
       console.log(editedCourse.value.courseId);
       await courseStore.createCourse(editedCourse.value);
+      //await courseStore.showCourses()
     }
 
     console.log('Before showCourses');
@@ -97,9 +100,56 @@ const closeDialog = () => {
   <v-container>
     <v-row>
       <v-col v-for="course in courses" :key="course.id" cols="12" md="4">
+        <v-card>
+          <v-img
+              cover
+              height="250"
+              :src="course.image"
+          ></v-img>
+
+          <v-card-title>{{ course.courseTitle }}</v-card-title>
+          <v-card-subtitle>{{ course.startDate }}</v-card-subtitle>
+          <v-card-text>{{ course.teacher }}</v-card-text>
+          <v-card-actions>
+            <v-btn
+                color="orange-lighten-2"
+                variant="text"
+            >
+              Details
+            </v-btn>
+
+            <v-spacer></v-spacer>
+
+            <v-btn
+                :icon="show ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+                @click="show = !show"
+            ></v-btn>
+          </v-card-actions>
+
+          <v-expand-transition>
+            <div v-show="show">
+              <v-divider></v-divider>
+
+              <v-card-text>
+                {{course.description}}
+              </v-card-text>
+            </div>
+          </v-expand-transition>
+          <v-card-actions>
 
 
+            <v-btn @click="editCourse(course)" icon>
+              <v-icon>mdi-pencil</v-icon>
+            </v-btn>
+            <v-btn @click="deleteCourse(course.courseId)" icon>
+              <v-icon>mdi-delete</v-icon>
+            </v-btn>
+            <v-btn @click ="addUser(course.courseId)">User hinzufügen</v-btn>
 
+          </v-card-actions>
+        </v-card>
+
+<!--
         <v-card>
           <v-img :src="course.image" height="200"></v-img>
           <v-card-title>{{ course.courseTitle }}</v-card-title>
@@ -111,8 +161,12 @@ const closeDialog = () => {
             <v-btn @click="deleteCourse(course.courseId)">Delete</v-btn>
           </v-card-actions>
         </v-card>
+
+
+    -->
       </v-col>
     </v-row>
+
   </v-container>
 
 
