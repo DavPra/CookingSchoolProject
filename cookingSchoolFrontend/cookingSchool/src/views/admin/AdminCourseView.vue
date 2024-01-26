@@ -2,8 +2,9 @@
 
 import { ref, onMounted } from 'vue';
 
-import { useRoute } from 'vue-router';
+import {useRoute, useRouter} from 'vue-router';
 import {useCourseStore} from "@/stores/CourseStore";
+import AdminCourseAddUserView from "@/views/admin/AdminCourseUserView.vue";
 
 const courseStore = useCourseStore();
 const route = useRoute();
@@ -11,6 +12,7 @@ const show = ref(false)
 const courses = ref([]);
 const dialog = ref(false);
 const editMode = ref(false);
+const router = useRouter()
 const editedCourse = ref({
   courseTitle: '',
   teacher:'',
@@ -91,6 +93,13 @@ const closeDialog = () => {
     price: '',
   };
 };
+const openAdminCourseUserView = (courseId) => {
+  router.push({ name: 'adminCourseUserView' ,params: {courseId} });
+};
+
+const closeAdminCourseUserView = () => {
+  router.go(-1); // Zurück zur vorherigen Route
+};
 
 
 
@@ -144,26 +153,12 @@ const closeDialog = () => {
             <v-btn @click="deleteCourse(course.courseId)" icon>
               <v-icon>mdi-delete</v-icon>
             </v-btn>
-            <v-btn @click ="addUser(course.courseId)">User hinzufügen</v-btn>
+
+            <v-btn @click ="openAdminCourseUserView(course.courseId)">User hinzufügen</v-btn>
 
           </v-card-actions>
         </v-card>
 
-<!--
-        <v-card>
-          <v-img :src="course.image" height="200"></v-img>
-          <v-card-title>{{ course.courseTitle }}</v-card-title>
-          <v-card-subtitle>{{ course.startDate }}</v-card-subtitle>
-          <v-card-text>{{ course.description }}</v-card-text>
-
-          <v-card-actions>
-            <v-btn @click="editCourse(course)">Edit</v-btn>
-            <v-btn @click="deleteCourse(course.courseId)">Delete</v-btn>
-          </v-card-actions>
-        </v-card>
-
-
-    -->
       </v-col>
     </v-row>
 
