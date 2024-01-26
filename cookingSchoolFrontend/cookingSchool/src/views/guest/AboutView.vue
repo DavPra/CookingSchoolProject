@@ -1,4 +1,12 @@
 <script setup>
+import { useRouter } from 'vue-router'
+
+
+const router = useRouter();
+
+async function goToCourses() {
+  await router.push('/courses')
+}
 </script>
 
 <template>
@@ -43,7 +51,7 @@
             Unabhängig von deinen kulinarischen Fähigkeiten, bieten wir eine breite Palette von Kursen an, die von Anfänger bis Fortgeschrittene reichen.
             Lerne von Grundtechniken bis hin zu raffinierten Gerichten alles, was du für die perfekte Küchenperformance brauchst.
         </v-sheet>
-          <v-btn class="align-center ma-4"> Unsere Kurse </v-btn>
+          <v-btn class="align-center ma-4" @click = "goToCourses" color="deep-orange-darken-4"> Unsere Kurse </v-btn>
 
         </v-sheet>
         <v-sheet style="flex: 1;">

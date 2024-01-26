@@ -9,7 +9,7 @@ import {useRouter} from 'vue-router';
 <template>
   <!-- Grundgerüst des Headers und Navbar für die Ansicht der Guests -->
   <HeaderIcon/>
-  <v-toolbar>
+  <v-toolbar color="grey-lighten-1">
     <v-toolbar-items>
       <v-btn to="/user/profile">Profil</v-btn>
     </v-toolbar-items>
