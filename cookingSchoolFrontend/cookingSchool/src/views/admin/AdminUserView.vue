@@ -1,8 +1,6 @@
 <script setup>
-
-
 import {useRoute, useRouter} from "vue-router";
-import {onMounted, ref, reactive, computed} from "vue";
+import {onMounted, ref, reactive, computed, watch} from "vue";
 import {useUserStore} from "@/stores/UserStore";
 
 const userStore = useUserStore()
@@ -11,10 +9,18 @@ const router = useRouter();
 const user = computed(() => userStore.users.find(u=> u.userId === parseInt(route.params.user)))
 const editingUser = ref(null);
 const route = useRoute()
+const show = ref(false)
 const rules = {
   required: value => !!value || 'Field is required',
+  min: v => v.length >= 6 || 'Min 6 characters'
 }
-
+const firstTextField = ref(null);
+const shouldFocusFirstTextField = ref(false);
+watch(shouldFocusFirstTextField, (newValue) => {
+  if (newValue) {
+    firstTextField.value.focus();
+  }
+});
 const userErr = ref(false)
 
 const userData = ref({
@@ -60,6 +66,9 @@ const editUser = (user) => {
   newUser.password = user.password;
   newUser.username = user.username;
   newUser.admin = user.admin;
+  shouldFocusFirstTextField.value = true;
+  shouldFocusFirstTextField.value = false;
+
 
 }
 async function createOrUpdateUser() {
@@ -129,39 +138,43 @@ async function deleteUser(userId){
 </script>
 
 <template>
-  <v-sheet width="300" :elevation="3" rounded class="mx-auto pa-5  ma-4">
-    <h2>Create or update an User</h2>
+  <v-sheet width="400" :elevation="3" rounded class="mx-auto pa-5  ma-4">
+    <h2 class="ma-2">{{ editingUser ? 'Bearbeite einen neuen User' : 'Erstelle einen neuen User' }}</h2>
     <v-form  @submit.prevent = "createOrUpdateUser">
       <v-text-field
           v-model="newUser.firstname"
-          label="firstname"
+          label="Vorname"
+          ref="firstTextField"
       ></v-text-field>
       <v-text-field
           v-model="newUser.lastname"
-          label="lastname"
+          label="Nachname"
       ></v-text-field>
       <v-text-field
           v-model="newUser.address"
-          label="address"
+          label="Adresse"
       ></v-text-field>
       <v-text-field
           v-model.mobile="newUser.mobile"
-          label="mobile"
+          label="Mobile"
 
 
       ></v-text-field>
       <v-text-field
           v-model="newUser.email"
-          label="email address"
+          label="Email"
           type="email"
+          :rules="[rules.required, rules.email]"
           placeholder="johndoe@gmail.com"
       ></v-text-field>
       <v-text-field
           v-model="newUser.password"
-          label="passwort"
-          hint="Passwort muss angegeben werden"
+          :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+          :rules="[rules.required, rules.min]"
+          label="Passwort"
+          hint="Mindestens 6 Zeichen"
+          @click:append="show = !show"
 
-          :rules="[rules.required]"
 
 
       ></v-text-field>
@@ -236,7 +249,7 @@ async function deleteUser(userId){
           <td>{{ user.mobile }}</td>
           <td>{{ user.email }}</td>
           <td>{{ user.username }}</td>
-          {{ user.admin ? 'Yes' : 'No' }}
+          <td>{{ user.admin ? 'Yes' : 'No' }}</td>
           <td><v-btn icon="mdi-pencil" size ="x-small" @click ="editUser(user)"></v-btn></td>
           <td><v-btn icon="mdi-delete" size ="x-small" @click="deleteUser(user.userId)"></v-btn></td>
 
