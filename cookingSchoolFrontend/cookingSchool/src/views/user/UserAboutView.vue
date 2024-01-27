@@ -1,16 +1,24 @@
 <script setup>
+import { useRouter } from 'vue-router'
+
+
+const router = useRouter();
+
+async function goToCourses() {
+  await router.push('/courses')
+}
 </script>
 
 <template>
   <!-- kurze Beschreibung des Teams und der Location -->
   <div class="">
     <!-- header -->
-    <div class="mt-6 d-flex justify-center align-center flex-column border text-center ">
-     <v-sheet>
-       <h1 class="text-h2 pa-3 "> COOKING</h1>
-       <h1 class="text-h4  "> Academy</h1>
-      </v-sheet>
+    <div align-center style="border-bottom: 10px;">
+    <v-container>
+       <h1 class="text-h2 pa-3 header1"> Cooking Academy</h1>
+    </v-container>
     </div>
+    <v-spacer></v-spacer>
     <!-- Part 1 -->
 
     <div class="mt-6   ">
@@ -43,7 +51,7 @@
             Unabhängig von deinen kulinarischen Fähigkeiten, bieten wir eine breite Palette von Kursen an, die von Anfänger bis Fortgeschrittene reichen.
             Lerne von Grundtechniken bis hin zu raffinierten Gerichten alles, was du für die perfekte Küchenperformance brauchst.
         </v-sheet>
-          <v-btn class="align-center ma-4"> Unsere Kurse </v-btn>
+          <v-btn class="align-center ma-4" @click = "goToCourses" color="deep-orange-darken-4"> Unsere Kurse </v-btn>
 
         </v-sheet>
         <v-sheet style="flex: 1;">
@@ -153,6 +161,14 @@ h3 {
   font-weight: 500;
   margin-bottom: 0.4rem;
   color: var(--color-heading);
+}
+
+.header1 {
+  color: #CB5400;
+  border-bottom: #CB5400;
+  border-bottom-width: 10px;
+  align-items: center;
+  text-align: center;
 }
 
 </style>
