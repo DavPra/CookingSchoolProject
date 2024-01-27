@@ -4,10 +4,12 @@ import {ref, computed, onUpdated, onMounted, onBeforeMount} from 'vue';
 import {useRouter} from 'vue-router';
 import {useUserStore} from '@/stores/userStore.js';
 import {useAuthStore} from '@/stores/authStore.js';
+import jwt_decode from 'jwt-decode';
 
+let TestUserdata = ref(null);
 const userStore = useUserStore();
 const authStore = useAuthStore();
-const userId = computed(() => authStore.getUserId());
+const userId = jwt_decode(localStorage.getItem('accessToken').userId)
 const user = computed(async () => {
   try {
     return await userStore.findUser(userId.value)
@@ -35,6 +37,8 @@ async function updateUser(updatedUserDto) {
 onBeforeMount(async () => {
   try {
     await userStore.findUser(userId.value)
+    console.log(userId.value)
+
   } catch (err) {
     console.error(err.message)
   }
@@ -60,6 +64,18 @@ const userToEdit = (user) => {
       username: user.value.username
     }
   })
+
+  async function getUserData(userId) {
+    try {
+      await authStore.getUser(userId.value)
+      console.log(userId.value)
+      TestUserdata.value = authStore.getUser(userId.value)
+      console.log(TestUserdata.value)
+
+    } catch (err) {
+      console.error(err.message)
+    }
+  }
 
 </script>
 
@@ -87,5 +103,7 @@ const userToEdit = (user) => {
     </div>
     <span class="d-block text-h1 text-disabled text-center" v-else>User wird geladen</span>
   </v-container>
+
+  <v-btn color="primary" class="mr-4" @click="getUserData">Test</v-btn>
 
 </template>

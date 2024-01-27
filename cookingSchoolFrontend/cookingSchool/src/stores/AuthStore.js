@@ -10,7 +10,7 @@ export const useAuthStore = defineStore('authentication', {
     }),
     actions: {
         getUserId() {
-            return jwtDecode(window.localStorage.getItem('accessToken'))?.userId;
+            return jwtDecode(window.localStorage.getItem('accessToken')).userId;
         },
         async login({username, password}) {
             const response = await axios.post(createApiUrl('authenticate'),{username:username, password:password})
