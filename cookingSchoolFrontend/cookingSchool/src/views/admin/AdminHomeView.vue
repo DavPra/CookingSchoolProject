@@ -13,6 +13,7 @@ const nextCourses = ref([]);
 onMounted(async () =>{
   await fetchUserCount()
   await fetchCourseCount()
+  await fetchNextCourses()
 })
 
 const fetchUserCount = async () =>{
@@ -35,14 +36,20 @@ const fetchCourseCount = async () => {
 const fetchNextCourses = async () => {
   try {
     await courseStore.showCourses();
+    console.log('Courses in fetchNextCourses:', courseStore.courses);
+
     const sortedCourses = courseStore.courses.sort(
         (a, b) => new Date(a.startDate) - new Date(b.startDate)
     );
+    console.log('Sorted courses:', sortedCourses);
+
     nextCourses.value = sortedCourses.slice(0, 3);
+    console.log('Next courses:', nextCourses.value);
   } catch (error) {
-    console.error("Fehler beim Laden der Kurse", error);
+    console.error('Fehler beim Laden der Kurse', error);
   }
 };
+
 
 </script>
 
@@ -101,7 +108,8 @@ const fetchNextCourses = async () => {
       <v-row no-gutters>
         <v-col>
           <v-sheet class="pa-2 ma-2">
-            .v-col-auto
+
+
 
           </v-sheet>
         </v-col>
@@ -111,12 +119,23 @@ const fetchNextCourses = async () => {
             .v-col-2
           </v-sheet>
         </v-col>
-
         <v-col>
-          <v-sheet class="pa-2 ma-2">
-            .v-col-auto
-          </v-sheet>
+            <v-card class="pa-2 ma-2 text-white bg-teal-darken-3">
+              <v-card-title>Upcomming Courses:</v-card-title>
+              <v-card-text>
+                <v-list class="text-white bg-teal-darken-3">
+                  <v-list-item v-for="course in nextCourses" :key="course.courseId">
+                      <v-icon>mdi-calendar</v-icon>
+                    <v-list-item-title>{{ course.courseTitle }}</v-list-item-title>
+                    <v-list-item-subtitle>
+                      {{ new Date(course.startDate).toLocaleDateString() }}
+                    </v-list-item-subtitle>
+                  </v-list-item>
+                </v-list>
+              </v-card-text>
+            </v-card>
         </v-col>
+
       </v-row>
     </v-container>
 

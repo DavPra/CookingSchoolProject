@@ -70,10 +70,10 @@ const saveCourse = async () => {
     console.log('Before showCourses');
     await courseStore.showCourses();
     console.log('After showCourses');
-    setErrorMSg('')
+
   } catch (error) {
     console.error('Error saving course:', error);
-    setErrorMSg(error.response?.data?.message || 'Ein Fehler ist aufgetreten')
+
   } finally {
     closeDialog();
   }
