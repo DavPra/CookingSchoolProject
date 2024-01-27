@@ -67,15 +67,21 @@ const userToEdit = (user) => {
   <!-- User kann sich seine Daten ansehen/bearbeiten/löschen -->
 
   <v-container>
-    <div v-if="user">
-      <h1>{{ showUser.username }}</h1>
-      <div>
-        <v-btn color="primary" class="mr-4" @click="showEditDialog=true" :disabled="isProfileActionInProgress">Bearbeiten</v-btn>
-      </div>
-      <v-divider class="my-5"/>
-      Vorname: <strong>{{ showUser.firstname }}</strong><br>
-      Nachname: <strong>{{ showUser.lastname }}</strong><br>
-      Email: <strong>{{ showUser.email }}</strong>
+    <v-card v-if="user">
+      <v-card-title>{{ showUser.username }}</v-card-title>
+      <v-card-item>
+        <v-card-text>Vorname: {{ showUser.firstname }}</v-card-text>
+      </v-card-item>
+      <v-card-item>
+        <v-card-text>Nachname: {{ showUser.lastname }}</v-card-text>
+      </v-card-item>
+      <v-card-item>
+        <v-card-text>Email: {{ showUser.email }}</v-card-text>
+      </v-card-item>
+      <v-divider class="my-2"/>
+      <v-card-item>
+        <v-btn color="primary" class="my-3" @click="showEditDialog=true" :disabled="isProfileActionInProgress">Bearbeiten</v-btn>
+      </v-card-item>
       <v-dialog v-model="showEditDialog" max-width="600">
         <v-card>
           <v-card-title>Profil bearbeiten</v-card-title>
@@ -84,7 +90,7 @@ const userToEdit = (user) => {
           </v-card-item>
         </v-card>
       </v-dialog>
-    </div>
+    </v-card>
     <span class="d-block text-h1 text-disabled text-center" v-else>User wird geladen</span>
   </v-container>
 
