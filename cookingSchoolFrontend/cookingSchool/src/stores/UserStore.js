@@ -1,6 +1,5 @@
 import {defineStore} from "pinia";
 import axios  from "axios";
-import {useAuthStore} from "@/stores/AuthStore.js";
 import {createApiUrl} from "@/helper/ApiHelper";
 
 export const useUserStore = defineStore('user', {
@@ -36,39 +35,8 @@ export const useUserStore = defineStore('user', {
             this.users = await response.data
             console.log(this.users)
           },
-
-        /*async createUser(data) {
-            console.log("!!!", data, data.admin);
-            try {
-                const userData = {
-                    firstname: data.firstname,
-                    lastname: data.lastname,
-                    address: data.address,
-                    mobile: data.mobile,
-                    email: data.email,
-                    password: data.password,
-                    username: data.username,
-                    isAdmin: data.isAdmin
-                };
-                console.log(userData);
-                  const userResponse = await axios.post('http://localhost:8082/admin/users', userData);
-                console.log(userResponse.data);
-               //this.users.push(userResponse.data);
-               return userResponse.data;
-            } catch (error) {
-                console.error('Error creating user:', error);
-            }
-            // editingUser, .value, .userId
-        }, async updateUser(userId, updatedUser) {
-            console.log('goshhhh', userId)
-            try {
-                const updateUserResponse = await axios.put(`http://localhost:8082/admin/users/${userId}`, updatedUser);
-                console.log('User updated successfully:', updateUserResponse.data);
-            } catch (error) {
-                console.error('Error updating user:', error)
-            }
-
-        },*/ async deleteUser(userId) {
+          
+          async deleteUser(userId) {
             try {
                 console.log('userId in deleteUser der UserStore:', userId)
                 await axios.delete(`http://localhost:8082/admin/users/${userId}`);
@@ -77,11 +45,7 @@ export const useUserStore = defineStore('user', {
                 console.error('Fehler beim Löschen des Benutzers:', error)
             }
         },
-        /*async deleteUser(userId){
-            console.log(userId)
-            const deleteUserResponse = await axios.delete('http://localhost:8082/admin/users/'+userId)
-            this.showUsers()
-        }'*/
+
         async updateUser(userId, updatedUserDto) {
             if('userId' in updatedUserDto) {
                 delete updatedUserDto.userId;
