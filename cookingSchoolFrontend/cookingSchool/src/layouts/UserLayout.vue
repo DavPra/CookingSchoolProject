@@ -1,9 +1,6 @@
 <script setup>
 import HeaderIcon from '@/components/HeaderIcon.vue'
 import Logo from "@/components/Logo.vue";
-import {useRouter} from 'vue-router';
-
-//TODO: Kathy - Add logout function and link to guest home view
 </script>
 
 <template>
