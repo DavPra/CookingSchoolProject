@@ -1,6 +1,6 @@
 <script setup>
 import ProfileForm from '@/components/ProfileForm.vue';
-import {ref, computed, onUpdated, onMounted} from 'vue';
+import {ref, computed, onUpdated, onMounted, onBeforeMount} from 'vue';
 import {useRouter} from 'vue-router';
 import {useUserStore} from '@/stores/userStore.js';
 import {useAuthStore} from '@/stores/authStore.js';
@@ -32,7 +32,7 @@ async function updateUser(updatedUserDto) {
   }
 }
 
-onMounted(async () => {
+onBeforeMount(async () => {
   try {
     await userStore.findUser(userId.value)
   } catch (err) {
