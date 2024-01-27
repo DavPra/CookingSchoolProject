@@ -1,11 +1,11 @@
 <script setup>
 import ProfileForm from '@/components/ProfileForm.vue';
 import { ref, onBeforeMount, onMounted } from 'vue';
-import { useUserStore } from '@/stores/userStore.js';
+import { useUserStoreUpdate } from '@/store/UserStoreforUpdate';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 
-const userStore = useUserStore();
+const userStore = useUserStoreUpdate();
 
 const showEditDialog = ref(false);
 const isProfileActionInProgress = ref(false);

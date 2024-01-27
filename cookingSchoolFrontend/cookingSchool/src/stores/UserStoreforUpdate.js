@@ -2,7 +2,7 @@ import {defineStore} from "pinia";
 import axios  from "axios";
 import {createApiUrl} from "@/helper/ApiHelper";
 
-export const useUserStore = defineStore('user', {
+export const useUserStoreUpdate = defineStore('user', {
     state: () => ({
         newUser:'',
         users: []
