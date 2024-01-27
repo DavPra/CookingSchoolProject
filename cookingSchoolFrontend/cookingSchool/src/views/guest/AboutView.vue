@@ -13,12 +13,12 @@ async function goToCourses() {
   <!-- kurze Beschreibung des Teams und der Location -->
   <div class="">
     <!-- header -->
-    <div class="mt-6 d-flex justify-center align-center flex-column border text-center ">
-     <v-sheet>
-       <h1 class="text-h2 pa-3 "> COOKING</h1>
-       <h1 class="text-h4  "> Academy</h1>
-      </v-sheet>
+    <div align-center style="border-bottom: 10px;">
+    <v-container>
+       <h1 class="text-h2 pa-3 header1"> Cooking Academy</h1>
+    </v-container>
     </div>
+    <v-spacer></v-spacer>
     <!-- Part 1 -->
 
     <div class="mt-6   ">
@@ -161,6 +161,14 @@ h3 {
   font-weight: 500;
   margin-bottom: 0.4rem;
   color: var(--color-heading);
+}
+
+.header1 {
+  color: #CB5400;
+  border-bottom: #CB5400;
+  border-bottom-width: 10px;
+  align-items: center;
+  text-align: center;
 }
 
 </style>
