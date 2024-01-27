@@ -1,7 +1,7 @@
 <script setup>
 import ProfileForm from '@/components/ProfileForm.vue';
 import { ref, onBeforeMount, onMounted } from 'vue';
-import { useUserStoreUpdate } from '@/store/UserStoreforUpdate';
+import { useUserStoreUpdate } from '@/stores/UserStoreforUpdate';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 
