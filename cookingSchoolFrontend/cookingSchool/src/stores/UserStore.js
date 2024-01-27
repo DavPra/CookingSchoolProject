@@ -31,6 +31,12 @@ export const useUserStore = defineStore('user', {
 
         },
 
+        async getUser(userId) {
+            const response = await axios.get(createApiUrl('/admin/users/' + userId))
+            this.users = await response.data
+            console.log(this.users)
+          },
+
         /*async createUser(data) {
             console.log("!!!", data, data.admin);
             try {
@@ -76,11 +82,6 @@ export const useUserStore = defineStore('user', {
             const deleteUserResponse = await axios.delete('http://localhost:8082/admin/users/'+userId)
             this.showUsers()
         }'*/
-        async findUser(userId) {
-            const authStore = useAuthStore();
-            console.log('cccc', userId)
-            return authStore.getUser(userId)
-        },
         async updateUser(userId, updatedUserDto) {
             if('userId' in updatedUserDto) {
                 delete updatedUserDto.userId;
@@ -94,5 +95,6 @@ export const useUserStore = defineStore('user', {
                 })
             }
         }
+    },
     }
-});
+);

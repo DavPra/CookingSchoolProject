@@ -30,11 +30,7 @@ export const useAuthStore = defineStore('authentication', {
             }
             parseJwt(token);
         },
-        async getUser(userId) {
-          const response = await axios.get(createApiUrl(`/admin/users/${userId}`))
-          this.user = await response.data
-          console.log(this.user)
-        },
+       
         logout() {
             this.user = null
             window.localStorage.clear()

@@ -33,20 +33,26 @@ function createEmptyUserDto() {
 </script>
 
 <template>
-  <form @submit.prevent="save">
+  <v-form @submit.prevent="save">
     <VRow>
-      <VCol cols="4">
+      <V-col cols="4">
         <VTextField label="Vorname" v-model="userWorkingCopy.firstname" required :disabled="loading"/>
-      </VCol>
-      <VCol cols="4">
+      </V-col>
+      <V-col cols="4">
         <VTextField label="Nachname" v-model="userWorkingCopy.lastname" required :disabled="loading"/>
-      </VCol>
-      <VCol cols="4">
+      </V-col>
+      <V-col cols="4">
         <VTextField label="Email" v-model="userWorkingCopy.email" required :disabled="loading"/>
-      </VCol>
+      </V-col>
+      <V-col cols="4">
+        <VTextField label="Username" v-model="userWorkingCopy.username" required :disabled="loading"/>
+      </V-col>
+      <V-col cols="4">
+        <VTextField label="Adresse" v-model="userWorkingCopy.address" required :disabled="loading"/>
+      </V-col>
     </VRow>
     <VBtn type="submit" color="primary">{{ saveText || 'Änderungen speichern' }}</VBtn>
     <VBtn class="ml-3" color="secondary" variant="text" v-if="showAbort" @click="abort">{{ abortText || 'Abbrechen' }}</VBtn>
-  </form>
+  </v-form>
 </template>
 
