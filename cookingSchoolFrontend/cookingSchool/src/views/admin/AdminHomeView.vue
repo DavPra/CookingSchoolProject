@@ -135,7 +135,6 @@ const fetchNextCourses = async () => {
               </v-card-text>
             </v-card>
         </v-col>
-
       </v-row>
     </v-container>
 
