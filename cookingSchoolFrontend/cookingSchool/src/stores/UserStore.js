@@ -22,15 +22,15 @@ export const useUserStore = defineStore('user', {
             } catch (error) {
                 console.error('Error loading users:', error);
             }
-        },  async creatUser(newUser){
+        }, async creatUser(newUser) {
             console.log(newUser)
 
-            const userResponse = await axios.post('http://localhost:8082/admin/users', newUser )
+            const userResponse = await axios.post('http://localhost:8082/admin/users', newUser)
             this.users.push(userResponse.data)
 
-        }, async updateUser(userId, user){
+        }, async updateUser(userId, user) {
 
-            const updateUser = await axios.put('http://localhost:8082/admin/users/'+userId,user)
+            const updateUser = await axios.put('http://localhost:8082/admin/users/' + userId, user)
 
 
         },
@@ -74,10 +74,24 @@ export const useUserStore = defineStore('user', {
             } catch (error) {
                 console.error('Fehler beim Löschen des Benutzers:', error)
             }
-        }/*async deleteUser(userId){
+        },/*async deleteUser(userId){
             console.log(userId)
             const deleteUserResponse = await axios.delete('http://localhost:8082/admin/users/'+userId)
             this.showUsers()
         }'*/
+        async addUserToCourse(userId, courseId) {
+            console.log('store userId',userId)
+            try {
+                const addUserToCourseResponse = await axios.post(
+                    `http://localhost:8082/admin/${userId}/book-course/${courseId}`,
+                    {},
+                    {timeout: 5000} // Timeout in Millisekunden (hier 5 Sekunden)
+                );
+                console.log('store addUserToCourse', addUserToCourseResponse);
+            } catch (error) {
+                console.error(error);
+            }
+        }
     }
+
 });
