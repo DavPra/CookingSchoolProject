@@ -43,6 +43,7 @@
 
 <template>
   <!-- Formular für einen Guest um sich als User einzuloggen, wenn er sich zuvor registriert hat-->
+
   <v-card-title class="pt-4">Login</v-card-title>
   <v-form @submit.prevent="login">
     <v-card-item>
@@ -58,4 +59,5 @@
       <v-btn to="/register">Hier registrieren</v-btn>
     </v-card-item>
   </v-form>
+
 </template>
