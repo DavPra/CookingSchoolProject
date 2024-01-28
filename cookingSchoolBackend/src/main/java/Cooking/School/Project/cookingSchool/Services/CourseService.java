@@ -70,7 +70,6 @@ public class CourseService {
      * @return the  course Id
      */
 
-
     @Transactional
     public Long createCourse(CourseRequest request) {
         Course course = new Course();
@@ -93,16 +92,19 @@ public class CourseService {
         course.setCourseTags(courseTags);
 
         Course savedCourse = courseRepository.save(course);
-
+//Warum genau wollte ich hier die Kurs Id?
         return savedCourse.getCourseId();
     }
 
 
-    /**
-     * @return
+    /** searches for all courses and creates a list of all courses including their tags and recipes
+     * @return a List of CourseTagsRecipeResponse or 404 not found if no course was found
      */
     public List<CourseTagsRecipeResponse> getAllCourses() {
         List<Course> courses = courseRepository.findAll();
+        if (courses.isEmpty()){
+            throw new CourseNotFoundException("No courses found");
+        }
         List<CourseTagsRecipeResponse> responseList = new ArrayList<>();
         for (Course course : courses) {
             CourseTagsRecipeResponse response = new CourseTagsRecipeResponse();

@@ -80,7 +80,7 @@ export const useUserStore = defineStore('user', {
             this.showUsers()
         }'*/
         async addUserToCourse(userId, courseId) {
-            console.log('store userId',userId)
+            console.log('store userId', userId)
             try {
                 const addUserToCourseResponse = await axios.post(
                     `http://localhost:8082/admin/${userId}/book-course/${courseId}`,
@@ -89,8 +89,9 @@ export const useUserStore = defineStore('user', {
                 );
                 console.log('store addUserToCourse', addUserToCourseResponse);
             } catch (error) {
-                console.error(error);
+                console.error('Error adding user to course:', error);
             }
+
         }
     }
 

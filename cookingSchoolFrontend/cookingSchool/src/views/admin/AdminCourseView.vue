@@ -1,6 +1,6 @@
 <script setup>
 
-import { ref, onMounted } from 'vue';
+import {ref, onMounted, onUpdated, watchEffect} from 'vue';
 
 import {useRoute, useRouter} from 'vue-router';
 import {useCourseStore} from "@/stores/CourseStore";
@@ -27,6 +27,8 @@ const valid = ref(true);
 const setErrorMsg = (msg) => {
   errorMsg.value = msg;
 };
+
+
 
 onMounted(() => {
  courseStore.showCourses()
@@ -76,6 +78,7 @@ const saveCourse = async () => {
 
   } finally {
     closeDialog();
+
   }
 };
 

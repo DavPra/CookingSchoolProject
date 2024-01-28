@@ -138,8 +138,6 @@ const fetchNextCourses = async () => {
       </v-row>
     </v-container>
 
-
-
 </template>
 
 <style scoped>

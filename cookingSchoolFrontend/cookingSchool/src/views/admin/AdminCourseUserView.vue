@@ -14,8 +14,7 @@ const userIdInput = ref('');
 const courseIdValue = courseId.courseId;
 console.log(courseIdValue);
 const courseStore = useCourseStore()
-
-
+const addUserToCourseErr = ref(false)
 const courseDetails = ref({
   courseTitle: '',
   maxAttendants: '',
@@ -50,24 +49,37 @@ const closeDialog = () => {
 const closeAdminCourseUserView = () => {
   router.go(-1);
 };
+const handleErrorResponse = (error) => {
+  if (error.response && error.response.status === 404) {
+    addUserToCourseErr.value = true
+    alert('User not found. Please check the user ID.');
+  } else {
+    console.error('Unhandled error:', error);
+    throw error;
+  }
+};
 
-const addUserToCourse = () => {
 
+const addUserToCourse = async () => {
   const userId = userIdInput.value.trim();
 
   if (userId) {
     try {
-      userStore.addUserToCourse(userId, courseIdValue);
-      console.log(courseIdValue)
+      await userStore.addUserToCourse(userId, courseIdValue);
       console.log(`User ${userId} added to course ${courseIdValue}`);
-   closeDialog()
+      closeDialog();
     } catch (error) {
-      console.error(error);
+      console.error('Error in addUserToCourse:', error);
+      handleErrorResponse(error);
+      if (error.isAxiosError && error.response && error.response.status === 404) {
+        addUserToCourseErr.value = true;
+      }
     }
   } else {
     console.warn('No user selected.');
   }
 };
+
 
 
 </script>
@@ -82,6 +94,8 @@ const addUserToCourse = () => {
   </v-card-text>
     <v-list :items="courseDetails.users" item-title="username" item-value="userId" lines="one">
     </v-list>
+
+    <v-alert closable close-label="Close Alert" type="error" title="Error" text="User Id nicht vorhanden" v-model="addUserToCourseErr">  </v-alert>
     <v-card-actions>
       <v-btn @click="dialog= true">add User </v-btn>
     </v-card-actions>

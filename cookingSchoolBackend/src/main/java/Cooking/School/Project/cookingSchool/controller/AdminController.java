@@ -55,10 +55,9 @@ public class AdminController {
     }
 
     /**
-     * GET method to get a list of all courses in th admin dashboard
-     * @return HttpStatus 200 created,
+     * GET method to get a list of all courses including tags and recipes in th admin dashboard
+     * @return HttpStatus 200 created or 404 not found
      */
-
     @GetMapping("admin/courses")
     public ResponseEntity<List<CourseTagsRecipeResponse>> getAllCourses(){
         try{
@@ -67,8 +66,13 @@ public class AdminController {
         }catch (CourseNotFoundException cnfe){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
     }
+
+    /**
+     *
+     * @param courseId
+     * @return
+     */
     @GetMapping("admin/courses/{courseId}")
     public ResponseEntity<?> getCourseById(@PathVariable Long courseId){
         Course course = courseService.getCourseById(courseId);

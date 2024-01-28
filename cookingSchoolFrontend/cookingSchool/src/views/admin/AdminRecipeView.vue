@@ -9,6 +9,10 @@ const recipeStore = useRecipeStore()
 const recipes = ref([]);
 const dialog = ref(false);
 const editMode = ref(false);
+const recipeErr = ref(false)
+const rules = {
+  required: value => !!value || 'Field is required',
+}
 const recipeData = ref({
   title: '',
   description: '',
@@ -121,6 +125,8 @@ const saveRecipe = async () => {
     await recipeStore.showRecipes();
     console.log('After showRecipes');
   } catch (error) {
+    if (error.isAxiosError && error.response.status === 400)
+      recipeErr.value = true
     console.error('Error saving recipe:', error);
   } finally {
     closeDialog();
@@ -183,6 +189,14 @@ const closeDialog = () => {
             <v-btn icon="mdi-pencil" size="small" @click="editRecipe(recipe)"></v-btn>
             <v-btn icon="mdi-delete" size="small" @click="deleteRecipe(recipe.recipeId)"></v-btn>
           </v-card-actions>
+          <v-alert
+              closable
+              icon="$vuetify"
+              title="Alert title"
+              text="..."
+              variant="tonal"
+              v-model="recipeErr"
+          ></v-alert>
         </v-card>
       </v-col>
     </v-row>
@@ -197,7 +211,7 @@ const closeDialog = () => {
           <!-- Titel -->
           <v-row>
             <v-col>
-              <v-text-field v-model="recipeData.title" label="Titel"></v-text-field>
+              <v-text-field v-model="recipeData.title" :rules=[rules.required] label="Titel"></v-text-field>
             </v-col>
 
             <!-- Kurs -->
@@ -229,7 +243,8 @@ const closeDialog = () => {
           <!-- Schwierigkeitsgrad -->
           <v-row>
             <v-col>
-              <v-text-field v-model="recipeData.difficulty" label="Schwierigkeitsgrad" type="number"></v-text-field>
+              <v-text-field v-model="recipeData.difficulty" label="Schwierigkeitsgrad" max="5"
+                            type="number"></v-text-field>
             </v-col>
 
 
