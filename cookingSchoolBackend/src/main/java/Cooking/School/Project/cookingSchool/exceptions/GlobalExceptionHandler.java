@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler{
     @ExceptionHandler(MaxAttendantsReachedException.class)
-    public final ResponseEntity<?> handleMaxAttendatsReachedException(MaxAttendantsReachedException ex) {
+    public final ResponseEntity<?> handleMaxAttendantsReachedException(MaxAttendantsReachedException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 
@@ -57,5 +57,11 @@ public class GlobalExceptionHandler{
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.CONFLICT.value(), ex.getMessage());
         return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
     }
+    @ExceptionHandler(InvalidStartDateException.class)
+    public final ResponseEntity<ErrorResponse> handleInvalidStartDateException(InvalidStartDateException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.CONFLICT.value(), ex.getMessage());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
+    }
+
 
 }

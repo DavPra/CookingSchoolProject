@@ -69,17 +69,22 @@ public class AdminController {
     }
 
     /**
-     *
+     * GET Methode to get a Course by id
      * @param courseId
-     * @return
+     * @return course and HttpStatus 200 created or 404 not found
      */
     @GetMapping("admin/courses/{courseId}")
     public ResponseEntity<?> getCourseById(@PathVariable Long courseId){
         Course course = courseService.getCourseById(courseId);
         return new ResponseEntity<>(course, HttpStatus.OK);
-
     }
 
+    /**
+     * DELETE Methode to delete a course by id
+     * @param id the course id
+     * @return a success message or 404 not found
+     */
+//TODO Reza fragen wegen BAD REquest abfangen
     @DeleteMapping("admin/courses/{id}")
     public ResponseEntity<?> deleteCourse(@PathVariable Long id){
         try{
@@ -91,16 +96,15 @@ public class AdminController {
     }
 
     /**
-     * updatet einen Kurs inkl zugehöriger Tags
+     * PUT Method to update a Course by id
      * @param courseId
-     * @param param
-     * @return
+     * @param param updated Course data
+     * @return HttpStatus 200 ok and a success message, 409 conflict when
+     * start date is in the past, 404 not found when course tag or course not found
      */
-
 
     @PutMapping("admin/courses/{courseId}")
     public ResponseEntity<?> updateCourse(@PathVariable Long courseId, @RequestBody CourseRequest param){
-        try {
             Set<CourseTag> courseTags = param.getCourseTags();
 
             Course updatedCourse = courseService.updateCourse(courseId, param.getCourseTitle(),
@@ -108,28 +112,22 @@ public class AdminController {
                     param.getMaxAttendants(), param.getPrice(), courseTags);
             return new ResponseEntity<>("Kurs erfolgreich aktualisiert", HttpStatus.OK);
 
-        } catch (PrimaryIdNullOrEmptyException e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        } catch (InvalidStartDateException isde){
-            return new ResponseEntity<>(isde.getMessage(), HttpStatus.NOT_FOUND);
-        }catch (TagNotFoundException tnfe){
-            return new ResponseEntity<>(tnfe.getMessage(), HttpStatus.NOT_FOUND);
-        }
-
     }
 
     //------------------------- Admin tags
 
+    /**
+     * POST Method to create a new course tag
+     * @param courseTag
+     * @return HttpStatus 201 created and a success message
+     */
     @Transactional
     @PostMapping("admin/courseTag")
-    public ResponseEntity<?> addCourseTag(@RequestBody CourseTag courseTag){
-        try{
-            tagService.addCourseTag(courseTag);
-            return new ResponseEntity<>("Tag erfolgreich erstellt", HttpStatus.CREATED);
-        } catch (DuplicateKeyException dke){
-            return new ResponseEntity<>(dke.getMessage(), HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<?> addCourseTag(@RequestBody CourseTag courseTag) {
+        tagService.addCourseTag(courseTag);
+        return new ResponseEntity<>("Tag erfolgreich erstellt", HttpStatus.CREATED);
     }
+
     @GetMapping("admin/courseTag")
     public ResponseEntity<List<CourseTag>> getAllCourseTags(){
         List<CourseTag> courseTags = tagService.getAllCourseTags();

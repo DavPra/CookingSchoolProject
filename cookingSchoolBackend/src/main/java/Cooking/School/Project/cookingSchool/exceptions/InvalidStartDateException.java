@@ -1,6 +1,6 @@
 package Cooking.School.Project.cookingSchool.exceptions;
 
-public class InvalidStartDateException extends Exception {
+public class InvalidStartDateException extends RuntimeException {
 
     private final String defaultMessage = "Deadline is not valid";
 
