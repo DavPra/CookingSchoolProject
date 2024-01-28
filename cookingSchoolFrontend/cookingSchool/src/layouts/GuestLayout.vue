@@ -6,7 +6,7 @@ import Logo from '@/components/Logo.vue'
 <template>
   <!-- Grundgerüst des Headers und Navbar für die Ansicht der Guests -->
   <HeaderIcon/>
-    <v-toolbar>
+    <v-toolbar color="grey-lighten-1">
       <v-toolbar-items>
         <v-btn to=""><v-icon>home</v-icon></v-btn>
       </v-toolbar-items>

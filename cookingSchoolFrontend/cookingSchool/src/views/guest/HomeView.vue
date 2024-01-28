@@ -1,43 +1,50 @@
 <script setup>
+import Logo from "@/components/Logo.vue";
 </script>
 
 <template>
-  <!-- Willkommensseite für alle User mit Login-Möglichkeit -->
+  <!-- Welcome page for all users with login option -->
   <div class="container">
     <div class="item">
-    
-    <p class="text">
-    Willkommen zur Cooking Academy. Hier finden Sie viele tolle Rezepte und können sich für unsere Kochkurse anmelden.
-    </p>
-    </div>
+      <h3 class="centered-heading"> Welcome to the Cooking Academy</h3>
   
+      <p class="text-center">
+        Discover exciting recipes and sign up for our cooking classes to enhance your culinary skills. 
+      </p>
+    </div>
   </div>
 </template>
 
 <style scoped>
 .text {
-  margin-top: 2rem;
-  display: flex;
-  flex: 1;
-  margin-left: 1rem;
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
 }
 
-h3 {
-  font-size: 1.5rem;
-  font-weight: 500;
-  margin-bottom: 0.4rem;
-  color: black;
+.centered-heading {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #CB5400; /* Orange color for the heading */
+  margin-bottom: 1rem;
+  text-align: center; /* Center the heading */
 }
 
 .container {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  flex-direction: column;
   align-items: center;
-  border: 2px solid black;
-  margin-left:1px;
-  margin-right:1px;
-  text-decoration: none;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa; /* Light gray background */
 }
 
+/* Button style */
+.v-btn {
+  margin-top: 1.5rem;
+}
+
+.item {
+  width:30%;
+}
 </style>
