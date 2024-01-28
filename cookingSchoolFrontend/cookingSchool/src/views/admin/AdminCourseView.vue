@@ -5,6 +5,7 @@ import {ref, onMounted, onUpdated, watchEffect} from 'vue';
 import {useRoute, useRouter} from 'vue-router';
 import {useCourseStore} from "@/stores/CourseStore";
 import AdminCourseAddUserView from "@/views/admin/AdminCourseUserView.vue";
+import {globalColors as __colors} from "@/assets/colors";
 
 const errorMsg = ref('');
 const courseStore = useCourseStore();
@@ -117,7 +118,7 @@ const openAdminCourseUserView = (courseId) => {
   <v-container>
 
     <v-row>
-      <v-card @click="openDialog" class="add-course-card ma-3">
+      <v-card @click="openDialog" class="add-course-card ma-3" width="350">
         <v-img
             class="align-end text-white"
             height="250"
@@ -133,7 +134,7 @@ const openAdminCourseUserView = (courseId) => {
       </v-card>
 
       <v-col v-for="course in courses" :key="course.id" cols="12" md="4">
-        <v-card>
+        <v-card width="350">
           <v-img
               cover
               height="250"
@@ -145,8 +146,9 @@ const openAdminCourseUserView = (courseId) => {
           <v-card-text>{{ course.teacher }}</v-card-text>
           <v-card-actions>
             <v-btn
-                color="orange-lighten-2"
-                variant="text"
+                variant="plain"
+                size="large"
+                :style="{ color: __colors.primary }"
             >
               Details
             </v-btn>
@@ -174,18 +176,16 @@ const openAdminCourseUserView = (courseId) => {
             <v-btn @click="editCourse(course)" icon>
               <v-icon>mdi-pencil</v-icon>
             </v-btn>
-            <v-btn @click="deleteCourse(course.courseId)" icon>
-              <v-icon>mdi-delete</v-icon>
+            <v-btn @click="deleteCourse(course.courseId)" icon="mdi-delete" color="orange" >
+
             </v-btn>
             <v-btn @click="openAdminCourseUserView(course.courseId)" icon>
               <v-icon>mdi-account-plus</v-icon>
             </v-btn>
           </v-card-actions>
         </v-card>
-
       </v-col>
     </v-row>
-
   </v-container>
 
 
