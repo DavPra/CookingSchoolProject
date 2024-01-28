@@ -118,7 +118,7 @@ public class AdminController {
 
     /**
      * POST Method to create a new course tag
-     * @param courseTag
+     * @param courseTag Title
      * @return HttpStatus 201 created and a success message
      */
     @Transactional
@@ -128,6 +128,11 @@ public class AdminController {
         return new ResponseEntity<>("Tag erfolgreich erstellt", HttpStatus.CREATED);
     }
 
+    /**
+     * GET Method to get all course tags
+     * @return a list of course tags , HttpStatus 200 ok
+     */
+
     @GetMapping("admin/courseTag")
     public ResponseEntity<List<CourseTag>> getAllCourseTags(){
         List<CourseTag> courseTags = tagService.getAllCourseTags();
@@ -136,9 +141,11 @@ public class AdminController {
 
     //--------------------------- Admin users administration
 
+
+    //TODO da weiter
     /**
-     * wandelt user daten in ein dto und gibt als Liste aus
-     * @return
+     * GET Method to get all Users
+     * @return a List of the UserRsponse
      */
     @GetMapping("/admin/users")
     public ResponseEntity<List<UserResponse>> getAllUsers(){

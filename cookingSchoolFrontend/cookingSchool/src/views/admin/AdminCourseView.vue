@@ -29,6 +29,9 @@ const setErrorMsg = (msg) => {
 };
 
 
+watchEffect(() => {
+  courses.value = courseStore.courses;
+});
 
 onMounted(() => {
  courseStore.showCourses()
@@ -191,10 +194,10 @@ const openAdminCourseUserView = (courseId) => {
       <v-card-title>{{ editMode ? 'Bearbeite deinen Kurs' : 'Erstelle einen neuen Kurs' }}</v-card-title>
       <v-card-text>
         <v-form ref="form" v-model="valid" lazy-validation>
-          <v-text-field v-model="editedCourse.courseTitle" label="Kurs Titel" required></v-text-field>
-          <v-text-field v-model="editedCourse.teacher" label="Kochmentor" required></v-text-field>
-          <v-text-field v-model="editedCourse.startDate" label="Kursbeginn" hint="yyyy-MM-dd HH:mm:ss" required></v-text-field>
-          <v-text-field v-model="editedCourse.description" label="Beschreibung" required></v-text-field>
+          <v-text-field v-model="editedCourse.courseTitle" label="Kurs Titel" hint="required" required></v-text-field>
+          <v-text-field v-model="editedCourse.teacher" label="Kochmentor" ></v-text-field>
+          <v-text-field v-model="editedCourse.startDate" label="Kursbeginn" hint="yyyy-MM-dd HH:mm:ss" ></v-text-field>
+          <v-text-field v-model="editedCourse.description" label="Beschreibung" ></v-text-field>
           <v-text-field v-model="editedCourse.image" label="Bild URL" ></v-text-field>
           <v-text-field v-model.number="editedCourse.maxAttendants" label="Max.Teilnehmer Anzahl"></v-text-field>
           <v-text-field v-model.number="editedCourse.price" label="Preis"></v-text-field>

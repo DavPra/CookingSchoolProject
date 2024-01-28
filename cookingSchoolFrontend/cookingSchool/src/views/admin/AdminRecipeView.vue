@@ -1,7 +1,7 @@
 <script setup>
 import {useRecipeStore} from "@/stores/RecipeStore";
 import {useRouter} from "vue-router";
-import {onMounted, ref} from "vue";
+import {onMounted, ref, watchEffect} from "vue";
 import {useCourseStore} from "@/stores/CourseStore";
 
 const courseStore = useCourseStore()
@@ -24,6 +24,10 @@ const recipeData = ref({
   ]
 })
 const courseOptions = ref([])
+
+watchEffect(() => {
+  recipes.value = recipeStore.recipes;
+});
 
 onMounted(() => {
   fetchRecipes()
