@@ -37,6 +37,7 @@ const headers = [
   { title: "Admin", value: "admin" },
   { title: "Update", value: "update", sortable: false },
   { title: "Löschen", value: "delete", sortable: false },
+  { title: "Kurs", value: "course", sortable: false },
 ];
 
 const userData = ref({
@@ -336,14 +337,14 @@ const closeCourseDialog = () => {
   </v-card>
 
   <!-- Dialog zum hinzufügen eines Users zu einem Kurs -->
-  <v-dialog v-model="isCourseDialogOpen">
+  <v-dialog v-model="isCourseDialogOpen" width="400">
     <v-card>
       <v-card-title>Choose a Course</v-card-title>
 
-      <v-select v-model="selectedCourseId" :items="courseOptions" item-value="courseId" label="Select a Course"></v-select>
+      <v-select v-model="selectedCourseId" :items="courseOptions" item-value="courseId" label="Select a Course" class="ma-4" ></v-select>
       <v-card-actions>
-        <v-btn @click="completeAssignment(selectedCourseId)">Assign</v-btn>
-        <v-btn @click="closeCourseDialog">Cancel</v-btn>
+        <v-btn @click="completeAssignment(selectedCourseId)" class="elevation-2">Assign</v-btn>
+        <v-btn @click="closeCourseDialog" variant="tonal">Cancel</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
