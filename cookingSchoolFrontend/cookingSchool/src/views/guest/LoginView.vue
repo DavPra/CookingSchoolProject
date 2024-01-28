@@ -27,6 +27,9 @@
 </script>
 
 <template>
+  <v-container class="container">
+    <v-col cols="4">
+    <v-card>
   <!-- Formular für einen Guest um sich als User einzuloggen, wenn er sich zuvor registriert hat-->
   <v-card-title class="pt-4">Login</v-card-title>
   <v-form @submit.prevent="login">
@@ -38,9 +41,23 @@
     <v-card-actions style="margin-left: 10px">
       <v-btn color="primary lighten-2" type="submit" variant="elevated" :loading="isLoginInProgress">Login</v-btn>
     </v-card-actions>
+    <v-divider class="my-2"/>
     <v-card-item>
-      <div>Noch keinen Account?</div><br>
-      <v-btn to="/register">Hier registrieren</v-btn>
+      <div>Noch keinen Account?</div>
+    </v-card-item>
+    <v-card-item>
+      <v-btn color="secondary" variant="elevated" to="/register">Hier registrieren</v-btn>
     </v-card-item>
   </v-form>
+    </v-card>
+    </v-col>
+  </v-container>
 </template>
+
+<style scoped>
+.container{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+</style>
