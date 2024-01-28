@@ -1,6 +1,21 @@
 <script setup>
 import HeaderIcon from '@/components/HeaderIcon.vue'
 import Logo from "@/components/Logo.vue";
+import {useAuthStore} from "@/stores/AuthStore.js";
+import {useRouter} from "vue-router";
+
+const authentication = useAuthStore();
+const router = useRouter();
+
+async function logout() {
+  try {
+    await authentication.logout();
+    await router.push('/');
+  } catch (error) {
+    console.log(error);
+  }
+
+}
 </script>
 
 <template>
@@ -24,7 +39,7 @@ import Logo from "@/components/Logo.vue";
     </v-toolbar-items>
     <v-spacer></v-spacer>
     <v-toolbar-items>
-      <v-btn><v-icon>logout-variant</v-icon></v-btn>
+      <v-btn @click="logout()" icon="mdi-logout-variant"></v-btn>
     </v-toolbar-items>
   </v-toolbar>
   <RouterView />

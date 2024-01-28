@@ -16,6 +16,25 @@ import UserAboutView from '../views/user/UserAboutView.vue'
 import LoginView from "../views/guest/LoginView.vue";
 import AdminHomeView from "@/views/admin/AdminHomeView.vue";
 import AdminCourseUserView from "@/views/admin/AdminCourseUserView.vue";
+import jwtDecode from "jwt-decode";
+
+function isLoggedIn(to) {
+  if(!window.localStorage.getItem('accessToken')) {
+    router.push('/login');
+  } else {
+    return true;
+  }
+}
+
+function isAdmin(to) {
+  const token = window.localStorage.getItem('accessToken');
+  const decodedToken = jwtDecode(window.localStorage.getItem('accessToken', token))
+  if(decodedToken.admin === true) {
+    return true;
+  } else {
+    router.push('/user/courses');
+  }
+}
 
 const routes = [
     {
@@ -24,19 +43,23 @@ const routes = [
       children: [
         {
           path: 'profile',
-          component: ProfileView
+          component: ProfileView,
+          beforeEnter: [isLoggedIn]
         },
         {
           path: 'courses',
-          component: UserCourseView
+          component: UserCourseView,
+          beforeEnter: [isLoggedIn]
         },
         {
           path: 'recipes',
-          component: RecipeView
+          component: RecipeView,
+          beforeEnter: [isLoggedIn]
         },
         {
           path: 'about',
-          component: UserAboutView
+          component: UserAboutView,
+          beforeEnter: [isLoggedIn]
         }
       ]
     },
@@ -46,25 +69,30 @@ const routes = [
       children: [
         {
           path: '',
-          component: AdminHomeView
+          component: AdminHomeView,
+          beforeEnter: [isLoggedIn, isAdmin]
         },
         {
           path: 'courses',
-          component: AdminCourseView
+          component: AdminCourseView,
+          beforeEnter: [isLoggedIn, isAdmin]
         },
         {
           path: 'recipes',
-          component: AdminRecipeView
+          component: AdminRecipeView,
+          beforeEnter: [isLoggedIn, isAdmin]
         },
         {
           path: 'users',
-          component: AdminUserView
+          component: AdminUserView,
+          beforeEnter: [isLoggedIn, isAdmin]
         },
         {
           path: 'courseUserView/:courseId',
           name: 'adminCourseUserView',
           component: AdminCourseUserView,
-          props: true
+          props: true,
+          beforeEnter: [isLoggedIn, isAdmin]
         },
 
 

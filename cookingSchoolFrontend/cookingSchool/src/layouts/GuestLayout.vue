@@ -8,7 +8,7 @@ import Logo from '@/components/Logo.vue'
   <HeaderIcon/>
     <v-toolbar color="grey-lighten-1">
       <v-toolbar-items>
-        <v-btn to=""><v-icon>home</v-icon></v-btn>
+        <v-btn to="" icon="mdi-home"></v-btn>
       </v-toolbar-items>
       <v-spacer></v-spacer>
       <v-toolbar-items>

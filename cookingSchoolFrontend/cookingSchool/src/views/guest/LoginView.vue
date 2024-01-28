@@ -2,6 +2,7 @@
   import {ref} from 'vue';
   import {useRouter} from 'vue-router';
   import {useAuthStore} from '@/stores/AuthStore';
+  import jwtDecode from 'jwt-decode';
 
   const areCredentialsInvalid = ref(false);
   const isLoginInProgress = ref(false);
@@ -15,13 +16,27 @@
   async function login() {
     try {
       isLoginInProgress.value = true;
-      await authentication.login(credentials.value);
-      await router.push('/user/courses');
+      const response = await authentication.login(credentials.value);
+      if(isAdmin() === true) {
+        await router.push('/admin/courses');
+      } else {
+        await router.push('/user/courses');
+      }
     } catch (error) {
       areCredentialsInvalid.value = true;
       console.error('Fehler beim Login:', error);
     } finally {
       isLoginInProgress.value = false;
+    }
+  }
+
+  function isAdmin() {
+    const token = window.localStorage.getItem('accessToken');
+    const decodedToken = jwtDecode(window.localStorage.getItem('accessToken', token))
+    if(decodedToken.admin === true) {
+      return true;
+    } else {
+      return false;
     }
   }
 </script>

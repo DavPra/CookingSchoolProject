@@ -14,6 +14,7 @@ const email = ref('');
 const username = ref('');
 const password = ref('');
 const isAdmin = ref(false);
+const errorFeedback = ref(null);
 
 async function registerUser() {
   try {
@@ -40,6 +41,7 @@ async function registerUser() {
       }
     } catch (error) {
       console.error('Ein Fehler ist aufgetreten:', error);
+      errorFeedback.value = 'Email-Addresse bereits vorhanden. Bitte loggen Sie sich ein.';
     }
   } catch (error) {
     console.error('Fehler beim Hinzufügen des Benutzers:', error);
@@ -53,6 +55,9 @@ async function registerUser() {
   <v-container>
     <v-form @submit.prevent="registerUser">
       <v-row>
+        <v-col cols="12" v-if="errorFeedback">
+          <v-alert type="error">{{ errorFeedback }}</v-alert>
+        </v-col>
         <v-col cols="12" md="6">
           <v-text-field v-model="firstname" label="Vorname" required></v-text-field>
         </v-col>
