@@ -36,6 +36,7 @@ export const useCourseStore = defineStore('course', {
                 const createdCourse = courseResponse.data;
                 this.courses.push(courseResponse.data);
                 console.log('Course created', courseResponse.data);
+              //bringt nichts  await this.showCourses()
             } catch (error) {
                 console.error('Error creating course:', error);
             }
@@ -47,6 +48,7 @@ export const useCourseStore = defineStore('course', {
                 if (index !== -1) {
                     this.courses[index] = courseResponse.data;
                     console.log('Course updated', courseResponse.data);
+                 // bringt nichts   await this.showCourses()
                 }
             } catch (error) {
                 console.error('Error updating course:', error);

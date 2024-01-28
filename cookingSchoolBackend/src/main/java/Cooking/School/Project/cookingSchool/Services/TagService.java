@@ -24,6 +24,11 @@ public class TagService {
 
     //----------------------- Course Tags
 
+    /**
+     * saves a new tag in the database
+     * @param courseTag title
+     * @return courseTag
+     */
     public CourseTag addCourseTag(CourseTag courseTag){
         courseTagRepository.save(courseTag);
         return courseTag;

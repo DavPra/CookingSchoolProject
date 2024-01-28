@@ -36,11 +36,19 @@ public class CourseService {
 
     public CourseService() {
     }
-
+/* Wird nicht mehr gebraucht
     public Course addCourse(Course course) {
         courseRepository.save(course);
         return course;
     }
+
+ */
+
+    /**
+     * Find a course by id in the database
+     * @param courseId
+     * @return the course
+     */
 
     public Course getCourseById(Long courseId) {
         return courseRepository.findById(courseId)
@@ -53,9 +61,14 @@ public class CourseService {
     }
 
 
-
+    /**
+     *  find a course by id and delete it from the db
+     * @param id courseId
+     */
     public void deleteCourseById(Long id) {
-        courseRepository.deleteById(id);
+        Course course = courseRepository.findById(id)
+                .orElseThrow(() -> new CourseNotFoundException("Course not found with Id" + id));
+        courseRepository.delete(course);
     }
 
     public Course updateCourse(Course course) {
@@ -69,7 +82,6 @@ public class CourseService {
      * @param request a JSON holding the information to create a course
      * @return the  course Id
      */
-
 
     @Transactional
     public Long createCourse(CourseRequest request) {
@@ -93,16 +105,19 @@ public class CourseService {
         course.setCourseTags(courseTags);
 
         Course savedCourse = courseRepository.save(course);
-
+//Warum genau wollte ich hier die Kurs Id?
         return savedCourse.getCourseId();
     }
 
 
-    /**
-     * @return
+    /** searches for all courses and creates a list of all courses including their tags and recipes
+     * @return a List of CourseTagsRecipeResponse or 404 not found if no course was found
      */
     public List<CourseTagsRecipeResponse> getAllCourses() {
         List<Course> courses = courseRepository.findAll();
+        if (courses.isEmpty()){
+            throw new CourseNotFoundException("No courses found");
+        }
         List<CourseTagsRecipeResponse> responseList = new ArrayList<>();
         for (Course course : courses) {
             CourseTagsRecipeResponse response = new CourseTagsRecipeResponse();
@@ -124,11 +139,29 @@ public class CourseService {
         return responseList;
     }
 
+    /**
+     *
+     * Updates the details of a course based on the provided parameters.
+     * @param courseId
+     * @param title
+     * @param description
+     * @param teacher
+     * @param image
+     * @param startDate
+     * @param maxAttendants
+     * @param price
+     * @param courseTags
+     * @return The updated course entity.
+     * @throws PrimaryIdNullOrEmptyException If the provided courseId is null or empty.
+     * @throws CourseNotFoundException      If no course is found with the given courseId.
+     * @throws InvalidStartDateException     If the provided start date is before the current date.
+     * @throws TagNotFoundException          If a specified course tag is not found in the repository.
+     */
 
     @Transactional
     public Course updateCourse(Long courseId, String title, String description, String teacher, String image, LocalDateTime startDate,
                                int maxAttendants, int price, Set<CourseTag> courseTags)
-            throws PrimaryIdNullOrEmptyException, InvalidStartDateException {
+           {
 
         if (courseId == null) {
             throw new PrimaryIdNullOrEmptyException("Course Id is null or empty");
