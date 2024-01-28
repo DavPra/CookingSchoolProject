@@ -1,8 +1,7 @@
 <script setup>
 
 import { onMounted, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
-
+import { useRouter } from "vue-router";
 import { useCourseStore } from "@/stores/CourseStore.js";
 import { useAuthStore } from "@/stores/AuthStore.js";
 import jwtdecode from "jwt-decode";
@@ -10,6 +9,7 @@ import jwtdecode from "jwt-decode";
 const courseStore = useCourseStore()
 const course = defineProps(['courseTitle','startDate','description','teacher','courseId'])
 const authStore = useAuthStore();
+const router = useRouter();
 
 onMounted(() => {
   showCourses();
@@ -34,10 +34,14 @@ async function showCourses() {
 showCourses();
 
 async function bookCourse() {
-  decodedUserId = jwtdecode(localStorage.getItem("accessToken")).userId;
-  console.log(decodedUserId);
-  await courseStore.bookCourse(decodedUserId, courseId);
-  console.log(courses.courseId);
+  if(!window.localStorage.getItem('accessToken')) {
+    await router.push('/login');
+  } else {
+    decodedUserId = jwtdecode(localStorage.getItem("accessToken")).userId;
+    console.log(decodedUserId);
+    await courseStore.bookCourse(decodedUserId, courseId);
+    console.log(courses.courseId);
+  }
 }
 
 </script>
