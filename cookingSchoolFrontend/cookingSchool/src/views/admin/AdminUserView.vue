@@ -2,8 +2,11 @@
 import {useRoute, useRouter} from "vue-router";
 import {onMounted, ref, reactive, computed, watch} from "vue";
 import {useUserStore} from "@/stores/UserStore";
+import {useCourseStore} from "@/stores/CourseStore";
+import {id} from "vuetify/locale";
 
 const userStore = useUserStore()
+const courseStore = useCourseStore()
 const router = useRouter();
 
 const user = computed(() => userStore.users.find(u => u.userId === parseInt(route.params.user)))
@@ -61,6 +64,10 @@ onMounted(async () => {
   try {
     const users = await userStore.showUsers();
     console.log('user Component mounted', users);
+    //await courseStore.showCourses()
+    //courses.value = courseStore.courses
+    //console.log('courses Component mounted', courses);
+    await loadCourses()
   } catch (error) {
     console.error('Error loading users in component mount:', error);
   }
@@ -155,6 +162,73 @@ const matchesSearch = (user) => {
 };
 
 
+
+
+const courses = ref([]);
+const isCourseDialogOpen = ref(false)
+const selectedCourseId = ref(null)
+const courseOptions= ref([])
+let userId
+const loadCourses = async () => {
+  try {
+    console.log('Before loading courses');
+    await courseStore.showCourses();
+    console.log('After loading courses');
+
+    console.log('Courses loaded:', courseStore.courses);
+
+    courseOptions.value = courseStore.courses.map(course => ({
+      courseId: course.courseId,
+      title: course.courseTitle
+    }));
+
+    console.log('courseOptions:', courseOptions.value);
+    console.log('courseID for recipes loaded');
+  } catch (err) {
+    console.error("Error loading courses:", err);
+  }
+};
+
+const openCourseDialog = () => {
+  isCourseDialogOpen.value = true;
+  loadCourses()
+};
+const assignUserToCourse = (usersId) => {
+  userId = usersId
+  console.log( 'userId', userId)
+  openCourseDialog();
+ // selectedCourseId.value = courseId;
+ // console.log('courseId', selectedCourseId.value, courseId)
+
+}
+const completeAssignment = async () => {
+  console.log("userId", userId);
+  console.log("courseId", selectedCourseId.value);
+
+  if (selectedCourseId.value !== null) {
+    try {
+      await userStore.addUserToCourse(userId, selectedCourseId.value);
+      closeCourseDialog();
+    } catch (error) {
+      if (error.response) {
+        console.error(error.response.data);
+      } else {
+        console.error("An unexpected error occurred:", error);
+      }
+    }
+  }
+};
+
+
+const closeCourseDialog = () => {
+  isCourseDialogOpen.value = false;
+  selectedCourseId.value = null;
+};
+
+
+
+
+
 </script>
 
 <template>
@@ -212,75 +286,9 @@ const matchesSearch = (user) => {
 
     </v-form>
   </v-sheet>
-<!--
-  <v-sheet width="90%" elevation="3" class="mx-auto">
-    <div>
-       <v-text-field v-model="search" label="Search" @input="filterUsers"></v-text-field>
-      <v-table>
-        <thead>
-        <tr>
-          <th class="text-left">
-            user Id
-          </th>
-          <th class="text-left">
-            firstname
-          </th>
-          <th class="text-left">
-            lastname
-          </th>
-          <th class="text-left">
-            address
-          </th>
-          <th class="text-left">
-            mobile
-          </th>
-          <th class="text-left">
-            email
-          </th>
-          <th class="text-left">
-            username
-          </th>
-          <th class="text-left">
-            is Admin
-          </th>
-          <th class="text-left">
-            update
-          </th>
-          <th class="text-left">
-            delete
-          </th>
-        </tr>
-        </thead>
 
-        <tbody>
+<!-- User Tabelle -->
 
-
-        <tr
-            v-for="user in userStore.users"
-            :key="user.userId"
-
-
-        >
-          <td>{{ user.userId }}</td>
-          <td>{{ user.firstname }}</td>
-          <td>{{ user.lastname }}</td>
-          <td>{{ user.address }}</td>
-          <td>{{ user.mobile }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.username }}</td>
-          <td>{{ user.admin ? 'Yes' : 'No' }}</td>
-          <td>
-            <v-btn icon="mdi-pencil" size="x-small" @click="editUser(user)"></v-btn>
-          </td>
-          <td>
-            <v-btn icon="mdi-delete" size="x-small" @click="deleteUser(user.userId)"></v-btn>
-          </td>
-
-        </tr>
-        </tbody>
-      </v-table>
-    </div>
-  </v-sheet> -->
   <v-card width="90%" class="mx-auto"  tonal title="User Management">
     <template v-slot:text>
       <v-text-field
@@ -318,9 +326,27 @@ const matchesSearch = (user) => {
 
             </v-btn>
           </td>
+          <td>
+            <v-btn icon="mdi-plus" variant="text" @click="assignUserToCourse(item.userId)">
+
+            </v-btn>
+          </td>
         </tr>
       </template>
     </v-data-table>
   </v-card>
+
+  <!-- Dialog zum hinzufügen eines Users zu einem Kurs -->
+  <v-dialog v-model="isCourseDialogOpen">
+    <v-card>
+      <v-card-title>Choose a Course</v-card-title>
+
+      <v-select v-model="selectedCourseId" :items="courseOptions" item-value="courseId" label="Select a Course"></v-select>
+      <v-card-actions>
+        <v-btn @click="completeAssignment(selectedCourseId)">Assign</v-btn>
+        <v-btn @click="closeCourseDialog">Cancel</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 
 </template>
