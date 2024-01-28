@@ -44,8 +44,9 @@ async function updateUsers(updatedUserDto) {
 <template>
   <!-- User kann sich seine Daten ansehen/bearbeiten/löschen -->
 
-  <v-container>
-    <v-card>
+  <v-container class="container">
+    <v-col cols="6">
+    <v-card class="pa-2 ma-2 bg-grey-lighten-4 text-center">
       <v-card-title>{{ user?.firstname }}'s Profil:</v-card-title>
       <v-divider class="my-5" />
       <v-card-item>
@@ -78,6 +79,15 @@ async function updateUsers(updatedUserDto) {
         </v-card>
       </v-dialog>
     </v-card>
+    </v-col>
   </v-container>
-
 </template>
+
+<style scoped>
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+</style>
+```
