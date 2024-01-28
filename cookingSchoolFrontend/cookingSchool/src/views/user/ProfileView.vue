@@ -43,19 +43,32 @@ async function updateUsers(updatedUserDto) {
 
 <template>
   <!-- User kann sich seine Daten ansehen/bearbeiten/löschen -->
+
   <v-container>
-    <div>
-      <div>
+    <v-card>
+      <v-card-title>{{ user?.firstname }}'s Profil:</v-card-title>
+      <v-divider class="my-5" />
+      <v-card-item>
+        <v-card-text>Vorname: {{ user?.firstname }}</v-card-text>
+      </v-card-item>
+      <v-card-item>
+        <v-card-text>Nachname: {{ user?.lastname }}</v-card-text>
+      </v-card-item>
+      <v-card-item>
+        <v-card-text>Email: {{ user?.email }}</v-card-text>
+      </v-card-item>
+      <v-card-item>
+        <v-card-text>Benutzername: {{ user?.username }}</v-card-text>
+      </v-card-item>
+      <v-card-item>
+        <v-card-text>Adresse: {{ user?.address }}</v-card-text>
+      </v-card-item>
+      <v-divider class="my-2"/>
+      <v-card-item>
         <v-btn color="primary" class="mr-4" @click="showEditDialog = true" :disabled="isProfileActionInProgress">
           Bearbeiten
         </v-btn>
-      </div>
-      <v-divider class="my-5" />
-      <p>Vorname: <strong>{{ user?.firstname }}</strong></p>
-      <p>Nachname: <strong>{{ user?.lastname }}</strong></p>
-      <p>Email: <strong>{{ user?.email }}</strong></p>
-      <p>Username: <strong>{{ user?.username }}</strong></p>
-      <p>Adresse: <strong>{{ user?.address }}</strong></p>
+      </v-card-item>
       <v-dialog v-model="showEditDialog" max-width="600">
         <v-card>
           <v-card-title>Profil bearbeiten</v-card-title>
@@ -64,6 +77,7 @@ async function updateUsers(updatedUserDto) {
           </v-card-item>
         </v-card>
       </v-dialog>
-    </div>
+    </v-card>
   </v-container>
+
 </template>
