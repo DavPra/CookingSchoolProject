@@ -18,7 +18,7 @@ import AdminHomeView from "@/views/admin/AdminHomeView.vue";
 import AdminCourseUserView from "@/views/admin/AdminCourseUserView.vue";
 import jwtDecode from "jwt-decode";
 
-function isLoggedIn(to) {
+function isLoggedIn() {
   if(!window.localStorage.getItem('accessToken')) {
     router.push('/login');
   } else {
@@ -26,7 +26,7 @@ function isLoggedIn(to) {
   }
 }
 
-function isAdmin(to) {
+function isAdmin() {
   const token = window.localStorage.getItem('accessToken');
   const decodedToken = jwtDecode(window.localStorage.getItem('accessToken', token))
   if(decodedToken.admin === true) {
