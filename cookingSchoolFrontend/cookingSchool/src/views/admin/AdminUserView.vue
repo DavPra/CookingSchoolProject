@@ -188,7 +188,6 @@ const loadCourses = async () => {
     console.error("Error loading courses:", err);
   }
 };
-
 const openCourseDialog = () => {
   isCourseDialogOpen.value = true;
   loadCourses()
