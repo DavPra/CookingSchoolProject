@@ -18,7 +18,7 @@ import Logo from "@/components/Logo.vue";
   </div>
 
   <div>
-    <v-carousel cycle interval="8000" height="550px">
+    <v-carousel cycle interval="8000" height="500px">
       <v-carousel-item
         src="https://cdn.pixabay.com/photo/2017/03/10/13/57/cooking-2132874_960_720.jpg"
         reverse-transition="fade-transition"
