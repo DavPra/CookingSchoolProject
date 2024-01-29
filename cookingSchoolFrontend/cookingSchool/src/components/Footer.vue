@@ -26,6 +26,10 @@ const icons = [
     <div class="pt-0">
        Lirum Larum Löffelstiel
     </div>
+    <div class="pt-0">
+    cookingacademy@contact.com
+  </div>
+
 
     <v-divider></v-divider>
 

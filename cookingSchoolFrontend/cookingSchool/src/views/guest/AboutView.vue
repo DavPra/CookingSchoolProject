@@ -1,5 +1,6 @@
 <script setup>
 import { useRouter } from 'vue-router'
+import HeaderIcon from "@/components/HeaderIcon.vue";
 
 
 const router = useRouter();
@@ -10,6 +11,7 @@ async function goToCourses() {
 </script>
 
 <template>
+  <HeaderIcon></HeaderIcon>
   <!-- kurze Beschreibung des Teams und der Location -->
   <div class="">
     <!-- header -->

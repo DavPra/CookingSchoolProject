@@ -38,6 +38,9 @@ public class UserService {
     }
 
     public void deleteUserById(Long id) {
+        if(id == null){
+            throw new PrimaryIdNullOrEmptyException("User Id is null or empty " +id);
+        }
         userRepository.deleteById(id);
     }
 

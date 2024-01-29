@@ -143,10 +143,10 @@ public class AdminController {
     //--------------------------- Admin users administration
 
 
-    //TODO da weiter
+
     /**
      * GET Method to get all Users
-     * @return a List of the UserRsponse
+     * @return a List of the UserRsponse  and HttpStatus 200 ok
      */
     @GetMapping("/admin/users")
     public ResponseEntity<List<UserResponse>> getAllUsers(){
@@ -157,7 +157,11 @@ public class AdminController {
         return new ResponseEntity<>(userResponses, HttpStatus.OK);
     }
 
-
+    /**
+     * POST Method to add an User to the database
+     * @param user data to create a new user
+     * @return a success message and HttpStatus 200 ok, or Bad Request 500
+     */
     @PostMapping("/admin/users")
     public ResponseEntity<?> addUser(@RequestBody User user){
         try{
@@ -168,16 +172,24 @@ public class AdminController {
         }
     }
 
-    @DeleteMapping("/admin/users/{id}")
-    public ResponseEntity<?> deleteUserById(@PathVariable Long id){
-        try{
-            userService.deleteUserById(id);
-            return new ResponseEntity<>("User erfolgreich gelöscht", HttpStatus.OK);
-        } catch (PrimaryIdNullOrEmptyException e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-    }
+    /**
+     * Delete Method to delete an user from database
+     * @param id userId
+     * @return a success message and HttpStatus 200 ok or BadRequest 500
+     */
 
+    @DeleteMapping("/admin/users/{id}")
+    public ResponseEntity<?> deleteUserById(@PathVariable Long id) {
+        userService.deleteUserById(id);
+        return new ResponseEntity<>("User erfolgreich gelöscht", HttpStatus.OK);
+    }
+//TODO da weiter
+    /**
+     * Put Method to update an user
+     * @param userId
+     * @param updatedUser
+     * @return HttpStatus 200 ok and a success message
+     */
     @Transactional
     @PutMapping("admin/users/{userId}")
     public ResponseEntity<?> updateUser(

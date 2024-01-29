@@ -88,9 +88,9 @@ async function updateUsers(updatedUserDto) {
     <v-container>
         <h1>Hallo {{ user?.firstname }}</h1>
         <v-divider class="my-2"/>
-        <v-container class="container">
+        <v-container class="container bg-blue-grey-darken-1">
             <v-col cols="6">
-                <v-card class="pa-2 ma-2 text-white bg-light-blue-darken-1 text-center">
+                <v-card class="pa-2 ma-2 text-center">
                     <v-icon size="48">mdi-account</v-icon>
                     <v-card-title>
                        Profil
@@ -120,14 +120,14 @@ async function updateUsers(updatedUserDto) {
             <v-col cols="6">
                 <v-row>
                     <v-col cols="6">
-                        <v-card class="pa-2 ma-2 bg-amber-darken-2 text-white">
+                        <v-card class="pa-2 ma-2 ">
                             <v-card-title class="">
                                 User Gesamt
                             </v-card-title>
                             <v-card-text>
                                 <v-row>
                                     <v-col>
-                                        <v-icon color="white">mdi-account-multiple</v-icon>
+                                        <v-icon color="red">mdi-account-multiple</v-icon>
                                     </v-col>
                                     <v-col>
                                         <div>{{ userCount }}</div>
@@ -137,14 +137,14 @@ async function updateUsers(updatedUserDto) {
                         </v-card>
                     </v-col>
                     <v-col cols="6">
-                        <v-card class="pa-2 ma-2 bg-deep-orange-darken-4 text-white ">
+                        <v-card class="pa-2 ma-2 ">
                             <v-card-title>
                                 Kurse Gesamt
                             </v-card-title>
                             <v-card-text>
                                 <v-row>
                                     <v-col>
-                                        <v-icon color="white">mdi-school</v-icon>
+                                        <v-icon color="orange">mdi-school</v-icon>
                                     </v-col>
                                     <v-col>
                                         <div>{{ courseCount }}</div>
@@ -155,14 +155,14 @@ async function updateUsers(updatedUserDto) {
                     </v-col>
                 </v-row>
                 <v-col cols="12">
-                    <v-card class="pa-2 ma-2 text-white bg-teal-darken-3">
+                    <v-card class="pa-2 ma-2 ">
                         <v-card-title>
                             Upcomming Courses:
                         </v-card-title>
                         <v-card-text>
-                            <v-list class="text-white bg-teal-darken-3">
+                            <v-list >
                                 <v-list-item v-for="course in nextCourses" :key="course.courseId">
-                                    <v-icon>mdi-calendar</v-icon>
+                                    <v-icon color="blue">mdi-calendar</v-icon>
                                     <v-list-item-title>{{ course.courseTitle }}</v-list-item-title>
                                     <v-list-item-subtitle>
                                         {{ new Date(course.startDate).toLocaleDateString() }}
