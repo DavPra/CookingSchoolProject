@@ -2,8 +2,8 @@
 import {useUserStore} from "@/stores/UserStore";
 import {useCourseStore} from "@/stores/CourseStore";
 import {onMounted, ref} from "vue";
-import Test from "@/components/Diagramm.vue";
-import DoughnutChard from "@/components/DoughnutChart.vue";
+//import Test from "@/components/Diagramm.vue";
+//import DoughnutChard from "@/components/DoughnutChart.vue";
 import ProfileForm from "@/components/ProfileForm.vue";
 import {useUserStoreUpdate} from "@/stores/UserStoreforUpdate.js";
 import jwtDecode from "jwt-decode";
@@ -175,7 +175,7 @@ async function updateUsers(updatedUserDto) {
                 <v-col cols="12">
                     <v-card class="pa-2 ma-2">
                         <v-sheet>
-                          <Test/>
+                          <!--Test/-->
                         </v-sheet>
                     </v-card>
                 </v-col>
@@ -185,12 +185,6 @@ async function updateUsers(updatedUserDto) {
 </template>
 
 <style scoped>
-.background{
-  background-image: linear-gradient(90deg, rgba(255,231,213,1) 0%, rgba(226,117,27,1) 50%, rgba(136,9,11,1) 100%);
-}
-.background1{
-  background-image: linear-gradient(308deg, rgba(255,231,213,1) 0%, rgba(226,117,27,1) 50%, rgba(136,9,11,1) 100%);
-}
 .container{
   background-color: #FAFAFA;
   display: flex;

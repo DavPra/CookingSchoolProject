@@ -7,7 +7,7 @@ import Logo from "@/components/Logo.vue";
   <div class="container">
     <card>
       <v-card-title><h1 class="centered-heading font-weight-medium text-h2"> Welcome </h1> </v-card-title>
-      <v-card-subtitle>bei</v-card-subtitle>
+      <v-card-subtitle></v-card-subtitle>
 
 
       <p class="text-center">

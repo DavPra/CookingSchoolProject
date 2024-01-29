@@ -20,10 +20,9 @@ import Logo from "@/components/Logo.vue";
     </v-toolbar-items>
     <v-spacer></v-spacer>
     <v-toolbar-items>
-      <v-btn to="/admin">Profil</v-btn>
+      <v-btn variant="plain" rounded="xl"   to="/admin/users">User</v-btn>
     </v-toolbar-items>
     <v-spacer></v-spacer>
-
     <v-toolbar-items>
       <v-btn> <v-icon> icon="mid-logout"> </v-icon> </v-btn>
     </v-toolbar-items>
