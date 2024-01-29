@@ -46,13 +46,6 @@ async function showUserRecipes() {
     </v-row>
   </div>
 
-  <v-btn
-      class="mx-auto"
-      color="primary"
-      @click="recipeStore.showUserRecipes(userId)"
-
-  >Test recipes</v-btn>
-
 </template>
 
 

@@ -15,7 +15,6 @@ import {globalColors as __colors} from "@/assets/colors";
         <v-btn variant="plain"  to="/courses" >Kurse</v-btn>
         <v-btn variant="plain" to="/about">About Us</v-btn>
     <!--  <v-btn to="/"><v-icon size="xl" te>mdi-home</v-icon></v-btn> -->
-      <v-btn variant="plain" to="/">Home</v-btn>
         <v-btn variant="plain" to="/login" class="ma-1">Login</v-btn>
     </v-toolbar>
   <RouterView />
