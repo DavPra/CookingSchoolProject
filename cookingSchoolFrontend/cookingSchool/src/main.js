@@ -5,6 +5,7 @@ import {router} from './router'
 import './assets/main.css'
 import {vuetify} from './plugins/vuetify'
 import vClickOutside from "click-outside-vue3";
+import Chart from 'chart.js/auto'
 
 const pinia = createPinia()
 
@@ -13,4 +14,7 @@ createApp(App)
     .use(pinia)
     .use(vuetify)
     .use(vClickOutside)
+    .component('Chart',Chart)
     .mount('#app')
+
+
