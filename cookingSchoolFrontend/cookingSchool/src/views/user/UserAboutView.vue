@@ -5,7 +5,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter();
 
 async function goToCourses() {
-  await router.push('/courses')
+  await router.push('/user/courses')
 }
 </script>
 
