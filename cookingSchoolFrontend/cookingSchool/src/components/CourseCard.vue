@@ -26,7 +26,7 @@ let decodedUserId = '';
 
 
 async function showCourses() {
-  await courseStore.showCourses();
+  await courseStore.showGuestCourses();
   courses = courseStore.courses;
   console.log(courses);
 }

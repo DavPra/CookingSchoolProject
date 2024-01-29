@@ -70,7 +70,7 @@ export const useCourseStore = defineStore('course', {
 
 
         async bookCourse(courseId, userId){
-        const bookCourseResponse = await axios.put('http://localhost:8082/users/courses/'+courseId+'/book-course/'+userId)
+        const bookCourseResponse = await axios.put('http://localhost:8082/users/'+courseId+'/book-course/'+userId)
         console.log('Course booked')
         await this.showCourses()
     },
@@ -79,7 +79,7 @@ export const useCourseStore = defineStore('course', {
         console.log('store' + this.userCourses);
         
         console.log("UserId " + userId);
-        const userCoursesResponse = await axios.get('http://localhost:8082/admin/users/'+userId);
+        const userCoursesResponse = await axios.get('http://localhost:8082/users/'+userId);
         
         console.log("Array mit Courses " + userCoursesResponse);
 
