@@ -2,6 +2,8 @@
 import {useUserStore} from "@/stores/UserStore";
 import {useCourseStore} from "@/stores/CourseStore";
 import {onMounted, ref} from "vue";
+import Test from "@/components/Diagramm.vue";
+import DoughnutChard from "@/components/DoughnutChart.vue";
 import ProfileForm from "@/components/ProfileForm.vue";
 import {useUserStoreUpdate} from "@/stores/UserStoreforUpdate.js";
 import jwtDecode from "jwt-decode";
@@ -17,7 +19,6 @@ const updateStore = useUserStoreUpdate();
 const showEditDialog = ref(false);
 const isProfileActionInProgress = ref(false);
 const userId = jwtDecode(localStorage.getItem("accessToken")).userId;
-
 const user= ref(null);
 
 onMounted(async () =>{
@@ -173,7 +174,9 @@ async function updateUsers(updatedUserDto) {
                 </v-col>
                 <v-col cols="12">
                     <v-card class="pa-2 ma-2">
-                        <v-sheet>Diagramm</v-sheet>
+                        <v-sheet>
+                          <Test/>
+                        </v-sheet>
                     </v-card>
                 </v-col>
             </v-col>
