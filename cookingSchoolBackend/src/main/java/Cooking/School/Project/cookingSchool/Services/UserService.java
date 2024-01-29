@@ -7,7 +7,7 @@ import Cooking.School.Project.cookingSchool.repository.CourseRepository;
 import Cooking.School.Project.cookingSchool.repository.UserRepository;
 import Cooking.School.Project.cookingSchool.restapi.dto.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DuplicateKeyException;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -119,7 +119,8 @@ public class UserService {
         Optional<User> existingUser = userRepository.findUserByEmail(user.getEmail());
 
         if (existingUser.isPresent()) {
-            throw new DuplicateKeyException(user.getEmail());
+            String errorMessage = "Die E-Mail-Adresse '" + user.getEmail() + "' ist bereits registriert.";
+            throw new DuplicateKeyException(errorMessage);
         } else {
             return userRepository.save(user);
         }
