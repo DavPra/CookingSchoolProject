@@ -40,8 +40,9 @@ async function registerUser() {
         await router.push('/login');
       }
     } catch (error) {
+      console.dir(error);
       console.error('Ein Fehler ist aufgetreten:', error);
-      errorFeedback.value = 'Email-Addresse bereits vorhanden. Bitte loggen Sie sich ein.';
+      errorFeedback.value = error.response.data.message;//'Email-Addresse bereits vorhanden. Bitte loggen Sie sich ein.';
     }
   } catch (error) {
     console.error('Fehler beim Hinzufügen des Benutzers:', error);
