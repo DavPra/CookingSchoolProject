@@ -24,9 +24,8 @@ import Logo from "@/components/Logo.vue";
     </v-toolbar-items>
     <v-spacer></v-spacer>
     <v-toolbar-items>
-      <v-btn> <v-icon> icon="mid-logout"> </v-icon> </v-btn>
+      <v-btn icon="mdi-logout-variant"></v-btn>
     </v-toolbar-items>
-    <v-spacer></v-spacer>
   </v-toolbar>
   <RouterView />
 
