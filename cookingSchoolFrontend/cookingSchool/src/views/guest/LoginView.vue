@@ -2,6 +2,7 @@
   import {ref} from 'vue';
   import {useRouter} from 'vue-router';
   import {useAuthStore} from '@/stores/AuthStore';
+  import jwtDecode from 'jwt-decode';
 
   const areCredentialsInvalid = ref(false);
   const isLoginInProgress = ref(false);
@@ -16,12 +17,26 @@
     try {
       isLoginInProgress.value = true;
       await authentication.login(credentials.value);
-      await router.push('/user/courses');
+      if(isAdmin() === true) {
+        await router.push('/admin/courses');
+      } else {
+        await router.push('/user/courses');
+      }
     } catch (error) {
       areCredentialsInvalid.value = true;
       console.error('Fehler beim Login:', error);
     } finally {
       isLoginInProgress.value = false;
+    }
+  }
+
+  function isAdmin() {
+    const token = window.localStorage.getItem('accessToken');
+    const decodedToken = jwtDecode(window.localStorage.getItem('accessToken', token))
+    if(decodedToken.admin === true) {
+      return true;
+    } else {
+      return false;
     }
   }
 </script>
@@ -31,6 +46,7 @@
     <v-col cols="4">
     <v-card>
   <!-- Formular für einen Guest um sich als User einzuloggen, wenn er sich zuvor registriert hat-->
+
   <v-card-title class="pt-4">Login</v-card-title>
   <v-form @submit.prevent="login">
     <v-card-item>
