@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
-@PreAuthorize("hasAuthority('APPUSER')")
+//@PreAuthorize("hasAuthority('APPUSER')")
 @RestController
 public class UserController {
 
