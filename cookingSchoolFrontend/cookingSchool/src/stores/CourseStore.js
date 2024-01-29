@@ -17,6 +17,16 @@ export const useCourseStore = defineStore('course', {
                 console.error('Error loading courses:', error);
             }
         },
+        async showGuestCourses() {
+            try {
+                const courseResponse = await axios.get('http://localhost:8082/courses');
+                this.courses = courseResponse.data;
+                console.log('Courses loaded', this.courses);
+            } catch (error) {
+                console.error('Error loading courses:', error);
+            }
+        },
+
         async createCourse(data) {
             console.log('store 1', data)
             try {
