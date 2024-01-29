@@ -5,16 +5,18 @@ import Logo from "@/components/Logo.vue";
 <template>
   <!-- Welcome page for all users with login option -->
   <div class="container">
-    <div>
-      <h3 class="centered-heading"> Welcome to the Cooking Academy</h3>
-  
+    <card>
+      <v-card-title><h1 class="centered-heading font-weight-medium text-h2"> Welcome </h1> </v-card-title>
+      <v-card-subtitle>bei</v-card-subtitle>
+
+
       <p class="text-center">
         Entwickeln Sie Ihre Kochfähigkeiten weiter, 
         experimentieren Sie mit verschiedenen Aromen und Texturen, 
         und werden Sie ein Meister der Küche, 
         der mit Leidenschaft und Kreativität die Vielfalt der kulinarischen Welt erkundet. 
       </p>
-    </div>
+    </card>
   </div>
 
   <div>

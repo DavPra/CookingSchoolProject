@@ -80,7 +80,7 @@ async function goToCourses() {
         max-width="344"
     >
       <v-img
-          src="https://img.freepik.com/fotos-kostenlos/chefkoch-der-frisch-gehackte-gruene-kraeuter-in-die-pfanne-gibt-waehrend-er-gourmetgerichte-in-der-professionellen-kueche-des-restaurants-kocht-arbeiter-in-der-lebensmittelindustrie-bereiten-koestliche-mahlzeiten-mit-bio-gemuese-zu_482257-40135.jpg?w=1800&t=st=1705089846~exp=1705090446~hmac=28d21c62e484fb68685265d26835426bdf7147781b75a9b8761a1e4d3bf42bad"
+          src="https://images.pexels.com/photos/3338675/pexels-photo-3338675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           height="200px"
           cover
       ></v-img>
@@ -122,7 +122,7 @@ async function goToCourses() {
         max-width="344"
     >
       <v-img
-          src="https://img.freepik.com/fotos-kostenlos/koechin-in-der-kueche-die-eier-in-der-schuessel-trennt_23-2149720740.jpg?w=826&t=st=1705089796~exp=1705090396~hmac=909e57a8862331e1b0634d8edc8adcbee10b05bb554d3326cb58ad8b43da7d29"
+          src="https://img.freepik.com/fotos-kostenlos/chefkochgewuerzsalat_23-2148763185.jpg?w=1380&t=st=1706517964~exp=1706518564~hmac=b6cfe02ba39b17c650adf0f087b4e2a43db8045d075473c7a42d76d5426399ee"
           height="200px"
           cover
       ></v-img>
