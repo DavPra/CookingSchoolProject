@@ -2,8 +2,8 @@
 import {useUserStore} from "@/stores/UserStore";
 import {useCourseStore} from "@/stores/CourseStore";
 import {onMounted, ref} from "vue";
-import Test from "@/components/Diagramm.vue";
-import DoughnutChard from "@/components/DoughnutChart.vue";
+//import Test from "@/components/Diagramm.vue";
+//import DoughnutChard from "@/components/DoughnutChart.vue";
 import ProfileForm from "@/components/ProfileForm.vue";
 import {useUserStoreUpdate} from "@/stores/UserStoreforUpdate.js";
 import jwtDecode from "jwt-decode";
@@ -175,7 +175,6 @@ async function updateUsers(updatedUserDto) {
                 <v-col cols="12">
                     <v-card class="pa-2 ma-2">
                         <v-sheet>
-                          <Test/>
                         </v-sheet>
                     </v-card>
                 </v-col>

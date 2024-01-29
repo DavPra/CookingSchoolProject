@@ -27,7 +27,7 @@ const err = false;
 
 
 async function showCourses() {
-  await courseStore.showCourses();
+  await courseStore.showGuestCourses();
 }
 
 showCourses();
