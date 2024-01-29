@@ -52,7 +52,9 @@ async function registerUser() {
 <template>
   <!-- Formular für einen neuen User um sich zu registrieren -->
 
-  <v-container>
+  <v-container class="container">
+    <v-col cols="12">
+    <v-card class="pa-2 ma-2">
     <v-form @submit.prevent="registerUser">
       <v-row>
         <v-col cols="12" v-if="errorFeedback">
@@ -79,10 +81,12 @@ async function registerUser() {
         <v-col cols="12" md="6">
           <v-text-field v-model="password" label="Passwort" type="password" required></v-text-field>
         </v-col>
-        <v-col cols="12">
+        <v-col cols="12" class="text-center">
           <v-btn type="submit" color="primary">Registrieren</v-btn>
         </v-col>
       </v-row>
     </v-form>
+    </v-card>
+    </v-col>
   </v-container>
 </template>

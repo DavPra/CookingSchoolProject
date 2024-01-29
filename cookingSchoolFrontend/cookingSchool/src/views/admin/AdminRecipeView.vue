@@ -164,14 +164,14 @@ const closeDialog = () => {
 
   <v-container>
     <v-row>
-      <v-card @click="openDialog" class="ma-3">
-        <v-card-title class="mt-4">Estelle ein neues Rezept</v-card-title>
+      <v-card @click="openDialog" class="ma-3" width="330">
+        <v-card-title class="mt-10 text-center"  >Estelle ein neues Rezept</v-card-title>
         <v-card-text class="text-center">
-          <v-icon size="48">mdi-plus</v-icon>
+          <v-icon class="mt-6 mb-4" size="50">mdi-plus</v-icon>
         </v-card-text>
       </v-card>
       <v-col v-for="recipe in recipes" :key="recipe.id" cols="12" md="4">
-        <v-card>
+        <v-card width="330">
           <v-card-title>{{ recipe.title }}</v-card-title>
           <v-card-subtitle>Difficulty: {{ recipe.difficulty }}</v-card-subtitle>
           <v-card-subtitle> Preparation: {{ recipe.preparation }}</v-card-subtitle>

@@ -34,25 +34,25 @@ function createEmptyUserDto() {
 
 <template>
   <v-form @submit.prevent="save">
-    <VRow>
-      <V-col cols="4">
-        <VTextField label="Vorname" v-model="userWorkingCopy.firstname" required :disabled="loading"/>
-      </V-col>
-      <V-col cols="4">
-        <VTextField label="Nachname" v-model="userWorkingCopy.lastname" required :disabled="loading"/>
-      </V-col>
-      <V-col cols="4">
-        <VTextField label="Email" v-model="userWorkingCopy.email" required :disabled="loading"/>
-      </V-col>
-      <V-col cols="4">
-        <VTextField label="Username" v-model="userWorkingCopy.username" required :disabled="loading"/>
-      </V-col>
-      <V-col cols="4">
-        <VTextField label="Adresse" v-model="userWorkingCopy.address" required :disabled="loading"/>
-      </V-col>
-    </VRow>
-    <VBtn type="submit" color="primary">{{ saveText || 'Änderungen speichern' }}</VBtn>
-    <VBtn class="ml-3" color="secondary" variant="text" v-if="showAbort" @click="abort">{{ abortText || 'Abbrechen' }}</VBtn>
+    <v-row>
+      <v-col cols="4">
+        <v-text-field label="Vorname" v-model="userWorkingCopy.firstname" required :disabled="loading"/>
+      </v-col>
+      <v-col cols="4">
+        <v-text-field label="Nachname" v-model="userWorkingCopy.lastname" required :disabled="loading"/>
+      </v-col>
+      <v-col cols="4">
+        <v-text-field label="Email" v-model="userWorkingCopy.email" required :disabled="loading"/>
+      </v-col>
+      <v-col cols="4">
+        <v-text-field label="Username" v-model="userWorkingCopy.username" required :disabled="loading"/>
+      </v-col>
+      <v-col cols="8">
+        <v-text-field label="Adresse" v-model="userWorkingCopy.address" required :disabled="loading"/>
+      </v-col>
+    </v-row>
+    <v-btn type="submit" color="primary">{{ saveText || 'Änderungen speichern' }}</v-btn>
+    <v-btn class="ml-3" color="secondary" variant="text" @click="abort">{{ abortText || 'Abbrechen' }}</v-btn>
   </v-form>
 </template>
 
