@@ -3,6 +3,7 @@ import { useRouter } from 'vue-router';
 import {ref, defineProps, onMounted} from 'vue';
 import {useUserStore} from "@/stores/UserStore";
 import {useCourseStore} from "@/stores/CourseStore";
+import {globalColors as __colors} from "@/assets/colors";
 
 
 const router = useRouter();
@@ -85,10 +86,10 @@ const addUserToCourse = async () => {
 </script>
 <template>
 
-  <v-card elevation="3" width="500" class="mx-auto">
+  <v-card elevation="3" width="500" class="mx-auto mt-5">
     <v-card-title>{{courseDetails.courseTitle}}</v-card-title>
     <v-card-subtitle>Freie Plätze: {{courseDetails.maxAttendants}}</v-card-subtitle>
-  <v-card-text>
+  <v-card-text class="text-subtitle-1">
     Teilnehmer:
 
   </v-card-text>
@@ -97,7 +98,7 @@ const addUserToCourse = async () => {
 
     <v-alert closable close-label="Close Alert" type="error" title="Error" text="User Id nicht vorhanden" v-model="addUserToCourseErr">  </v-alert>
     <v-card-actions>
-      <v-btn @click="dialog= true">add User </v-btn>
+      <v-btn variant="tonal" :style="{ color: __colors.primary }" @click="dialog= true">add User </v-btn>
     </v-card-actions>
   </v-card>
 

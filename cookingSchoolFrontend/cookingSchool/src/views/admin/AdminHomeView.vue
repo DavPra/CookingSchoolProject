@@ -2,6 +2,8 @@
 import {useUserStore} from "@/stores/UserStore";
 import {useCourseStore} from "@/stores/CourseStore";
 import {onMounted, ref} from "vue";
+import Test from "@/components/Diagramm.vue";
+import DoughnutChart from "@/components/DoughnutChart.vue";
 
 const userStore = useUserStore()
 const userCount = ref()
@@ -55,7 +57,7 @@ const fetchNextCourses = async () => {
 
 <template>
 
-    <v-container class="bg-grey-lighten-5 ">
+    <v-container class="bg-grey-lighten-5" >
       <h1>Hallo Admin</h1>
       <v-row no-gutters>
         <v-col>
@@ -109,14 +111,16 @@ const fetchNextCourses = async () => {
         <v-col>
           <v-sheet class="pa-2 ma-2">
 
-
+<Test/>
 
           </v-sheet>
         </v-col>
 
         <v-col cols="2">
           <v-sheet class="pa-2 ma-2 bg-grey-darken-3">
-            .v-col-2
+
+
+
           </v-sheet>
         </v-col>
         <v-col>
