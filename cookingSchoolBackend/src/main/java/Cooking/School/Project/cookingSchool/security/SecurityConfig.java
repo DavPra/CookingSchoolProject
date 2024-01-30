@@ -43,7 +43,7 @@ import org.springframework.security.web.util.matcher.RegexRequestMatcher;
 
                     .antMatchers("/courses/**", "/registration/**", "/authenticate/**").permitAll() // Erlaubt den Zugriff auf /course/** und /registration/**
                    .antMatchers("/admin/**").hasAuthority("ADMIN") // Zugriff nur für Benutzer mit der Autorität "ADMIN"
-                    //.antMatchers("/users/**").hasAuthority("!ADMIN")
+                    .antMatchers("/users/**").hasAuthority("!ADMIN")
                    //.anyRequest().permitAll() // Erlaubt den Zugriff auf alle URLs
                     .anyRequest().authenticated()
                     .and()
