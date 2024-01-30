@@ -16,7 +16,7 @@
   async function login() {
     try {
       isLoginInProgress.value = true;
-      const response = await authentication.login(credentials.value);
+      await authentication.login(credentials.value);
       if(isAdmin() === true) {
         await router.push('/admin');
       }
