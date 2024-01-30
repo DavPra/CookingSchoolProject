@@ -39,6 +39,18 @@ async function updateUsers(updatedUserDto) {
   }
 }
 
+async function deleteUser() {
+  isProfileActionInProgress.value = true;
+  try {
+    await userStore.deleteUser(userId);
+    showConfirmation.value = false;
+    await router.push('/');
+  } catch (err) {
+    console.error(err);
+  } finally {
+    isProfileActionInProgress.value = false;
+  }
+}
 </script>
 
 <template>
