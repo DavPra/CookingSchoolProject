@@ -27,7 +27,7 @@ const icons = [
        Lirum Larum Löffelstiel
     </div>
     <div class="pt-0">
-    cookingacademy@contact.com
+      cookingschoolproject@gmail.com
   </div>
 
 
