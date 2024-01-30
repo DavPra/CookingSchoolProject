@@ -37,26 +37,33 @@ showCourses();
 
 <template>
   <HeaderIcon></HeaderIcon>
-  <div class="container m-5">
-    <v-sheet class="ms-6">
-      <h1 class="font-weight-medium">Dein Erlebnis bei uns</h1>
-      <h2>Was ist alles inkludiert?</h2>
 
-        <p> -Mehrgängiges Menü, wir kochen 3 bis 4 Speisen</p>
-        <p> -Jeder Teilnehmer bekommt die super duper tollen Rezepte</p>
-        <p> -Unser Zutaten sind biologisch, regional und saisonal</p>
-        <p> -ALLE Getränke</p>
 
-    </v-sheet>
+    <div class="container d-flex mt-5 justify-center" >
+      <v-sheet class="m-6 p-4" elevation="3">
+        <h1 class="font-weight-medium mb-3 ">Dein Erlebnis bei uns</h1>
+        <h2 class="mb-4">Was ist alles inkludiert?</h2>
 
-  </div>
+        <ul class="list-disc pl-6">
+          <li>Mehrgängiges Menü, wir kochen 3 bis 4 Speisen</li>
+          <li>Jeder Teilnehmer bekommt die super duper tollen Rezepte</li>
+          <li>Unsere Zutaten sind biologisch, regional und saisonal</li>
+          <li>ALLE Getränke</li>
+        </ul>
+      </v-sheet>
+    </div>
+
   <div>
     <NextCourses/>
   </div>
 
 
 
-  <div>
+  <v-sheet class="bg-brown-lighten-5">
+    <div class="mx-2 my-2 px-2 py-2">
+      <h2 class="text-h4 ">Alle unser Kurse auf einen Blick:</h2>
+    </div>
+
     <v-row class="d-flex ma-2 ">
       <v-col v-for="course in courses" :key="course.courseId" cols="12" sm="6" md="4" lg="3">
         <CourseCard
@@ -70,5 +77,5 @@ showCourses();
         />
       </v-col>
     </v-row>
-  </div>
+  </v-sheet>
 </template>
