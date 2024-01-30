@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
-
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 public class UserController {
 

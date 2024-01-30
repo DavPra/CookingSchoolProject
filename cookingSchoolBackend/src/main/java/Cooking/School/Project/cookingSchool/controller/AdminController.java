@@ -223,7 +223,7 @@ public class AdminController {
         return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
     @PostMapping("/admin/{userId}/book-course/{courseId}")
-    public ResponseEntity<?> bookCourse(@PathVariable Long userId, @PathVariable Long courseId) {
+    public ResponseEntity<?> bookCourseAdmin(@PathVariable Long userId, @PathVariable Long courseId) {
         userService.bookCourse(userId, courseId);
         return ResponseEntity.ok("Course booked successfully");
     }

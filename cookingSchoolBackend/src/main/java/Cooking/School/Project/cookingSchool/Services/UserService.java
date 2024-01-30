@@ -115,6 +115,30 @@ public class UserService {
         }
     }
 
+
+    @Transactional
+    public void bookCourseAdmin(Long userId, Long courseId) {
+
+        final User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
+        final Course course = courseRepository.findById(courseId)
+                .orElseThrow(() -> new CourseNotFoundException("Course not found"));
+
+        int maxNumberOfAttendants = course.getMaxAttendants();
+
+        if (course.getUsers().size() < maxNumberOfAttendants) {
+            course.getUsers().add(user);
+            course.setMaxAttendants(course.getMaxAttendants() - 1);
+            courseRepository.save(course);
+
+            user.getCourses().add(course);
+            user.setFinishedCourses(courseId);
+            userRepository.save(user);
+
+        } else {
+            throw new MaxAttendantsReachedException(maxNumberOfAttendants);
+        }
+    }
     public User registration(User user) throws DuplicateKeyException {
         Optional<User> existingUser = userRepository.findUserByEmail(user.getEmail());
 
