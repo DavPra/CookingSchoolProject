@@ -1,7 +1,5 @@
 <script setup>
-
 import {ref, onMounted, onUpdated, watchEffect} from 'vue';
-
 import {useRoute, useRouter} from 'vue-router';
 import {useCourseStore} from "@/stores/CourseStore";
 import AdminCourseAddUserView from "@/views/admin/AdminCourseUserView.vue";
@@ -29,7 +27,6 @@ const setErrorMsg = (msg) => {
   errorMsg.value = msg;
 };
 
-
 watchEffect(() => {
   courses.value = courseStore.courses;
 });
@@ -43,7 +40,6 @@ onMounted(() => {
 const fetchCourses = async () => {
   await courseStore.showCourses();
   courses.value = courseStore.courses;
-
 };
 
 const openDialog = () => {
@@ -72,17 +68,13 @@ const saveCourse = async () => {
       await courseStore.createCourse(editedCourse.value);
       //await courseStore.showCourses()
     }
-
     console.log('Before showCourses');
     await courseStore.showCourses();
     console.log('After showCourses');
-
   } catch (error) {
     console.error('Error saving course:', error);
-
   } finally {
     closeDialog();
-
   }
 };
 
@@ -106,17 +98,14 @@ const closeDialog = () => {
     price: '',
   };
 };
+
 const openAdminCourseUserView = (courseId) => {
   router.push({ name: 'adminCourseUserView' ,params: {courseId} });
 };
-
-
-
 </script>
 
 <template>
   <v-container>
-
     <v-row>
       <v-card @click="openDialog" class="add-course-card ma-3" width="350">
         <v-img

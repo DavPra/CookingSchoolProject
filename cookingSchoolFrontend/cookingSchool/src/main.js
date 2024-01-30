@@ -14,7 +14,7 @@ createApp(App)
     .use(pinia)
     .use(vuetify)
     .use(vClickOutside)
-    .component('Chart',Chart)
+    .component('Chart', Chart)
     .mount('#app')
 
 
