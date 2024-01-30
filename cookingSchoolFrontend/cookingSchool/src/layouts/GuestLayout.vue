@@ -6,7 +6,7 @@ import {globalColors as __colors} from "@/assets/colors";
 
 <template>
   <!-- Grundgerüst des Headers und Navbar für die Ansicht der Guests -->
-    <v-toolbar color="grey-lighten-6" elevation="3" class="  bg-brown-lighten-5" rounded >
+    <v-toolbar color="bg-transparent" elevation="3" class="  bg-transparent" rounded >
       <v-toolbar-title>
 
      <v-btn to="/" variant="plain" class="text-h5">Cooking Academy</v-btn>

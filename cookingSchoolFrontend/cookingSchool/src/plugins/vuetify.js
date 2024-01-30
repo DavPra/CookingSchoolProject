@@ -1,6 +1,7 @@
 import 'vuetify/styles'
 import '@mdi/font/css/materialdesignicons.css'
 import {createVuetify} from 'vuetify'
+import * as deep from "vuetify/util/colors";
 
 export const vuetify = createVuetify(
     {
@@ -8,7 +9,7 @@ export const vuetify = createVuetify(
         themes: {
             light: {
                 colors: {
-                    primary: '#FF5722',
+                    primary: '#cb5400',
                     secondary: '#9E9E9E',
                 }
             }

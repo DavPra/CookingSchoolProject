@@ -61,7 +61,7 @@ async function goToCourses() {
               class="pa-2 ma-3"
               cover
               height="250"
-              src="https://img.freepik.com/fotos-kostenlos/gruppe-freunde-die-in-der-kueche-kochen_53876-2.jpg?w=1800&t=st=1705093561~exp=1705094161~hmac=7c7c99b769c42bc92a0646eb63d041d0ec8c24fa953256f24a0b5af2720031de"
+              src="https://media.gettyimages.com/id/942153866/de/foto/koch-und-teilnehmer-des-kochens-klasse-browser-fotos-auf-handy.jpg?s=612x612&w=0&k=20&c=BaPpBqKZ8yyzsM5Kq3DZ3FePnVKRiEghgxw2sASJWYU="
           ></v-img>
         </v-sheet>
 
@@ -82,7 +82,7 @@ async function goToCourses() {
         max-width="344"
     >
       <v-img
-          src="https://img.freepik.com/fotos-kostenlos/chefkoch-der-frisch-gehackte-gruene-kraeuter-in-die-pfanne-gibt-waehrend-er-gourmetgerichte-in-der-professionellen-kueche-des-restaurants-kocht-arbeiter-in-der-lebensmittelindustrie-bereiten-koestliche-mahlzeiten-mit-bio-gemuese-zu_482257-40135.jpg?w=1800&t=st=1705089846~exp=1705090446~hmac=28d21c62e484fb68685265d26835426bdf7147781b75a9b8761a1e4d3bf42bad"
+          src="https://media.gettyimages.com/id/504367131/de/foto/nur-ein-bisschen-geheime-zutat.jpg?s=612x612&w=0&k=20&c=J3MU_YHX_fd8SgO8pivKeIy8lEPLZRZQtQwizMR3M7U="
           height="200px"
           cover
       ></v-img>
@@ -103,7 +103,7 @@ async function goToCourses() {
         max-width="344"
     >
       <v-img
-          src="https://img.freepik.com/fotos-kostenlos/attraktives-portraet-des-senior-salatkochens_1409-6883.jpg?w=1800&t=st=1705089671~exp=1705090271~hmac=94d2ceba5ff638cc6d87b7f79cb2dd087cfa6a67181779f21530fc6b57107caa"
+          src="https://media.gettyimages.com/id/981193812/de/foto/koch-arbeitet-in-einem-restaurant-einen-teller-dekorieren.jpg?s=612x612&w=0&k=20&c=5hZ0FwBywzQWaYFZwdeiz4zH4cm5a8xUxF-x3h3NWyY="
           height="200px"
           cover
       ></v-img>
@@ -124,7 +124,7 @@ async function goToCourses() {
         max-width="344"
     >
       <v-img
-          src="https://img.freepik.com/fotos-kostenlos/koechin-in-der-kueche-die-eier-in-der-schuessel-trennt_23-2149720740.jpg?w=826&t=st=1705089796~exp=1705090396~hmac=909e57a8862331e1b0634d8edc8adcbee10b05bb554d3326cb58ad8b43da7d29"
+          src="https://media.gettyimages.com/id/1281800152/de/foto/gl%C3%BCck-steht-immer-auf-der-speisekarte.jpg?s=612x612&w=0&k=20&c=OMksjmN4ZDnylZ0kyDy4gOp0WK05fB6C5u4fAVLwDLg="
           height="200px"
           cover
       ></v-img>

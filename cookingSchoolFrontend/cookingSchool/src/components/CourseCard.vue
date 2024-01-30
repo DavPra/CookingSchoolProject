@@ -59,16 +59,15 @@ async function bookCourse() {
         <v-card-title>
           {{ courseTitle }}
         </v-card-title>
-        <v-card-text>{{ startDate }}</v-card-text>
+        <v-card-subtitle>{{ startDate }}</v-card-subtitle>
         <v-card-text>{{ teacher }}</v-card-text>
-        <v-btn @click="bookCourse"
-          variant="text" 
+        <v-btn class="ms-3 " rounded="xl" @click="bookCourse"
           color="primary">
           Buchen
           </v-btn>
         <v-card-actions>
          
-          <v-btn color="primary" @click="show = !show">Kursbeschreibung</v-btn>
+          <v-btn color="primary" @click="show = !show">Mehr Info</v-btn>
 
           <v-spacer></v-spacer>
 

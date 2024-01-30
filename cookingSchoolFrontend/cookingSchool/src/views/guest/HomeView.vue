@@ -1,6 +1,8 @@
 <script setup>
 import Logo from "@/components/Logo.vue";
 import {globalColors as __colors} from "@/assets/colors";
+import {ref} from "vue";
+const isHovering= ref(false)
 </script>
 
 <template >
@@ -8,13 +10,21 @@ import {globalColors as __colors} from "@/assets/colors";
 
 <div  class="background">
   <div>
-    <v-carousel cycle interval="8000" height="500px">
+    <v-carousel cycle interval="8000" height="700px">
       <v-carousel-item class="carousel-img"
-        src="https://cdn.pixabay.com/photo/2017/03/10/13/57/cooking-2132874_960_720.jpg"
+        src="https://images.pexels.com/photos/8093877/pexels-photo-8093877.jpeg?auto=compress&cs=tinysrgb&w=600"
         reverse-transition="fade-transition"
         transition="fade-transition"
         cover
-      ></v-carousel-item>
+      > <div class="d-flex fill-height justify-center align-center flex-column">
+        <div class="text-h1 font-weight-medium text-shades-white">
+          Cooking
+        </div>
+        <div class="text-h4 text-white">
+          Acedemy
+        </div>
+      </div>
+      </v-carousel-item>
       
       <v-carousel-item
         src="https://cdn.pixabay.com/photo/2016/11/19/12/44/burgers-1839090_960_720.jpg"
@@ -31,94 +41,108 @@ import {globalColors as __colors} from "@/assets/colors";
       ></v-carousel-item>
 
       <v-carousel-item
-        src="https://cdn.pixabay.com/photo/2014/04/05/11/27/buffet-315691_960_720.jpg"
+        src="https://images.pexels.com/photos/8136881/pexels-photo-8136881.jpeg?auto=compress&cs=tinysrgb&w=600"
         reverse-transition="fade-transition"
         transition="fade-transition"
         cover
       ></v-carousel-item>
 
       <v-carousel-item
-          src="https://cdn.pixabay.com/photo/2016/11/18/15/31/cooking-1835369_640.jpg"
+          src="https://images.pexels.com/photos/1398688/pexels-photo-1398688.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         reverse-transition="fade-transition"
         transition="fade-transition"
         cover
       ></v-carousel-item>
 
-      <v-carousel-item
-        src="https://cdn.pixabay.com/photo/2016/11/21/16/03/campfire-1846142_640.jpg"
-        reverse-transition="fade-transition"
-        transition="fade-transition"
-        cover
-      >
-        <div class="d-flex fill-height justify-center align-center">
-          <div class="text-h2 text-white">
-            Outdoor Cooking Classes
-          </div>
-        </div>
-      </v-carousel-item>
     </v-carousel>
+<!-- WELCOME -->
+
   </div>
-  <div class="container mt-8 bg-brown-lighten-5 ">
-    <card>
-      <v-card-title><h1 class="centered-heading font-weight-medium text-h2"> Willkommen </h1> </v-card-title>
-      <v-card-subtitle class="text-h4 text-center " >bei</v-card-subtitle>
-      <v-card-subtitle class="text-h2 text-center" >Cooking Academy</v-card-subtitle>
+  <v-sheet class="container bg-transparent d-flex  flex-column justify-center spruch mt-10 mb-10 elevation-0" width="100%">
+    <h1 class="text-h2"  :style="{ color: __colors.primary }"> Cooking Academy </h1>
+    <h2 class="text-h4 font-weight-medium text-white">deine</h2>
+    <h1 class="text-h4 text-white">Kochschule in Wien</h1>
+  </v-sheet>
+
+  <!-- first -->
+
+  <v-sheet class="container d-flex  flex-row justify-end typo mt-10 mb-10 elevation-0 align-center " width="100%">
+    <v-card variant="flat" class="mr-3 pa-5 bg-transparent" width="40%"  >
+      <v-card-title class="text-h4 mb-2 " varaiant="plain" :style="{ color: __colors.primary }">Unsere Mission</v-card-title>
+       <v-card-text class="text-h6 font-weight-light">Unsere Mission ist es, die Kunst des Kochens mit Leidenschaft, Kreativität, Nachhaltigkeit und natürlich auch einer guten Portion Spaß zu vermitteln.
+         Unabhängig von Ihren kulinarischen Fähigkeiten bieten wir eine Vielzahl von Kursen an, von Anfänger- bis Fortgeschrittenenkursen.
+         Lernen Sie alles, was Sie für eine perfekte Küchenperformance benötigen, von grundlegenden Techniken bis zu anspruchsvollen Gerichten.
+         Tauchen Sie ein in die Welt der Aromen und entdecken Sie die Freude am Kochen!
+       </v-card-text>
+   <v-card-actions>
+      <v-btn to="/about" varaiant="plain" :style="{ color: __colors.primary }" >Erfahre mehr</v-btn>
+    </v-card-actions>
+    </v-card>
+
+    <v-card width="50%"
+    ><v-img
+        aspect-ratio="4/3"
+        cover
+        src="https://media.gettyimages.com/id/1059836070/de/foto/aktion-portr%C3%A4t-von-m%C3%A4nnlichen-chef-werfen-zutaten-in-einer-sch%C3%BCssel.jpg?s=612x612&w=0&k=20&c=MpJK_Ws5-YuWUvS3Hyf0jzqlWEw_mof2Rv61OLkSvMQ="
+         ></v-img>
+    </v-card>
+  </v-sheet>
 
 
-      <p class="text-center mt-4">
+
+  <v-sheet class="container d-flex  flex-row flex-wrap justify-start  seccard mt-10 elevation-0" width="100%" color="rgb(255, 255, 255, 0.8)">
+    <v-card
+    ><v-img
+        :width="500"
+        aspect-ratio="16/9"
+        cover
+        src="https://media.gettyimages.com/id/1302980333/de/foto/young-chef-learning-stirring-food-in-frying-pan-while-standing-by-colleague-in-kitchen.jpg?s=612x612&w=0&k=20&c=IyZ90eJfwcZDEjyJvJwWfMlI0segeoMI-qhhltJIgCk="
+    ></v-img>
+    </v-card>
+    <v-sheet variant="flat" class="ml-1  " max-width="600" v-bind="props"  color="rgb(255, 255, 255, 0.8)">
+      <v-card-title class="text-h4 m-4 " varaiant="plain" :style="{ color: __colors.primary }">Unsere Kurse</v-card-title>
+      <v-card-text class="text-h6 font-weight-light typo">
+
         Entwickeln Sie Ihre Kochfähigkeiten weiter,
         experimentieren Sie mit verschiedenen Aromen und Texturen,
         und werden Sie ein Meister der Küche,
-        der mit Leidenschaft und Kreativität die Vielfalt der kulinarischen Welt erkundet.
-      </p>
-    </card>
+        der mit Leidenschaft und Kreativität die Vielfalt der kulinarischen Welt erkundet."
+      </v-card-text>
+      <v-card-actions>
+        <v-btn to="/courses" varaiant="tonal"  :style="{ color: __colors.primary } ">zu unseren Kursen</v-btn>
+      </v-card-actions>
+
+    </v-sheet>
+
+  </v-sheet>
+
+
+  <div>
+  <v-sheet class="container d-flex  flex wrap justify-center mt-10 mb-10 elevation-0 align-center bg-transparent" width="100%">
+
+  <h2 class="text-h4 text-center mb-4" :style="{ color: __colors.primary }">Starte Jetzt durch und werde zum Meisterkoch</h2>
+    <v-btn to="/register" variant="tonal" :style="{ color: __colors.primary }"> Melde dich jetzt an </v-btn>
+  </v-sheet>
+
+<v-sheet class="container d-flex flex-row justify-space-around elevation-0 rounded-0" width="100%">
+
+  <div class="p-3">
+    <v-img :width="300"
+           src="https://media.gettyimages.com/id/1140201255/de/foto/hands-chopping-vegetables.jpg?s=612x612&w=0&k=20&c=bD4OMeCKVRt2KEz1y1uUY8lLMzCWJO1CAY3Xm9jKaUw="></v-img>
+  </div>
+  <div class="m-3">
+    <v-img :width="300"
+           src="https://media.gettyimages.com/id/1302980333/de/foto/young-chef-learning-stirring-food-in-frying-pan-while-standing-by-colleague-in-kitchen.jpg?s=612x612&w=0&k=20&c=IyZ90eJfwcZDEjyJvJwWfMlI0segeoMI-qhhltJIgCk="></v-img>
+  </div>
+  <div class="m-3">
+    <v-img class="p-3" :width="300"
+           src="https://media.gettyimages.com/id/1451673778/de/foto/medium-shot-of-smiling-friends-helping-each-other-during-cooking-class.jpg?s=612x612&w=0&k=20&c=7zjOQp0Udd_n0e5dPw6eHLNUtyknHcA3yichA1JY77s="></v-img>
+  </div>
+</v-sheet>
+
   </div>
 
-  <div class="container mt-10 mb-10 card-background">
-    <v-row>
-      <v-col cols="6">
-        <v-card>
 
-          <v-img
-            src="https://images.pexels.com/photos/2403392/pexels-photo-2403392.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            contain
-
-          ></v-img>
-          <v-card-title class="centered-heading font-weight-medium">Unsere Mission</v-card-title>
-  
-          <v-card-text class="text-center">
-            Unsere Mission ist es, die Kunst des Kochens mit Leidenschaft, Kreativität, Nachhaltigkeit und natürlich auch einer guten Portion Spaß zu vermitteln.
-            Unabhängig von Ihren kulinarischen Fähigkeiten bieten wir eine Vielzahl von Kursen an, von Anfänger- bis Fortgeschrittenenkursen.
-            Lernen Sie alles, was Sie für eine perfekte Küchenperformance benötigen, von grundlegenden Techniken bis zu anspruchsvollen Gerichten.
-            Tauchen Sie ein in die Welt der Aromen und entdecken Sie die Freude am Kochen!
-          </v-card-text>
-
-        </v-card>
-      </v-col>
-
-      <v-col cols="6">
-        <v-card>
-          <v-img
-            src="https://images.unsplash.com/photo-1556911261-6bd341186b2f?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            contain
-            
-          ></v-img>
-          <v-card-title class="centered-heading font-weight-medium "   >Unsere Kurse</v-card-title>
-  
-          <v-card-text class="text-center" >
-            Erleben Sie kulinarische Vielfalt in unseren exklusiven Kochkursen. 
-            Ob Anfänger oder Profi – unsere Kurse bieten für jeden etwas. 
-            Von den Grundlagen bis zu raffinierten Techniken entdecken Sie mit unseren erfahrenen Köchen die Welt des Kochens. 
-            Lernen Sie neue Fertigkeiten, genießen Sie inspirierende Stunden und tauchen Sie ein in die Welt der Gastronomie.
-            Freuen Sie sich auf kulinarische Entdeckungen und unvergessliche Momente in unserer Kochschule!
-          </v-card-text>
-          <v-card-actions>
-            <v-btn to="/courses" block  variant="tonal"  :style="{ color: __colors.primary }" > Unsere Kurse </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-col>
-    </v-row>
-  </div>
 </div>
 </template>
 
@@ -150,15 +174,22 @@ import {globalColors as __colors} from "@/assets/colors";
   width: 90%; /* Adjust the width as needed */
 }
 
+
+
 .background{
-  background: rgb(120,134,144);
-  background: linear-gradient(180deg, rgba(120,134,144,1) 0%, rgba(74,82,92,1) 50%, rgba(16,17,18,1) 100%);
+ /* background: rgb(120,134,144);
+  background: linear-gradient(180deg, rgba(120,134,144,1) 0%, rgba(74,82,92,1) 50%, rgba(16,17,18,1) 100%);*/
+  background: rgb(159,163,166);
+background: linear-gradient(180deg, rgba(159,163,166,1) 0%, rgba(89,97,106,1) 50%, rgba(16,17,18,1) 100%);
 }
 .card-background{
 
 }
 .carousel-img {
   opacity: 0.4!important;
+}
+.typo{
+  line-height: 110%;
 }
 
 </style>
