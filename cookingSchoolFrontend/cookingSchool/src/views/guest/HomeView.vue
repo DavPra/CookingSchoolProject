@@ -128,7 +128,7 @@ const isHovering= ref(false)
     ></v-img>
     </v-card>
     <v-sheet variant="flat" class="ml-1  " max-width="600" v-bind="props"  color="rgb(255, 255, 255, 0.8)">
-      <v-card-title class="text-h4 m-4 " varaiant="plain" :style="{ color: __colors.primary }">Unsere Kurse</v-card-title>
+      <v-card-title class="text-h4 m-4 " variant="plain" :style="{ color: __colors.primary }">Unsere Kurse</v-card-title>
       <v-card-text class="text-h6 font-weight-light typo">
 
         Entwickeln Sie Ihre Kochfähigkeiten weiter,
