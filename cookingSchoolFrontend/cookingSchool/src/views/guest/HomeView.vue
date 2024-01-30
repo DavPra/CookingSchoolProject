@@ -138,10 +138,7 @@ const isHovering= ref(false)
       </v-card-text>
 
         <v-btn rounded="xl" color="primary" class="ms-3" to="/courses" varaiant="tonal"  :style="{ color: __colors.primary } ">zu unseren Kursen</v-btn>
-
-
     </v-sheet>
-
   </v-sheet>
 
 
