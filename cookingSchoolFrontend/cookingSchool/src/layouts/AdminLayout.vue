@@ -45,7 +45,7 @@ async function logout() {
     <v-spacer></v-spacer>
   </v-toolbar>
   <RouterView />
-  <Logo/>
+  <Logo style="position: centered;"/>
 </template>
 
 <style scoped>

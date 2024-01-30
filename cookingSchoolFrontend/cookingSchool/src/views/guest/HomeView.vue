@@ -21,7 +21,7 @@ const isHovering= ref(false)
           Cooking
         </div>
         <div class="text-h4 text-white">
-          Acedemy
+          Academy
         </div>
       </div>
       </v-carousel-item>
@@ -43,7 +43,7 @@ const isHovering= ref(false)
       </v-carousel-item>
 
       <v-carousel-item
-        src="https://images.pexels.com/photos/8112433/pexels-photo-8112433.jpeg?auto=compress&cs=tinysrgb&w=600"
+        src="https://cdn.pixabay.com/photo/2021/02/08/07/39/chef-5993951_960_720.jpg"
         reverse-transition="fade-transition"
         transition="fade-transition"
         cover
@@ -67,10 +67,10 @@ const isHovering= ref(false)
       >
         <div class="d-flex fill-height justify-center align-center flex-column">
           <div class="text-h1 font-weight-medium text-shades-white">
-            Authentic
+            Jetzt weiß
           </div>
           <div class="text-h1 font-weight-medium text-white">
-            Chefs
+            ich nichts mehr
           </div>
         </div>
       </v-carousel-item>
@@ -87,8 +87,8 @@ const isHovering= ref(false)
 
   </div>
   <v-sheet class="container bg-transparent d-flex  flex-column justify-center spruch mt-10 mb-10 elevation-0" width="100%">
-    <h2 class="text-h4  ">Sinnliches Kochvergnügen erleben – </h2>
-      <h2 class="text-h4  "> Entdecke die Kunst der kulinarischen Meisterklasse bei Cooking Academy.</h2>
+    <h2 class="text-h4 font-weight-medium ">Sinnliches Kochvergnügen erleben – </h2>
+      <h2 class="text-h4 font-weight-medium "> Entdecke die Kunst der kulinarischen Meisterklasse bei Cooking Academy.</h2>
 
   </v-sheet>
 
@@ -128,7 +128,7 @@ const isHovering= ref(false)
     ></v-img>
     </v-card>
     <v-sheet variant="flat" class="ml-1  " max-width="600" v-bind="props"  color="rgb(255, 255, 255, 0.8)">
-      <v-card-title class="text-h4 m-4 " varaiant="plain" :style="{ color: __colors.primary }">Unsere Kurse</v-card-title>
+      <v-card-title class="text-h4 m-4 " variant="plain" :style="{ color: __colors.primary }">Unsere Kurse</v-card-title>
       <v-card-text class="text-h6 font-weight-light typo">
 
         Entwickeln Sie Ihre Kochfähigkeiten weiter,
@@ -148,11 +148,11 @@ const isHovering= ref(false)
   <div>
   <v-sheet class="container d-flex  flex wrap justify-center mt-10 mb-10 elevation-0 align-center bg-brown-lighten-5" width="100%">
 <v-card class="bg-white text-center mx-auto" width="99%" >
-  <v-card-title class="text-h4 my-4" color="prmary" >Lass uns gemeinsam Kochen!</v-card-title>
-  <v-btn rounded="xl" class="ms-3 my-5" to="/register" color="primary" > Melde dich an </v-btn>
+  <v-card-title class="text-h4 my-3" :style="{ color: __colors.primary }" >Starte jetzt durch und werde zum Meisterkoch!</v-card-title>
+  <v-btn rounded="xl" class="ms-3 my-5" to="/register" color="primary" > Melde dich jetzt an </v-btn>
 
 </v-card>
-  <h2 class="text-h4 text-center mb-4" color="primary" ></h2>
+  <h2 class="text-h4 text-center mb-4" :style="{ color: __colors.primary }"></h2>
 
   </v-sheet>
 
@@ -206,15 +206,14 @@ const isHovering= ref(false)
   width: 90%; /* Adjust the width as needed */
 }
 
-/*
 
+/*
 .background{
  background: rgb(120,134,144);
   background: linear-gradient(180deg, rgba(120,134,144,1) 0%, rgba(74,82,92,1) 50%, rgba(16,17,18,1) 100%);
   background: rgb(159,163,166);
 background: linear-gradient(180deg, rgba(159,163,166,1) 0%, rgba(89,97,106,1) 50%, rgba(16,17,18,1) 100%);
 }*/
-
 .card-background{
 
 }
@@ -226,9 +225,5 @@ background: linear-gradient(180deg, rgba(159,163,166,1) 0%, rgba(89,97,106,1) 50
 }
 .luftig {
   letter-spacing: 0.5em;
-}
-.button{
-  background: rgb(251,231,194);
-  background: linear-gradient(82deg, rgba(251,231,194,1) 0%, rgba(207,129,73,1) 32%, rgba(167,57,6,1) 100%);
 }
 </style>
