@@ -21,7 +21,7 @@ const isHovering= ref(false)
           Cooking
         </div>
         <div class="text-h4 text-white">
-          Acedemy
+          Academy
         </div>
       </div>
       </v-carousel-item>
@@ -148,7 +148,7 @@ const isHovering= ref(false)
   <div>
   <v-sheet class="container d-flex  flex wrap justify-center mt-10 mb-10 elevation-0 align-center bg-brown-lighten-5" width="100%">
 <v-card class="bg-white text-center mx-auto" width="99%" >
-  <v-card-title class="text-h4 my-3" :style="{ color: __colors.primary }" >Starte Jetzt durch und werde zum Meisterkoch!</v-card-title>
+  <v-card-title class="text-h4 my-3" :style="{ color: __colors.primary }" >Starte jetzt durch und werde zum Meisterkoch!</v-card-title>
   <v-btn rounded="xl" class="ms-3 my-5" to="/register" color="primary" > Melde dich jetzt an </v-btn>
 
 </v-card>
