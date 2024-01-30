@@ -5,7 +5,8 @@ import vue from '@vitejs/plugin-vue'
 import vuetify from "vite-plugin-vuetify";
 
 const colors = {
-  primary: '#cb5400',
+  primary: '#b13f13',
+  secondary: '#37474F'
 
   // ... weitere Farbdefinitionen
 };

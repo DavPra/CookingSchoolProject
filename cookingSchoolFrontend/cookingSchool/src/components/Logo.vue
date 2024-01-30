@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <v-container class="logo">
+  <v-container class="logo " >
     <img alt="CookingSchool Banner" class="item" src="@/assets/LogoCookingSchoolTransparent.png"/>
   </v-container>
 </template>

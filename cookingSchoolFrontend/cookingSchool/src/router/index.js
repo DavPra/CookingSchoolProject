@@ -16,6 +16,7 @@ import UserAboutView from '../views/user/UserAboutView.vue'
 import LoginView from "../views/guest/LoginView.vue";
 import AdminHomeView from "@/views/admin/AdminHomeView.vue";
 import AdminCourseUserView from "@/views/admin/AdminCourseUserView.vue";
+import HomeView1 from "@/views/guest/HomeView1.vue";
 import jwtDecode from "jwt-decode";
 
 function isLoggedIn() {
@@ -116,6 +117,10 @@ const routes = [
         {
           path: '',
           component: HomeView
+        },
+        {
+          path: 'i',
+          component: HomeView1
         },
         {
           path: 'about',

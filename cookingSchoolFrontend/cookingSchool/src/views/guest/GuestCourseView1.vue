@@ -39,9 +39,6 @@ showCourses();
   <HeaderIcon></HeaderIcon>
 
 
-  <div class="mt-5">
-    <NextCourses/>
-  </div>
 
 
 
@@ -49,7 +46,8 @@ showCourses();
   <div class="bg-brown-lighten-5 mb-10">
     <v-sheet class="m-6  justify-center text-center elevation-0 bg-brown-lighten-5" elevation="3" width="100%">
       <div class="py-5">
-        <h1 class="text-h4  py-5  mb-3 ">Was dich erwartet!</h1>
+        <h1 class="text-h4  py-5  mb-3 ">Let´s cook together!</h1>
+        <h2 class="text-h5 mb-4">Was ist alles inkludiert?</h2>
       </div>
     </v-sheet>
 
@@ -81,10 +79,13 @@ showCourses();
     </div>
   </div>
 
+  <div>
+    <NextCourses/>
+  </div>
 
 
 
-  <v-sheet class="">
+  <v-sheet class="bg-brown-lighten-5">
     <div class="mx-2 my-2 px-2 py-2">
       <h2 class="text-h4 ">Alle unser Kurse auf einen Blick:</h2>
     </div>

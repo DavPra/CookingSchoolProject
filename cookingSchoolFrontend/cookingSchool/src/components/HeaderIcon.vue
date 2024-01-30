@@ -5,6 +5,7 @@
     <header class="header">
     <img alt="CookingSchool Banner" class="banner" src="@/assets/CookingAcademyBanner.svg"/>
   </header>
+
 </template>
 
 <style scoped>
@@ -20,4 +21,5 @@
   margin:0;
   display: flex;
 }
+
 </style>
