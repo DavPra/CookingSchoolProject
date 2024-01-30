@@ -78,7 +78,7 @@ export const useCourseStore = defineStore('course', {
             const userData = {
                 userId: userCoursesResponse.data.userId,
                 firstname: userCoursesResponse.data.firstname,
-                lastname: userCoursesResponse.lastname,
+                lastname: userCoursesResponse.data.lastname,
                 courses: userCoursesResponse.data.courses,
                 recipes: userCoursesResponse.data.recipes
             };

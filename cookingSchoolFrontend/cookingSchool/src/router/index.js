@@ -16,91 +16,118 @@ import UserAboutView from '../views/user/UserAboutView.vue'
 import LoginView from "../views/guest/LoginView.vue";
 import AdminHomeView from "@/views/admin/AdminHomeView.vue";
 import AdminCourseUserView from "@/views/admin/AdminCourseUserView.vue";
+import jwtDecode from "jwt-decode";
+
+function isLoggedIn(to) {
+    if(!window.localStorage.getItem('accessToken')) {
+        router.push('/login');
+    } else {
+        return true;
+    }
+}
+
+function isAdmin(to) {
+    const token = window.localStorage.getItem('accessToken');
+    const decodedToken = jwtDecode(window.localStorage.getItem('accessToken', token));
+    if(decodedToken.admin === true) {
+        return true;
+    } else {
+        router.push('/user/courses');
+    }
+
+}
 
 const routes = [
     {
-      path: '/user',
-      component: UserLayout,
-      children: [
-        {
-          path: 'profile',
-          component: ProfileView
-        },
-        {
-          path: 'courses',
-          component: UserCourseView
-        },
-        {
-          path: 'recipes',
-          component: RecipeView
-        },
-        {
-          path: 'about',
-          component: UserAboutView
-        }
-      ]
+        path: '/user',
+        component: UserLayout,
+        children: [
+            {
+                path: 'profile',
+                component: ProfileView,
+                beforeEnter: [isLoggedIn]
+            },
+            {
+                path: 'courses',
+                component: UserCourseView,
+                beforeEnter: [isLoggedIn]
+            },
+            {
+                path: 'recipes',
+                component: RecipeView,
+                beforeEnter: [isLoggedIn]
+            },
+            {
+                path: 'about',
+                component: UserAboutView,
+                beforeEnter: [isLoggedIn]
+            }
+        ]
     },
     {
-      path: '/admin',
-      component: AdminLayout,
-      children: [
-        {
-          path: '',
-          component: AdminHomeView
-        },
-        {
-          path: 'courses',
-          component: AdminCourseView
-        },
-        {
-          path: 'recipes',
-          component: AdminRecipeView
-        },
-        {
-          path: 'users',
-          component: AdminUserView
-        },
-        {
-          path: 'courseUserView/:courseId',
-          name: 'adminCourseUserView',
-          component: AdminCourseUserView,
-          props: true
-        },
-
-
-      ]
+        path: '/admin',
+        component: AdminLayout,
+        children: [
+            {
+                path: '',
+                component: AdminHomeView,
+                beforeEnter: [isLoggedIn, isAdmin]
+            },
+            {
+                path: 'courses',
+                component: AdminCourseView,
+                beforeEnter: [isLoggedIn, isAdmin]
+            },
+            {
+                path: 'recipes',
+                component: AdminRecipeView,
+                beforeEnter: [isLoggedIn, isAdmin]
+            },
+            {
+                path: 'users',
+                component: AdminUserView,
+                beforeEnter: [isLoggedIn, isAdmin]
+            },
+            {
+                path: 'courseUserView/:courseId',
+                name: 'adminCourseUserView',
+                component: AdminCourseUserView,
+                props: true,
+                beforeEnter: [isLoggedIn, isAdmin]
+            },
+        ]
     },
     {
-      path: '',
-      component: GuestLayout,
-      children: [
-        {
-          path: '',
-          component: HomeView
-        },
-        {
-          path: 'about',
-          component: AboutView
-        },
-        {
-          path: 'register',
-          component: RegistrationView
-        },
-        {
-          path: 'courses',
-          component: GuestCourseView
-        },
-        {
-          path: 'login',
-          component: LoginView
-        }
-      ]
+        path: '',
+        component: GuestLayout,
+        children: [
+            {
+                path: '',
+                component: HomeView
+            },
+            {
+                path: 'about',
+                component: AboutView
+            },
+            {
+                path: 'register',
+                component: RegistrationView
+            },
+            {
+                path: 'courses',
+                component: GuestCourseView
+            },
+            {
+                path: 'login',
+                component: LoginView
+            }
+        ]
     }
-  ]
+]
 
 const router = createRouter({
-  routes,
-  history: createWebHistory()
+    routes,
+    history: createWebHistory()
 })
 
 export {router}

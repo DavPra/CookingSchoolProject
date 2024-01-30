@@ -4,7 +4,7 @@ import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useCourseStore } from "@/stores/CourseStore.js";
 import { useAuthStore } from "@/stores/AuthStore.js";
-import jwtdecode from "jwt-decode";
+import jwtDecode from "jwt-decode";
 
 const courseStore = useCourseStore()
 const course = defineProps(['courseTitle','startDate','description','teacher','courseId'])
@@ -37,13 +37,12 @@ async function bookCourse() {
   if(!window.localStorage.getItem('accessToken')) {
     await router.push('/login');
   } else {
-    decodedUserId = jwtdecode(localStorage.getItem("accessToken")).userId;
+    decodedUserId = jwtDecode(localStorage.getItem("accessToken")).userId;
     console.log(decodedUserId);
     await courseStore.bookCourse(decodedUserId, courseId);
     console.log(courses.courseId);
   }
 }
-
 </script>
 
 <template>
@@ -66,7 +65,7 @@ async function bookCourse() {
 
           <v-spacer></v-spacer>
 
-          <v-btn 
+          <v-btn
           :icon="show ? 'mdi-chevron-up' : 'mdi-chevron-down'"
           @click="show = !show">
           </v-btn>
@@ -77,7 +76,7 @@ async function bookCourse() {
             <v-divider></v-divider>
             <v-card-text>{{description}}</v-card-text>
           <v-btn @click="bookCourse"
-          variant="text" 
+          variant="text"
           color="primary">
           Buchen
           </v-btn>
@@ -87,3 +86,4 @@ async function bookCourse() {
       </v-card>
 </div>
 </template>
+
