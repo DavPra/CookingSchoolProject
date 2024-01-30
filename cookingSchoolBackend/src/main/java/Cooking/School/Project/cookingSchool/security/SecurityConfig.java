@@ -17,12 +17,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.security.web.util.matcher.RegexRequestMatcher;
 
 
 
-    @Configuration
+
+@Configuration
     @EnableWebSecurity
     @EnableMethodSecurity
 
@@ -40,10 +39,9 @@ import org.springframework.security.web.util.matcher.RegexRequestMatcher;
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
             http.csrf().disable()
                     .authorizeRequests()
-
                     .antMatchers("/courses/**", "/registration/**", "/authenticate/**").permitAll() // Erlaubt den Zugriff auf /course/** und /registration/**
-                   .antMatchers("/admin/**").hasAuthority("ADMIN") // Zugriff nur für Benutzer mit der Autorität "ADMIN"
-                    .antMatchers("/users/**").hasAuthority("!ADMIN")
+                    .antMatchers("/admin/**").hasAuthority("ADMIN") // Zugriff nur für Benutzer mit der Autorität "ADMIN"
+                     .antMatchers("/users/**").hasAnyAuthority("ADMIN", "APPUSER")
                    //.anyRequest().permitAll() // Erlaubt den Zugriff auf alle URLs
                     .anyRequest().authenticated()
                     .and()

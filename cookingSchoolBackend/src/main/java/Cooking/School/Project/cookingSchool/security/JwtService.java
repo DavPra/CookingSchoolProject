@@ -66,7 +66,7 @@ public class JwtService {
     }
 
 
-    public String generateToken(String userName){
+    /*public String generateToken(String userName){
 
         final User user = appUserRepository.findByUsername(userName);
 
@@ -77,6 +77,22 @@ public class JwtService {
         claims.put("admin", user.isAdmin());
         String token = createToken(claims,userName);
         logger.info("token generated");
+        return token;
+    }*/
+    public String generateToken(String userName) {
+        final User user = appUserRepository.findByUsername(userName);
+
+        logger.info("Try to generate token");
+
+        Map<String, Object> claims = new HashMap<>(); // Daten zum Mitschicken
+        claims.put("userId", user.getUserId());
+        claims.put("username", user.getUsername());
+
+        // Hinzufügen der Rolle basierend auf isAdmin
+        claims.put("role", user.isAdmin() ? "ADMIN" : "APPUSER");
+
+        String token = createToken(claims, userName);
+        logger.info("Token generated");
         return token;
     }
 

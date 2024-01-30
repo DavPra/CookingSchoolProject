@@ -39,22 +39,40 @@ showCourses();
   <HeaderIcon></HeaderIcon>
 
 
-    <div class="container d-flex mt-5 justify-center" >
-      <v-sheet class="m-6 p-4" elevation="3">
-        <h1 class="font-weight-medium mb-3 ">Dein Erlebnis bei uns</h1>
-        <h2 class="mb-4">Was ist alles inkludiert?</h2>
 
-        <ul class="list-disc pl-6">
-          <li>Mehrgängiges Menü, wir kochen 3 bis 4 Speisen</li>
-          <li>Jeder Teilnehmer bekommt die super duper tollen Rezepte</li>
-          <li>Unsere Zutaten sind biologisch, regional und saisonal</li>
-          <li>ALLE Getränke</li>
-        </ul>
-      </v-sheet>
-    </div>
 
   <div>
     <NextCourses/>
+  </div>
+
+
+
+  <div>
+    <v-sheet class="m-6 p-4 justify-center text-center elevation-0" elevation="3" width="100%" >
+      <h1 class="font-weight-medium mb-3 ">Dein Erlebnis bei uns</h1>
+      <h2 class="mb-4">Was ist alles inkludiert?</h2>
+    </v-sheet>
+
+    <v-sheet class="d-flex mx-4 mb-6 justify-lg-space-evenly align-center flex-wrap">
+      <v-card class="my-5 py-3 bg-brown-lighten-5" variant="tonal">
+        <v-card-title>Mehrgäniges Menü</v-card-title>
+        <v-card-subtitle>wir kochen 3 bis 4 Speisen</v-card-subtitle>
+      </v-card>
+      <v-card class="my-5 py-3 bg-brown-lighten-5" variant="tonal">
+        <v-card-title>Persöhnliche Rezepte</v-card-title>
+        <v-card-subtitle>Jeder Teilnehmer bekommt die super duper tollen Rezepte</v-card-subtitle>
+      </v-card >
+      <v-card class="my-5 py-3 bg-brown-lighten-5" variant="tonal">
+        <v-card-title>Beste Qualität</v-card-title>
+        <v-card-subtitle>Unsere Zutaten sind biologisch, regional und saisonal</v-card-subtitle>
+      </v-card>
+      <v-card class="my-5 py-3 bg-brown-lighten-5" variant="tonal">
+        <v-card-title>All Inklusiv</v-card-title>
+        <v-card-subtitle>Alle Getränke sind inkludiert</v-card-subtitle>
+      </v-card>
+    </v-sheet>
+
+
   </div>
 
 

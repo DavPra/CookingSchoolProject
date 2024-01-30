@@ -13,13 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
-//@PreAuthorize("hasAuthority('APPUSER')")
+
 @RestController
 public class UserController {
 
@@ -31,12 +32,14 @@ public class UserController {
     private RecipeService recipeService;
 
 
+    @PreAuthorize("hasAuthority('APPUSER')")
+
     @GetMapping("/users/{id}")
     public ResponseEntity<UserResponse> getUserById(@PathVariable Long id){
             UserResponse userResponse = userService.getUserById(id);
             return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
-
+    @PreAuthorize("hasAuthority('APPUSER')")
     @DeleteMapping("/users/{id}")
     public ResponseEntity<?> deleteUserById(@PathVariable Long id){
             userService.deleteUserById(id);
@@ -49,6 +52,7 @@ public class UserController {
      * @param updatedUser JSON - in the requestbody
      * @return
      */
+    @PreAuthorize("hasAuthority('APPUSER')")
     @PutMapping("/users/{userId}")
     public ResponseEntity<?> updateUser(
             @PathVariable Long userId, @RequestBody User updatedUser){
@@ -56,12 +60,13 @@ public class UserController {
             return new ResponseEntity<>("User updated successfully", HttpStatus.OK);
 
     }
-
+    @PreAuthorize("hasAuthority('APPUSER')")
     @PostMapping("/users/{userId}/book-course/{courseId}")
     public ResponseEntity<?> bookCourse(@PathVariable Long userId, @PathVariable Long courseId) {
         userService.bookCourse(userId, courseId);
         return ResponseEntity.ok("Course booked successfully");
     }
+
 
 
     @PostMapping("/registration")

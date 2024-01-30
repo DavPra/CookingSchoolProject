@@ -103,7 +103,7 @@ const isHovering= ref(false)
          Tauchen Sie ein in die Welt der Aromen und entdecken Sie die Freude am Kochen!
        </v-card-text>
 
-      <v-btn class="ms-3" rounded="xl" to="/about"  :style="{ color: __colors.primary }" >Erfahre mehr</v-btn>
+      <v-btn class="ms-3" color="primary" rounded="xl" to="/about"  :style="{ color: __colors.primary }" >Erfahre mehr</v-btn>
 
     </v-card>
 
@@ -137,7 +137,7 @@ const isHovering= ref(false)
         der mit Leidenschaft und Kreativität die Vielfalt der kulinarischen Welt erkundet."
       </v-card-text>
 
-        <v-btn rounded="xl" class="ms-3" to="/courses" varaiant="tonal"  :style="{ color: __colors.primary } ">zu unseren Kursen</v-btn>
+        <v-btn rounded="xl" color="primary" class="ms-3" to="/courses" varaiant="tonal"  :style="{ color: __colors.primary } ">zu unseren Kursen</v-btn>
 
 
     </v-sheet>
@@ -148,8 +148,8 @@ const isHovering= ref(false)
   <div>
   <v-sheet class="container d-flex  flex wrap justify-center mt-10 mb-10 elevation-0 align-center bg-brown-lighten-5" width="100%">
 <v-card class="bg-white text-center mx-auto" width="99%" >
-  <v-card-title class="text-h4 my-3" :style="{ color: __colors.primary }" >Starte Jetzt durch und werde zum Meisterkoch</v-card-title>
-  <v-btn rounded="xl" class="ms-3 my-5" to="/register"  variant="tonal" :style="{ color: __colors.primary }"> Melde dich jetzt an </v-btn>
+  <v-card-title class="text-h4 my-3" :style="{ color: __colors.primary }" >Starte Jetzt durch und werde zum Meisterkoch!</v-card-title>
+  <v-btn rounded="xl" class="ms-3 my-5" to="/register" color="primary" > Melde dich jetzt an </v-btn>
 
 </v-card>
   <h2 class="text-h4 text-center mb-4" :style="{ color: __colors.primary }"></h2>
