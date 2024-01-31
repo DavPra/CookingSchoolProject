@@ -38,7 +38,8 @@ async function bookCourse() {
     await router.push('/login');
   } else {
     decodedUserId = jwtdecode(localStorage.getItem("accessToken")).userId;
-    console.log(decodedUserId);
+    console.log("userID= " + decodedUserId);
+    console.log("courseID= " + courseId);
     await courseStore.bookCourse(decodedUserId, courseId);
     console.log(courses.courseId);
   }
