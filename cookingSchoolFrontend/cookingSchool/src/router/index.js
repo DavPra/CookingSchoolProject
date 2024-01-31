@@ -29,7 +29,7 @@ function isLoggedIn() {
 function isAdmin() {
   const token = window.localStorage.getItem('accessToken');
   const decodedToken = jwtDecode(token);
-  if (decodedToken.role === 'ADMIN') {
+  if (decodedToken.roles === 'ADMIN') {
     return true;
   } else {
     router.push('/user/courses');

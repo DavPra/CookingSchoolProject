@@ -18,7 +18,7 @@ const courses = computed(() => courseStore.courses);
 
 
 onMounted(() => {
-  showCourses();
+  ShowCourses();
   console.log('mounted');
 });
 
@@ -27,10 +27,10 @@ const err = false;
 
 
 async function ShowCourses() {
-  await courseStore.showCourses();
+  await courseStore.showGuestCourses();
 }
 
-showCourses();
+ShowCourses();
 
 </script>
 

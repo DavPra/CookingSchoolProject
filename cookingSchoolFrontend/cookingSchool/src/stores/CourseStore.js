@@ -10,7 +10,13 @@ export const useCourseStore = defineStore('course', {
     actions: {
         async showCourses() {
             try {
-                const courseResponse = await axios.get('http://localhost:8082/admin/courses');
+                const courseResponse = await axios.get('http://localhost:8082/admin/courses', {
+                    headers: {
+                        'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
+                    }
+                }
+                
+                );
                 this.courses = courseResponse.data;
                 console.log('Courses loaded', this.courses);
             } catch (error) {
@@ -70,7 +76,11 @@ export const useCourseStore = defineStore('course', {
         console.log('store' + this.userCourses);
         
         console.log("UserId " + userId);
-        const userCoursesResponse = await axios.get('http://localhost:8082/users/'+userId);
+        const userCoursesResponse = await axios.get('http://localhost:8082/users/'+userId, {
+            headers: {
+                'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
+            }
+        });
         
         console.log("Array mit Courses " + userCoursesResponse);
 
