@@ -12,12 +12,11 @@ export const useUserStore = defineStore('user', {
         //in AdminUserView --- ADMIN
         async creatUser(newUser) {
             console.log(newUser)
-            const config = {
+            const userResponse = await axios.post(ApiUrl('/admin/users'), newUser, {
                 headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+                    'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
                 }
-            }
-            const userResponse = await axios.post(ApiUrl('/admin/users'), newUser, config)
+            })
             this.users.push(userResponse.data)
         },
 
@@ -40,12 +39,11 @@ export const useUserStore = defineStore('user', {
 
         //in AdminHomeView, AdminUserView, AdminCourseUserView --- ADMIN
         async showUsers() {
-            const config = {
+            const userResponse = await axios.get(ApiUrl('/admin/users'), {
                 headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+                    'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
                 }
-            }
-            const userResponse = await axios.get(ApiUrl('/admin/users'), config);
+            });
             console.log(userResponse.data);
             //this.users = userResponse.data;
             this.users = userResponse.data
@@ -58,12 +56,11 @@ export const useUserStore = defineStore('user', {
 
         // in ProfileView, AdminHomeView --- APPUSER, ADMIN
         async getUserData(userId) {
-            const config = {
+            const response = await axios.get(ApiUrl(`/users/${userId}`), {
                 headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+                    'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
                 }
-            }
-            const response = await axios.get(ApiUrl(`/users/${userId}`), config);
+                });
             return response.data;
         },
 
@@ -72,12 +69,11 @@ export const useUserStore = defineStore('user', {
             if ('userId' in updatedUserDto) {
                 delete updatedUserDto.userId;
             }
-            const config = {
+            await axios.put(ApiUrl(`/users/${userId}`), updatedUserDto, {
                 headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+                    'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
                 }
-            }
-            await axios.put(ApiUrl(`/users/${userId}`), updatedUserDto, config);
+            });
             const user = this.users.find(user => user.userId === userId);
             if (user >= 0) {
                 this.users.splice(user, 1, {
@@ -90,12 +86,11 @@ export const useUserStore = defineStore('user', {
         //in AdminUserView, ProfileView(user) --- ADMIN, APPUSER
         async deleteUser(userId) {
             console.log('userId in deleteUser der UserStore:', userId)
-            const config = {
+            await axios.delete(ApiUrl(`/users/${userId}`), {
                 headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+                    'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
                 }
-            }
-            await axios.delete(ApiUrl(`/users/${userId}`), config);
+            });
             await this.showUsers()
         }
     }

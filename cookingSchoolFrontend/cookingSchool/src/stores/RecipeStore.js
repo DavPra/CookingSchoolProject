@@ -24,12 +24,11 @@ export const useRecipeStore = defineStore('recipe', {
                 };
                 const courseIds = await this.getCourseIds();
                 console.log('storeData', data)
-                const config = {
+                const recipeResponse = await axios.post(ApiUrl('/admin/addRecipe'), recipeData, {
                     headers: {
-                        Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+                        'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
                     }
-                }
-                const recipeResponse = await axios.post(ApiUrl('/admin/addRecipe'), recipeData, config);
+                });
                 console.log(recipeResponse.data);
                 const createdRecipe = recipeResponse.data;
                 console.log('store recipe created!', recipeResponse.data);
@@ -43,12 +42,11 @@ export const useRecipeStore = defineStore('recipe', {
         async showRecipes() {
             try {
                 this.recipes = [];
-                const config = {
+                const recipeResponse = await axios.get(ApiUrl('/admin/getAllRecipes'), {
                     headers: {
-                        Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+                        'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
                     }
-                }
-                const recipeResponse = await axios.get(ApiUrl('/admin/getAllRecipes'), config);
+                });
                 console.log(recipeResponse.data);
                 // this.recipes = recipeResponse.data.recipes
                 this.recipes = recipeResponse.data
@@ -64,12 +62,11 @@ export const useRecipeStore = defineStore('recipe', {
         async showUserRecipes(userId) {
             console.log('store' + this.userRecipes);
             try {
-                const config = {
+                const userRecipeResponse = await axios.get(ApiUrl(`/users/${userId}`), {
                     headers: {
-                        Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+                        'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
                     }
-                }
-                const userRecipeResponse = await axios.get(ApiUrl(`/users/${userId}`), config);
+                });
                 console.log(userRecipeResponse.data);
                 this.recipes = userRecipeResponse.data;
                 console.log('userRecipes geladen', userRecipeResponse.data);
@@ -88,24 +85,22 @@ export const useRecipeStore = defineStore('recipe', {
 
         //in AdminRecipeView --- ADMIN
         async updateRecipe(recipeId, updatedRecipe) {
-            const config = {
+            await axios.put(ApiUrl(`/admin/updateRecipe/${recipeId}`), updatedRecipe, {
                 headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+                    'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
                 }
-            }
-            await axios.put(ApiUrl(`/admin/updateRecipe/${recipeId}`), updatedRecipe, config)
+            })
             console.log('recipe updated')
             this.showRecipes()
         },
 
         //in AdminRecipeView --- ADMIN
         async deleteRecipe(recipeId) {
-            const config = {
+            await axios.delete(ApiUrl(`/admin/recipe/${recipeId}`), {
                 headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+                    'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
                 }
-            }
-            await axios.delete(ApiUrl(`/admin/recipe/${recipeId}`), config)
+            })
             console.log('recipe deleted', recipeId)
             this.showRecipes()
         },

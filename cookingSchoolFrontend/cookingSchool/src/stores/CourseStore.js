@@ -24,12 +24,11 @@ export const useCourseStore = defineStore('course', {
                     price: data.price
                 };
                 console.log('store 2', data)
-                const config = {
+                const courseResponse = await axios.post(ApiUrl('/admin/courses'), courseData, {
                     headers: {
-                        Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+                        'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
                     }
-                }
-                const courseResponse = await axios.post(ApiUrl('/admin/courses'), courseData, config);
+                });
                 const createdCourse = courseResponse.data;
                 this.courses.push(courseResponse.data);
                 console.log('Course created', courseResponse.data);
@@ -54,12 +53,11 @@ export const useCourseStore = defineStore('course', {
         async showUserCourses(userId) {
             console.log('store' + this.userCourses);
             console.log("UserId " + userId);
-            const config = {
+            const userCoursesResponse = await axios.get(ApiUrl(`/users/${userId}`), {
                 headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+                    'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
                 }
-            }
-            const userCoursesResponse = await axios.get(ApiUrl(`/users/${userId}`), config);
+            });
             console.log("Array mit Courses " + userCoursesResponse);
             const userData = {
                 userId: userCoursesResponse.data.userId,
@@ -73,12 +71,11 @@ export const useCourseStore = defineStore('course', {
 
         //in AdminCourseUserView --- ADMIN
         async getCourseById(courseId) {
-            const config = {
+            const courseByIdResponse = await axios.get(ApiUrl(`/admin/courses/${courseId}`), {
                 headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+                    'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
                 }
-            }
-            const courseByIdResponse = await axios.get(ApiUrl(`/admin/courses/${courseId}`), config);
+            });
             console.log('API response:', courseByIdResponse.data);
             return courseByIdResponse.data
         },
@@ -86,12 +83,11 @@ export const useCourseStore = defineStore('course', {
         //in AdminCourseView --- ADMIN
         async updateCourse(courseId, updatedCourse) {
             try {
-                const config = {
+                const courseResponse = await axios.put(ApiUrl(`/admin/courses/${courseId}`), updatedCourse, {
                     headers: {
-                        Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+                        'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
                     }
-                }
-                const courseResponse = await axios.put(ApiUrl(`/admin/courses/${courseId}`), updatedCourse, config);
+                });
                 const index = this.courses.findIndex(course => course.courseId === courseId);
                 if (index !== -1) {
                     this.courses[index] = courseResponse.data;
@@ -107,24 +103,22 @@ export const useCourseStore = defineStore('course', {
         //in CourseCard --- APPUSER
         async bookCourse(courseId, userId) {
             console.log('token= ' + localStorage.getItem('accessToken'));
-            const config = {
+            await axios.put(ApiUrl(`/users/${courseId}/book-course/${userId}`), {
                 headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+                    'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
                 }
-            }
-            await axios.put(ApiUrl(`/users/${courseId}/book-course/${userId}`), config)
+            })
             console.log('Course booked')
             await this.showCourses()
         },
 
         //in AdminCourseView --- ADMIN
         async deleteCourse(courseId) {
-            const config = {
+            const deleteResponse = await axios.delete(ApiUrl(`/admin/courses/${courseId}`), {
                 headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+                    'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
                 }
-            }
-            const deleteResponse = await axios.delete(ApiUrl(`/admin/courses/${courseId}`), config);
+            });
             console.log('Course deleted', courseId, deleteResponse.data);
             await this.showCourses();
         }
