@@ -87,7 +87,13 @@ export const useCourseStore = defineStore('course', {
         console.log('store' + this.userCourses);
         
         console.log("UserId " + userId);
-        const userCoursesResponse = await axios.get('http://localhost:8082/users/'+userId);
+
+
+        const userCoursesResponse = await axios.get('http://localhost:8082/users/'+userId, {
+            headers: {
+                'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
+            }
+            });
         
         console.log("Array mit Courses " + userCoursesResponse);
 
