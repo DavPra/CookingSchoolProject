@@ -32,6 +32,10 @@ function validateForm() {
     errorFeedback.value = 'Titel ist erforderlich';
     return false;
   }
+  if (!courseIds.value.trim()) {
+    errorFeedback.value = 'Kurs ist erforderlich';
+    return false;
+  }
 
   // If all validations pass
   return true;
