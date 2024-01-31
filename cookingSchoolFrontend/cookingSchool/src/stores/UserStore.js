@@ -21,7 +21,6 @@ export const useUserStore = defineStore('user', {
         },
 
         //in AdminUserView, AdminCourseUserView --- ADMIN
-        //TODO: Kathy - Stella fragen, ob das so richtig ist mit config mitgeben
         async addUserToCourse(userId, courseId) {
             console.log('store userId', userId)
             const config = {
@@ -64,22 +63,12 @@ export const useUserStore = defineStore('user', {
             return response.data;
         },
 
-        // in ProfileView, AdminHomeView --- APPUSER, ADMIN
-        async updateUser(userId, updatedUserDto) {
-            if ('userId' in updatedUserDto) {
-                delete updatedUserDto.userId;
-            }
-            await axios.put(ApiUrl(`/users/${userId}`), updatedUserDto, {
-                headers: {
-                    'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
-                }
-            });
-            const user = this.users.find(user => user.userId === userId);
-            if (user >= 0) {
-                this.users.splice(user, 1, {
-                    userId: userId,
-                    ...updatedUserDto
-                })
+        async updateUser(userId, user) {
+            try {
+                const updateUser = await axios.put(`http://localhost:8082/admin/users/${userId}`, user, config)
+
+            } catch (error) {
+                console.error('Fehler beim Aktualisieren des Benutzers:', error);
             }
         },
 

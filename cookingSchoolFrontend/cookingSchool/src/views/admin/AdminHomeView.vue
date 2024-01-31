@@ -1,12 +1,16 @@
 <script setup>
 import {useUserStore} from "@/stores/UserStore";
 import {useCourseStore} from "@/stores/CourseStore";
+import {useUserStoreUpdate} from "@/stores/UserStoreforUpdate.js";
 import {onMounted, ref} from "vue";
 import Diagramm from "@/components/Diagramm.vue";
 import ProfileForm from "@/components/ProfileForm.vue";
 import jwtDecode from "jwt-decode";
+import axios from "axios";
+import {ApiUrl} from "@/helper/ApiHelper";
 
 const userStore = useUserStore()
+const updateStore = useUserStoreUpdate()
 const userCount = ref()
 const courseStore = useCourseStore()
 const courseCount = ref()
@@ -58,7 +62,11 @@ const fetchNextCourses = async () => {
 
 async function getUserData() {
   try {
-    const response = await userStore.getUserData(userId);
+    const response = await axios.get(ApiUrl(`/users/${userId}`), {
+      headers: {
+        'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
+      }
+    });
     user.value = response.data;
   } catch (error) {
     console.error('Error fetching user:', error);
@@ -68,7 +76,7 @@ async function getUserData() {
 async function updateUsers(updatedUserDto) {
   isProfileActionInProgress.value = true;
   try {
-    await userStore.updateUser(userId, updatedUserDto);
+    await updateStore.updateUser(userId, updatedUserDto);
     showEditDialog.value = false;
     await getUserData();
   } catch (err) {

@@ -1,10 +1,10 @@
 <script setup>
 import ProfileForm from '@/components/ProfileForm.vue';
 import { ref, onBeforeMount, onMounted } from 'vue';
-import { useUserStore } from '@/stores/UserStore.js';
+import { useUserStoreUpdate } from '@/stores/UserStoreforUpdate.js';
 import jwtDecode from 'jwt-decode';
 
-const userStore = useUserStore();
+const userStore = useUserStoreUpdate();
 
 const showEditDialog = ref(false);
 const isProfileActionInProgress = ref(false);
