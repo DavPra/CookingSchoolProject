@@ -36,12 +36,23 @@ public class UserService {
                 .orElseThrow(() -> new UserNotFoundException("User not found " +id));
         return UserResponse.fromUser(user);
     }
-
+    /*
+    public BasicUserResponse getUserById(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("User not found " + id));
+        return UserMapper.INSTANCE.toUserResponse(user);
+    }*/
     public void deleteUserById(Long id) {
-        if(id == null){
-            throw new PrimaryIdNullOrEmptyException("User Id is null or empty " +id);
+        if (id == null) {
+            throw new PrimaryIdNullOrEmptyException("User Id is null or empty " + id);
         }
-        userRepository.deleteById(id);
+        Optional<User> optionalUser = userRepository.findById(id);
+
+        if (optionalUser.isPresent()) {
+            userRepository.deleteById(id);
+        } else {
+            throw new UserNotFoundException("User not found with ID: " + id);
+        }
     }
 
 
@@ -66,6 +77,8 @@ public class UserService {
 
 
     }
+
+    /*
     @Transactional
     public User editUser(Long userId, User updatedUser) throws PrimaryIdNullOrEmptyException {
         if (userId == null) {
@@ -84,12 +97,14 @@ public class UserService {
         userRepository.save(existingUser);
 
         return existingUser;
-    }
+    }*/
 
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+
+
 
     @Transactional
     public void bookCourse(Long userId, Long courseId) {

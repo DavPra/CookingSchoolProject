@@ -40,7 +40,7 @@ public class AdminController {
     /**
      * POST method to create a new course in the admin panel
      * @param request containing the information for the course to be created
-     * @return Http Status 200 OK and a success message or 500 BadRequest and a message
+     * @return Http Status 200 OK and a success message or 500 BadRequest and a message or 404 not
      */
     //TODO required fields?
     @PostMapping("admin/courses")
@@ -145,15 +145,15 @@ public class AdminController {
 
 
     /**
-     * GET Method to get all Users
-     * @return a List of the UserRsponse  and HttpStatus 200 ok
+     * GET Method to get all Users from database and convert it to a List of User Responses
+     * @return a List of the UserResponse  and HttpStatus 200 ok
      */
     @GetMapping("/admin/users")
     public ResponseEntity<List<UserResponse>> getAllUsers(){
         List<User> users = userService.getAllUsers();
-        List<UserResponse> userResponses = users.stream()
-                .map(UserResponse::fromUser)
-                .collect(Collectors.toList());
+        List<UserResponse> userResponses = users.stream() //transformiert User in User Res Objects
+                .map(UserResponse::fromUser) // mapped durch user wendet es auf alle user an
+                .collect(Collectors.toList()); //sammelt die ergebnisse in einer Liste
         return new ResponseEntity<>(userResponses, HttpStatus.OK);
     }
 
@@ -185,7 +185,7 @@ public class AdminController {
     }
 //TODO da weiter
     /**
-     * Put Method to update an user
+     * Put Method to update a user
      * @param userId
      * @param updatedUser
      * @return HttpStatus 200 ok and a success message
@@ -202,20 +202,22 @@ public class AdminController {
         }
 
     }
+/*
 
     @Transactional
     @PutMapping("admin/users/editUser")
     public ResponseEntity<?> editUser(@RequestParam Long userId, @RequestBody User updatedUser) {
-        try {
-            userService.editUser(userId, updatedUser);
-            return new ResponseEntity<>("User updated successfully", HttpStatus.OK);
-        } catch (UserNotFoundException unfe) {
-            return new ResponseEntity<>(unfe.getMessage(), HttpStatus.NOT_FOUND);
-        } catch (PrimaryIdNullOrEmptyException pe) {
-            return new ResponseEntity<>(pe.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-    }
+        userService.editUser(userId, updatedUser);
+        return new ResponseEntity<>("User updated successfully", HttpStatus.OK);
 
+    }
+    */
+
+    /**
+     *  GET method to get user by id
+     * @param id
+     * @return HttpStatus 200 and the User or 404 Notfound
+     */
 
     @GetMapping("/admin/users/{id}")
     public ResponseEntity<UserResponse> getUserById(@PathVariable Long id){
@@ -224,7 +226,7 @@ public class AdminController {
     }
     @PostMapping("/admin/{userId}/book-course/{courseId}")
     public ResponseEntity<?> bookCourseAdmin(@PathVariable Long userId, @PathVariable Long courseId) {
-        userService.bookCourse(userId, courseId);
+        userService.bookCourseAdmin(userId, courseId);
         return ResponseEntity.ok("Course booked successfully");
     }
 

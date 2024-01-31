@@ -1,7 +1,7 @@
 package Cooking.School.Project.cookingSchool.entities;
 
 import Cooking.School.Project.cookingSchool.security.AUTHORITIES;
-import Cooking.School.Project.cookingSchool.security.CustomUserAuthority;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

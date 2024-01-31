@@ -37,6 +37,8 @@ public class CourseRequest {
 
     private Set<CourseTag> courseTags;
 
+
+
     /*public LocalDateTime getStartDateAsLocalDateTime(){
         if(this.startDate == null){
             return null;
