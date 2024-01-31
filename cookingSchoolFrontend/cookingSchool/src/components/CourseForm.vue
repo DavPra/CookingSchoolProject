@@ -24,7 +24,35 @@ const data = ref({
 
 })
 
-
+function validateForm() {
+  // Basic form validation
+  if (!courseTitle.value.trim()) {
+    errorFeedback.value = 'Titel ist erforderlich';
+    return false;
+  }
+  if (!description.value.trim()) {
+    errorFeedback.value = 'Beschreibung ist erforderlich';
+    return false;
+  }
+  if (!teacher.value.trim()) {
+    errorFeedback.value = 'Lehrer ist erforderlich';
+    return false;
+  }
+  if (!startDate.value.trim()) {
+    errorFeedback.value = 'Datum und Uhrzeit sind erforderlich';
+    return false;
+  }
+  if (!maxAttendants.value.trim()) {
+    errorFeedback.value = 'Teilnehmerzahl ist erforderlich';
+    return false;
+  }
+  if (!price.value.trim()) {
+    errorFeedback.value = 'Preis ist erforderlich';
+    return false;
+  }
+  // If all validations pass
+  return true;
+}
 
 onMounted(() => {
   console.log('CourseForm mounted');
@@ -36,12 +64,8 @@ async function createCourse() {
   console.log('createCourse function called');
   console.log('Original startDate:', data.value.startDate);
 
-  const isEmpty = Object.values(data.value).some(value => !value.trim());
-
-  if (isEmpty) {
-    alert('Form is empty');
-    console.log('Form is empty');
-    return
+  if (!validateForm()) {
+    return;
   }
 
   if (data.value.startDate instanceof Date && !isNaN(data.value.startDate.getTime())) {
