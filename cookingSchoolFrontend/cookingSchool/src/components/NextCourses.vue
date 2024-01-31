@@ -19,7 +19,7 @@ onMounted(() => {
 });
 
 async function ShowCourses() {
-  await courseStore.showCourses();
+  await courseStore.showGuestCourses();
 }
 </script>
 
