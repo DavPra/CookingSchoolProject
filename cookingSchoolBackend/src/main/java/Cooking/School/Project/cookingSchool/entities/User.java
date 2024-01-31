@@ -126,6 +126,7 @@ public class User implements UserDetails {
             authorities.add(new SimpleGrantedAuthority(AUTHORITIES.ADMIN.name()));
         }
 
+        System.out.println(authorities);
         return authorities;
     }
 }

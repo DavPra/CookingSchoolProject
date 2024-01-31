@@ -26,11 +26,11 @@ public class UserService {
     public UserService() {
     }
 
-
+/*
     public User addUser(User user) {
         userRepository.save(user);
         return user;
-    }
+    }*/
     /* war neu
     public User addUser(User user){
         Optional<User> existingUserByEmail = userRepository.findUserByEmail(user.getEmail());
