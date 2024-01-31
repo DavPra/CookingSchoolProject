@@ -2,7 +2,7 @@
 import {useRouter} from 'vue-router';
 import {ref} from 'vue';
 import axios from "axios";
-import {createApiUrl} from "@/helper/ApiHelper";
+import {ApiUrl} from "@/helper/ApiHelper";
 
 const router = useRouter();
 const firstname = ref('');
@@ -29,7 +29,7 @@ async function registerUser() {
     };
     console.log(userData);
     try {
-      const response = await axios.post(createApiUrl('/registration'), userData, {
+      const response = await axios.post(ApiUrl('/registration'), userData, {
         headers: {
           'Content-Type': 'application/json'
         }
