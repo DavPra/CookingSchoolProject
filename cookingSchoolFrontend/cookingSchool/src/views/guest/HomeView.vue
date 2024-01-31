@@ -13,8 +13,6 @@ const isHovering= ref(false)
     <v-carousel cycle interval="8000" height="700px">
       <v-carousel-item class="carousel-img"
         src="https://images.pexels.com/photos/8093877/pexels-photo-8093877.jpeg?auto=compress&cs=tinysrgb&w=600"
-        reverse-transition="fade-transition"
-        transition="fade-transition"
         cover
       > <div class="d-flex fill-height justify-center align-center flex-column">
         <div class="text-h1 font-weight-medium text-shades-white ">
@@ -28,8 +26,6 @@ const isHovering= ref(false)
       
       <v-carousel-item
         src="https://cdn.pixabay.com/photo/2016/11/19/12/44/burgers-1839090_960_720.jpg"
-        reverse-transition="fade-transition"
-        transition="fade-transition"
         cover
       >
         <div class="d-flex fill-height justify-center align-center flex-column">
@@ -44,8 +40,6 @@ const isHovering= ref(false)
 
       <v-carousel-item
         src="https://cdn.pixabay.com/photo/2021/02/08/07/39/chef-5993951_960_720.jpg"
-        reverse-transition="fade-transition"
-        transition="fade-transition"
         cover
       >
         <div class="d-flex fill-height justify-center align-center flex-column">
@@ -61,8 +55,6 @@ const isHovering= ref(false)
 
       <v-carousel-item
         src="https://images.pexels.com/photos/8136881/pexels-photo-8136881.jpeg?auto=compress&cs=tinysrgb&w=600"
-        reverse-transition="fade-transition"
-        transition="fade-transition"
         cover
       >
         <div class="d-flex fill-height justify-center align-center flex-column">
@@ -77,8 +69,6 @@ const isHovering= ref(false)
 
       <v-carousel-item
           src="https://images.pexels.com/photos/1398688/pexels-photo-1398688.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        reverse-transition="fade-transition"
-        transition="fade-transition"
         cover
       ></v-carousel-item>
 
