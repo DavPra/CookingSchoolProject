@@ -154,6 +154,12 @@ public class UserService {
             throw new MaxAttendantsReachedException(maxNumberOfAttendants);
         }
     }
+
+    /**
+     * register a new user
+     * @param user
+     * @return DuplicateKeyException If the email address or username is already registered.
+     */
     public User registration(User user){
         Optional<User> existingUserByEmail = userRepository.findUserByEmail(user.getEmail());
         Optional<User> existingUserByUsername = userRepository.findUserByUsername(user.getUsername());

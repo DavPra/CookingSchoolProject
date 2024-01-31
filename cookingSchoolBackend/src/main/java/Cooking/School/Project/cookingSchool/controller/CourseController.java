@@ -20,7 +20,11 @@ public class CourseController {
     @Autowired
     private CourseTagRepository courseTagRepository;
 
-
+//TODO da weiter
+    /**
+     * Get Method to get a Lsit of all Courses including recipes and tags
+     * @return
+     */
     @GetMapping("/courses")
     public ResponseEntity<List<CourseTagsRecipeResponse>> getAllCourses() {
         List<CourseTagsRecipeResponse> courses = courseService.getAllCourses();

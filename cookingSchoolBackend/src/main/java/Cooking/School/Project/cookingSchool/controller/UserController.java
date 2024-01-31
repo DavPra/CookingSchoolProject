@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+// PreAuthorized APPUser einzeln gesetzt
 @CrossOrigin(origins = "http://localhost:5173") //zur sicherheit
 @RestController
 public class UserController {
@@ -23,8 +24,9 @@ public class UserController {
     private RecipeService recipeService;
 
 
-    @PreAuthorize("hasAuthority('APPUSER')")
-/*
+
+
+/* für mapper
     @GetMapping("/users/{id}")
     public ResponseEntity<UserResponse> getUserById(@PathVariable Long id){
             UserResponse userResponse = userService.getUserById(id);
@@ -37,6 +39,7 @@ public class UserController {
      * @return User or 404 NotFound
      *
      */
+    @PreAuthorize("hasAuthority('APPUSER')")
     @GetMapping("/users/{id}")
     public UserResponse getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
@@ -69,6 +72,13 @@ public class UserController {
             return new ResponseEntity<>("User updated successfully", HttpStatus.OK);
 
     }
+
+    /**
+     * Post Method to book a Course for users
+     * @param userId
+     * @param courseId
+     * @return 200 ok, 404 notfound when course id or user id is not found or 500 bad request when max Attendants reached
+     */
     @PreAuthorize("hasAuthority('APPUSER')")
     @PostMapping("/users/{userId}/book-course/{courseId}")
     public ResponseEntity<?> bookCourse(@PathVariable Long userId, @PathVariable Long courseId) {
@@ -77,7 +87,11 @@ public class UserController {
     }
 
 
-
+    /**
+     * Post Method to register a user in the database
+     * @param user user data
+     * @return HttpStatus 200 ok and a success message 409 conflict and an error message
+     */
     @PostMapping("/registration")
     public ResponseEntity<?> registration(@RequestBody User user){
             userService.registration(user);

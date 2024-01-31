@@ -183,7 +183,7 @@ public class AdminController {
         userService.deleteUserById(id);
         return new ResponseEntity<>("User erfolgreich gelöscht", HttpStatus.OK);
     }
-//TODO da weiter
+
     /**
      * Put Method to update a user
      * @param userId
@@ -218,7 +218,6 @@ public class AdminController {
      * @param id
      * @return HttpStatus 200 and the User or 404 Notfound
      */
-
     @GetMapping("/admin/users/{id}")
     public ResponseEntity<UserResponse> getUserById(@PathVariable Long id){
         UserResponse userResponse = userService.getUserById(id);
