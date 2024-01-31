@@ -76,7 +76,7 @@ export const useCourseStore = defineStore('course', {
         console.log('courseId= ' + courseId);
         console.log('userId= ' + userId);
             console.log('token= ' + localStorage.getItem('accessToken'));
-        const bookCourseResponse = await axios.put('http://localhost:8082/users/'+courseId+'/book-course/'+userId,  {
+        const bookCourseResponse = await axios.post('http://localhost:8082/users/'+courseId+'/book-course/'+userId,  {}, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
             },
