@@ -1,7 +1,6 @@
 <script setup>
 
 import { useCourseStore } from "@/stores/CourseStore.js";
-import { createApiUrl } from "@/helper/ApiHelper.js";
 import { onMounted, ref, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import CourseCard from "@/components/CourseCard.vue";
