@@ -21,21 +21,21 @@ async function logout() {
 <template>
   <!-- Grundgerüst des Headers und Navbar für die Ansicht der Guests -->
   <HeaderIcon/>
-  <v-toolbar color="grey-darken-3" class="pa-2 mb-4"   density="comfortable" elevation="1" >
+  <v-toolbar color="bg-transparent" elevation="3" class="  bg-transparent" rounded >
     <v-toolbar-items>
-      <v-btn variant="plain" rounded="xl"   to="/admin">Dashboard</v-btn>
+      <v-btn variant="plain" to="/admin">Dashboard</v-btn>
     </v-toolbar-items>
     <v-spacer></v-spacer>
     <v-toolbar-items>
-      <v-btn variant="plain" rounded="xl"  to="/admin/courses">Kursverwaltung</v-btn>
+      <v-btn variant="plain" to="/admin/courses">Kursverwaltung</v-btn>
     </v-toolbar-items>
     <v-spacer></v-spacer>
     <v-toolbar-items>
-      <v-btn variant="plain" rounded="xl" to="/admin/recipes">Rezeptverwaltung</v-btn>
+      <v-btn variant="plain" to="/admin/recipes">Rezeptverwaltung</v-btn>
     </v-toolbar-items>
     <v-spacer></v-spacer>
     <v-toolbar-items>
-      <v-btn to="/admin/users">Userverwaltung</v-btn>
+      <v-btn variant="plain" to="/admin/users">Userverwaltung</v-btn>
     </v-toolbar-items>
     <v-spacer></v-spacer>
 
