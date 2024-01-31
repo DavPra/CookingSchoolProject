@@ -26,6 +26,16 @@ onMounted(async () => {
 
 });
 
+function validateForm() {
+  // Basic form validation
+  if (!title.value.trim()) {
+    errorFeedback.value = 'Titel ist erforderlich';
+    return false;
+  }
+
+  // If all validations pass
+  return true;
+}
 
 const loadCourses = async () => {
   try {
@@ -46,7 +56,7 @@ const addRecipe = async () => {
   try {
     console.dir(recipeData.value.selectedCourses);
     //const selectedCourseIds = recipeData.value.selectedCourses.map(course => course.courseId);
-
+    if (validateForm()) {
     let courseIds = [];
     courseIds.push(recipeData.value.selectedCourses);
 
@@ -62,10 +72,12 @@ const addRecipe = async () => {
     await recipeStore.addRecipe(recipeDataToSend);
     console.log('recipe created:', recipeDataToSend)
     await recipeStore.showRecipes();
+  }
   } catch (err) {
     console.error('Error creating recipe:', err);
   }
 }
+
 
 const addIngredientRow = () => {
   if (!recipeData.value.ingredients) {
