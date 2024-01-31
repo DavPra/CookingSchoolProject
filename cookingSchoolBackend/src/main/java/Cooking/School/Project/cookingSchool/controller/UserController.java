@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
-@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 public class UserController {
 
@@ -32,13 +31,13 @@ public class UserController {
     private RecipeService recipeService;
 
 
-    @PreAuthorize("hasAuthority({'APPUSER','ADMIN'})")
+    @PreAuthorize("hasAnyAuthority({'APPUSER','ADMIN'})")
     @GetMapping("/users/{id}")
     public ResponseEntity<UserResponse> getUserById(@PathVariable Long id){
             UserResponse userResponse = userService.getUserById(id);
             return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
-    @PreAuthorize("hasAuthority({'APPUSER','ADMIN'})")
+    @PreAuthorize("hasAnyAuthority({'APPUSER','ADMIN'})")
     @DeleteMapping("/users/{id}")
     public ResponseEntity<?> deleteUserById(@PathVariable Long id){
             userService.deleteUserById(id);
@@ -51,7 +50,7 @@ public class UserController {
      * @param updatedUser JSON - in the requestbody
      * @return
      */
-    @PreAuthorize("hasAuthority({'APPUSER','ADMIN'})")
+    @PreAuthorize("hasAnyAuthority({'APPUSER','ADMIN'})")
     @PutMapping("/users/{userId}")
     public ResponseEntity<?> updateUser(
             @PathVariable Long userId, @RequestBody User updatedUser){

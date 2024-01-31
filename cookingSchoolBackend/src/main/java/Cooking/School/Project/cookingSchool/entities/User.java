@@ -128,9 +128,11 @@ public class User implements UserDetails {
 
 //APPUSER für jeden benutzer, wenn isAdmin true ist wir rolle Amin hinzugefügt wenn false nur user
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        System.out.println("get_authorities");
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(AUTHORITIES.APPUSER.name()));
 
+        System.out.println("isAdmin: " + isAdmin);
         if (isAdmin) {
             authorities.add(new SimpleGrantedAuthority(AUTHORITIES.ADMIN.name()));
         }
