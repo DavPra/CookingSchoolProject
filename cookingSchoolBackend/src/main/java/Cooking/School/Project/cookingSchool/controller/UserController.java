@@ -12,7 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 // PreAuthorized APPUser einzeln gesetzt
-@CrossOrigin(origins = "http://localhost:5173") //zur sicherheit
+
 @RestController
 public class UserController {
 
