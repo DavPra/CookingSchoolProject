@@ -62,7 +62,7 @@ public class GlobalExceptionHandler{
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.CONFLICT.value(), ex.getMessage());
         return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
     }
-    @ExceptionHandler(Exception.class)
+   @ExceptionHandler(Exception.class)
     public final ResponseEntity<ErrorResponse> handleGenericException(Exception ex) {
         System.out.println("autsch");
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Internal Server Error");

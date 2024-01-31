@@ -37,12 +37,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-            http.csrf().disable()
+            http
+            .cors().and().csrf().disable()
                     .authorizeRequests()
                     .antMatchers("/courses/**", "/registration/**", "/authenticate/**").permitAll() // Erlaubt den Zugriff auf /course/** und /registration/**
                     .antMatchers("/admin/**").hasAuthority("ADMIN") // Zugriff nur für Benutzer mit der Autorität "ADMIN"
                      .antMatchers("/users/**").hasAnyAuthority("ADMIN", "APPUSER")
-                   //.anyRequest().permitAll() // Erlaubt den Zugriff auf alle URLs
+
                     //.anyRequest().authenticated()
                     .and()
                     .sessionManagement()

@@ -51,7 +51,8 @@ public class JwtService {
                 .setSigningKey(getSignKey())
                 .build()
                 .parseClaimsJws(token)
-                .getBody();
+                .getBody(); //Payload token
+
     }
 
     private Boolean isTokenExpired(String token) {
@@ -89,8 +90,8 @@ public class JwtService {
         claims.put("username", user.getUsername());
 
         // Hinzufügen der Rolle basierend auf isAdmin
-        claims.put("role", user.isAdmin() ? "ADMIN" : "APPUSER");
-
+        claims.put("roles", user.isAdmin() ? "ADMIN" : "APPUSER");
+        //claims.put("role", user.isAdmin() ? "ROLE_ADMIN" : "ROLE_APPUSER");
         String token = createToken(claims, userName);
         logger.info("Token generated");
         return token;

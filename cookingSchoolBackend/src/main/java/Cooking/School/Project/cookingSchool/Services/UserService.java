@@ -26,10 +26,26 @@ public class UserService {
     public UserService() {
     }
 
+
     public User addUser(User user) {
         userRepository.save(user);
         return user;
     }
+    /* war neu
+    public User addUser(User user){
+        Optional<User> existingUserByEmail = userRepository.findUserByEmail(user.getEmail());
+        Optional<User> existingUserByUsername = userRepository.findUserByUsername(user.getUsername());
+
+        if (existingUserByEmail.isPresent()) {
+            String errorMessage = "Die E-Mail-Adresse '" + user.getEmail() + "' ist bereits registriert.";
+            throw new DuplicateKeyException(errorMessage);
+        } else if (existingUserByUsername.isPresent()) {
+            String errorMessage = "Der Benutzername '" + user.getUsername() + "' ist bereits registriert.";
+            throw new DuplicateKeyException(errorMessage);
+        } else {
+            return userRepository.save(user);
+        }
+    }*/
 
     public UserResponse getUserById(Long id) {
         User user = userRepository.findById(id)
@@ -75,9 +91,9 @@ public class UserService {
 
         return existingUser;
 
-
     }
 
+    //war auskommentiert, wieder einkommentiert
     /*
     @Transactional
     public User editUser(Long userId, User updatedUser) throws PrimaryIdNullOrEmptyException {
@@ -97,14 +113,26 @@ public class UserService {
         userRepository.save(existingUser);
 
         return existingUser;
-    }*/
+    }
+*/
 
+    /**
+     *
+     * @return
+     */
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-
+    /**
+     * book a course for a user and handle number of participants and save it in the database
+     * @param userId
+     * @param courseId
+     * @throws CourseNotFoundException
+     * @throws UserNotFoundException
+     * @throws MaxAttendantsReachedException when course is fully booked
+     */
 
     @Transactional
     public void bookCourse(Long userId, Long courseId) {
@@ -130,7 +158,14 @@ public class UserService {
         }
     }
 
-
+    /**
+     * I KNOW DOUBLE TROUBLE ...zur sicherheit, wegen security problemen im frontend
+     * @param userId
+     * @param courseId
+     * @throws UserNotFoundException
+     * @throws CourseNotFoundException
+     * @throws MaxAttendantsReachedException when course is fully booked
+     */
     @Transactional
     public void bookCourseAdmin(Long userId, Long courseId) {
 
@@ -162,7 +197,7 @@ public class UserService {
      */
     public User registration(User user){
         Optional<User> existingUserByEmail = userRepository.findUserByEmail(user.getEmail());
-        Optional<User> existingUserByUsername = userRepository.findUserByUsername(user.getUsername());
+       Optional<User> existingUserByUsername = userRepository.findUserByUsername(user.getUsername());
 
         if (existingUserByEmail.isPresent()) {
             String errorMessage = "Die E-Mail-Adresse '" + user.getEmail() + "' ist bereits registriert.";

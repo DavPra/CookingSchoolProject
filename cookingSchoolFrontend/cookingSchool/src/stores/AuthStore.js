@@ -9,9 +9,22 @@ export const useAuthStore = defineStore('authentication', {
         accessToken: null
     }),
     actions: {
+        getToken() {
+            return this.accessToken;
+        },
+        getRole(){
+            const decodedToken = jwtDecode(this.accessToken);
+            return decodedToken.role;
+
+        },
+        getUserId() {
+            const decodedToken = jwtDecode(this.accessToken);
+            return decodedToken.userId;
+        },
+        /*
         getUserId() {
             return jwtDecode(window.localStorage.getItem('accessToken')).userId;
-        },
+        },*/
         async login({username, password}) {
             const response = await axios.post(createApiUrl('authenticate'),{username:username, password:password})
             if(response.status === 403){

@@ -16,7 +16,6 @@ public class IngredientNotFoundException extends RuntimeException {
         super(message);
     }
 
-
     public Long getIngredientId(){
         return ingredientId;
     }

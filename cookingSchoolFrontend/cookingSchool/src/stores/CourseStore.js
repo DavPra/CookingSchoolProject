@@ -7,7 +7,9 @@ export const useCourseStore = defineStore('course', {
         userCourses: [],
         userRecipes: [],
     }),
+
     actions: {
+
         async showCourses() {
             try {
                 const courseResponse = await axios.get('http://localhost:8082/admin/courses');

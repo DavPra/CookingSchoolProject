@@ -32,7 +32,7 @@ public class AuthController {
     @PostMapping("/authenticate")
     public String authenticate(@RequestBody AuthRequest authRequest) {
        logger.info("Authentication request for username: " + authRequest.getUsername());
-        logger.info("Authentication request for password: " + authRequest.getPassword());
+        logger.info("Authentication request for password...: " + authRequest.getPassword());
 
         try {
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(

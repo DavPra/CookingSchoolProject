@@ -202,16 +202,17 @@ public class AdminController {
         }
 
     }
-/*
 
+    //hatte ich auskommentiert, wieder einkommmentiert
+/*
     @Transactional
     @PutMapping("admin/users/editUser")
     public ResponseEntity<?> editUser(@RequestParam Long userId, @RequestBody User updatedUser) {
         userService.editUser(userId, updatedUser);
         return new ResponseEntity<>("User updated successfully", HttpStatus.OK);
 
-    }
-    */
+    }*/
+
 
     /**
      *  GET method to get user by id
@@ -223,6 +224,13 @@ public class AdminController {
         UserResponse userResponse = userService.getUserById(id);
         return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
+
+    /**
+     * admin book a course for user
+     * @param userId
+     * @param courseId
+     * @return HttpStatus 200 or 404 Notfound
+     */
     @PostMapping("/admin/{userId}/book-course/{courseId}")
     public ResponseEntity<?> bookCourseAdmin(@PathVariable Long userId, @PathVariable Long courseId) {
         userService.bookCourseAdmin(userId, courseId);

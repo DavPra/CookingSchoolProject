@@ -39,7 +39,7 @@ public class UserController {
      * @return User or 404 NotFound
      *
      */
-    @PreAuthorize("hasAuthority('APPUSER')")
+    @PreAuthorize("hasAnyAuthority('APPUSER')")
     @GetMapping("/users/{id}")
     public UserResponse getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
@@ -51,7 +51,7 @@ public class UserController {
      * @return HttpStatus 200 and a success message or 404 NotFound
      */
 
-    @PreAuthorize("hasAuthority('APPUSER')")
+    @PreAuthorize("hasAnyAuthority('APPUSER')")
     @DeleteMapping("/users/{id}")
     public ResponseEntity<?> deleteUserById(@PathVariable Long id){
             userService.deleteUserById(id);
@@ -64,7 +64,7 @@ public class UserController {
      * @param updatedUser updated user data
      * @return HttpStatus 200 ok and a success message, 404 NotFound or 500 BadRequest
      */
-    @PreAuthorize("hasAuthority('APPUSER')")
+    @PreAuthorize("hasAnyAuthority('APPUSER')")
     @PutMapping("/users/{userId}")
     public ResponseEntity<?> updateUser(
             @PathVariable Long userId, @RequestBody User updatedUser){
@@ -79,7 +79,7 @@ public class UserController {
      * @param courseId
      * @return 200 ok, 404 notfound when course id or user id is not found or 500 bad request when max Attendants reached
      */
-    @PreAuthorize("hasAuthority('APPUSER')")
+    @PreAuthorize("hasAnyAuthority('APPUSER')")
     @PostMapping("/users/{userId}/book-course/{courseId}")
     public ResponseEntity<?> bookCourse(@PathVariable Long userId, @PathVariable Long courseId) {
         userService.bookCourse(userId, courseId);
