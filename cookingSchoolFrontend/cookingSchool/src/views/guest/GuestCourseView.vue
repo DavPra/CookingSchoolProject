@@ -54,7 +54,7 @@ ShowCourses();
 
     <div class="d-flex mx-4 mb-6 justify-lg-space-evenly align-center flex-wrap">
       <div class="my-3 mx-2">
-        <v-card class="py-3 bg-transparent " variant="outlined" style="flex: 1; min-width: 200px;">
+        <v-card class="py-3 bg-brown-lighten-5 " variant="outlined" style="flex: 1; min-width: 200px;">
           <v-card-title>Mehrgängiges Menü</v-card-title>
           <v-card-subtitle>Wir kochen 3 bis 4 Speisen</v-card-subtitle>
         </v-card>
