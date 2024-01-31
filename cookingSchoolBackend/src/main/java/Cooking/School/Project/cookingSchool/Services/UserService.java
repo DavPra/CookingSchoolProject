@@ -154,16 +154,21 @@ public class UserService {
             throw new MaxAttendantsReachedException(maxNumberOfAttendants);
         }
     }
-    public User registration(User user) throws DuplicateKeyException {
-        Optional<User> existingUser = userRepository.findUserByEmail(user.getEmail());
+    public User registration(User user){
+        Optional<User> existingUserByEmail = userRepository.findUserByEmail(user.getEmail());
+        Optional<User> existingUserByUsername = userRepository.findUserByUsername(user.getUsername());
 
-        if (existingUser.isPresent()) {
+        if (existingUserByEmail.isPresent()) {
             String errorMessage = "Die E-Mail-Adresse '" + user.getEmail() + "' ist bereits registriert.";
+            throw new DuplicateKeyException(errorMessage);
+        } else if (existingUserByUsername.isPresent()) {
+            String errorMessage = "Der Benutzername '" + user.getUsername() + "' ist bereits registriert.";
             throw new DuplicateKeyException(errorMessage);
         } else {
             return userRepository.save(user);
         }
     }
+
 }
 
 
