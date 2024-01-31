@@ -14,7 +14,8 @@
   justify-content: center;
   align-items: center;
 }
+
 .item {
-  width:30%;
+  width: 30%;
 }
 </style>

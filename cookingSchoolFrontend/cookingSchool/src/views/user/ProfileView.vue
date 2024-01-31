@@ -1,44 +1,42 @@
 <script setup>
 import ProfileForm from '@/components/ProfileForm.vue';
 import { ref, onBeforeMount, onMounted } from 'vue';
-import { useUserStoreUpdate } from '@/stores/UserStoreforUpdate';
+import { useUserStore } from '@/stores/UserStore.js';
 import jwtDecode from 'jwt-decode';
-import axios from 'axios';
 
-const userStore = useUserStoreUpdate();
+const userStore = useUserStore();
 
 const showEditDialog = ref(false);
 const isProfileActionInProgress = ref(false);
-const userId = jwtDecode(localStorage.getItem("accessToken")).userId;
+const userId = jwtDecode(window.localStorage.getItem("accessToken")).userId;
 
 let user = ref(null);
 
 onBeforeMount(async () => {
-  await getUserData();
+  await getUser();
 });
 
-async function getUserData() {
+async function getUser() {
   try {
-    const response = await axios.get(`http://localhost:8082/users/${userId}`);
+    const response = await userStore.getUserData(userId);
     user.value = response.data;
   } catch (error) {
     console.error('Error fetching user:', error);
   }
 }
 
-async function updateUsers(updatedUserDto) {
+async function updateUser(updatedUserDto) {
   isProfileActionInProgress.value = true;
   try {
     await userStore.updateUser(userId, updatedUserDto);
     showEditDialog.value = false;
-    await getUserData(); // Update user data after the update
+    await getUser(); // Update user data after the update
   } catch (err) {
     console.error(err);
   } finally {
     isProfileActionInProgress.value = false;
   }
 }
-
 </script>
 
 <template>
@@ -74,7 +72,7 @@ async function updateUsers(updatedUserDto) {
         <v-card>
           <v-card-title>Profil bearbeiten</v-card-title>
           <v-card-item class="pb-5">
-            <ProfileForm :user="user" @save="updateUsers" @abort="showEditDialog = false" :loading="isProfileActionInProgress"/>
+            <ProfileForm :user="user" @save="updateUser" @abort="showEditDialog = false" :loading="isProfileActionInProgress"/>
           </v-card-item>
         </v-card>
       </v-dialog>

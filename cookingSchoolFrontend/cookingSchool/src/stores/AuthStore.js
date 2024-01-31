@@ -9,28 +9,24 @@ export const useAuthStore = defineStore('authentication', {
         accessToken: null
     }),
     actions: {
-        getUserId() {
-            return jwtDecode(window.localStorage.getItem('accessToken')).userId;
-        },
         async login({username, password}) {
-            const response = await axios.post(createApiUrl('authenticate'),{username:username, password:password})
-            if(response.status === 403){
+            const response = await axios.post(createApiUrl('authenticate'), {username: username, password: password})
+            if (response.status === 403) {
                 throw new Error('User nicht gefunden')
             }
             const token = response.data
-            if(token === '') {
+            if (token === '') {
                 throw new Error('Token nicht gefunden')
             }
             this.token = token
             console.log(token)
             window.localStorage.setItem('accessToken', token)
-            function parseJwt (token) {
+            function parseJwt(token) {
                 console.log('\n\n\nHallo: ' + jwtDecode(token));
-               return "";
+                return "";
             }
             parseJwt(token);
         },
-       
         logout() {
             this.user = null
             window.localStorage.clear()

@@ -3,16 +3,14 @@
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useCourseStore } from "@/stores/CourseStore.js";
-import { useAuthStore } from "@/stores/AuthStore.js";
 import jwtdecode from "jwt-decode";
 
 const courseStore = useCourseStore()
 const course = defineProps(['courseTitle','startDate','description','teacher','courseId'])
-const authStore = useAuthStore();
 const router = useRouter();
 
 onMounted(() => {
-  showCourses();
+  ShowCourses();
   console.log('mounted');
  
 });
@@ -25,13 +23,13 @@ const courseId = course.courseId;
 let decodedUserId = '';
 
 
-async function showCourses() {
-  await courseStore.showGuestCourses();
+async function ShowCourses() {
+  await courseStore.showCourses();
   courses = courseStore.courses;
   console.log(courses);
 }
 
-showCourses();
+ShowCourses();
 
 async function bookCourse() {
   if(!window.localStorage.getItem('accessToken')) {

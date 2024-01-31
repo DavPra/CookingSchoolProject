@@ -32,14 +32,13 @@ public class UserController {
     private RecipeService recipeService;
 
 
-    @PreAuthorize("hasAuthority('APPUSER')")
-
+    @PreAuthorize("hasAuthority({'APPUSER','ADMIN'})")
     @GetMapping("/users/{id}")
     public ResponseEntity<UserResponse> getUserById(@PathVariable Long id){
             UserResponse userResponse = userService.getUserById(id);
             return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
-    @PreAuthorize("hasAuthority('APPUSER')")
+    @PreAuthorize("hasAuthority({'APPUSER','ADMIN'})")
     @DeleteMapping("/users/{id}")
     public ResponseEntity<?> deleteUserById(@PathVariable Long id){
             userService.deleteUserById(id);
@@ -52,7 +51,7 @@ public class UserController {
      * @param updatedUser JSON - in the requestbody
      * @return
      */
-    @PreAuthorize("hasAuthority('APPUSER')")
+    @PreAuthorize("hasAuthority({'APPUSER','ADMIN'})")
     @PutMapping("/users/{userId}")
     public ResponseEntity<?> updateUser(
             @PathVariable Long userId, @RequestBody User updatedUser){

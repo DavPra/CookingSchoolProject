@@ -2,6 +2,7 @@ package Cooking.School.Project.cookingSchool.controller;
 
 import Cooking.School.Project.cookingSchool.Services.CourseService;
 import Cooking.School.Project.cookingSchool.entities.Course;
+import Cooking.School.Project.cookingSchool.exceptions.CourseNotFoundException;
 import Cooking.School.Project.cookingSchool.repository.CourseTagRepository;
 import Cooking.School.Project.cookingSchool.restapi.dto.CourseTagsRecipeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,13 @@ public class CourseController {
 
 
     @GetMapping("/courses")
-    public ResponseEntity<List<CourseTagsRecipeResponse>> getAllCourses() {
-        List<CourseTagsRecipeResponse> courses = courseService.getAllCourses();
-        return new ResponseEntity<>(courses, HttpStatus.OK);
+    public ResponseEntity<List<CourseTagsRecipeResponse>> getAllCourses(){
+        try{
+            List<CourseTagsRecipeResponse> courseTagsRecipeResponses = courseService.getAllCourses();
+            return new ResponseEntity<>(courseTagsRecipeResponses,HttpStatus.OK );
+        }catch (CourseNotFoundException cnfe){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/courses/details/{id}")

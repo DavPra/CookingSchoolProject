@@ -1,25 +1,22 @@
 <script setup>
 
 import { useCourseStore } from "@/stores/CourseStore.js";
-import { createApiUrl } from "@/helper/ApiHelper.js";
 import { onMounted, ref, computed } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 import CourseCard from "@/components/CourseCard.vue";
-import { useAuthStore } from "@/stores/AuthStore.js";
 import HeaderIcon from "@/components/HeaderIcon.vue";
 import NextCourses from "@/components/NextCourses.vue";
 
 const courseStore = useCourseStore()
-const router = useRouter(); // router
+const router = useRouter();
 const isVisible = ref(false);
-const authStore = useAuthStore();
 
 
 const courses = computed(() => courseStore.courses);
 
 
 onMounted(() => {
-  showCourses();
+  ShowCourses();
   console.log('mounted');
 });
 
@@ -27,25 +24,20 @@ onMounted(() => {
 const err = false;
 
 
-async function showCourses() {
-  await courseStore.showGuestCourses();
+async function ShowCourses() {
+  await courseStore.showCourses();
 }
 
-showCourses();
+ShowCourses();
 
 </script>
 
 <template>
   <HeaderIcon></HeaderIcon>
 
-
-
-
   <div>
     <NextCourses/>
   </div>
-
-
 
   <div>
     <v-sheet class="m-6 p-4 justify-center text-center elevation-0" elevation="3" width="100%" >
@@ -79,7 +71,7 @@ showCourses();
 
   <v-sheet class="bg-brown-lighten-5">
     <div class="mx-2 my-2 px-2 py-2">
-      <h2 class="text-h4 ">Alle unser Kurse auf einen Blick:</h2>
+      <h2 class="text-h4 ">Alle unsere Kurse auf einen Blick:</h2>
     </div>
 
     <v-row class="d-flex ma-2 ">

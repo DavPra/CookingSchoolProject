@@ -1,5 +1,6 @@
 import {defineStore} from "pinia";
 import axios from "axios";
+import {ApiUrl} from "@/helper/ApiHelper";
 
 export const useCourseStore = defineStore('course', {
     state: () => ({
@@ -8,25 +9,8 @@ export const useCourseStore = defineStore('course', {
         userRecipes: [],
     }),
     actions: {
-        async showCourses() {
-            try {
-                const courseResponse = await axios.get('http://localhost:8082/admin/courses');
-                this.courses = courseResponse.data;
-                console.log('Courses loaded', this.courses);
-            } catch (error) {
-                console.error('Error loading courses:', error);
-            }
-        },
-        async showGuestCourses() {
-            try {
-                const courseResponse = await axios.get('http://localhost:8082/courses');
-                this.courses = courseResponse.data;
-                console.log('Courses loaded', this.courses);
-            } catch (error) {
-                console.error('Error loading courses:', error);
-            }
-        },
 
+        //in AdminCourseView --- ADMIN
         async createCourse(data) {
             console.log('store 1', data)
             try {
@@ -40,55 +24,43 @@ export const useCourseStore = defineStore('course', {
                     price: data.price
                 };
                 console.log('store 2', data)
-                const courseResponse = await axios.post('http://localhost:8082/admin/courses', courseData);
+                const config = {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+                    }
+                }
+                const courseResponse = await axios.post(ApiUrl('/admin/courses'), courseData, config);
                 const createdCourse = courseResponse.data;
                 this.courses.push(courseResponse.data);
                 console.log('Course created', courseResponse.data);
-              //bringt nichts  await this.showCourses()
+                //bringt nichts  await this.showCourses()
             } catch (error) {
                 console.error('Error creating course:', error);
             }
         },
-        async updateCourse(courseId, updatedCourse) {
+
+        //in GuestCourseView, CourseCard, UserCourseView, AdminHomeView, AdminUserView, AdminRecipeView, AdminCourseView
+        async showCourses() {
             try {
-                const courseResponse = await axios.put(`http://localhost:8082/admin/courses/${courseId}`, updatedCourse);
-                const index = this.courses.findIndex(course => course.courseId === courseId);
-                if (index !== -1) {
-                    this.courses[index] = courseResponse.data;
-                    console.log('Course updated', courseResponse.data);
-                 // bringt nichts   await this.showCourses()
-                }
+                const courseResponse = await axios.get(ApiUrl('/courses'));
+                this.courses = courseResponse.data;
+                console.log('Courses loaded', this.courses);
             } catch (error) {
-                console.error('Error updating course:', error);
+                console.error('Error loading courses:', error);
             }
         },
-        async deleteCourse(courseId){
-            const deleteResponse = await axios.delete('http://localhost:8082/admin/courses/'+courseId);
-            console.log('Course deleted', courseId, deleteResponse.data);
-            await this.showCourses();
-        },
 
-
-        async bookCourse(courseId, userId){
-            console.log('token= ' + localStorage.getItem('accessToken'));
-                        const config = {
+        //in UserCourseView --- APPUSER
+        async showUserCourses(userId) {
+            console.log('store' + this.userCourses);
+            console.log("UserId " + userId);
+            const config = {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('accessToken')
                 }
             }
-        const bookCourseResponse = await axios.put('http://localhost:8082/users/'+courseId+'/book-course/'+userId, config)
-        console.log('Course booked')
-        await this.showCourses()
-    },
-
-    async showUserCourses(userId){
-        console.log('store' + this.userCourses);
-        
-        console.log("UserId " + userId);
-        const userCoursesResponse = await axios.get('http://localhost:8082/users/'+userId);
-        
-        console.log("Array mit Courses " + userCoursesResponse);
-
+            const userCoursesResponse = await axios.get(ApiUrl(`/users/${userId}`), config);
+            console.log("Array mit Courses " + userCoursesResponse);
             const userData = {
                 userId: userCoursesResponse.data.userId,
                 firstname: userCoursesResponse.data.firstname,
@@ -96,16 +68,65 @@ export const useCourseStore = defineStore('course', {
                 courses: userCoursesResponse.data.courses,
                 recipes: userCoursesResponse.data.recipes
             };
-
             this.userCourses = userData.courses;
-        
-//for vielleicht zur view verschieben
-    }, async getCourseById(courseId){
+        },
 
-            const courseByIdResponse = await axios.get(`http://localhost:8082/admin/courses/${courseId}`);
+        //in AdminCourseUserView --- ADMIN
+        async getCourseById(courseId) {
+            const config = {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+                }
+            }
+            const courseByIdResponse = await axios.get(ApiUrl(`/admin/courses/${courseId}`), config);
             console.log('API response:', courseByIdResponse.data);
             return courseByIdResponse.data
+        },
 
+        //in AdminCourseView --- ADMIN
+        async updateCourse(courseId, updatedCourse) {
+            try {
+                const config = {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+                    }
+                }
+                const courseResponse = await axios.put(ApiUrl(`/admin/courses/${courseId}`), updatedCourse, config);
+                const index = this.courses.findIndex(course => course.courseId === courseId);
+                if (index !== -1) {
+                    this.courses[index] = courseResponse.data;
+                    console.log('Course updated', courseResponse.data);
+                    // bringt nichts   await this.showCourses()
+                }
+            } catch (error) {
+                console.error('Error updating course:', error);
+            }
+        },
+
+        //TODO: Kathy - für admin und user? wo wird das eingebunden?
+        //in CourseCard --- APPUSER
+        async bookCourse(courseId, userId) {
+            console.log('token= ' + localStorage.getItem('accessToken'));
+            const config = {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+                }
+            }
+            const bookCourseResponse = await axios.put(ApiUrl(`/users/${courseId}/book-course/${userId}`), config)
+            console.log('Course booked')
+            await this.showCourses()
+        },
+
+        //in AdminCourseView --- ADMIN
+        async deleteCourse(courseId) {
+            const config = {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+                }
+            }
+            const deleteResponse = await axios.delete(ApiUrl(`/admin/courses/${courseId}`), config);
+            console.log('Course deleted', courseId, deleteResponse.data);
+            await this.showCourses();
         }
-}   
+    }
 });

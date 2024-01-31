@@ -1,11 +1,10 @@
 <script setup>
-import { useRouter } from 'vue-router';
-import { ref } from 'vue';
+import {useRouter} from 'vue-router';
+import {ref} from 'vue';
 import axios from "axios";
-import { createApiUrl } from "@/helper/ApiHelper";
+import {createApiUrl} from "@/helper/ApiHelper";
 
 const router = useRouter();
-
 const firstname = ref('');
 const lastname = ref('');
 const address = ref('');
@@ -52,43 +51,41 @@ async function registerUser() {
 
 <template>
   <!-- Formular für einen neuen User um sich zu registrieren -->
-
   <v-container class="container">
     <v-col cols="12">
-    <v-card class="pa-2 ma-2">
-    <v-form @submit.prevent="registerUser">
-      <v-row>
-        
-        <v-col cols="12" md="6">
-          <v-text-field v-model="firstname" label="Vorname" required></v-text-field>
-        </v-col>
-        <v-col cols="12" md="6">
-          <v-text-field v-model="lastname" label="Nachname" required></v-text-field>
-        </v-col>
-        <v-col cols="12">
-          <v-text-field v-model="address" label="Adresse" required></v-text-field>
-        </v-col>
-        <v-col cols="12" md="6">
-          <v-text-field v-model="mobile" label="Handynummer" required></v-text-field>
-        </v-col>
-        <v-col cols="12" md="6">
-          <v-text-field v-model="email" label="E-Mail" type="email" required></v-text-field>
-        </v-col>
-        <v-col cols="12" md="6">
-          <v-text-field v-model="username" label="Benutzername" required></v-text-field>
-        </v-col>
-        <v-col cols="12" md="6">
-          <v-text-field v-model="password" label="Passwort" type="password" required></v-text-field>
-        </v-col>
-        <v-col cols="12" v-if="errorFeedback">
-          <v-alert type="error">{{ errorFeedback }}</v-alert>
-        </v-col>
-        <v-col cols="12" class="text-center">
-          <v-btn type="submit" color="primary">Registrieren</v-btn>
-        </v-col>
-      </v-row>
-    </v-form>
-    </v-card>
+      <v-card class="pa-2 ma-2">
+        <v-form @submit.prevent="registerUser">
+          <v-row>
+            <v-col cols="12" md="6">
+              <v-text-field v-model="firstname" label="Vorname" required></v-text-field>
+            </v-col>
+            <v-col cols="12" md="6">
+              <v-text-field v-model="lastname" label="Nachname" required></v-text-field>
+            </v-col>
+            <v-col cols="12">
+              <v-text-field v-model="address" label="Adresse" required></v-text-field>
+            </v-col>
+            <v-col cols="12" md="6">
+              <v-text-field v-model="mobile" label="Handynummer" required></v-text-field>
+            </v-col>
+            <v-col cols="12" md="6">
+              <v-text-field v-model="email" label="E-Mail" type="email" required></v-text-field>
+            </v-col>
+            <v-col cols="12" md="6">
+              <v-text-field v-model="username" label="Benutzername" required></v-text-field>
+            </v-col>
+            <v-col cols="12" md="6">
+              <v-text-field v-model="password" label="Passwort" type="password" required></v-text-field>
+            </v-col>
+            <v-col cols="12" v-if="errorFeedback">
+              <v-alert type="error">{{ errorFeedback }}</v-alert>
+            </v-col>
+            <v-col cols="12" class="text-center">
+              <v-btn type="submit" color="primary">Registrieren</v-btn>
+            </v-col>
+          </v-row>
+        </v-form>
+      </v-card>
     </v-col>
   </v-container>
 </template>
