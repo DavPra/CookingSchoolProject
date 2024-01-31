@@ -7,9 +7,7 @@ export const useCourseStore = defineStore('course', {
         userCourses: [],
         userRecipes: [],
     }),
-
     actions: {
-
         async showCourses() {
             try {
                 const courseResponse = await axios.get('http://localhost:8082/admin/courses');
@@ -42,7 +40,11 @@ export const useCourseStore = defineStore('course', {
                     price: data.price
                 };
                 console.log('store 2', data)
-                const courseResponse = await axios.post('http://localhost:8082/admin/courses', courseData);
+                const courseResponse = await axios.post(ApiUrl('/admin/courses'), courseData, {
+                    headers: {
+                        'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
+                    }
+                });
                 const createdCourse = courseResponse.data;
                 this.courses.push(courseResponse.data);
                 console.log('Course created', courseResponse.data);
@@ -51,25 +53,6 @@ export const useCourseStore = defineStore('course', {
                 console.error('Error creating course:', error);
             }
         },
-        async updateCourse(courseId, updatedCourse) {
-            try {
-                const courseResponse = await axios.put(`http://localhost:8082/admin/courses/${courseId}`, updatedCourse);
-                const index = this.courses.findIndex(course => course.courseId === courseId);
-                if (index !== -1) {
-                    this.courses[index] = courseResponse.data;
-                    console.log('Course updated', courseResponse.data);
-                 // bringt nichts   await this.showCourses()
-                }
-            } catch (error) {
-                console.error('Error updating course:', error);
-            }
-        },
-        async deleteCourse(courseId){
-            const deleteResponse = await axios.delete('http://localhost:8082/admin/courses/'+courseId);
-            console.log('Course deleted', courseId, deleteResponse.data);
-            await this.showCourses();
-        },
-
 
         async bookCourse(courseId, userId){
             console.log('token= ' + localStorage.getItem('accessToken'));
@@ -87,13 +70,7 @@ export const useCourseStore = defineStore('course', {
         console.log('store' + this.userCourses);
         
         console.log("UserId " + userId);
-
-
-        const userCoursesResponse = await axios.get('http://localhost:8082/users/'+userId, {
-            headers: {
-                'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
-            }
-            });
+        const userCoursesResponse = await axios.get('http://localhost:8082/users/'+userId);
         
         console.log("Array mit Courses " + userCoursesResponse);
 
@@ -108,12 +85,47 @@ export const useCourseStore = defineStore('course', {
             this.userCourses = userData.courses;
         
 //for vielleicht zur view verschieben
-    }, async getCourseById(courseId){
+    },
 
-            const courseByIdResponse = await axios.get(`http://localhost:8082/admin/courses/${courseId}`);
+        //in AdminCourseUserView --- ADMIN
+        async getCourseById(courseId) {
+            const courseByIdResponse = await axios.get(ApiUrl(`/admin/courses/${courseId}`), {
+                headers: {
+                    'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
+                }
+            });
             console.log('API response:', courseByIdResponse.data);
             return courseByIdResponse.data
+        },
 
+        //in AdminCourseView --- ADMIN
+        async updateCourse(courseId, updatedCourse) {
+            try {
+                const courseResponse = await axios.put(ApiUrl(`/admin/courses/${courseId}`), updatedCourse, {
+                    headers: {
+                        'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
+                    }
+                });
+                const index = this.courses.findIndex(course => course.courseId === courseId);
+                if (index !== -1) {
+                    this.courses[index] = courseResponse.data;
+                    console.log('Course updated', courseResponse.data);
+                    // bringt nichts   await this.showCourses()
+                }
+            } catch (error) {
+                console.error('Error updating course:', error);
+            }
+        },
+
+        //in AdminCourseView --- ADMIN
+        async deleteCourse(courseId) {
+            const deleteResponse = await axios.delete(ApiUrl(`/admin/courses/${courseId}`), {
+                headers: {
+                    'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
+                }
+            });
+            console.log('Course deleted', courseId, deleteResponse.data);
+            await this.showCourses();
         }
 }   
 });

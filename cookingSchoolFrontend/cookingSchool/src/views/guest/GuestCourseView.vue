@@ -27,8 +27,8 @@ onMounted(() => {
 const err = false;
 
 
-async function showCourses() {
-  await courseStore.showGuestCourses();
+async function ShowCourses() {
+  await courseStore.showCourses();
 }
 
 showCourses();
@@ -39,18 +39,18 @@ showCourses();
   <HeaderIcon></HeaderIcon>
 
 
-  <div class="mt-5">
+
+
+  <div>
     <NextCourses/>
   </div>
 
 
 
-
-  <div class="bg-brown-lighten-5 mb-10">
-    <v-sheet class="m-6  justify-center text-center elevation-0 bg-brown-lighten-5" elevation="3" width="100%">
-      <div class="py-5">
-        <h1 class="text-h4  py-5  mb-3 ">Was dich erwartet!</h1>
-      </div>
+  <div>
+    <v-sheet class="m-6 p-4 justify-center text-center elevation-0" elevation="3" width="100%" >
+      <h1 class="font-weight-medium mb-3 ">Dein Erlebnis bei uns</h1>
+      <h2 class="mb-4">Was ist alles inkludiert?</h2>
     </v-sheet>
 
     <div class="d-flex mx-4 mb-6 justify-lg-space-evenly align-center flex-wrap">
@@ -86,7 +86,7 @@ showCourses();
 
   <v-sheet class="">
     <div class="mx-2 my-2 px-2 py-2">
-      <h2 class="text-h4 ">Alle unser Kurse auf einen Blick:</h2>
+      <h2 class="text-h4 ">Alle unsere Kurse auf einen Blick:</h2>
     </div>
 
     <v-row class="d-flex ma-2 ">

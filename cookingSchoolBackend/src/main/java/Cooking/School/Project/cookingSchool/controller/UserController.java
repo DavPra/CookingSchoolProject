@@ -3,16 +3,24 @@ package Cooking.School.Project.cookingSchool.controller;
 import Cooking.School.Project.cookingSchool.Services.CourseService;
 import Cooking.School.Project.cookingSchool.Services.RecipeService;
 import Cooking.School.Project.cookingSchool.Services.UserService;
+import Cooking.School.Project.cookingSchool.entities.Course;
+import Cooking.School.Project.cookingSchool.entities.Recipe;
 import Cooking.School.Project.cookingSchool.entities.User;
+import Cooking.School.Project.cookingSchool.exceptions.UserNotFoundException;
+import Cooking.School.Project.cookingSchool.restapi.dto.CourseRequest;
 import Cooking.School.Project.cookingSchool.restapi.dto.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-// PreAuthorized APPUser einzeln gesetzt
+import java.util.Set;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 public class UserController {
 

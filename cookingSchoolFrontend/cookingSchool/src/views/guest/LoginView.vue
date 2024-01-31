@@ -13,32 +13,32 @@
     password: ''
   });
 
-  async function login() {
-    try {
-      isLoginInProgress.value = true;
-      await authentication.login(credentials.value);
-      if(isAdmin() === true) {
-        await router.push('/admin/courses');
-      } else {
-        await router.push('/user/courses');
-      }
-    } catch (error) {
-      areCredentialsInvalid.value = true;
-      console.error('Fehler beim Login:', error);
-    } finally {
-      isLoginInProgress.value = false;
-    }
-  }
-
-  function isAdmin() {
-    const token = window.localStorage.getItem('accessToken');
-    const decodedToken = jwtDecode(window.localStorage.getItem('accessToken', token))
-    if(decodedToken.role === "ADMIN") {
-      return true;
+async function login() {
+  try {
+    isLoginInProgress.value = true;
+    await authentication.login(credentials.value);
+    if (isAdmin() === true) {
+      await router.push('/admin');
     } else {
-      return false;
+      await router.push('/user/courses');
     }
+  } catch (error) {
+    areCredentialsInvalid.value = true;
+    console.error('Fehler beim Login:', error);
+  } finally {
+    isLoginInProgress.value = false;
   }
+}
+
+function isAdmin() {
+  const token = localStorage.getItem('accessToken');
+  const decodedToken = jwtDecode(localStorage.getItem('accessToken', token))
+  if (decodedToken.role === 'ADMIN') {
+    return true;
+  } else {
+    return false;
+  }
+}
 </script>
 
 <template>

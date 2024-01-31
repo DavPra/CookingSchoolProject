@@ -1,6 +1,5 @@
 <script setup>
 import {useRecipeStore} from "@/stores/RecipeStore";
-import {useRouter} from "vue-router";
 import {onMounted, ref, watchEffect} from "vue";
 import {useCourseStore} from "@/stores/CourseStore";
 
@@ -35,7 +34,6 @@ onMounted(() => {
 
   loadCourses()
 });
-
 
 const loadCourses = async () => {
   try {
@@ -165,7 +163,7 @@ const closeDialog = () => {
   <v-container>
     <v-row>
       <v-card @click="openDialog" class="ma-3" width="330">
-        <v-card-title class="mt-10 text-center"  >Estelle ein neues Rezept</v-card-title>
+        <v-card-title class="mt-10 text-center">Estelle ein neues Rezept</v-card-title>
         <v-card-text class="text-center">
           <v-icon class="mt-6 mb-4" size="50">mdi-plus</v-icon>
         </v-card-text>

@@ -50,7 +50,6 @@ const loadCourses = async () => {
 };
 
 
-
 const addRecipe = async () => {
   console.log('addRecipe function called');
   try {
@@ -83,7 +82,7 @@ const addIngredientRow = () => {
   if (!recipeData.value.ingredients) {
     recipeData.value.ingredients = []
   }
-  recipeData.value.ingredients.push({ title: '', quantity: '', unit: '' });
+  recipeData.value.ingredients.push({title: '', quantity: '', unit: ''});
 };
 
 
@@ -104,10 +103,11 @@ loadCourses();
             <v-text-field v-model="recipeData.title" label="Titel"></v-text-field>
           </v-col>
 
-        <!-- Kurs -->
+          <!-- Kurs -->
 
           <v-col>
-            <v-select v-model="recipeData.selectedCourses" :items="courseOptions" label="Kurs" item-value="courseId"></v-select>
+            <v-select v-model="recipeData.selectedCourses" :items="courseOptions" label="Kurs"
+                      item-value="courseId"></v-select>
           </v-col>
         </v-row>
 
@@ -125,10 +125,11 @@ loadCourses();
           </v-col>
 
 
-        <!-- Vorbereitungszeit -->
+          <!-- Vorbereitungszeit -->
 
           <v-col>
-            <v-text-field v-model="recipeData.preparation" label="Vorbereitungszeit (in Minuten)" type="number"></v-text-field>
+            <v-text-field v-model="recipeData.preparation" label="Vorbereitungszeit (in Minuten)"
+                          type="number"></v-text-field>
           </v-col>
         </v-row>
 
@@ -151,7 +152,6 @@ loadCourses();
             <v-btn @click="addIngredientRow">Neue Zutat hinzufügen</v-btn>
           </v-col>
         </v-row>
-
 
 
         <!-- Zutatenliste -->
