@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from 'vue'
+import {ref, watch} from 'vue'
 
 const props = defineProps(['user', 'showAbort', 'saveText', 'abortText', 'loading'])
 const emit = defineEmits(['save', 'abort'])

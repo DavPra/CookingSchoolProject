@@ -2,7 +2,6 @@
 import { useRouter } from 'vue-router'
 import HeaderIcon from "@/components/HeaderIcon.vue";
 
-
 const router = useRouter();
 
 async function goToCourses() {
@@ -24,7 +23,10 @@ async function goToCourses() {
     <!-- Part 1 -->
 
     <div class="mt-6   ">
-      <v-sheet class="text-subtitle-1 text-center my-4 py-4 ">Willkommen in unserer Kochschule, einem kulinarischen Paradies für alle, die ihre Kochkünste auf das nächste Level bringen und dabei eine unvergessliche Zeit erleben möchten! <br> Inmitten einer angesagten Location, die von urbanem Flair und modernem Design geprägt ist, entfaltet sich unsere fiktive Kochschule zu einem Treffpunkt für Gourmets, Foodies und Kochbegeisterte gleichermaßen.
+      <v-sheet class="text-subtitle-1 text-center my-4 py-4 ">
+        Willkommen in unserer Kochschule, einem kulinarischen Paradies für alle, die ihre Kochkünste auf das nächste Level bringen und dabei eine unvergessliche Zeit erleben möchten!
+        <br>
+        Inmitten einer angesagten Location, die von urbanem Flair und modernem Design geprägt ist, entfaltet sich unsere fiktive Kochschule zu einem Treffpunkt für Gourmets, Foodies und Kochbegeisterte gleichermaßen.
       </v-sheet>
 
       <!-- Location Part  -->
@@ -142,10 +144,6 @@ async function goToCourses() {
     </v-card>
   </div>
 </div>
-
-
-
-
   </div>
 
 </template>

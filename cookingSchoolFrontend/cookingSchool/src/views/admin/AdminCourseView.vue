@@ -1,15 +1,11 @@
 <script setup>
-
 import {ref, onMounted, onUpdated, watchEffect} from 'vue';
-
-import {useRoute, useRouter} from 'vue-router';
+import {useRouter} from 'vue-router';
 import {useCourseStore} from "@/stores/CourseStore";
-import AdminCourseAddUserView from "@/views/admin/AdminCourseUserView.vue";
 import {globalColors as __colors} from "@/assets/colors";
 
 const errorMsg = ref('');
 const courseStore = useCourseStore();
-const route = useRoute();
 const show = ref(false)
 const courses = ref([]);
 const dialog = ref(false);
@@ -17,7 +13,7 @@ const editMode = ref(false);
 const router = useRouter()
 const editedCourse = ref({
   courseTitle: '',
-  teacher:'',
+  teacher: '',
   startDate: '',
   description: '',
   image: '',
@@ -29,13 +25,12 @@ const setErrorMsg = (msg) => {
   errorMsg.value = msg;
 };
 
-
 watchEffect(() => {
   courses.value = courseStore.courses;
 });
 
 onMounted(() => {
- courseStore.showCourses()
+  courseStore.showCourses()
   console.log('comp mounted')
   fetchCourses();
 });
@@ -48,13 +43,21 @@ const fetchCourses = async () => {
 
 const openDialog = () => {
   editMode.value = false;
-  editedCourse.value = { courseTitle: '',teacher:'', startDate: '', description: '', image: '', maxAttendants:'',price:'' };
+  editedCourse.value = {
+    courseTitle: '',
+    teacher: '',
+    startDate: '',
+    description: '',
+    image: '',
+    maxAttendants: '',
+    price: ''
+  };
   dialog.value = true;
 };
 
 const editCourse = (course) => {
   editMode.value = true;
-  editedCourse.value = { ...course };
+  editedCourse.value = {...course};
   dialog.value = true;
 };
 
@@ -65,7 +68,7 @@ const saveCourse = async () => {
       console.log('update Course called');
       console.log(editedCourse.value.courseId);
       await courseStore.updateCourse(editedCourse.value.courseId, editedCourse.value);
-     // await courseStore.showCourses()
+      // await courseStore.showCourses()
     } else {
       console.log('create Course called');
       console.log(editedCourse.value.courseId);
@@ -87,8 +90,8 @@ const saveCourse = async () => {
 };
 
 
-async function deleteCourse(courseId){
-  console.log('courseId delete' ,courseId)
+async function deleteCourse(courseId) {
+  console.log('courseId delete', courseId)
   await courseStore.deleteCourse(courseId)
   await courseStore.showCourses()
 }
@@ -107,9 +110,8 @@ const closeDialog = () => {
   };
 };
 const openAdminCourseUserView = (courseId) => {
-  router.push({ name: 'adminCourseUserView' ,params: {courseId} });
+  router.push({name: 'adminCourseUserView', params: {courseId}});
 };
-
 
 
 </script>
@@ -166,7 +168,7 @@ const openAdminCourseUserView = (courseId) => {
               <v-divider></v-divider>
 
               <v-card-text>
-                {{course.description}}
+                {{ course.description }}
               </v-card-text>
             </div>
           </v-expand-transition>
@@ -176,7 +178,7 @@ const openAdminCourseUserView = (courseId) => {
             <v-btn @click="editCourse(course)" icon>
               <v-icon>mdi-pencil</v-icon>
             </v-btn>
-            <v-btn @click="deleteCourse(course.courseId)" icon="mdi-delete" color="orange" >
+            <v-btn @click="deleteCourse(course.courseId)" icon="mdi-delete" color="orange">
 
             </v-btn>
             <v-btn @click="openAdminCourseUserView(course.courseId)" icon>
@@ -195,13 +197,13 @@ const openAdminCourseUserView = (courseId) => {
       <v-card-text>
         <v-form ref="form" v-model="valid" lazy-validation>
           <v-text-field v-model="editedCourse.courseTitle" label="Kurs Titel" hint="required" required></v-text-field>
-          <v-text-field v-model="editedCourse.teacher" label="Kochmentor" ></v-text-field>
-          <v-text-field v-model="editedCourse.startDate" label="Kursbeginn" hint="yyyy-MM-dd HH:mm:ss" ></v-text-field>
-          <v-text-field v-model="editedCourse.description" label="Beschreibung" ></v-text-field>
-          <v-text-field v-model="editedCourse.image" label="Bild URL" ></v-text-field>
+          <v-text-field v-model="editedCourse.teacher" label="Kochmentor"></v-text-field>
+          <v-text-field v-model="editedCourse.startDate" label="Kursbeginn" hint="yyyy-MM-dd HH:mm:ss"></v-text-field>
+          <v-text-field v-model="editedCourse.description" label="Beschreibung"></v-text-field>
+          <v-text-field v-model="editedCourse.image" label="Bild URL"></v-text-field>
           <v-text-field v-model.number="editedCourse.maxAttendants" label="Max.Teilnehmer Anzahl"></v-text-field>
           <v-text-field v-model.number="editedCourse.price" label="Preis"></v-text-field>
-          <v-alert v-if="errorMsg" closable text="..." type="error" variant="tonal">{{errorMsg}}</v-alert>
+          <v-alert v-if="errorMsg" closable text="..." type="error" variant="tonal">{{ errorMsg }}</v-alert>
 
         </v-form>
       </v-card-text>
