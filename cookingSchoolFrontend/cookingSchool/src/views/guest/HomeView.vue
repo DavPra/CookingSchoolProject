@@ -42,12 +42,12 @@ const isHovering= ref(false)
         src="https://cdn.pixabay.com/photo/2021/02/08/07/39/chef-5993951_960_720.jpg"
         cover
       >
-        <div class="d-flex fill-height justify-center align-center flex-column">
+      <div class="d-flex fill-height justify-center align-center flex-column">
           <div class="text-h1 font-weight-medium text-shades-white">
-            Culinary Creativity
+            Cooking
           </div>
-          <div class="text-h1 font-weight-medium text-white">
-            Starts Here
+          <div class="text-h4 text-white">
+            Academy
           </div>
         </div>
 
@@ -57,12 +57,12 @@ const isHovering= ref(false)
         src="https://images.pexels.com/photos/8136881/pexels-photo-8136881.jpeg?auto=compress&cs=tinysrgb&w=600"
         cover
       >
-        <div class="d-flex fill-height justify-center align-center flex-column">
+         <div class="d-flex fill-height justify-center align-center flex-column">
           <div class="text-h1 font-weight-medium text-shades-white">
-            Jetzt weiß
+            Culinary Creativity
           </div>
           <div class="text-h1 font-weight-medium text-white">
-            ich nichts mehr
+            Starts Here
           </div>
         </div>
       </v-carousel-item>
@@ -70,7 +70,16 @@ const isHovering= ref(false)
       <v-carousel-item
           src="https://images.pexels.com/photos/1398688/pexels-photo-1398688.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         cover
-      ></v-carousel-item>
+      >
+      <div class="d-flex fill-height justify-center align-center flex-column">
+          <div class="text-h1 font-weight-medium text-shades-white">
+            Cooking
+          </div>
+          <div class="text-h4 text-white">
+            Academy
+          </div>
+        </div>
+    </v-carousel-item>
 
     </v-carousel>
 <!-- WELCOME -->
