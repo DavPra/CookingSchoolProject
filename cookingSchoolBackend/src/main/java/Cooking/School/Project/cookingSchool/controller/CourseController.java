@@ -23,7 +23,7 @@ public class CourseController {
 
 //TODO da weiter
     /**
-     * Get Method to get a Lsit of all Courses including recipes and tags
+     * Get Method to get a List of all Courses including recipes and tags
      * @return HttpStatus 200 and a success message,or 404 NotFound
      */
     @GetMapping("/courses")

@@ -12,6 +12,7 @@ import Cooking.School.Project.cookingSchool.repository.UserRepository;
 import Cooking.School.Project.cookingSchool.restapi.dto.RecipeCourse;
 import Cooking.School.Project.cookingSchool.restapi.dto.RecipeDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -77,6 +78,7 @@ public class RecipeService {
 
     /**
      * load ingredients for addRecipesToCourse method
+     *
      * @param courseIds
      * @return a List of Courses
      * @throws CourseNotFoundException
@@ -93,11 +95,11 @@ public class RecipeService {
     }
 
     /**
-     *  load ingredients for addRecipesToCourse method
+     * load ingredients for addRecipesToCourse method
+     *
      * @param ingredients
      * @return a List of ingredients
      */
-
     private Set<Ingredient> loadIngredients(Set<Ingredient> ingredients) {
         Set<Ingredient> loadedIngredients = new HashSet<>();
         for (Ingredient ingredient : ingredients) {
@@ -109,18 +111,33 @@ public class RecipeService {
             } else {
                 ingredient = loadedIngredientOptional.get();
             }
-
             loadedIngredients.add(ingredient);
         }
-
         return loadedIngredients;
     }
 
+    /**
+     * get all recipes from the database
+     *
+     * @return recipes
+     * @throws RecipeNotFoundException
+     */
+    public List<Recipe> getAllRecipe() {
+        List<Recipe> recipes = recipeRepository.findAll();
 
-
-    public List<Recipe> getAllRecipe() throws RecipeNotFoundException {
-        return recipeRepository.findAll();
+        if (recipes.isEmpty()) {
+            throw new RecipeNotFoundException("Keine Benutzer gefunden");
+        }
+        return recipes;
     }
+
+    /**
+     * get a recipe by id from the database
+     *
+     * @param recipeId
+     * @return the recipe
+     * @throws PrimaryIdNullOrEmptyException
+     */
 
     public Recipe getRecipeById(Long recipeId) throws PrimaryIdNullOrEmptyException {
         if (recipeId == null || recipeId <= 0) {
@@ -130,6 +147,8 @@ public class RecipeService {
 
         return recipe;
     }
+
+    //TODO da weiter
 
     /**
      * updatet Recipe und zutaten anhand der recipeId im pfad und findet Ingredient anhand der id,checkt ob da und updatet
@@ -157,7 +176,6 @@ public class RecipeService {
                 ingredient.setTitle(updatedIngredient.getTitle());
                 ingredient.setUnit(updatedIngredient.getUnit());
                 ingredient.setQuantity(updatedIngredient.getQuantity());
-
 
             });
         }

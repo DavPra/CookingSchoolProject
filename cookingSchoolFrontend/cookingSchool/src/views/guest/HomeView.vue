@@ -1,5 +1,5 @@
 <script setup>
-import Logo from "@/components/Logo.vue";
+
 import {globalColors as __colors} from "@/assets/colors";
 import {ref} from "vue";
 const isHovering= ref(false)
@@ -111,13 +111,13 @@ const isHovering= ref(false)
   <v-sheet class="container d-flex  flex-row flex-wrap justify-start  seccard mt-10 elevation-0" width="100%" color="rgb(255, 255, 255, 0.8)">
     <v-card
     ><v-img
-        :width="500"
-        aspect-ratio="16/9"
+        :width="600"
+        aspect-ratio="4/3"
         cover
         src="https://media.gettyimages.com/id/1302980333/de/foto/young-chef-learning-stirring-food-in-frying-pan-while-standing-by-colleague-in-kitchen.jpg?s=612x612&w=0&k=20&c=IyZ90eJfwcZDEjyJvJwWfMlI0segeoMI-qhhltJIgCk="
     ></v-img>
     </v-card>
-    <v-sheet variant="flat" class="ml-1  " max-width="600" v-bind="props"  color="rgb(255, 255, 255, 0.8)">
+    <v-sheet variant="flat" class="ml-10 " max-width="600" v-bind="props"  color="rgb(255, 255, 255, 0.8)">
       <v-card-title class="text-h4 m-4 " variant="plain" :style="{ color: __colors.primary }">Unsere Kurse</v-card-title>
       <v-card-text class="text-h6 font-weight-light typo">
 

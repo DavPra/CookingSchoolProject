@@ -41,7 +41,7 @@ public class RecipeController {
 
     /**
      * Get method to show a list of recipes
-     * @return
+     * @return HttpsStatus 200 ok or
      */
 
     @GetMapping("admin/getAllRecipes")

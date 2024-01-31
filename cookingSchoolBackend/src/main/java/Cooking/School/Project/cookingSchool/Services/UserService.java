@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -93,36 +94,19 @@ public class UserService {
 
     }
 
-    //war auskommentiert, wieder einkommentiert
-    /*
-    @Transactional
-    public User editUser(Long userId, User updatedUser) throws PrimaryIdNullOrEmptyException {
-        if (userId == null) {
-            throw new PrimaryIdNullOrEmptyException("User Id is null or empty");
-        }
-        User existingUser = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException("User not found"));
-
-        existingUser.setFirstname(updatedUser.getFirstname());
-        existingUser.setLastname(updatedUser.getLastname());
-        existingUser.setAddress(updatedUser.getAddress());
-        existingUser.setPassword(updatedUser.getPassword());
-        existingUser.setUsername(updatedUser.getUsername());
-        existingUser.setAdmin(updatedUser.isAdmin());
-
-        userRepository.save(existingUser);
-
-        return existingUser;
-    }
-*/
 
     /**
+     * Get Method to get a List of all Users
      *
      * @return
      */
 
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        List<User> users = userRepository.findAll();
+        if (users.isEmpty()) {
+            throw new NoSuchElementException("No users found");
+        }
+        return users;
     }
 
     /**
@@ -133,7 +117,6 @@ public class UserService {
      * @throws UserNotFoundException
      * @throws MaxAttendantsReachedException when course is fully booked
      */
-
     @Transactional
     public void bookCourse(Long userId, Long courseId) {
 
@@ -158,38 +141,6 @@ public class UserService {
         }
     }
 
-    /*
-    /**
-     * I KNOW DOUBLE TROUBLE ...zur sicherheit, wegen security problemen im frontend
-     * @param userId
-     * @param courseId
-     * @throws UserNotFoundException
-     * @throws CourseNotFoundException
-     * @throws MaxAttendantsReachedException when course is fully booked
-
-    @Transactional
-    public void bookCourseAdmin(Long userId, Long courseId) {
-
-        final User user = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException("User not found"));
-        final Course course = courseRepository.findById(courseId)
-                .orElseThrow(() -> new CourseNotFoundException("Course not found"));
-
-        int maxNumberOfAttendants = course.getMaxAttendants();
-
-        if (course.getUsers().size() < maxNumberOfAttendants) {
-            course.getUsers().add(user);
-            course.setMaxAttendants(course.getMaxAttendants() - 1);
-            courseRepository.save(course);
-
-            user.getCourses().add(course);
-            user.setFinishedCourses(courseId);
-            userRepository.save(user);
-
-        } else {
-            throw new MaxAttendantsReachedException(maxNumberOfAttendants);
-        }
-    }*/
 
     /**
      * register a new user

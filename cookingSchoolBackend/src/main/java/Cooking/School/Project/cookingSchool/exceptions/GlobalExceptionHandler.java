@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import java.util.NoSuchElementException;
+
 /**
  * Alle hier definierten handler müssen weder im Service(oben in einer methode) geworfen noch im Controller abgefangen werden.
  */
@@ -62,12 +64,17 @@ public class GlobalExceptionHandler{
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.CONFLICT.value(), ex.getMessage());
         return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
     }
-   @ExceptionHandler(Exception.class)
+    @ExceptionHandler(NoSuchElementException.class)
+    public final ResponseEntity<ErrorResponse> handleNoSuchElementException(NoSuchElementException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+    }
+  /* @ExceptionHandler(Exception.class)
     public final ResponseEntity<ErrorResponse> handleGenericException(Exception ex) {
         System.out.println("autsch");
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Internal Server Error");
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
-    }
+    }*/
 
 
 }
