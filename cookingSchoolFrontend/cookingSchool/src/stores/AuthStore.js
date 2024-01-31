@@ -21,10 +21,6 @@ export const useAuthStore = defineStore('authentication', {
             const decodedToken = jwtDecode(this.accessToken);
             return decodedToken.userId;
         },
-        /*
-        getUserId() {
-            return jwtDecode(window.localStorage.getItem('accessToken')).userId;
-        },*/
         async login({username, password}) {
             const response = await axios.post(ApiUrl('authenticate'),{username:username, password:password})
             if(response.status === 403){

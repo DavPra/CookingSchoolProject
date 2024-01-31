@@ -3,6 +3,7 @@ import {useRoute, useRouter} from "vue-router";
 import {onMounted, ref, reactive, computed, watch} from "vue";
 import {useUserStore} from "@/stores/UserStore";
 import {useCourseStore} from "@/stores/CourseStore";
+import {useUserStoreUpdate} from "@/stores/UserStoreforUpdate";
 
 const userStore = useUserStore()
 const courseStore = useCourseStore()
@@ -77,6 +78,7 @@ const editUser = (user) => {
   console.log('editUser function called userId: ', user);
   console.log(userData.value);
   editingUser.value = user;
+  console.log('editingUser.value', editingUser.value);
   newUser.value = {
     firstname: user.firstname,
     lastname: user.lastname,
@@ -108,6 +110,7 @@ async function createOrUpdateUser() {
       };
       await userStore.showUsers()
     } else {
+      console.log('upsihgrehbrthn', editingUser.value.userId, newUser.value)
       await userStore.updateUser(editingUser.value.userId, newUser.value);
       console.log('User updated successfully');
       newUser.value = {
@@ -126,7 +129,7 @@ async function createOrUpdateUser() {
     if (error.response && error.response.status === 409) {
       console.log('Email address already exists')
     }
-    console.error('Error creating or updating user:', error);
+    //console.error('Error creating or updating user:', error);
     throw error;
   }
 }

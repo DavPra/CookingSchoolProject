@@ -1,5 +1,6 @@
 import {defineStore} from "pinia";
 import axios from "axios";
+import {ApiUrl} from "@/helper/ApiHelper";
 
 export const useCourseStore = defineStore('course', {
     state: () => ({
