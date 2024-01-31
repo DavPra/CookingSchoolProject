@@ -18,7 +18,7 @@ async function login() {
     isLoginInProgress.value = true;
     await authentication.login(credentials.value);
     if (isAdmin() === true) {
-      await router.push('/admin/courses');
+      await router.push('/admin');
     } else {
       await router.push('/user/courses');
     }
@@ -31,9 +31,9 @@ async function login() {
 }
 
 function isAdmin() {
-  const token = window.localStorage.getItem('accessToken');
-  const decodedToken = jwtDecode(window.localStorage.getItem('accessToken', token))
-  if (decodedToken.admin === true) {
+  const token = localStorage.getItem('accessToken');
+  const decodedToken = jwtDecode(localStorage.getItem('accessToken', token))
+  if (decodedToken.role === 'ADMIN') {
     return true;
   } else {
     return false;

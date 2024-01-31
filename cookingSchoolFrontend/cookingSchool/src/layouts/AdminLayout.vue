@@ -27,15 +27,15 @@ async function logout() {
     </v-toolbar-items>
     <v-spacer></v-spacer>
     <v-toolbar-items>
-      <v-btn variant="plain" rounded="xl"  to="/admin/courses">Kursverwaltung</v-btn>
+      <v-btn variant="plain" rounded="xl"  to="/admin/courses">Kurse</v-btn>
     </v-toolbar-items>
     <v-spacer></v-spacer>
     <v-toolbar-items>
-      <v-btn variant="plain" rounded="xl" to="/admin/recipes">Rezeptverwaltung</v-btn>
+      <v-btn variant="plain" rounded="xl" to="/admin/recipes">Rezepte</v-btn>
     </v-toolbar-items>
     <v-spacer></v-spacer>
     <v-toolbar-items>
-      <v-btn to="/admin/users">Userverwaltung</v-btn>
+      <v-btn to="/admin/users">User</v-btn>
     </v-toolbar-items>
     <v-spacer></v-spacer>
 

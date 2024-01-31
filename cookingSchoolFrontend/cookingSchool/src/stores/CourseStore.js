@@ -112,7 +112,7 @@ export const useCourseStore = defineStore('course', {
                     Authorization: 'Bearer ' + localStorage.getItem('accessToken')
                 }
             }
-            const bookCourseResponse = await axios.put(ApiUrl(`/users/${courseId}/book-course/${userId}`), config)
+            await axios.put(ApiUrl(`/users/${courseId}/book-course/${userId}`), config)
             console.log('Course booked')
             await this.showCourses()
         },
