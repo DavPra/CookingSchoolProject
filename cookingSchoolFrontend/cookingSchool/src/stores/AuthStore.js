@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia';
 import axios from 'axios';
-import {createApiUrl} from '@/helper/ApiHelper';
+import {ApiUrl} from '@/helper/ApiHelper';
 import jwtDecode from 'jwt-decode';
 
 export const useAuthStore = defineStore('authentication', {
@@ -26,7 +26,7 @@ export const useAuthStore = defineStore('authentication', {
             return jwtDecode(window.localStorage.getItem('accessToken')).userId;
         },*/
         async login({username, password}) {
-            const response = await axios.post(createApiUrl('authenticate'),{username:username, password:password})
+            const response = await axios.post(ApiUrl('authenticate'),{username:username, password:password})
             if(response.status === 403){
                 throw new Error('User nicht gefunden')
             }
