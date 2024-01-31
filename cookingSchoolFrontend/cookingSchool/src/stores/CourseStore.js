@@ -99,7 +99,6 @@ export const useCourseStore = defineStore('course', {
             }
         },
 
-        //TODO: Kathy - für admin und user? wo wird das eingebunden?
         //in CourseCard --- APPUSER
         async bookCourse(courseId, userId) {
             console.log('token= ' + localStorage.getItem('accessToken'));
