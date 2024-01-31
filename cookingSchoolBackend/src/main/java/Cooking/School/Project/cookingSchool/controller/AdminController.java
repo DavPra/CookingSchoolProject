@@ -232,8 +232,8 @@ public class AdminController {
      * @return HttpStatus 200 or 404 Notfound
      */
     @PostMapping("/admin/{userId}/book-course/{courseId}")
-    public ResponseEntity<?> bookCourseAdmin(@PathVariable Long userId, @PathVariable Long courseId) {
-        userService.bookCourseAdmin(userId, courseId);
+    public ResponseEntity<?> bookCourse(@PathVariable Long userId, @PathVariable Long courseId) {
+        userService.bookCourse(userId, courseId);
         return ResponseEntity.ok("Course booked successfully");
     }
 
