@@ -15,7 +15,8 @@ const route = useRoute()
 const show = ref(false)
 const rules = {
   required: value => !!value || 'Field is required',
-  min: v => (v && v.length >= 6) || 'Min 6 characters'
+  min: v => (v && v.length >= 6) || 'Min 6 characters',
+  password: v => !v || (v && v.length >= 6) || 'Min 6 characters'
 }
 const firstTextField = ref(null);
 const shouldFocusFirstTextField = ref(false);
@@ -264,7 +265,7 @@ const closeCourseDialog = () => {
       <v-text-field
           v-model="newUser.password"
           :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-          :rules="[rules.min]"
+          :rules="[rules.password]"
           label="Passwort"
           hint="Mindestens 6 Zeichen"
           @click:append="show = !show"

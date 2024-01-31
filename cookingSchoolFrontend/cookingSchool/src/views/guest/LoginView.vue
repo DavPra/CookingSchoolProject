@@ -33,7 +33,7 @@
   function isAdmin() {
     const token = window.localStorage.getItem('accessToken');
     const decodedToken = jwtDecode(window.localStorage.getItem('accessToken', token))
-    if(decodedToken.admin === true) {
+    if(decodedToken.role === "ADMIN") {
       return true;
     } else {
       return false;
