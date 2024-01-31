@@ -79,7 +79,7 @@ public class UserController {
      * @param courseId
      * @return 200 ok, 404 notfound when course id or user id is not found or 500 bad request when max Attendants reached
      */
-    @PreAuthorize("hasAnyAuthority('APPUSER')")
+    @PreAuthorize("hasAnyAuthority('APPUSER', 'ADMIN')")
     @PostMapping("/users/{userId}/book-course/{courseId}")
     public ResponseEntity<?> bookCourse(@PathVariable Long userId, @PathVariable Long courseId) {
         userService.bookCourse(userId, courseId);

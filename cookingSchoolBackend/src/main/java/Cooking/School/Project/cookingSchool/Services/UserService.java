@@ -158,6 +158,7 @@ public class UserService {
         }
     }
 
+    /*
     /**
      * I KNOW DOUBLE TROUBLE ...zur sicherheit, wegen security problemen im frontend
      * @param userId
@@ -165,7 +166,7 @@ public class UserService {
      * @throws UserNotFoundException
      * @throws CourseNotFoundException
      * @throws MaxAttendantsReachedException when course is fully booked
-     */
+
     @Transactional
     public void bookCourseAdmin(Long userId, Long courseId) {
 
@@ -188,7 +189,7 @@ public class UserService {
         } else {
             throw new MaxAttendantsReachedException(maxNumberOfAttendants);
         }
-    }
+    }*/
 
     /**
      * register a new user

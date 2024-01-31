@@ -3,7 +3,6 @@ package Cooking.School.Project.cookingSchool.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -55,7 +54,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
         }
 
 
-
         @Bean
         public PasswordEncoder passwordEncoder() {
             return new BCryptPasswordEncoder();
@@ -73,7 +71,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
             return config.getAuthenticationManager();
         }
 
-        /**
+        /*
          @PostConstruct
          public void testPasswordEncoder() {
          String rawPassword = "testpassword";

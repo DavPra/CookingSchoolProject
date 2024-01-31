@@ -54,8 +54,8 @@ public class User implements UserDetails {
     @Setter
     private String email;
 
-   // @JsonIgnore
-   // @Setter
+    // @JsonIgnore
+    @Setter
     private String password;
 
     @Column(name = "USERNAME")
@@ -83,13 +83,6 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "courseId"))
     private Set<Course> courses = new HashSet<>();
 
-
-
-   /* @JsonIgnore
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
-    }*/
 
     @Override
     public String getUsername() {
@@ -120,13 +113,11 @@ public class User implements UserDetails {
         return true;
     }
 
-
-
     public void setPassword(String password) {
         this.password = new BCryptPasswordEncoder().encode(password);
     }
 
-//APPUSER für jeden benutzer, wenn isAdmin true ist wir rolle Amin hinzugefügt wenn false nur user
+    //APPUSER für jeden benutzer, wenn isAdmin true ist wir rolle Amin hinzugefügt wenn false nur user
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(AUTHORITIES.APPUSER.name()));
