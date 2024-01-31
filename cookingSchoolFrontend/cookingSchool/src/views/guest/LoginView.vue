@@ -33,7 +33,7 @@ async function login() {
 function isAdmin() {
   const token = localStorage.getItem('accessToken');
   const decodedToken = jwtDecode(localStorage.getItem('accessToken', token))
-  if (decodedToken.role === 'ADMIN') {
+  if (decodedToken.roles === 'ADMIN') {
     return true;
   } else {
     return false;
