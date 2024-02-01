@@ -43,7 +43,7 @@ async function logout() {
     </v-toolbar-items>
   </v-toolbar>
   <RouterView />
-  <Logo style="position: centered;"/>
+  <Logo style="position: relative;"/>
 </template>
 
 <style scoped>

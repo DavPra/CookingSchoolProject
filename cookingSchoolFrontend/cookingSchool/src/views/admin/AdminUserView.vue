@@ -314,8 +314,17 @@ const closeCourseDialog = () => {
           </td>
           <td>
             <v-btn icon="mdi-delete" variant="text" @click="showDeleteDialog = true">
-
             </v-btn>
+              <!-- Alert bevor man einen User entgültig löscht -->
+              <v-dialog v-model="showDeleteDialog" max-width="350">
+                <v-card>
+                  <v-card-title>User löschen</v-card-title>
+                  <v-card-item class="pb-5">
+                    <DeleteAlert @delete="deleteUser(item.userId)" @abort="showDeleteDialog = false"/>
+                  </v-card-item>
+                </v-card>
+              </v-dialog>
+
           </td>
           <td>
             <v-btn icon="mdi-plus" variant="text" @click="assignUserToCourse(item.userId)">
@@ -338,16 +347,6 @@ const closeCourseDialog = () => {
         <v-btn @click="completeAssignment(selectedCourseId)" class="elevation-2">Eintragen</v-btn>
         <v-btn @click="closeCourseDialog" variant="tonal">Zurück</v-btn>
       </v-card-actions>
-    </v-card>
-  </v-dialog>
-
-  <!-- Alert bevor man einen User entgültig löscht -->
-  <v-dialog v-model="showDeleteDialog" max-width="350">
-    <v-card>
-      <v-card-title>User löschen</v-card-title>
-      <v-card-item class="pb-5">
-        <DeleteAlert @delete="deleteUser(item.userId)" @abort="showDeleteDialog = false"/>
-      </v-card-item>
     </v-card>
   </v-dialog>
 </template>

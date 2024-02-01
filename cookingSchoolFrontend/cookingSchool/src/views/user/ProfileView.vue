@@ -110,7 +110,6 @@ async function deleteUser() {
       </v-dialog>
     </v-container>
   </v-container>
-
 </template>
 
 <style scoped>
