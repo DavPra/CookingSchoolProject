@@ -278,7 +278,7 @@ const closeCourseDialog = () => {
   </v-sheet>
 
   <!-- User Tabelle -->
-  <v-card width="90%" class="mx-auto" tonal title="User Management">
+  <v-card width="90%" class="mx-auto" tonal title="Benutzerverwaltung">
     <template v-slot:text>
       <v-text-field
           v-model="search"
@@ -330,7 +330,7 @@ const closeCourseDialog = () => {
     <v-card>
       <v-card-title>Wähle einen Kurs</v-card-title>
 
-      <v-select v-model="selectedCourseId" :items="courseOptions" item-value="courseId" label="Select a Course"
+      <v-select v-model="selectedCourseId" :items="courseOptions" item-value="courseId" label="Wähle einen Kurs aus"
                 class="ma-4"></v-select>
       <v-card-actions>
         <v-btn @click="completeAssignment(selectedCourseId)" class="elevation-2">Eintragen</v-btn>

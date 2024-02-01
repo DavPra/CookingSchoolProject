@@ -178,9 +178,9 @@ const closeDialog = () => {
           <v-card-title color="primary" >{{ recipe.title }}</v-card-title>
           <v-divider></v-divider>
           <v-card-subtitle class="py-2">Schwierigkeit: {{ recipe.difficulty }}</v-card-subtitle>
-          <v-card-subtitle> Zubereitungs Zeit: {{ recipe.preparation }} Minuten</v-card-subtitle>
+          <v-card-subtitle> Zubereitungszeit: {{ recipe.preparation }} Minuten</v-card-subtitle>
           <v-card-text v-if="recipe.courses && recipe.courses.length > 0">
-            Kurs Nummer : {{ recipe.courses.map(course => course.courseId).join(', ') }}
+            Kursnummer : {{ recipe.courses.map(course => course.courseId).join(', ') }}
           </v-card-text>
           <v-card-text class="ms-4">
             Zutaten:

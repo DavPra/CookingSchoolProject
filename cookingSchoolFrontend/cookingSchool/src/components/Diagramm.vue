@@ -13,7 +13,7 @@ function initializeBarChart() {
   const barChart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['January', 'February', 'March', 'April', 'May'],
+      labels: ['Januar', 'Februar', 'März', 'April', 'Mai'],
       datasets: [{
         label: 'Umsatz',
         data: [65, 59, 80, 81, 56],
