@@ -18,6 +18,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
 @Component
@@ -104,6 +105,8 @@ public class JwtService {
 
         calendar.add(calendar.get(Calendar.HOUR), 4);
         Date expirationDate = calendar.getTime();
+
+        expirationDate.setTime(expirationDate.getTime() + TimeUnit.MINUTES.toMillis(5));
 
         return Jwts.builder()
                 .setClaims(claims)
