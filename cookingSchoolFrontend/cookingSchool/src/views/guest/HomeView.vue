@@ -146,7 +146,7 @@ const isHovering= ref(false)
 <v-card class="bg-white text-center mx-auto" width="99%" >
   <v-card-title class="text-h4 mp-3 mt-5" :style="{ color: __colors.primary }" >Bereit, ein Meisterkoch zu werden?</v-card-title>
   <v-card-subtitle class="text-h4 py-3" :style="{ color: __colors.primary }" >Registriere dich jetzt und leg los!</v-card-subtitle>
-  <v-btn rounded="xl" class="ms-3 my-5" to="/register" color="primary" > Sign in </v-btn>
+  <v-btn rounded="xl" class="ms-3 my-5" to="/register" color="primary" > Melde dich an </v-btn>
 
 </v-card>
   <h2 class="text-h4 text-center mb-4" :style="{ color: __colors.primary }"></h2>
