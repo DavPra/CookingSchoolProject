@@ -44,8 +44,12 @@ ShowCourses();
     <NextCourses/>
   </div>
 
+  <v-sheet class="erlebnis d-flex " >
+    <img alt="erlebnis banner" class="item" src="@/assets/erlebnis.png"/>
+  </v-sheet>
 
 
+<!--
   <div>
     <v-sheet class="m-6 p-4 justify-center text-center elevation-0" elevation="3" width="100%" >
       <h1 class="font-weight-medium mb-3 ">Dein Erlebnis bei uns</h1>
@@ -80,7 +84,7 @@ ShowCourses();
     </div>
   </div>
 
-
+-->
 
 
   <v-sheet class="">
@@ -103,3 +107,16 @@ ShowCourses();
     </v-row>
   </v-sheet>
 </template>
+
+<style scoped>
+.erlebnis {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item {
+  width: 100%;
+}
+</style>
