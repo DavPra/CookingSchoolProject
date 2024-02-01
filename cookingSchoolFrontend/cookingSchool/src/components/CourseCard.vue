@@ -3,16 +3,14 @@
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useCourseStore } from "@/stores/CourseStore.js";
-import { useAuthStore } from "@/stores/AuthStore.js";
 import jwtdecode from "jwt-decode";
 
 const courseStore = useCourseStore()
 const course = defineProps(['courseTitle','startDate','description','teacher','courseId'])
-const authStore = useAuthStore();
 const router = useRouter();
 
 onMounted(() => {
-  showCourses();
+  ShowCourses();
   console.log('mounted');
  
 });
@@ -25,20 +23,21 @@ const courseId = course.courseId;
 let decodedUserId = '';
 
 
-async function showCourses() {
-  await courseStore.showCourses();
+async function ShowCourses() {
+  await courseStore.showGuestCourses();
   courses = courseStore.courses;
   console.log(courses);
 }
 
-showCourses();
+ShowCourses();
 
 async function bookCourse() {
   if(!window.localStorage.getItem('accessToken')) {
     await router.push('/login');
   } else {
     decodedUserId = jwtdecode(localStorage.getItem("accessToken")).userId;
-    console.log(decodedUserId);
+    console.log("userID= " + decodedUserId);
+    console.log("courseID= " + courseId);
     await courseStore.bookCourse(decodedUserId, courseId);
     console.log(courses.courseId);
   }
@@ -59,10 +58,15 @@ async function bookCourse() {
         <v-card-title>
           {{ courseTitle }}
         </v-card-title>
-        <v-card-text>{{ startDate }}</v-card-text>
+        <v-card-subtitle>{{ startDate }}</v-card-subtitle>
         <v-card-text>{{ teacher }}</v-card-text>
+        <v-btn class="ms-3 " rounded="xl" @click="bookCourse"
+          color="primary">
+          Buchen
+          </v-btn>
         <v-card-actions>
-          <v-btn color="primary">Kursbeschreibung</v-btn>
+         
+          <v-btn color="primary" @click="show = !show">Mehr Info</v-btn>
 
           <v-spacer></v-spacer>
 
@@ -76,11 +80,6 @@ async function bookCourse() {
           <div v-show="show">
             <v-divider></v-divider>
             <v-card-text>{{description}}</v-card-text>
-          <v-btn @click="bookCourse"
-          variant="text" 
-          color="primary">
-          Buchen
-          </v-btn>
           </div>
         </v-expand-transition>
 

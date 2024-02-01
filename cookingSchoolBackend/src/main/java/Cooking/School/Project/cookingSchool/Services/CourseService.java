@@ -48,12 +48,21 @@ public class CourseService {
      * Find a course by id in the database
      * @param courseId
      * @return the course
+     * @throws CourseNotFoundException if no course found with given id
      */
-
     public Course getCourseById(Long courseId) {
         return courseRepository.findById(courseId)
                 .orElseThrow(() -> new CourseNotFoundException("Course not found with ID: " + courseId));
     }
+
+
+    //Wird nicht gebraucht meines wissens
+    /**
+     * Find a course by id in the database
+     * @param courseId
+     * @return course
+     * @throws CourseNotFoundException if no course found with given id
+     */
 
     public Course getCourseDetails(Long courseId) {
         return courseRepository.findById(courseId)
@@ -64,6 +73,7 @@ public class CourseService {
     /**
      *  find a course by id and delete it from the db
      * @param id courseId
+     * @throws CourseNotFoundException if no course found with given id
      */
     public void deleteCourseById(Long id) {
         Course course = courseRepository.findById(id)
@@ -71,16 +81,17 @@ public class CourseService {
         courseRepository.delete(course);
     }
 
+    /* wird nicht gebraucht?
     public Course updateCourse(Course course) {
         courseRepository.save(course);
         return course;
-    }
+    }*/
 
     /**
-     * creates a course including course tags and saves it to the database
-     *
+     * creates a course, if available, including tags and saves it in the database
      * @param request a JSON holding the information to create a course
-     * @return the  course Id
+     * @return the course id
+     * @throws TagNotFoundException when course tag is not found
      */
 
     @Transactional
@@ -112,6 +123,7 @@ public class CourseService {
 
     /** searches for all courses and creates a list of all courses including their tags and recipes
      * @return a List of CourseTagsRecipeResponse or 404 not found if no course was found
+     * @throws CourseNotFoundException if no courses are found
      */
     public List<CourseTagsRecipeResponse> getAllCourses() {
         List<Course> courses = courseRepository.findAll();

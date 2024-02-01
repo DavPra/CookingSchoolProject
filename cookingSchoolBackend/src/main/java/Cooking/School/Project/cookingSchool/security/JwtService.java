@@ -18,6 +18,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
 @Component
@@ -51,7 +52,8 @@ public class JwtService {
                 .setSigningKey(getSignKey())
                 .build()
                 .parseClaimsJws(token)
-                .getBody();
+                .getBody(); //Payload token
+
     }
 
     private Boolean isTokenExpired(String token) {
@@ -66,7 +68,7 @@ public class JwtService {
     }
 
 
-    public String generateToken(String userName){
+    /*public String generateToken(String userName){
 
         final User user = appUserRepository.findByUsername(userName);
 
@@ -78,6 +80,22 @@ public class JwtService {
         String token = createToken(claims,userName);
         logger.info("token generated");
         return token;
+    }*/
+    public String generateToken(String userName) {
+        final User user = appUserRepository.findByUsername(userName);
+
+        logger.info("Try to generate token");
+
+        Map<String, Object> claims = new HashMap<>(); // Daten zum Mitschicken
+        claims.put("userId", user.getUserId());
+        claims.put("username", user.getUsername());
+
+        // Hinzufügen der Rolle basierend auf isAdmin
+        claims.put("roles", user.isAdmin() ? "ADMIN" : "APPUSER");
+        //claims.put("role", user.isAdmin() ? "ROLE_ADMIN" : "ROLE_APPUSER");
+        String token = createToken(claims, userName);
+        logger.info("Token generated");
+        return token;
     }
 
     private String createToken(Map<String, Object> claims, String userName) {
@@ -87,6 +105,8 @@ public class JwtService {
 
         calendar.add(calendar.get(Calendar.HOUR), 4);
         Date expirationDate = calendar.getTime();
+
+        expirationDate.setTime(expirationDate.getTime() + TimeUnit.MINUTES.toMillis(5));
 
         return Jwts.builder()
                 .setClaims(claims)

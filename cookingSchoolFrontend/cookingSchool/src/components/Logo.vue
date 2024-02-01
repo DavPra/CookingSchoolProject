@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <v-container class="logo">
+  <v-container class="logo " >
     <img alt="CookingSchool Banner" class="item" src="@/assets/LogoCookingSchoolTransparent.png"/>
   </v-container>
 </template>
@@ -14,7 +14,8 @@
   justify-content: center;
   align-items: center;
 }
+
 .item {
-  width:30%;
+  width: 30%;
 }
 </style>

@@ -18,7 +18,7 @@ const courses = computed(() => courseStore.courses);
 
 
 onMounted(() => {
-  ShowCourses();
+  showCourses();
   console.log('mounted');
 });
 
@@ -26,11 +26,11 @@ onMounted(() => {
 const err = false;
 
 
-async function ShowCourses() {
+async function showCourses() {
   await courseStore.showGuestCourses();
 }
 
-ShowCourses();
+showCourses();
 
 </script>
 
@@ -40,21 +40,19 @@ ShowCourses();
 
 
 
-  <div>
-    <NextCourses/>
-  </div>
 
 
-
-  <div>
-    <v-sheet class="m-6 p-4 justify-center text-center elevation-0" elevation="3" width="100%" >
-      <h1 class="font-weight-medium mb-3 ">Dein Erlebnis bei uns</h1>
-      <h2 class="mb-4">Was ist alles inkludiert?</h2>
+  <div class="bg-brown-lighten-5 mb-10">
+    <v-sheet class="m-6  justify-center text-center elevation-0 bg-brown-lighten-5" elevation="3" width="100%">
+      <div class="py-5">
+        <h1 class="text-h4  py-5  mb-3 ">Let´s cook together!</h1>
+        <h2 class="text-h5 mb-4">Was ist alles inkludiert?</h2>
+      </div>
     </v-sheet>
 
     <div class="d-flex mx-4 mb-6 justify-lg-space-evenly align-center flex-wrap">
       <div class="my-3 mx-2">
-        <v-card class="py-3 bg-brown-lighten-5 " variant="outlined" style="flex: 1; min-width: 200px;">
+        <v-card class="py-3 bg-transparent " variant="outlined" style="flex: 1; min-width: 200px;">
           <v-card-title>Mehrgängiges Menü</v-card-title>
           <v-card-subtitle>Wir kochen 3 bis 4 Speisen</v-card-subtitle>
         </v-card>
@@ -80,12 +78,15 @@ ShowCourses();
     </div>
   </div>
 
+  <div>
+    <NextCourses/>
+  </div>
 
 
 
-  <v-sheet class="">
+  <v-sheet class="bg-brown-lighten-5">
     <div class="mx-2 my-2 px-2 py-2">
-      <h2 class="text-h4 ">Alle unsere Kurse auf einen Blick:</h2>
+      <h2 class="text-h4 ">Alle unser Kurse auf einen Blick:</h2>
     </div>
 
     <v-row class="d-flex ma-2 ">

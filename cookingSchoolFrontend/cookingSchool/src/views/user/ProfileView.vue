@@ -19,7 +19,11 @@ onBeforeMount(async () => {
 
 async function getUserData() {
   try {
-    const response = await axios.get(`http://localhost:8082/users/${userId}`);
+    const response = await axios.get(`http://localhost:8082/users/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      },
+    });
     user.value = response.data;
   } catch (error) {
     console.error('Error fetching user:', error);

@@ -1,5 +1,7 @@
 package Cooking.School.Project.cookingSchool.entities;
 
+import Cooking.School.Project.cookingSchool.security.AUTHORITIES;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -8,13 +10,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
@@ -53,8 +54,8 @@ public class User implements UserDetails {
     @Setter
     private String email;
 
-   // @JsonIgnore
-   // @Setter
+    // @JsonIgnore
+    @Setter
     private String password;
 
     @Column(name = "USERNAME")
@@ -70,7 +71,7 @@ public class User implements UserDetails {
     private Long finishedCourses;
 
     @Setter
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "users")
     Set<GrantedAuthorityImpl> authorities;
 
     @JsonIgnore
@@ -82,13 +83,6 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "courseId"))
     private Set<Course> courses = new HashSet<>();
 
-
-
-    @JsonIgnore
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
-    }
 
     @Override
     public String getUsername() {
@@ -119,12 +113,22 @@ public class User implements UserDetails {
         return true;
     }
 
-
-
     public void setPassword(String password) {
         this.password = new BCryptPasswordEncoder().encode(password);
     }
 
+    //APPUSER für jeden benutzer, wenn isAdmin true ist wir rolle Amin hinzugefügt wenn false nur user
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        System.out.println("get_authorities");
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(AUTHORITIES.APPUSER.name()));
 
+        System.out.println("isAdmin: " + isAdmin);
+        if (isAdmin) {
+            authorities.add(new SimpleGrantedAuthority(AUTHORITIES.ADMIN.name()));
+        }
 
+        System.out.println(authorities);
+        return authorities;
+    }
 }

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import {ref, onMounted} from 'vue';
 import Chart from 'chart.js/auto';
 
 const doughnutChartCanvas = ref(null);
@@ -35,7 +35,3 @@ function initializeDoughnutChart() {
     <canvas ref="doughnutChartCanvas"></canvas>
   </div>
 </template>
-
-<style scoped>
-
-</style>

@@ -26,6 +26,20 @@ onMounted(async () => {
 
 });
 
+function validateForm() {
+  // Basic form validation
+  if (!title.value.trim()) {
+    errorFeedback.value = 'Titel ist erforderlich';
+    return false;
+  }
+  if (!courseIds.value.trim()) {
+    errorFeedback.value = 'Kurs ist erforderlich';
+    return false;
+  }
+
+  // If all validations pass
+  return true;
+}
 
 const loadCourses = async () => {
   try {
@@ -40,13 +54,12 @@ const loadCourses = async () => {
 };
 
 
-
 const addRecipe = async () => {
   console.log('addRecipe function called');
   try {
     console.dir(recipeData.value.selectedCourses);
     //const selectedCourseIds = recipeData.value.selectedCourses.map(course => course.courseId);
-
+    if (validateForm()) {
     let courseIds = [];
     courseIds.push(recipeData.value.selectedCourses);
 
@@ -62,16 +75,18 @@ const addRecipe = async () => {
     await recipeStore.addRecipe(recipeDataToSend);
     console.log('recipe created:', recipeDataToSend)
     await recipeStore.showRecipes();
+  }
   } catch (err) {
     console.error('Error creating recipe:', err);
   }
 }
 
+
 const addIngredientRow = () => {
   if (!recipeData.value.ingredients) {
     recipeData.value.ingredients = []
   }
-  recipeData.value.ingredients.push({ title: '', quantity: '', unit: '' });
+  recipeData.value.ingredients.push({title: '', quantity: '', unit: ''});
 };
 
 
@@ -92,10 +107,11 @@ loadCourses();
             <v-text-field v-model="recipeData.title" label="Titel"></v-text-field>
           </v-col>
 
-        <!-- Kurs -->
+          <!-- Kurs -->
 
           <v-col>
-            <v-select v-model="recipeData.selectedCourses" :items="courseOptions" label="Kurs" item-value="courseId"></v-select>
+            <v-select v-model="recipeData.selectedCourses" :items="courseOptions" label="Kurs"
+                      item-value="courseId"></v-select>
           </v-col>
         </v-row>
 
@@ -113,10 +129,11 @@ loadCourses();
           </v-col>
 
 
-        <!-- Vorbereitungszeit -->
+          <!-- Vorbereitungszeit -->
 
           <v-col>
-            <v-text-field v-model="recipeData.preparation" label="Vorbereitungszeit (in Minuten)" type="number"></v-text-field>
+            <v-text-field v-model="recipeData.preparation" label="Vorbereitungszeit (in Minuten)"
+                          type="number"></v-text-field>
           </v-col>
         </v-row>
 
@@ -139,7 +156,6 @@ loadCourses();
             <v-btn @click="addIngredientRow">Neue Zutat hinzufügen</v-btn>
           </v-col>
         </v-row>
-
 
 
         <!-- Zutatenliste -->

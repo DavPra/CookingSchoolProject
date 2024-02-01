@@ -5,7 +5,6 @@ import {useUserStore} from "@/stores/UserStore";
 import {useCourseStore} from "@/stores/CourseStore";
 import {globalColors as __colors} from "@/assets/colors";
 
-
 const router = useRouter();
 const courseId = defineProps(['courseId']);
 console.log(courseId)
@@ -80,10 +79,8 @@ const addUserToCourse = async () => {
     console.warn('No user selected.');
   }
 };
-
-
-
 </script>
+
 <template>
 
   <v-card elevation="3" width="500" class="mx-auto mt-5">

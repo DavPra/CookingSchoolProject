@@ -1,4 +1,4 @@
-export function createApiUrl(path) {
+export function ApiUrl(path) {
     const normalizedPath = path.startsWith('/') ? path.substring(1) : path
     return `http://localhost:8082/${normalizedPath}`
 }

@@ -1,5 +1,4 @@
 <script setup>
-import {ref} from "vue";
 
 const icons = [
   'mdi-facebook',
@@ -26,6 +25,10 @@ const icons = [
     <div class="pt-0">
        Lirum Larum Löffelstiel
     </div>
+    <div class="pt-0">
+      cookingschoolproject@gmail.com
+  </div>
+
 
     <v-divider></v-divider>
 

@@ -1,5 +1,6 @@
 import {defineStore} from "pinia";
 import axios  from "axios";
+import {ApiUrl} from "@/helper/ApiHelper";
 
 
 export const useUserStore = defineStore('user', {
@@ -10,7 +11,11 @@ export const useUserStore = defineStore('user', {
     actions: {
         async showUsers() {
             try {
-                const userResponse = await axios.get('http://localhost:8082/admin/users');
+                const userResponse = await axios.get(ApiUrl('/admin/users'), {
+                    headers: {
+                        'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
+                    }
+                });
                 console.log(userResponse.data);
                 //this.users = userResponse.data;
                 this.users = userResponse.data
@@ -25,12 +30,21 @@ export const useUserStore = defineStore('user', {
         }, async creatUser(newUser) {
             console.log(newUser)
 
-            const userResponse = await axios.post('http://localhost:8082/admin/users', newUser)
+            const userResponse = await axios.post(ApiUrl('/admin/users'), newUser, {
+                headers: {
+                    'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
+                }
+            })
             this.users.push(userResponse.data)
 
         }, async updateUser(userId, user) {
 
-            const updateUser = await axios.put('http://localhost:8082/admin/users/' + userId, user)
+            const updateUser = await axios.put('http://localhost:8082/admin/users/' + userId, user, {
+                    headers: {
+                        'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
+                    }
+                }
+            )
 
 
         },
@@ -69,7 +83,12 @@ export const useUserStore = defineStore('user', {
         },*/ async deleteUser(userId) {
             try {
                 console.log('userId in deleteUser der UserStore:', userId)
-                const deleteUserResponse = await axios.delete(`http://localhost:8082/admin/users/${userId}`);
+                const deleteUserResponse = await axios.delete(`http://localhost:8082/admin/users/${userId}`, {
+                        headers: {
+                            'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
+                        }
+                    }
+                    );
                 await this.showUsers()
             } catch (error) {
                 console.error('Fehler beim Löschen des Benutzers:', error)
@@ -85,6 +104,11 @@ export const useUserStore = defineStore('user', {
                 const addUserToCourseResponse = await axios.post(
                     `http://localhost:8082/admin/${userId}/book-course/${courseId}`,
                     {},
+                    {
+                        headers: {
+                            'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
+                        }
+                    },
                     {timeout: 5000} // Timeout in Millisekunden (hier 5 Sekunden)
                 );
                 console.log('store addUserToCourse', addUserToCourseResponse);

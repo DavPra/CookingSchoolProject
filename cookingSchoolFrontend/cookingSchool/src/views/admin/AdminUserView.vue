@@ -3,19 +3,19 @@ import {useRoute, useRouter} from "vue-router";
 import {onMounted, ref, reactive, computed, watch} from "vue";
 import {useUserStore} from "@/stores/UserStore";
 import {useCourseStore} from "@/stores/CourseStore";
-import {id} from "vuetify/locale";
+import {useUserStoreUpdate} from "@/stores/UserStoreforUpdate";
 
 const userStore = useUserStore()
 const courseStore = useCourseStore()
 const router = useRouter();
-
 const user = computed(() => userStore.users.find(u => u.userId === parseInt(route.params.user)))
 const editingUser = ref(null);
 const route = useRoute()
 const show = ref(false)
 const rules = {
   required: value => !!value || 'Field is required',
-  min: v => (v && v.length >= 6) || 'Min 6 characters'
+  min: v => (v && v.length >= 6) || 'Min 6 characters',
+  password: v => !v || (v && v.length >= 6) || 'Min 6 characters'
 }
 const firstTextField = ref(null);
 const shouldFocusFirstTextField = ref(false);
@@ -27,19 +27,18 @@ watch(shouldFocusFirstTextField, (newValue) => {
 const userErr = ref(false)
 const search = ref('');
 const headers = [
-  { title: "User ID", value: "userId" },
-  { title: "Vorname", value: "firstname" },
-  { title: "Nachname", value: "lastname" },
-  { title: "Adresse", value: "address" },
-  { title: "Mobile", value: "mobile" },
-  { title: "Email", value: "email" },
-  { title: "Username", value: "username" },
-  { title: "Admin", value: "admin" },
-  { title: "Update", value: "update", sortable: false },
-  { title: "Löschen", value: "delete", sortable: false },
-  { title: "Kurs", value: "course", sortable: false },
+  {title: "User ID", value: "userId"},
+  {title: "Vorname", value: "firstname"},
+  {title: "Nachname", value: "lastname"},
+  {title: "Adresse", value: "address"},
+  {title: "Mobile", value: "mobile"},
+  {title: "Email", value: "email"},
+  {title: "Username", value: "username"},
+  {title: "Admin", value: "admin"},
+  {title: "Update", value: "update", sortable: false},
+  {title: "Löschen", value: "delete", sortable: false},
+  {title: "Kurs", value: "course", sortable: false},
 ];
-
 const userData = ref({
   firstname: '',
   lastname: '',
@@ -79,6 +78,7 @@ const editUser = (user) => {
   console.log('editUser function called userId: ', user);
   console.log(userData.value);
   editingUser.value = user;
+  console.log('editingUser.value', editingUser.value);
   newUser.value = {
     firstname: user.firstname,
     lastname: user.lastname,
@@ -110,6 +110,7 @@ async function createOrUpdateUser() {
       };
       await userStore.showUsers()
     } else {
+      console.log('upsihgrehbrthn', editingUser.value.userId, newUser.value)
       await userStore.updateUser(editingUser.value.userId, newUser.value);
       console.log('User updated successfully');
       newUser.value = {
@@ -124,12 +125,11 @@ async function createOrUpdateUser() {
       }
       await userStore.showUsers()
     }
-
   } catch (error) {
     if (error.response && error.response.status === 409) {
       console.log('Email address already exists')
     }
-    console.error('Error creating or updating user:', error);
+    //console.error('Error creating or updating user:', error);
     throw error;
   }
 }
@@ -156,6 +156,7 @@ async function deleteUser(userId) {
     console.error('Error delete user', err);
   }
 }
+
 const matchesSearch = (user) => {
   const searchTerm = search.value.toLowerCase();
   const fullName = `${user.firstname} ${user.lastname}`.toLowerCase();
@@ -163,12 +164,10 @@ const matchesSearch = (user) => {
 };
 
 
-
-
 const courses = ref([]);
 const isCourseDialogOpen = ref(false)
 const selectedCourseId = ref(null)
-const courseOptions= ref([])
+const courseOptions = ref([])
 let userId
 const loadCourses = async () => {
   try {
@@ -195,10 +194,10 @@ const openCourseDialog = () => {
 };
 const assignUserToCourse = (usersId) => {
   userId = usersId
-  console.log( 'userId', userId)
+  console.log('userId', userId)
   openCourseDialog();
- // selectedCourseId.value = courseId;
- // console.log('courseId', selectedCourseId.value, courseId)
+  // selectedCourseId.value = courseId;
+  // console.log('courseId', selectedCourseId.value, courseId)
 
 }
 const completeAssignment = async () => {
@@ -219,16 +218,10 @@ const completeAssignment = async () => {
   }
 };
 
-
 const closeCourseDialog = () => {
   isCourseDialogOpen.value = false;
   selectedCourseId.value = null;
 };
-
-
-
-
-
 </script>
 
 <template>
@@ -251,8 +244,6 @@ const closeCourseDialog = () => {
       <v-text-field
           v-model.mobile="newUser.mobile"
           label="Mobile"
-
-
       ></v-text-field>
       <v-text-field
           v-model="newUser.email"
@@ -264,7 +255,7 @@ const closeCourseDialog = () => {
       <v-text-field
           v-model="newUser.password"
           :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-          :rules="[rules.min]"
+          :rules="[rules.password]"
           label="Passwort"
           hint="Mindestens 6 Zeichen"
           @click:append="show = !show"
@@ -280,16 +271,12 @@ const closeCourseDialog = () => {
       <v-alert closable close-label="Close Alert" type="error" title="Error" text="User konnte nicht erstellt werden"
                v-model="userErr">
       </v-alert>
-
       <v-btn type="submit" block class="mt-2">{{ editingUser ? 'Update' : 'Save' }}</v-btn>
-
-
     </v-form>
   </v-sheet>
 
-<!-- User Tabelle -->
-
-  <v-card width="90%" class="mx-auto"  tonal title="User Management">
+  <!-- User Tabelle -->
+  <v-card width="90%" class="mx-auto" tonal title="User Management">
     <template v-slot:text>
       <v-text-field
           v-model="search"
@@ -322,7 +309,7 @@ const closeCourseDialog = () => {
             </v-btn>
           </td>
           <td>
-            <v-btn icon = "mdi-delete" variant="text"  @click="deleteUser(item.userId)">
+            <v-btn icon="mdi-delete" variant="text" @click="deleteUser(item.userId)">
 
             </v-btn>
           </td>
@@ -341,7 +328,8 @@ const closeCourseDialog = () => {
     <v-card>
       <v-card-title>Choose a Course</v-card-title>
 
-      <v-select v-model="selectedCourseId" :items="courseOptions" item-value="courseId" label="Select a Course" class="ma-4" ></v-select>
+      <v-select v-model="selectedCourseId" :items="courseOptions" item-value="courseId" label="Select a Course"
+                class="ma-4"></v-select>
       <v-card-actions>
         <v-btn @click="completeAssignment(selectedCourseId)" class="elevation-2">Assign</v-btn>
         <v-btn @click="closeCourseDialog" variant="tonal">Cancel</v-btn>

@@ -27,6 +27,11 @@ public class RecipeController {
     @Autowired
     private RecipeService recipeService;
 
+    /**
+     * Post Method to create a recipe
+     * @param recipeCourse
+     * @return HttpStatus 200 ok, or 404 not found when course id is not found
+     */
     @PostMapping("/admin/addRecipe")
     public ResponseEntity<?> addRecipeToCourse(@RequestBody RecipeCourse recipeCourse) {
         System.out.println("Hallo-controller");
@@ -34,12 +39,22 @@ public class RecipeController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    /**
+     * Get method to show a list of recipes
+     * @return HttpsStatus 200 ok or
+     */
 
     @GetMapping("admin/getAllRecipes")
     public ResponseEntity<List<Recipe>> getAllRecipes() {
         List<Recipe> recipes = recipeService.getAllRecipe();
         return new ResponseEntity<>(recipes, HttpStatus.OK);
     }
+
+    /**
+     *
+     * @param recipeId
+     * @return
+     */
 
     @GetMapping("/admin/recipe/{recipeId}")
     public ResponseEntity<?> getRecipeById(@PathVariable Long recipeId) {

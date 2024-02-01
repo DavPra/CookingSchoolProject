@@ -3,7 +3,6 @@ package Cooking.School.Project.cookingSchool.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -17,12 +16,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.security.web.util.matcher.RegexRequestMatcher;
 
 
 
-    @Configuration
+
+@Configuration
     @EnableWebSecurity
     @EnableMethodSecurity
 
@@ -38,10 +36,13 @@ import org.springframework.security.web.util.matcher.RegexRequestMatcher;
 
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-            http.csrf().disable()
+            http.cors().and().csrf().disable()
                     .authorizeRequests()
-                    .antMatchers("/**").permitAll() // Erlaubt den Zugriff auf alle URLs
-                    .anyRequest().authenticated()
+                    .antMatchers("/courses/**", "/registration/**", "/authenticate/**").permitAll() // Erlaubt den Zugriff auf /course/** und /registration/**
+                    .antMatchers("/admin/**").hasAuthority("ADMIN") // Zugriff nur für Benutzer mit der Autorität "ADMIN"
+                     .antMatchers("/users/**").hasAnyAuthority("ADMIN", "APPUSER")
+
+                    //.anyRequest().authenticated()
                     .and()
                     .sessionManagement()
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -51,6 +52,7 @@ import org.springframework.security.web.util.matcher.RegexRequestMatcher;
 
             return http.build();
         }
+
 
         @Bean
         public PasswordEncoder passwordEncoder() {
@@ -69,7 +71,7 @@ import org.springframework.security.web.util.matcher.RegexRequestMatcher;
             return config.getAuthenticationManager();
         }
 
-        /**
+        /*
          @PostConstruct
          public void testPasswordEncoder() {
          String rawPassword = "testpassword";
