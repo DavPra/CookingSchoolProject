@@ -308,12 +308,10 @@ const closeCourseDialog = () => {
           <td>{{ item.admin ? 'Yes' : 'No' }}</td>
           <td>
             <v-btn icon="mdi-pencil" variant="text" @click="editUser(item)">
-
             </v-btn>
           </td>
           <td>
             <v-btn icon="mdi-delete" variant="text" @click="deleteUser(item.userId)">
-
             </v-btn>
           </td>
           <td>
