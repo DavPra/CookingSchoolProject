@@ -62,7 +62,7 @@ export const useRecipeStore = defineStore('recipe', {
         async showUserRecipes(userId) {
             console.log('store' + this.userRecipes);
             try {
-                const userRecipeResponse = await axios.get(ApiUrl(`/users/${userId}`), {
+                const userRecipeResponse = await axios.get(ApiUrl(`/users/recipes/${userId}`), {
                     headers: {
                         'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
                     }
