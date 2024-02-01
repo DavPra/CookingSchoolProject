@@ -44,33 +44,35 @@ ShowCourses();
     <NextCourses/>
   </div>
 
-
-
-  <div class="d-flex flex-row justify-space-around justify-center flex-wrap">
-    <div class="circle-container">
-      <div class="circle">
-        <v-icon icon="mdi-glass-cocktail" class="mdi"></v-icon>
-      </div>
-      <div class="text-under-circle text-h5">Getränke</div>
-      <div class="text-under-circle">Alle Getränke sind inkludiert</div>
+<!-- bouncing --->
+  <v-sheet class="bg-brown-lighten-5 px-5 py-5">
+    <div>
+      <h1 class="text-h4 text-center">Dein Erlebnis bei uns</h1>
     </div>
-    <div class="circle-container">
-      <div class="circle ">
-        <v-icon icon="mdi-leaf-circle-outline" class="mdi"></v-icon>
+    <div class="d-flex flex-row justify-space-around justify-center flex-wrap erlebnis">
+      <div class="circle-container">
+        <div class="circle">
+          <v-icon icon="mdi-glass-cocktail" class="mdi"></v-icon>
+        </div>
+        <div class="text-under-circle text-h5">Getränke</div>
+        <div class="text-under-circle">Alle Getränke sind inkludiert</div>
       </div>
-      <div class="text-under-circle text-h5">Qualität</div>
-      <div class="text-under-circle">Wir verwenden nur die besten Zutaten</div>
-    </div>
-    <div class="circle-container">
-      <div class="circle ">
-        <v-icon icon="mdi-leaf-circle-outline" class="mdi"></v-icon>
+      <div class="circle-container">
+        <div class="circle ">
+          <v-icon icon="mdi-leaf-circle-outline" class="mdi"></v-icon>
+        </div>
+        <div class="text-under-circle text-h5">Qualität</div>
+        <div class="text-under-circle">Wir verwenden nur die besten Zutaten</div>
       </div>
-      <div class="text-under-circle text-h5">Menü</div>
-      <div class="text-under-circle">Wir kochen 4-5 verschiedene Gänge</div>
+      <div class="circle-container">
+        <div class="circle ">
+          <v-icon icon="mdi-pot-steam-outline" class="mdi"></v-icon>
+        </div>
+        <div class="text-under-circle text-h5">Menü</div>
+        <div class="text-under-circle">Wir kochen 4-5 verschiedene Gänge</div>
+      </div>
     </div>
-  </div>
-
-
+  </v-sheet>
 
   <v-sheet class="">
     <div class="mx-2 my-2 px-2 py-2">
@@ -101,12 +103,10 @@ ShowCourses();
   align-items: center;
 }
 
-.item {
-  width: 100%;
-}
 .circle-container {
   text-align: center;
 }
+
 .circle {
   width: 180px;
   height: 180px;
@@ -118,8 +118,6 @@ ShowCourses();
   cursor: pointer;
   background-color: #FFE0B2;
 }
-
-
 
 .circle:hover {
   animation: bounce 0.5s infinite;
@@ -139,13 +137,11 @@ ShowCourses();
 
 .text-under-circle {
   margin-top: 10px;
-  font-size: 14px;
   color: #333;
 }
+
 .mdi {
-  font-size: 60px; /* Passen Sie die Größe nach Bedarf an */
-  color: #f2f2f2;
-
+  font-size: 70px; /* Passen Sie die Größe nach Bedarf an */
+  color: #CB5400;
 }
-
 </style>
