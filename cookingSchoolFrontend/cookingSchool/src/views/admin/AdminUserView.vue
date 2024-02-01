@@ -273,7 +273,7 @@ const closeCourseDialog = () => {
           label="is admin"
       ></v-checkbox>
       <v-alert v-if="errorFeedback" closable type="error">{{ errorFeedback }}</v-alert>
-      <v-btn type="submit" block class="mt-2">{{ editingUser ? 'Update' : 'Save' }}</v-btn>
+      <v-btn type="submit" block class="mt-2">{{ editingUser ? 'Bearbeiten' : 'Speichern' }}</v-btn>
     </v-form>
   </v-sheet>
 
@@ -328,13 +328,13 @@ const closeCourseDialog = () => {
   <!-- Dialog zum hinzufügen eines Users zu einem Kurs -->
   <v-dialog v-model="isCourseDialogOpen" width="400">
     <v-card>
-      <v-card-title>Choose a Course</v-card-title>
+      <v-card-title>Wähle einen Kurs</v-card-title>
 
       <v-select v-model="selectedCourseId" :items="courseOptions" item-value="courseId" label="Select a Course"
                 class="ma-4"></v-select>
       <v-card-actions>
-        <v-btn @click="completeAssignment(selectedCourseId)" class="elevation-2">Assign</v-btn>
-        <v-btn @click="closeCourseDialog" variant="tonal">Cancel</v-btn>
+        <v-btn @click="completeAssignment(selectedCourseId)" class="elevation-2">Eintragen</v-btn>
+        <v-btn @click="closeCourseDialog" variant="tonal">Zurück</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

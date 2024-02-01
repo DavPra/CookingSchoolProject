@@ -45,20 +45,26 @@ function isAdmin() {
 <template>
  <div class="box">
 
-     <v-card class="rounded login my-14" width="400" >
+     <v-card class="rounded login my-14" width="350" >
        <!-- Formular für einen Guest um sich als User einzuloggen, wenn er sich zuvor registriert hat-->
-       <v-card-title class="pt-4 text-center"  >
+       <v-card-title class="pt-4">
+        <v-img
+          src="https://media.gettyimages.com/id/1300845620/de/vektor/user-icon-flat-isolated-auf-wei%C3%9Fem-hintergrund-benutzersymbol-vektor-illustration.jpg?s=612x612&w=0&k=20&c=VSrirSynT-0Sg1li-R9kqIZE7cDizbThAgjDcebXXlI="
+          :width="100"
+          aspect-ratio="4/3"
+          class="mx-auto"
+          >
+        </v-img>
 
-         <v-icon icon="mdi-account" size="x-large" class="text-h1 text-black "></v-icon>
        </v-card-title>
        <v-form @submit.prevent="login">
          <v-card-item>
            <v-alert color="error" v-model="areCredentialsInvalid" closable=true close-icon="mdi-close" text="Zugangsdaten falsch" class="mb-6"/>
-           <v-text-field  variant="outlined" required label="Benutzername" v-model="credentials.username" :disabled="isLoginInProgress"/>
+           <v-text-field class="mt-2" variant="outlined" required label="Benutzername" v-model="credentials.username" :disabled="isLoginInProgress"/>
            <v-text-field type="password" variant="outlined" required label="Passwort" v-model="credentials.password" :disabled="isLoginInProgress"/>
          </v-card-item>
          <v-card-actions style="margin-left: 10px">
-           <v-btn color="primary lighten-2" type="submit" variant="elevated" :loading="isLoginInProgress" class="ms-2 " size="large" rounded>Login</v-btn>
+           <v-btn color="primary lighten-2" type="submit" variant="elevated" :loading="isLoginInProgress" class="ms-2 "  rounded>Login</v-btn>
          </v-card-actions>
          <v-divider class="my-2"/>
          <v-card-item>
@@ -81,7 +87,7 @@ function isAdmin() {
   flex-flow: row wrap;
   justify-content: space-around;
 background-size: cover;
-  background-image: url("https://img.freepik.com/vektoren-kostenlos/aquarellentwurf-fuer-hintergrund_23-2148481358.jpg?size=626&ext=jpg&ga=GA1.1.1112527860.1705089653&semt=ais");
+  background-image: url("https://img.freepik.com/vektoren-kostenlos/hand-gezeichneter-gesunder-lebensmittelhintergrund_23-2148117582.jpg?size=626&ext=jpg&ga=GA1.1.1112527860.1705089653&semt=ais");
 width: 100%;
 
 

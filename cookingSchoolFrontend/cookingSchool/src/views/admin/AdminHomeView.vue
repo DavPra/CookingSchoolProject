@@ -107,7 +107,7 @@ async function updateUsers(updatedUserDto) {
           <v-divider class="my-2"/>
           <v-card-item>
             <v-btn color="blue-lighten-3" class="mr-4" @click="showEditDialog = true"
-                   :disabled="isProfileActionInProgress">
+                   :disabled="isProfileActionInProgress" rounded>
               Bearbeiten
             </v-btn>
           </v-card-item>
