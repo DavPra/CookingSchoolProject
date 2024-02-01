@@ -128,7 +128,7 @@ const openAdminCourseUserView = (courseId) => {
             cover
         ></v-img>
 
-        <v-card-title class="text-center mt-6">Estelle einen neuen Kurs</v-card-title>
+        <v-card-title class="text-center mt-6">Erstelle einen neuen Kurs</v-card-title>
 
         <v-card-text class="text-center">
 
