@@ -81,7 +81,7 @@ function isAdmin() {
   flex-flow: row wrap;
   justify-content: space-around;
 background-size: cover;
-  background-image: url("https://img.freepik.com/vektoren-kostenlos/hand-gezeichneter-gesunder-lebensmittelhintergrund_23-2148117885.jpg?size=626&ext=jpg&ga=GA1.1.1112527860.1705089653&semt=ais");
+  background-image: url("https://img.freepik.com/vektoren-kostenlos/aquarellentwurf-fuer-hintergrund_23-2148481358.jpg?size=626&ext=jpg&ga=GA1.1.1112527860.1705089653&semt=ais");
 width: 100%;
 
 
