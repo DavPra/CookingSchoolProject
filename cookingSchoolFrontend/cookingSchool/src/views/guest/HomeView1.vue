@@ -43,7 +43,7 @@ const isHovering= ref(false)
       </v-carousel-item>
 
       <v-carousel-item
-        src="https://images.pexels.com/photos/8112433/pexels-photo-8112433.jpeg?auto=compress&cs=tinysrgb&w=600"
+        src="https://www.kuechen-meyer.de/images/headers/kochschule.jpg"
         reverse-transition="fade-transition"
         transition="fade-transition"
         cover

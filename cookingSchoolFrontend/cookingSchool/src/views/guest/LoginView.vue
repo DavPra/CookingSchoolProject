@@ -43,9 +43,10 @@ function isAdmin() {
 </script>
 
 <template>
- <div class="box">
+ <div class="box justify-end justify-space-between" >
+   <div></div>
 
-     <v-card class="rounded login my-14" width="350" >
+     <v-card class="rounded login  mr-14 my-14" width="350" >
        <!-- Formular für einen Guest um sich als User einzuloggen, wenn er sich zuvor registriert hat-->
        <v-card-title class="pt-4">
         <v-img
@@ -87,7 +88,7 @@ function isAdmin() {
   flex-flow: row wrap;
   justify-content: space-around;
 background-size: cover;
-  background-image: url("https://img.freepik.com/vektoren-kostenlos/hand-gezeichneter-gesunder-lebensmittelhintergrund_23-2148117582.jpg?size=626&ext=jpg&ga=GA1.1.1112527860.1705089653&semt=ais");
+  background-image: url("@/assets/Füge eine Abschnitts-Überschrift ein.png");
 width: 100%;
 
 

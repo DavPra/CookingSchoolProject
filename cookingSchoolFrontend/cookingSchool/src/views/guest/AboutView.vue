@@ -55,7 +55,7 @@ async function goToCourses() {
             Unabhängig von deinen kulinarischen Fähigkeiten, bieten wir eine breite Palette von Kursen an, die von Anfänger bis Fortgeschrittene reichen.
             Lerne von Grundtechniken bis hin zu raffinierten Gerichten alles, was du für die perfekte Küchenperformance brauchst.
         </v-sheet>
-          <v-btn class="align-center ma-4" @click = "goToCourses" color="deep-orange-darken-4"> Unsere Kurse </v-btn>
+          <v-btn class="align-center ma-4" color="primary" rounded @click = "goToCourses"> Unsere Kurse </v-btn>
 
         </v-sheet>
         <v-sheet style="flex: 1;">
@@ -73,7 +73,7 @@ async function goToCourses() {
 
     </div>
     <!-- Teacher -->
-<div class=" mt-2 pa-4 bg-grey-lighten-3">
+<v-sheet class=" mt-2 pa-4 " color="secondary">
   <div class=" ma-2 py-5">
     Unser dynamisches Lehrerteam, bestehend aus einem charismatischen Mann und zwei ebenso talentierten Frauen, leitet nicht nur die Kurse, sondern ist auch stolzer Inhaber unserer Kochschule. Jeder Lehrer bringt seine eigene Expertise und Persönlichkeit in den Unterricht ein, um eine inspirierende Lernumgebung zu schaffen.
 
@@ -143,7 +143,7 @@ async function goToCourses() {
       </v-card-text>
     </v-card>
   </div>
-</div>
+</v-sheet>
   </div>
 
 </template>

@@ -48,35 +48,29 @@ ShowCourses();
 
 
 <!-- bouncing --->
-  <v-sheet class="bg-brown-lighten-5 px-5 py-5">
+  <v-sheet class=" px-5 py-5" color="secondary">
         <div>
-          <h1 class="text-h4 text-center">Dein Erlebnis bei uns</h1>
+          <h1 class="text-h4 text-center">Let´s cook together!</h1>
         </div>
         <v-container class="container2">
           <v-row class="row">
             <v-col class="item">
 
-                <div class="circle">
-                  <v-icon icon="mdi-glass-cocktail" class="mdi"></v-icon>
-                </div>
+             <img src="@/assets/1%203.png" class="circle">
                 <div class="text-under-circle text-h5">Getränke</div>
                 <div class="text-under-circle">Alle Getränke sind inkludiert</div>
 
             </v-col>
             <v-col class="item">
 
-                <div class="circle">
-                  <v-icon icon="mdi-leaf-circle-outline" class="mdi"></v-icon>
-                </div>
+              <img src="@/assets/2%203.png" class="circle">
                 <div class="text-under-circle text-h5">Qualität</div>
                 <div class="text-under-circle">Wir verwenden nur die besten Zutaten</div>
 
             </v-col>
             <v-col class="item">
 
-                <div class="circle">
-                  <v-icon icon="mdi-pot-steam-outline" class="mdi"></v-icon>
-                </div>
+              <img src="@/assets/3%203.png" class="circle">
                 <div class="text-under-circle text-h5">Menü</div>
                 <div class="text-under-circle">Wir kochen 4-5 verschiedene Gänge</div>
 
