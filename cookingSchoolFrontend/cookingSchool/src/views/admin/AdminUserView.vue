@@ -11,6 +11,7 @@ const router = useRouter();
 const user = computed(() => userStore.users.find(u => u.userId === parseInt(route.params.user)))
 const editingUser = ref(null);
 const route = useRoute()
+const errorFeedback = ref('')
 const show = ref(false)
 const rules = {
   required: value => !!value || 'Field is required',
@@ -125,11 +126,14 @@ async function createOrUpdateUser() {
       }
       await userStore.showUsers()
     }
+    errorFeedback.value = '';
   } catch (error) {
+    errorFeedback.value = error.response.data.message;
+    console.log(error)
     if (error.response && error.response.status === 409) {
       console.log('Email address already exists')
     }
-    //console.error('Error creating or updating user:', error);
+    errorFeedback.value = error.response.data.message;
     throw error;
   }
 }
@@ -268,9 +272,7 @@ const closeCourseDialog = () => {
           v-model="newUser.admin"
           label="is admin"
       ></v-checkbox>
-      <v-alert closable close-label="Close Alert" type="error" title="Error" text="User konnte nicht erstellt werden"
-               v-model="userErr">
-      </v-alert>
+      <v-alert v-if="errorFeedback" closable type="error">{{ errorFeedback }}</v-alert>
       <v-btn type="submit" block class="mt-2">{{ editingUser ? 'Update' : 'Save' }}</v-btn>
     </v-form>
   </v-sheet>
