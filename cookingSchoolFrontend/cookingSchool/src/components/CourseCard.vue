@@ -6,7 +6,7 @@ import { useCourseStore } from "@/stores/CourseStore.js";
 import jwtDecode from "jwt-decode";
 
 const courseStore = useCourseStore()
-const course = defineProps(['courseTitle','startDate','description','teacher','courseId'])
+const course = defineProps(['courseTitle','startDate','description','teacher','courseId','prize'])
 const router = useRouter();
 
 onMounted(() => {
@@ -58,8 +58,9 @@ async function bookCourse() {
         <v-card-title>
           {{ courseTitle }}
         </v-card-title>
-        <v-card-subtitle>{{ startDate }}</v-card-subtitle>
-        <v-card-text>{{ teacher }}</v-card-text>
+        <v-card-subtitle>Datum: {{ startDate }}</v-card-subtitle>
+        <v-card-subtitle>Preis: {{ prize }}</v-card-subtitle>
+        <v-card-text>Lehrer: {{ teacher }}</v-card-text>
         <v-btn class="ms-3 " rounded="xl" @click="bookCourse"
           color="primary">
           Buchen

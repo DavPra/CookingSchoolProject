@@ -52,6 +52,7 @@ ShowUserCourses();
             :description="course.description"
             :courseId="course.courseId"
             :teacher="course.teacher"
+            :prize="course.price"
         />
       </v-col>
     </v-row>
