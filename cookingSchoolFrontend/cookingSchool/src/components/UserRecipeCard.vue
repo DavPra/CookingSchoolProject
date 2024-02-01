@@ -24,9 +24,10 @@ console.log('ingredients:', ingredients);
         src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
     ></v-img>
     <v-card-title>{{ title }}</v-card-title>
+    <v-divider></v-divider>
     <v-card-subtitle>Difficulty: {{ difficulty }}</v-card-subtitle>
     <v-card-subtitle> Preparation: {{ preparation }}</v-card-subtitle>
-    <v-card-text>
+    <v-card-text class="ms-4">
       Zutaten:
       <ul>
         <li v-for="(ingredient, index) in ingredients" :key="index">

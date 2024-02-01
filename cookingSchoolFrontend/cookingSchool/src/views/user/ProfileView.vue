@@ -54,7 +54,7 @@ async function updateUsers(updatedUserDto) {
       <v-card-title>{{ user?.firstname }}'s Profil:</v-card-title>
       <v-divider class="my-5" />
       <v-card-item>
-        <v-card-text>Vorname: {{ user?.firstname }}</v-card-text>
+        <v-card-text >Vorname: {{ user?.firstname }}</v-card-text>
       </v-card-item>
       <v-card-item>
         <v-card-text>Nachname: {{ user?.lastname }}</v-card-text>
@@ -70,7 +70,7 @@ async function updateUsers(updatedUserDto) {
       </v-card-item>
       <v-divider class="my-2"/>
       <v-card-item>
-        <v-btn color="primary" class="mr-4" @click="showEditDialog = true" :disabled="isProfileActionInProgress">
+        <v-btn color="primary" rounded class="mr-4 mb-2" @click="showEditDialog = true" :disabled="isProfileActionInProgress">
           Bearbeiten
         </v-btn>
       </v-card-item>

@@ -128,10 +128,11 @@ const openAdminCourseUserView = (courseId) => {
             cover
         ></v-img>
 
-        <v-card-title>Estelle einen neuen Kurs</v-card-title>
+        <v-card-title class="text-center mt-6">Estelle einen neuen Kurs</v-card-title>
+
         <v-card-text class="text-center">
 
-          <v-icon size="48">mdi-plus</v-icon>
+          <v-icon size="48" color="primary">mdi-plus</v-icon>
         </v-card-text>
       </v-card>
 
@@ -150,7 +151,7 @@ const openAdminCourseUserView = (courseId) => {
             <v-btn
                 variant="plain"
                 size="large"
-                :style="{ color: __colors.primary }"
+                color="primary"
             >
               Details
             </v-btn>
@@ -176,13 +177,13 @@ const openAdminCourseUserView = (courseId) => {
 
 
             <v-btn @click="editCourse(course)" icon>
-              <v-icon>mdi-pencil</v-icon>
+              <v-icon color="primary">mdi-pencil</v-icon>
             </v-btn>
-            <v-btn @click="deleteCourse(course.courseId)" icon="mdi-delete" color="orange">
+            <v-btn @click="deleteCourse(course.courseId)" icon="mdi-delete" color="primary">
 
             </v-btn>
             <v-btn @click="openAdminCourseUserView(course.courseId)" icon>
-              <v-icon>mdi-account-plus</v-icon>
+              <v-icon color="primary">mdi-account-plus</v-icon>
             </v-btn>
           </v-card-actions>
         </v-card>

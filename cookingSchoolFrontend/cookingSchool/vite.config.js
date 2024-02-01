@@ -6,7 +6,7 @@ import vuetify from "vite-plugin-vuetify";
 
 const colors = {
   primary: '#b13f13',
-  secondary: '#37474F'
+  secondary: '#e09B40'
 
   // ... weitere Farbdefinitionen
 };

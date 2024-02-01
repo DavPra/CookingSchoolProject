@@ -11,21 +11,6 @@ export const useCourseStore = defineStore('course', {
     actions: {
         async showCourses() {
             try {
-                const courseResponse = await axios.get('http://localhost:8082/admin/courses', {
-                    headers: {
-                        'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
-                    }
-                }
-                
-                );
-                this.courses = courseResponse.data;
-                console.log('Courses loaded', this.courses);
-            } catch (error) {
-                console.error('Error loading courses:', error);
-            }
-        },
-        async showGuestCourses() {
-            try {
                 const courseResponse = await axios.get('http://localhost:8082/courses');
                 this.courses = courseResponse.data;
                 console.log('Courses loaded', this.courses);

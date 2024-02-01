@@ -29,7 +29,7 @@ onMounted(() => {
 });
 
 async function ShowCourses() {
-  await courseStore.showGuestCourses();
+  await courseStore.showCourses();
 }
 
 ShowCourses();
@@ -42,8 +42,9 @@ ShowUserCourses();
 </script>
 
 <template>
-  <div>
-    <h2 style="text-align: center;" class="mx-auto">Verfügbare Kurse: </h2>
+
+  <v-sheet color="secondary">
+    <h2 style="text-align: center;" class="mx-auto text-h4 py-10">Verfügbare Kurse: </h2>
     <v-row class="d-flex ma-2 ">
       <v-col v-for="course in courses" :key="course.courseId" cols="12" sm="6" md="4" lg="3">
         <CourseCard
@@ -56,9 +57,10 @@ ShowUserCourses();
         />
       </v-col>
     </v-row>
-  </div>
+  </v-sheet>
+
   <div>
-    <h2 style="text-align: center;" class="mx-auto">Gebuchte Kurse: </h2>
+    <h2 style="text-align: center;" class="mx-auto text-h4">Gebuchte Kurse: </h2>
     <v-row class="d-flex ma-2 ">
       <v-col v-for="courses in userCourses" :key="courses.courseId" cols="12" sm="6" md="4" lg="3">
         <CourseCard
