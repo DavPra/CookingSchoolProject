@@ -1,6 +1,6 @@
 <script setup>
 import {useRoute, useRouter} from "vue-router";
-import {onMounted, ref, reactive, computed, watch} from "vue";
+import {onMounted, ref, onUpdated, computed, watch} from "vue";
 import {useUserStore} from "@/stores/UserStore";
 import {useCourseStore} from "@/stores/CourseStore";
 import DeleteAlert from "@/components/DeleteAlert.vue";
@@ -66,9 +66,6 @@ onMounted(async () => {
   try {
     const users = await userStore.showUsers();
     console.log('user Component mounted', users);
-    //await courseStore.showCourses()
-    //courses.value = courseStore.courses
-    //console.log('courses Component mounted', courses);
     await loadCourses()
   } catch (error) {
     console.error('Error loading users in component mount:', error);
@@ -157,6 +154,7 @@ async function deleteUser(userId) {
   try {
     await userStore.deleteUser(userId);
     console.log('user gelöscht, mit der id', userId);
+    await userStore.showUsers()
     showDeleteDialog.value = false;
   } catch (err) {
     console.error('Error delete user', err);
