@@ -48,32 +48,31 @@ async function updateUsers(updatedUserDto) {
 <template>
   <!-- User kann sich seine Daten ansehen/bearbeiten/löschen -->
 
-  <v-container class="container">
-    <v-col cols="6">
-    <v-card class="pa-2 ma-2 bg-grey-lighten-4 text-center">
-      <v-card-title>{{ user?.firstname }}'s Profil:</v-card-title>
-      <v-divider class="my-5" />
-      <v-card-item>
-        <v-card-text >Vorname: {{ user?.firstname }}</v-card-text>
-      </v-card-item>
-      <v-card-item>
-        <v-card-text>Nachname: {{ user?.lastname }}</v-card-text>
-      </v-card-item>
-      <v-card-item>
-        <v-card-text>Email: {{ user?.email }}</v-card-text>
-      </v-card-item>
-      <v-card-item>
-        <v-card-text>Benutzername: {{ user?.username }}</v-card-text>
-      </v-card-item>
-      <v-card-item>
-        <v-card-text>Adresse: {{ user?.address }}</v-card-text>
-      </v-card-item>
-      <v-divider class="my-2"/>
-      <v-card-item>
-        <v-btn color="primary" rounded class="mr-4 mb-2" @click="showEditDialog = true" :disabled="isProfileActionInProgress">
-          Bearbeiten
-        </v-btn>
-      </v-card-item>
+  <v-container>
+    <h1>Hallo {{ user?.firstname }}</h1>
+    <v-divider class="my-2"/>
+    <v-container class="container bg-brown-lighten-5 ">
+      <v-col cols="6">
+        <v-card class="pa-2 ma-2 text-center">
+          <v-icon size="48">mdi-account</v-icon>
+          <v-card-title>
+            Profil
+          </v-card-title>
+          <v-divider class="my-2"/>
+          <v-card-text>Vorname: {{ user?.firstname }}</v-card-text>
+          <v-card-text>Nachname: {{ user?.lastname }}</v-card-text>
+          <v-card-text>Email: {{ user?.email }}</v-card-text>
+          <v-card-text>Benutzername: {{ user?.username }}</v-card-text>
+          <v-card-text>Adresse: {{ user?.address }}</v-card-text>
+          <v-divider class="my-2"/>
+          <v-card-item>
+            <v-btn color="primary" class="mr-4" @click="showEditDialog = true"
+                   :disabled="isProfileActionInProgress" rounded>
+              Bearbeiten
+            </v-btn>
+          </v-card-item>
+        </v-card>
+      </v-col>
       <v-dialog v-model="showEditDialog" max-width="600">
         <v-card>
           <v-card-title>Profil bearbeiten</v-card-title>
@@ -82,16 +81,16 @@ async function updateUsers(updatedUserDto) {
           </v-card-item>
         </v-card>
       </v-dialog>
-    </v-card>
-    </v-col>
+    </v-container>
   </v-container>
+
 </template>
 
 <style scoped>
 .container {
+  background-color: #FAFAFA;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
 }
 </style>
-```
