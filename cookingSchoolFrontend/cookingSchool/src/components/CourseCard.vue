@@ -3,7 +3,7 @@
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useCourseStore } from "@/stores/CourseStore.js";
-import jwtdecode from "jwt-decode";
+import jwtDecode from "jwt-decode";
 
 const courseStore = useCourseStore()
 const course = defineProps(['courseTitle','startDate','description','teacher','courseId'])
@@ -35,10 +35,10 @@ async function bookCourse() {
   if(!window.localStorage.getItem('accessToken')) {
     await router.push('/login');
   } else {
-    decodedUserId = jwtdecode(localStorage.getItem("accessToken")).userId;
-    console.log("userID= " + decodedUserId);
+    const userId = jwtDecode(window.localStorage.getItem("accessToken")).userId;
+    console.log("userID= " + userId);
     console.log("courseID= " + courseId);
-    await courseStore.bookCourse(decodedUserId, courseId);
+    await courseStore.bookCourse(userId, courseId);
     console.log(courses.courseId);
   }
 }

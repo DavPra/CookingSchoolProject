@@ -61,17 +61,20 @@ export const useCourseStore = defineStore('course', {
             }
         },
 
-        async bookCourse(courseId, userId){
-            console.log('token= ' + localStorage.getItem('accessToken'));
-                        const config = {
-                headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('accessToken')
-                }
+        async bookCourse(userId, courseId){
+            try {
+                console.log('token= ' + localStorage.getItem('accessToken'));
+                await axios.post('http://localhost:8082/users/'+userId+'/book-course/'+courseId, {},{
+                    headers: {
+                        Authorization: 'Bearer ' + window.localStorage.getItem('accessToken')
+                    }
+                })
+                console.log('Course booked');
+                await this.showCourses()
+            } catch (error) {
+                console.error('Error booking course:', error);
             }
-        const bookCourseResponse = await axios.put('http://localhost:8082/users/'+courseId+'/book-course/'+userId, config)
-        console.log('Course booked')
-        await this.showCourses()
-    },
+        },
 
     async showUserCourses(userId){
         console.log('store' + this.userCourses);
