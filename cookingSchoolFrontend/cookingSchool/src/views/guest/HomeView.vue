@@ -93,7 +93,7 @@ const isHovering= ref(false)
 
   <!-- first -->
 
-  <v-sheet class="container d-flex  flex-row justify-end typo mt-10 mb-10 elevation-0 align-center bg-brown-lighten-5" width="100%" >
+  <v-sheet class="container d-flex  flex-row flex-wrap justify-end typo mt-10 mb-10 elevation-0 align-center bg-brown-lighten-5" width="100%" >
     <v-card variant="flat" class="mr-3 pa-5 bg-transparent" width="40%"  >
       <v-card-title class="text-h4 mb-2 " varaiant="plain" :style="{ color: __colors.primary }">Unsere Mission</v-card-title>
        <v-card-text class="text-h6 font-weight-light">Unsere Mission ist es, die Kunst des Kochens mit Leidenschaft, Kreativität, Nachhaltigkeit und natürlich auch einer guten Portion Spaß zu vermitteln.
@@ -144,33 +144,17 @@ const isHovering= ref(false)
   <div>
   <v-sheet class="container d-flex  flex wrap justify-center mt-10 mb-10 elevation-0 align-center bg-brown-lighten-5" width="100%">
 <v-card class="bg-white text-center mx-auto" width="99%" >
-  <v-card-title class="text-h4 my-3" :style="{ color: __colors.primary }" >Starte jetzt durch und werde zum Meisterkoch!</v-card-title>
-  <v-btn rounded="xl" class="ms-3 my-5" to="/register" color="primary" > Melde dich jetzt an </v-btn>
+  <v-card-title class="text-h4 mp-3 mt-5" :style="{ color: __colors.primary }" >Bereit, ein Meisterkoch zu werden?</v-card-title>
+  <v-card-subtitle class="text-h4 py-3" :style="{ color: __colors.primary }" >Registriere dich jetzt und leg los!</v-card-subtitle>
+  <v-btn rounded="xl" class="ms-3 my-5" to="/register" color="primary" > Sign in </v-btn>
 
 </v-card>
   <h2 class="text-h4 text-center mb-4" :style="{ color: __colors.primary }"></h2>
 
   </v-sheet>
 
-<v-sheet class="container d-flex flex-row justify-space-around elevation-0 rounded-0" width="100%">
 
-  <div class="p-3">
-    <v-img :width="300"
-           src="https://media.gettyimages.com/id/1140201255/de/foto/hands-chopping-vegetables.jpg?s=612x612&w=0&k=20&c=bD4OMeCKVRt2KEz1y1uUY8lLMzCWJO1CAY3Xm9jKaUw="></v-img>
-  </div>
-  <div class="m-3">
-    <v-img :width="300"
-           src="https://media.gettyimages.com/id/1302980333/de/foto/young-chef-learning-stirring-food-in-frying-pan-while-standing-by-colleague-in-kitchen.jpg?s=612x612&w=0&k=20&c=IyZ90eJfwcZDEjyJvJwWfMlI0segeoMI-qhhltJIgCk="></v-img>
-  </div>
-  <div class="m-3">
-    <v-img class="p-3" :width="300"
-           src="https://media.gettyimages.com/id/1451673778/de/foto/medium-shot-of-smiling-friends-helping-each-other-during-cooking-class.jpg?s=612x612&w=0&k=20&c=7zjOQp0Udd_n0e5dPw6eHLNUtyknHcA3yichA1JY77s="></v-img>
-  </div>
-</v-sheet>
-
-  </div>
-
-
+</div>
 </div>
 </template>
 

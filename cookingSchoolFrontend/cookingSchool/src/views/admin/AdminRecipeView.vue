@@ -8,7 +8,7 @@ const recipeStore = useRecipeStore()
 const recipes = ref([]);
 const dialog = ref(false);
 const editMode = ref(false);
-const recipeErr = ref(false)
+const recipeErr = ref('')
 const rules = {
   required: value => !!value || 'Field is required',
 }
@@ -126,9 +126,9 @@ const saveRecipe = async () => {
     console.log('Before showRecipes');
     await recipeStore.showRecipes();
     console.log('After showRecipes');
+    recipeErr.value=''
   } catch (error) {
-    if (error.isAxiosError && error.response.status === 400)
-      recipeErr.value = true
+    recipeErr.value = error.response.data.message;
     console.error('Error saving recipe:', error);
   } finally {
     closeDialog();
@@ -160,25 +160,29 @@ const closeDialog = () => {
 </script>
 <template>
 
-  <v-container>
+  <v-container class="bg-brown-lighten-5 mt-4">
+
     <v-row>
       <v-card @click="openDialog" class="ma-3" width="330">
         <v-card-title class="mt-10 text-center">Estelle ein neues Rezept</v-card-title>
         <v-card-text class="text-center">
-          <v-icon class="mt-6 mb-4" size="50">mdi-plus</v-icon>
+          <v-icon class="mt-6 mb-4" size="50" color="primary">mdi-plus</v-icon>
         </v-card-text>
       </v-card>
-      <v-col v-for="recipe in recipes" :key="recipe.id" cols="12" md="4">
-        <v-card width="330">
-          <v-card-title>{{ recipe.title }}</v-card-title>
-          <v-card-subtitle>Difficulty: {{ recipe.difficulty }}</v-card-subtitle>
-          <v-card-subtitle> Preparation: {{ recipe.preparation }}</v-card-subtitle>
-          <v-card-subtitle v-if="recipe.courses && recipe.courses.length > 0">
-            Kurs Ids: {{ recipe.courses.map(course => course.courseId).join(', ') }}
-          </v-card-subtitle>
 
 
-          <v-card-text>
+      <!-- Rezept card -->
+      <v-col v-for="recipe in recipes" :key="recipe.id" cols="12" md="4" >
+
+        <v-card width="330" >
+          <v-card-title color="primary" >{{ recipe.title }}</v-card-title>
+          <v-divider></v-divider>
+          <v-card-subtitle class="py-2">Schwierigkeit: {{ recipe.difficulty }}</v-card-subtitle>
+          <v-card-subtitle> Zubereitungs Zeit: {{ recipe.preparation }} Minuten</v-card-subtitle>
+          <v-card-text v-if="recipe.courses && recipe.courses.length > 0">
+            Kurs Nummer : {{ recipe.courses.map(course => course.courseId).join(', ') }}
+          </v-card-text>
+          <v-card-text class="ms-4">
             Zutaten:
             <ul>
               <li v-for="(ingredient, index) in recipe.ingredients" :key="index">
@@ -188,25 +192,21 @@ const closeDialog = () => {
           </v-card-text>
           <v-card-text>Beschreibung: {{ recipe.description }}</v-card-text>
           <v-card-actions>
-            <v-btn icon="mdi-pencil" size="small" @click="editRecipe(recipe)"></v-btn>
-            <v-btn icon="mdi-delete" size="small" @click="deleteRecipe(recipe.recipeId)"></v-btn>
+            <v-btn icon="mdi-pencil" size="small" color="primary" @click="editRecipe(recipe)"></v-btn>
+            <v-btn icon="mdi-delete" size="small" color="primary" @click="deleteRecipe(recipe.recipeId)"></v-btn>
           </v-card-actions>
-          <v-alert
-              closable
-              icon="$vuetify"
-              title="Alert title"
-              text="..."
-              variant="tonal"
-              v-model="recipeErr"
-          ></v-alert>
+
         </v-card>
       </v-col>
     </v-row>
+
   </v-container>
+
+  <!-- Rezept Formular -->
 
   <v-dialog v-model="dialog" max-width="600">
     <v-card>
-      <v-card-title>{{ editMode ? 'Edit Recipe' : 'Add New recipe' }}</v-card-title>
+      <v-card-title>{{ editMode ? 'Bearbeite dein Rezept' : 'Erstelle ein neues Rezept' }}</v-card-title>
       <v-card-text>
         <v-form ref="form" v-model="valid" lazy-validation>
 
@@ -218,11 +218,6 @@ const closeDialog = () => {
 
             <!-- Kurs -->
 
-            <!-- <v-col>
-               <v-select v-model="recipeData.selectedCourses" :items="courseOptions" label="Kurs" item-value="courseId"></v-select>
-               <div>{{ recipeData.selectedCourses }}</div>
-             </v-col>
-           </v-row> -->
             <v-col>
               <v-select
                   v-model="recipeData.selectedCourses"
@@ -301,9 +296,10 @@ const closeDialog = () => {
         </v-form>
       </v-card-text>
       <v-card-actions>
-        <v-btn @click="saveRecipe" :disabled="!valid">Save</v-btn>
-        <v-btn @click="closeDialog">Cancel</v-btn>
+        <v-btn @click="saveRecipe" :disabled="!valid">Speichern</v-btn>
+        <v-btn @click="closeDialog">Zurück</v-btn>
       </v-card-actions>
+      <v-alert v-if="recipeErr" closable type="error">{{ recipeErr }}</v-alert>
     </v-card>
   </v-dialog>
 

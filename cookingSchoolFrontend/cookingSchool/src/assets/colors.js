@@ -1,6 +1,6 @@
 export const globalColors = {
-    primary: '#cb5400',
-    secondary: '#2ecc71',
+   /* primary: '#cb5400',
+    secondary: '#e09B40',
     accent: '#e74c3c',
-
+*/
 };
