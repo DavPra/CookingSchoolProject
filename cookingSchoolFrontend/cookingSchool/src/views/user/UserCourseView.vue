@@ -58,9 +58,8 @@ ShowUserCourses();
       </v-col>
     </v-row>
   </v-sheet>
-
   <div>
-    <h2 style="text-align: center;" class="mx-auto text-h4">Gebuchte Kurse: </h2>
+    <h2 style="text-align: center;" class="mx-auto text-h4 py-10">Gebuchte Kurse: </h2>
     <v-row class="d-flex ma-2 ">
       <v-col v-for="courses in userCourses" :key="courses.courseId" cols="12" sm="6" md="4" lg="3">
         <CourseCard

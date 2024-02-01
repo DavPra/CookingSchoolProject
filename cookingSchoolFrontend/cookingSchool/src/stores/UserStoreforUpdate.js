@@ -74,7 +74,7 @@ export const useUserStoreUpdate = defineStore('user', {
                         'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
                     }
                 });
-                await this.showUsers()
+                window.localStorage.clear()
             }
         },
     }
