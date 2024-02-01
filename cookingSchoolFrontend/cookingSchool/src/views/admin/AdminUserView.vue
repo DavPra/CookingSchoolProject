@@ -3,7 +3,7 @@ import {useRoute, useRouter} from "vue-router";
 import {onMounted, ref, reactive, computed, watch} from "vue";
 import {useUserStore} from "@/stores/UserStore";
 import {useCourseStore} from "@/stores/CourseStore";
-import {useUserStoreUpdate} from "@/stores/UserStoreforUpdate";
+import DeleteAlert from "@/components/DeleteAlert.vue";
 
 const userStore = useUserStore()
 const courseStore = useCourseStore()
@@ -12,6 +12,7 @@ const user = computed(() => userStore.users.find(u => u.userId === parseInt(rout
 const editingUser = ref(null);
 const route = useRoute()
 const errorFeedback = ref('')
+const showDeleteDialog = ref(false);
 const show = ref(false)
 const rules = {
   required: value => !!value || 'Field is required',
@@ -156,6 +157,7 @@ async function deleteUser(userId) {
   try {
     await userStore.deleteUser(userId);
     console.log('user gelöscht, mit der id', userId);
+    showDeleteDialog.value = false;
   } catch (err) {
     console.error('Error delete user', err);
   }
@@ -311,7 +313,7 @@ const closeCourseDialog = () => {
             </v-btn>
           </td>
           <td>
-            <v-btn icon="mdi-delete" variant="text" @click="deleteUser(item.userId)">
+            <v-btn icon="mdi-delete" variant="text" @click="showDeleteDialog = true">
 
             </v-btn>
           </td>
@@ -339,4 +341,13 @@ const closeCourseDialog = () => {
     </v-card>
   </v-dialog>
 
+  <!-- Alert bevor man einen User entgültig löscht -->
+  <v-dialog v-model="showDeleteDialog" max-width="350">
+    <v-card>
+      <v-card-title>User löschen</v-card-title>
+      <v-card-item class="pb-5">
+        <DeleteAlert @delete="deleteUser(item.userId)" @abort="showDeleteDialog = false"/>
+      </v-card-item>
+    </v-card>
+  </v-dialog>
 </template>
