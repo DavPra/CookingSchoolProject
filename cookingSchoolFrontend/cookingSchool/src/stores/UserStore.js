@@ -87,9 +87,7 @@ export const useUserStore = defineStore('user', {
                         headers: {
                             'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
                         }
-                    }
-                    );
-                await this.showUsers()
+                    });
             } catch (error) {
                 console.error('Fehler beim Löschen des Benutzers:', error)
             }

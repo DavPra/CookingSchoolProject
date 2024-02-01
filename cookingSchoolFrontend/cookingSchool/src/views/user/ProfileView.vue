@@ -4,14 +4,16 @@ import { ref, onBeforeMount } from 'vue';
 import { useUserStoreUpdate } from '@/stores/UserStoreforUpdate';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
+import DeleteAlert from "@/components/DeleteAlert.vue";
+import {useRouter} from 'vue-router';
 
 const userStore = useUserStoreUpdate();
-
+const router = useRouter();
+const showDeleteDialog = ref(false);
 const showEditDialog = ref(false);
 const isProfileActionInProgress = ref(false);
 const userId = jwtDecode(localStorage.getItem("accessToken")).userId;
-
-let user = ref(null);
+const user = ref(null);
 
 onBeforeMount(async () => {
   await getUserData();
@@ -43,6 +45,16 @@ async function updateUsers(updatedUserDto) {
   }
 }
 
+async function deleteUser() {
+  try {
+    await userStore.deleteUser(userId);
+    showDeleteDialog.value = false;
+    await router.push('/');
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 </script>
 
 <template>
@@ -65,12 +77,19 @@ async function updateUsers(updatedUserDto) {
           <v-card-text>Benutzername: {{ user?.username }}</v-card-text>
           <v-card-text>Adresse: {{ user?.address }}</v-card-text>
           <v-divider class="my-2"/>
+          <v-row class="buttons">
           <v-card-item>
-            <v-btn color="primary" class="mr-4" @click="showEditDialog = true"
+            <v-btn color="primary" class="mr-4 mb-2" @click="showEditDialog = true"
                    :disabled="isProfileActionInProgress" rounded>
               Bearbeiten
             </v-btn>
           </v-card-item>
+          <v-card-item>
+            <v-btn color="secondary" class="mr-4 mb-2" @click="showDeleteDialog = true" rounded>
+              Löschen
+            </v-btn>
+          </v-card-item>
+          </v-row>
         </v-card>
       </v-col>
       <v-dialog v-model="showEditDialog" max-width="600">
@@ -78,6 +97,14 @@ async function updateUsers(updatedUserDto) {
           <v-card-title>Profil bearbeiten</v-card-title>
           <v-card-item class="pb-5">
             <ProfileForm :user="user" @save="updateUsers" @abort="showEditDialog = false" :loading="isProfileActionInProgress"/>
+          </v-card-item>
+        </v-card>
+      </v-dialog>
+      <v-dialog v-model="showDeleteDialog" max-width="350">
+        <v-card>
+          <v-card-title>Profil löschen</v-card-title>
+          <v-card-item class="pb-5">
+            <DeleteAlert @delete="deleteUser" @abort="showDeleteDialog = false"/>
           </v-card-item>
         </v-card>
       </v-dialog>
@@ -92,5 +119,8 @@ async function updateUsers(updatedUserDto) {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
+}
+.buttons {
+  justify-content: space-evenly;
 }
 </style>
