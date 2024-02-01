@@ -44,47 +44,32 @@ ShowCourses();
     <NextCourses/>
   </div>
 
-  <v-sheet class="erlebnis d-flex " >
-    <img alt="erlebnis banner" class="item" src="@/assets/erlebnis.png"/>
-  </v-sheet>
 
 
-<!--
-  <div>
-    <v-sheet class="m-6 p-4 justify-center text-center elevation-0" elevation="3" width="100%" >
-      <h1 class="font-weight-medium mb-3 ">Dein Erlebnis bei uns</h1>
-      <h2 class="mb-4">Was ist alles inkludiert?</h2>
-    </v-sheet>
-
-    <div class="d-flex mx-4 mb-6 justify-lg-space-evenly align-center flex-wrap">
-      <div class="my-3 mx-2">
-        <v-card class="py-3 bg-brown-lighten-5 " variant="outlined" style="flex: 1; min-width: 200px;">
-          <v-card-title>Mehrgängiges Menü</v-card-title>
-          <v-card-subtitle>Wir kochen 3 bis 4 Speisen</v-card-subtitle>
-        </v-card>
+  <div class="d-flex flex-row justify-space-around justify-center flex-wrap">
+    <div class="circle-container">
+      <div class="circle">
+        <v-icon icon="mdi-glass-cocktail" class="mdi"></v-icon>
       </div>
-      <div class="my-3 mx-2">
-        <v-card class="py-3 bg-brown-lighten-5" variant="outlined" style="flex: 1; min-width: 200px;">
-          <v-card-title>Persönliche Rezepte</v-card-title>
-          <v-card-subtitle>Jeder Teilnehmer bekommt die super duper Rezepte</v-card-subtitle>
-        </v-card>
+      <div class="text-under-circle text-h5">Getränke</div>
+      <div class="text-under-circle">Alle Getränke sind inkludiert</div>
+    </div>
+    <div class="circle-container">
+      <div class="circle ">
+        <v-icon icon="mdi-leaf-circle-outline" class="mdi"></v-icon>
       </div>
-      <div class="my-3 mx-2">
-        <v-card class="py-3 bg-brown-lighten-5" variant="outlined" style="flex: 1; min-width: 200px;">
-          <v-card-title>Beste Qualität</v-card-title>
-          <v-card-subtitle>Unsere Zutaten sind biologisch, regional und saisonal</v-card-subtitle>
-        </v-card>
+      <div class="text-under-circle text-h5">Qualität</div>
+      <div class="text-under-circle">Wir verwenden nur die besten Zutaten</div>
+    </div>
+    <div class="circle-container">
+      <div class="circle ">
+        <v-icon icon="mdi-leaf-circle-outline" class="mdi"></v-icon>
       </div>
-      <div class="my-3 mx-2">
-        <v-card class="py-3 bg-brown-lighten-5" variant="outlined" style="flex: 1; min-width: 200px;">
-          <v-card-title>All Inklusiv</v-card-title>
-          <v-card-subtitle>Alle Getränke sind inkludiert</v-card-subtitle>
-        </v-card>
-      </div>
+      <div class="text-under-circle text-h5">Menü</div>
+      <div class="text-under-circle">Wir kochen 4-5 verschiedene Gänge</div>
     </div>
   </div>
 
--->
 
 
   <v-sheet class="">
@@ -119,4 +104,48 @@ ShowCourses();
 .item {
   width: 100%;
 }
+.circle-container {
+  text-align: center;
+}
+.circle {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  cursor: pointer;
+  background-color: #FFE0B2;
+}
+
+
+
+.circle:hover {
+  animation: bounce 0.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+.text-under-circle {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+}
+.mdi {
+  font-size: 60px; /* Passen Sie die Größe nach Bedarf an */
+  color: #f2f2f2;
+
+}
+
 </style>
