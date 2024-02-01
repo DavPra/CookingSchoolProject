@@ -1,6 +1,6 @@
 <script setup>
 import {useCourseStore} from "@/stores/CourseStore.js";
-import {onMounted, ref, computed} from "vue";
+import {onMounted, computed} from "vue";
 import CourseCard from "@/components/CourseCard.vue";
 
 const courseStore = useCourseStore();
@@ -19,7 +19,7 @@ onMounted(() => {
 });
 
 async function ShowCourses() {
-  await courseStore.showGuestCourses();
+  await courseStore.showCourses();
 }
 </script>
 
