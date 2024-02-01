@@ -95,14 +95,14 @@ const isHovering= ref(false)
 
   <v-sheet class="container d-flex  flex-row flex-wrap justify-end typo mt-10 mb-10 elevation-0 align-center rounded-0 " color="secondary" width="100%" >
     <v-card variant="flat" class="mr-3 pa-5 bg-transparent" width="40%"  >
-      <v-card-title class="text-h4 mb-2 " varaiant="plain" :style="{ color: __colors.primary }">Unsere Mission</v-card-title>
+      <v-card-title class="text-h4 mb-2 " varaiant="plain" color="primary">Unsere Mission</v-card-title>
        <v-card-text class="text-h6 font-weight-light">Unsere Mission ist es, die Kunst des Kochens mit Leidenschaft, Kreativität, Nachhaltigkeit und natürlich auch einer guten Portion Spaß zu vermitteln.
          Unabhängig von Ihren kulinarischen Fähigkeiten bieten wir eine Vielzahl von Kursen an, von Anfänger- bis Fortgeschrittenenkursen.
          Lernen Sie alles, was Sie für eine perfekte Küchenperformance benötigen, von grundlegenden Techniken bis zu anspruchsvollen Gerichten.
          Tauchen Sie ein in die Welt der Aromen und entdecken Sie die Freude am Kochen!
        </v-card-text>
 
-      <v-btn class="ms-3" color="primary" rounded="xl" to="/about"  :style="{ color: __colors.primary }" >Erfahre mehr</v-btn>
+      <v-btn class="ms-3" color="primary" rounded="xl" to="/about"  >Erfahre mehr</v-btn>
 
     </v-card>
 
@@ -127,7 +127,7 @@ const isHovering= ref(false)
     ></v-img>
     </v-card>
     <v-sheet variant="flat" class="ml-10 " max-width="600" v-bind="props"  color="rgb(255, 255, 255, 0.8)">
-      <v-card-title class="text-h4 m-4 " variant="plain" :style="{ color: __colors.primary }">Unsere Kurse</v-card-title>
+      <v-card-title class="text-h4 m-4 " variant="plain" color="primary">Unsere Kurse</v-card-title>
       <v-card-text class="text-h6 font-weight-light typo">
 
         Entwickeln Sie Ihre Kochfähigkeiten weiter,
@@ -136,20 +136,20 @@ const isHovering= ref(false)
         der mit Leidenschaft und Kreativität die Vielfalt der kulinarischen Welt erkundet."
       </v-card-text>
 
-        <v-btn rounded="xl" color="primary" class="ms-3" to="/courses" varaiant="tonal"  :style="{ color: __colors.primary } ">zu unseren Kursen</v-btn>
+        <v-btn rounded="xl" color="primary" class="ms-3" to="/courses" varaiant="tonal" >zu unseren Kursen</v-btn>
     </v-sheet>
   </v-sheet>
 
 
   <div>
-  <v-sheet class="container d-flex  flex wrap justify-center mt-10 mb-10 elevation-0 align-center rounded-0" color="secondary" width="100%">
-<v-card class="bg-white text-center mx-auto" width="99%" >
-  <v-card-title class="text-h4 mp-3 mt-5" :style="{ color: __colors.primary }" >Bereit, ein Meisterkoch zu werden?</v-card-title>
-  <v-card-subtitle class="text-h4 py-3" :style="{ color: __colors.primary }" >Registriere dich jetzt und leg los!</v-card-subtitle>
+  <v-sheet class="container d-flex  flex wrap justify-center mt-10 mb-2 elevation-0 align-center rounded-0" color="secondary" width="100%">
+<v-card class="bg-white text-center mx-auto " rounded width="99%" >
+  <v-card-title class="text-h4 mp-3 mt-5" color="primary" >Bereit, ein Meisterkoch zu werden?</v-card-title>
+  <v-card-subtitle class="text-h4 py-3" color="primary" >Registriere dich jetzt und leg los!</v-card-subtitle>
   <v-btn rounded="xl" class="ms-3 my-5" to="/register" color="primary" > Melde dich an </v-btn>
 
 </v-card>
-  <h2 class="text-h4 text-center mb-4" :style="{ color: __colors.primary }"></h2>
+  <h2 class="text-h4 text-center mb-4" color="primary"></h2>
 
   </v-sheet>
 

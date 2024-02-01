@@ -126,7 +126,7 @@ const saveRecipe = async () => {
     console.log('Before showRecipes');
     await recipeStore.showRecipes();
     console.log('After showRecipes');
-    recipeErr.value=''
+    recipeErr.value = ''
   } catch (error) {
     recipeErr.value = error.response.data.message;
     console.error('Error saving recipe:', error);
@@ -172,10 +172,10 @@ const closeDialog = () => {
 
 
       <!-- Rezept card -->
-      <v-col v-for="recipe in recipes" :key="recipe.id" cols="12" md="4" >
+      <v-col v-for="recipe in recipes" :key="recipe.id" cols="12" md="4">
 
-        <v-card width="330" >
-          <v-card-title color="primary" >{{ recipe.title }}</v-card-title>
+        <v-card width="330">
+          <v-card-title color="primary">{{ recipe.title }}</v-card-title>
           <v-divider></v-divider>
           <v-card-subtitle class="py-2">Schwierigkeit: {{ recipe.difficulty }}</v-card-subtitle>
           <v-card-subtitle> Zubereitungszeit: {{ recipe.preparation }} Minuten</v-card-subtitle>
@@ -195,11 +195,9 @@ const closeDialog = () => {
             <v-btn icon="mdi-pencil" size="small" color="primary" @click="editRecipe(recipe)"></v-btn>
             <v-btn icon="mdi-delete" size="small" color="primary" @click="deleteRecipe(recipe.recipeId)"></v-btn>
           </v-card-actions>
-
         </v-card>
       </v-col>
     </v-row>
-
   </v-container>
 
   <!-- Rezept Formular -->
@@ -225,9 +223,7 @@ const closeDialog = () => {
                   label="Kurse"
                   item-value="courseId"
               ></v-select>
-
             </v-col>
-
           </v-row>
 
           <!-- Beschreibung -->

@@ -21,29 +21,31 @@ async function logout() {
 <template>
   <!-- Grundgerüst des Headers und Navbar für die Ansicht der Guests -->
   <HeaderIcon/>
-  <v-toolbar color="bg-transparent" elevation="3" class="  bg-transparent" rounded >
-    <v-toolbar-items>
-      <v-btn variant="plain" to="/admin">Dashboard</v-btn>
-    </v-toolbar-items>
-    <v-spacer></v-spacer>
-    <v-toolbar-items>
-      <v-btn variant="plain" to="/admin/courses">Kursplanung</v-btn>
-    </v-toolbar-items>
-    <v-spacer></v-spacer>
-    <v-toolbar-items>
-      <v-btn variant="plain" to="/admin/recipes">Rezepte organisieren</v-btn>
-    </v-toolbar-items>
-    <v-spacer></v-spacer>
-    <v-toolbar-items>
-      <v-btn variant="plain" to="/admin/users">Benutzerverwaltung</v-btn>
-    </v-toolbar-items>
-    <v-spacer></v-spacer>
+    <v-toolbar color="bg-transparent" elevation="3" class=" bg-transparent" rounded  >
+      <v-toolbar-items class="ms-14">
+        <v-btn variant="plain" to="/admin">Dashboard</v-btn>
+      </v-toolbar-items>
+      <v-spacer></v-spacer>
+      <v-toolbar-items>
+        <v-btn variant="plain" to="/admin/courses">Kursplanung</v-btn>
+      </v-toolbar-items>
+      <v-spacer></v-spacer>
+      <v-toolbar-items>
+        <v-btn variant="plain" to="/admin/recipes">Rezepte organisieren</v-btn>
+      </v-toolbar-items>
+      <v-spacer></v-spacer>
+      <v-toolbar-items>
+        <v-btn variant="plain" to="/admin/users">Benutzerverwaltung</v-btn>
+      </v-toolbar-items>
+      <v-spacer></v-spacer>
 
-    <v-toolbar-items>
-      <v-btn @click="logout()" icon="mdi-logout-variant"></v-btn>
-    </v-toolbar-items>
-    <v-spacer></v-spacer>
-  </v-toolbar>
+      <v-toolbar-items>
+        <v-btn @click="logout()" icon="mdi-logout-variant" class="ml-6"></v-btn>
+      </v-toolbar-items>
+      <v-spacer></v-spacer>
+    </v-toolbar>
+
+
   <RouterView />
   <Logo style="position: centered;"/>
 </template>

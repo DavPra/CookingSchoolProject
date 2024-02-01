@@ -229,6 +229,7 @@ const closeCourseDialog = () => {
 </script>
 
 <template>
+
   <v-sheet width="400" :elevation="3" rounded class="mx-auto pa-5  ma-4">
     <h2 class="ma-2">{{ editingUser ? 'Bearbeite einen neuen User' : 'Erstelle einen neuen User' }}</h2>
     <v-form @submit.prevent="createOrUpdateUser">
