@@ -91,7 +91,7 @@ async function updateUsers(updatedUserDto) {
   <v-container>
     <h1>Hallo {{ user?.firstname }}</h1>
     <v-divider class="my-2"/>
-    <v-container class="container bg-blue-grey-darken-1">
+    <v-container class="container bg-brown-lighten-5 ">
       <v-col cols="6">
         <v-card class="pa-2 ma-2 text-center">
           <v-icon size="48">mdi-account</v-icon>

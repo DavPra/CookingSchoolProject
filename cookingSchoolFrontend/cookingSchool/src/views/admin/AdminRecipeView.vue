@@ -160,24 +160,28 @@ const closeDialog = () => {
 </script>
 <template>
 
-  <v-container>
+  <v-container class="bg-brown-lighten-5 mt-4">
+
     <v-row>
       <v-card @click="openDialog" class="ma-3" width="330">
         <v-card-title class="mt-10 text-center">Estelle ein neues Rezept</v-card-title>
         <v-card-text class="text-center">
-          <v-icon class="mt-6 mb-4" size="50">mdi-plus</v-icon>
+          <v-icon class="mt-6 mb-4" size="50" color="primary">mdi-plus</v-icon>
         </v-card-text>
       </v-card>
-      <v-col v-for="recipe in recipes" :key="recipe.id" cols="12" md="4">
-        <v-card width="330">
-          <v-card-title>{{ recipe.title }}</v-card-title>
-          <v-card-subtitle>Difficulty: {{ recipe.difficulty }}</v-card-subtitle>
+
+
+      <!-- Rezept card -->
+      <v-col v-for="recipe in recipes" :key="recipe.id" cols="12" md="4" >
+
+        <v-card width="330" >
+          <v-card-title >{{ recipe.title }}</v-card-title>
+          <v-divider></v-divider>
+          <v-card-subtitle class="py-2">Difficulty: {{ recipe.difficulty }}</v-card-subtitle>
           <v-card-subtitle> Preparation: {{ recipe.preparation }}</v-card-subtitle>
           <v-card-subtitle v-if="recipe.courses && recipe.courses.length > 0">
             Kurs Ids: {{ recipe.courses.map(course => course.courseId).join(', ') }}
           </v-card-subtitle>
-
-
           <v-card-text>
             Zutaten:
             <ul>
@@ -202,6 +206,7 @@ const closeDialog = () => {
         </v-card>
       </v-col>
     </v-row>
+
   </v-container>
 
   <v-dialog v-model="dialog" max-width="600">
@@ -218,11 +223,6 @@ const closeDialog = () => {
 
             <!-- Kurs -->
 
-            <!-- <v-col>
-               <v-select v-model="recipeData.selectedCourses" :items="courseOptions" label="Kurs" item-value="courseId"></v-select>
-               <div>{{ recipeData.selectedCourses }}</div>
-             </v-col>
-           </v-row> -->
             <v-col>
               <v-select
                   v-model="recipeData.selectedCourses"
