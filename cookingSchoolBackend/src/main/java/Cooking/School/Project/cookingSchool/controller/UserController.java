@@ -51,7 +51,7 @@ public class UserController {
      * @return HttpStatus 200 and a success message or 404 NotFound
      */
 
-    @PreAuthorize("hasAnyAuthority('APPUSER')")
+    @PreAuthorize("hasAnyAuthority({'ADMIN','APPUSER'})")
     @DeleteMapping("/users/{id}")
     public ResponseEntity<?> deleteUserById(@PathVariable Long id) {
         userService.deleteUserById(id);
