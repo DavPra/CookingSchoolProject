@@ -69,6 +69,7 @@ export const useCourseStore = defineStore('course', {
                         Authorization: 'Bearer ' + window.localStorage.getItem('accessToken')
                     }
                 })
+                await axios.post('http://localhost:8082/send-email/'+userId);
                 console.log('Course booked');
                 await this.showCourses()
             } catch (error) {
