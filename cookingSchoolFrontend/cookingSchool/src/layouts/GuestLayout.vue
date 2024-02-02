@@ -12,10 +12,10 @@ import {globalColors as __colors} from "@/assets/colors";
      <v-btn to="/" variant="plain" class="text-h5">Cooking Academy</v-btn>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-        <v-btn variant="plain"  to="/courses" >Kurse</v-btn>
-        <v-btn variant="plain" to="/about">About Us</v-btn>
+        <v-btn variant="plain"  to="/courses" style="font-size: large;">Kurse</v-btn>
+        <v-btn variant="plain" to="/about" style="font-size: large;">About Us</v-btn>
     <!--  <v-btn to="/"><v-icon size="xl" te>mdi-home</v-icon></v-btn> -->
-        <v-btn variant="plain" to="/login" class="ma-1">Login</v-btn>
+        <v-btn variant="plain" to="/login" class="ma-1" style="font-size: large;">Login</v-btn>
     </v-toolbar>
   <RouterView />
   <Logo style="position: centered;"/>
