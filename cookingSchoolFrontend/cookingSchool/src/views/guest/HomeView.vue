@@ -194,9 +194,7 @@ const isHovering= ref(false)
   background: rgb(159,163,166);
 background: linear-gradient(180deg, rgba(159,163,166,1) 0%, rgba(89,97,106,1) 50%, rgba(16,17,18,1) 100%);
 }*/
-.card-background{
 
-}
 .carousel-img {
   opacity: 0.4!important;
 }
