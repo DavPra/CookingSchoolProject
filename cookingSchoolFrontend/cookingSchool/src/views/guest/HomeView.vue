@@ -12,7 +12,7 @@ const isHovering= ref(false)
   <div>
     <v-carousel cycle interval="8000" height="700px">
       <v-carousel-item class="carousel-img"
-        src="https://www.kuechen-meyer.de/images/headers/kochschule.jpg"
+        src="https://assets2.devourtours.com/wp-content/uploads/Devour-Madrid_Cooking-Class-A_Jun22_1200.jpg"
         cover
       > <div class="d-flex fill-height justify-center align-center flex-column">
         <div class="text-h1 font-weight-bold  text-shades-white ">
@@ -146,7 +146,7 @@ const isHovering= ref(false)
 <v-card class="bg-white text-center mx-auto " rounded width="99%" >
   <v-card-title class="text-h4 mp-3 mt-5" color="primary" >Bereit, ein Meisterkoch zu werden?</v-card-title>
   <v-card-subtitle class="text-h4 py-3" color="primary" >Registriere dich jetzt und leg los!</v-card-subtitle>
-  <v-btn rounded="xl" class="ms-3 my-5" to="/register" color="primary" > Melde dich an </v-btn>
+  <v-btn  rounded="xl" class="ms-3 my-5" to="/register" color="primary" > Melde dich an </v-btn>
 
 </v-card>
   <h2 class="text-h4 text-center mb-4" color="primary"></h2>
