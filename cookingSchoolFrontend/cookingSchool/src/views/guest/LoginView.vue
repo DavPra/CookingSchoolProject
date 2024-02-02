@@ -3,7 +3,7 @@
   import {useRouter} from 'vue-router';
   import {useAuthStore} from '@/stores/AuthStore';
   import jwtDecode from 'jwt-decode';
-  import {globalColors as __colors} from "@/assets/colors";
+  import ProfilLogo from "@/components/ProfilLogo.vue";
 
   const areCredentialsInvalid = ref(false);
   const isLoginInProgress = ref(false);
@@ -43,12 +43,16 @@ function isAdmin() {
 </script>
 
 <template>
-  <v-container class="container">
+  <v-container>
+    <v-container class="container">
     <v-col cols="4">
-      <v-card>
         <!-- Formular für einen Guest um sich als User einzuloggen, wenn er sich zuvor registriert hat-->
-
-        <v-card-title class="pt-4">Login</v-card-title>
+        <v-card class=" text-center">
+          <ProfilLogo/>
+          <v-card-title>
+            Login
+          </v-card-title>
+          <v-divider class="my-2"/>
         <v-form @submit.prevent="login">
           <v-card-item>
             <v-alert color="error" v-model="areCredentialsInvalid" closable=true close-icon="mdi-close" text="Zugangsdaten falsch" class="mb-6"/>
@@ -69,10 +73,12 @@ function isAdmin() {
       </v-card>
     </v-col>
   </v-container>
+  </v-container>
 </template>
 
 <style scoped>
-.container{
+.container {
+  background-color: #EFEBE9;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
