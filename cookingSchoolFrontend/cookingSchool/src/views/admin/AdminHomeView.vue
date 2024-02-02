@@ -162,7 +162,7 @@ async function updateUsers(updatedUserDto) {
         <v-col cols="12">
           <v-card class="pa-2 ma-2 ">
             <v-card-title>
-              Upcomming Courses:
+              Zukünftige Kurse:
             </v-card-title>
             <v-card-text>
               <v-list>

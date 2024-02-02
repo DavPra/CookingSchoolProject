@@ -132,7 +132,7 @@ loadCourses();
           <!-- Vorbereitungszeit -->
 
           <v-col>
-            <v-text-field v-model="recipeData.preparation" label="Vorbereitungszeit (in Minuten)"
+            <v-text-field v-model="recipeData.preparation" label="Zubereitungszeit (in Minuten)"
                           type="number"></v-text-field>
           </v-col>
         </v-row>

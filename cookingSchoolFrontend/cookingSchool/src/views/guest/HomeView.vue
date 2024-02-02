@@ -12,10 +12,10 @@ const isHovering= ref(false)
   <div>
     <v-carousel cycle interval="8000" height="700px">
       <v-carousel-item class="carousel-img"
-        src="https://images.pexels.com/photos/8093877/pexels-photo-8093877.jpeg?auto=compress&cs=tinysrgb&w=600"
+        src="https://www.kuechen-meyer.de/images/headers/kochschule.jpg"
         cover
       > <div class="d-flex fill-height justify-center align-center flex-column">
-        <div class="text-h1 font-weight-medium text-shades-white ">
+        <div class="text-h1 font-weight-bold  text-shades-white ">
           Cooking
         </div>
         <div class="text-h4 text-white">
@@ -28,25 +28,25 @@ const isHovering= ref(false)
         src="https://cdn.pixabay.com/photo/2016/11/19/12/44/burgers-1839090_960_720.jpg"
         cover
       >
-        <div class="d-flex fill-height justify-center align-center flex-column">
-          <div class="text-h1 font-weight-medium text-shades-white">
-            Explore a World
+        <div class="d-flex fill-height justify-start align-start flex-column">
+          <div class="text-h1 font-weight-bold text-shades-white mt-5 ms-3">
+            Explore
           </div>
-          <div class="text-h1 font-weight-medium text-white">
-            of Flavors
+          <div class="text-h2 font-weight-medium text-white ms-3 ">
+            Flavors
           </div>
         </div>
       </v-carousel-item>
 
       <v-carousel-item
-        src="https://cdn.pixabay.com/photo/2021/02/08/07/39/chef-5993951_960_720.jpg"
+        src="https://www.strasser-steine.at/wp-content/uploads/2017/08/iStock-628428126_ciStock.comJyliana_web-1280x863.jpg"
         cover
       >
-      <div class="d-flex fill-height justify-center align-center flex-column">
-          <div class="text-h1 font-weight-medium text-shades-white">
+      <div class="d-flex fill-height justify-start align-end flex-column">
+          <div class="text-h1 font-weight-bold text-shades-white mr-3 mt-5 ">
             Cooking
           </div>
-          <div class="text-h4 text-white">
+          <div class="text-h2 text-white mr-3">
             Academy
           </div>
         </div>
@@ -54,28 +54,28 @@ const isHovering= ref(false)
       </v-carousel-item>
 
       <v-carousel-item
-        src="https://images.pexels.com/photos/8136881/pexels-photo-8136881.jpeg?auto=compress&cs=tinysrgb&w=600"
+        src="https://i.shgcdn.com/bb15c3b6-3652-4f81-b776-d592b8c0597c/-/format/auto/-/preview/3000x3000/-/quality/lighter/"
         cover
       >
-         <div class="d-flex fill-height justify-center align-center flex-column">
-          <div class="text-h1 font-weight-medium text-shades-white">
-            Culinary Creativity
+         <div class="d-flex fill-height justify-end align-start flex-column" >
+          <div class="text-h1 font-weight-bold  text-shades-white ms-3">
+            Culinary
           </div>
-          <div class="text-h1 font-weight-medium text-white">
-            Starts Here
+          <div class="text-h2 font-weight-medium text-white ms-4 mb-5">
+            Creativity
           </div>
         </div>
       </v-carousel-item>
 
       <v-carousel-item
-          src="https://images.pexels.com/photos/1398688/pexels-photo-1398688.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          src="https://www.pastaweb.de/wp-content/uploads/2018/11/italienische-kueche.jpg"
         cover
       >
-      <div class="d-flex fill-height justify-center align-center flex-column">
-          <div class="text-h1 font-weight-medium text-shades-white">
+      <div class="d-flex fill-height justify-end align-end flex-column">
+          <div class="text-h1 font-weight-bold  text-shades-white mr-3">
             Cooking
           </div>
-          <div class="text-h4 text-white">
+          <div class="text-h2 text-white mr-4 mb-5">
             Academy
           </div>
         </div>
@@ -93,16 +93,16 @@ const isHovering= ref(false)
 
   <!-- first -->
 
-  <v-sheet class="container d-flex  flex-row flex-wrap justify-end typo mt-10 mb-10 elevation-0 align-center bg-brown-lighten-5" width="100%" >
+  <v-sheet class="container d-flex  flex-row flex-wrap justify-end typo mt-10 mb-10 elevation-0 align-center rounded-0 " color="secondary" width="100%" >
     <v-card variant="flat" class="mr-3 pa-5 bg-transparent" width="40%"  >
-      <v-card-title class="text-h4 mb-2 " varaiant="plain" :style="{ color: __colors.primary }">Unsere Mission</v-card-title>
+      <v-card-title class="text-h4 mb-2 " varaiant="plain" color="primary">Unsere Mission</v-card-title>
        <v-card-text class="text-h6 font-weight-light">Unsere Mission ist es, die Kunst des Kochens mit Leidenschaft, Kreativität, Nachhaltigkeit und natürlich auch einer guten Portion Spaß zu vermitteln.
          Unabhängig von Ihren kulinarischen Fähigkeiten bieten wir eine Vielzahl von Kursen an, von Anfänger- bis Fortgeschrittenenkursen.
          Lernen Sie alles, was Sie für eine perfekte Küchenperformance benötigen, von grundlegenden Techniken bis zu anspruchsvollen Gerichten.
          Tauchen Sie ein in die Welt der Aromen und entdecken Sie die Freude am Kochen!
        </v-card-text>
 
-      <v-btn class="ms-3" color="primary" rounded="xl" to="/about"  :style="{ color: __colors.primary }" >Erfahre mehr</v-btn>
+      <v-btn class="ms-3" color="primary" rounded="xl" to="/about"  >Erfahre mehr</v-btn>
 
     </v-card>
 
@@ -117,7 +117,7 @@ const isHovering= ref(false)
 
 
 
-  <v-sheet class="container d-flex  flex-row flex-wrap justify-start  seccard mt-10 elevation-0" width="100%" color="rgb(255, 255, 255, 0.8)">
+  <v-sheet class="container d-flex  flex-row flex-wrap justify-start  seccard mt-10 elevation-0 rounded-0 bg-white" width="100%" >
     <v-card
     ><v-img
         :width="600"
@@ -127,7 +127,7 @@ const isHovering= ref(false)
     ></v-img>
     </v-card>
     <v-sheet variant="flat" class="ml-10 " max-width="600" v-bind="props"  color="rgb(255, 255, 255, 0.8)">
-      <v-card-title class="text-h4 m-4 " variant="plain" :style="{ color: __colors.primary }">Unsere Kurse</v-card-title>
+      <v-card-title class="text-h4 m-4 " variant="plain" color="primary">Unsere Kurse</v-card-title>
       <v-card-text class="text-h6 font-weight-light typo">
 
         Entwickeln Sie Ihre Kochfähigkeiten weiter,
@@ -136,20 +136,20 @@ const isHovering= ref(false)
         der mit Leidenschaft und Kreativität die Vielfalt der kulinarischen Welt erkundet."
       </v-card-text>
 
-        <v-btn rounded="xl" color="primary" class="ms-3" to="/courses" varaiant="tonal"  :style="{ color: __colors.primary } ">zu unseren Kursen</v-btn>
+        <v-btn rounded="xl" color="primary" class="ms-3" to="/courses" varaiant="tonal" >zu unseren Kursen</v-btn>
     </v-sheet>
   </v-sheet>
 
 
   <div>
-  <v-sheet class="container d-flex  flex wrap justify-center mt-10 mb-10 elevation-0 align-center bg-brown-lighten-5" width="100%">
-<v-card class="bg-white text-center mx-auto" width="99%" >
-  <v-card-title class="text-h4 mp-3 mt-5" :style="{ color: __colors.primary }" >Bereit, ein Meisterkoch zu werden?</v-card-title>
-  <v-card-subtitle class="text-h4 py-3" :style="{ color: __colors.primary }" >Registriere dich jetzt und leg los!</v-card-subtitle>
-  <v-btn rounded="xl" class="ms-3 my-5" to="/register" color="primary" > Sign in </v-btn>
+  <v-sheet class="container d-flex  flex wrap justify-center mt-10 mb-2 elevation-0 align-center rounded-0" color="secondary" width="100%">
+<v-card class="bg-white text-center mx-auto " rounded width="99%" >
+  <v-card-title class="text-h4 mp-3 mt-5" color="primary" >Bereit, ein Meisterkoch zu werden?</v-card-title>
+  <v-card-subtitle class="text-h4 py-3" color="primary" >Registriere dich jetzt und leg los!</v-card-subtitle>
+  <v-btn rounded="xl" class="ms-3 my-5" to="/register" color="primary" > Melde dich an </v-btn>
 
 </v-card>
-  <h2 class="text-h4 text-center mb-4" :style="{ color: __colors.primary }"></h2>
+  <h2 class="text-h4 text-center mb-4" color="primary"></h2>
 
   </v-sheet>
 

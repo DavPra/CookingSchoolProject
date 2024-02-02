@@ -11,21 +11,6 @@ export const useCourseStore = defineStore('course', {
     actions: {
         async showCourses() {
             try {
-                const courseResponse = await axios.get('http://localhost:8082/admin/courses', {
-                    headers: {
-                        'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
-                    }
-                }
-                
-                );
-                this.courses = courseResponse.data;
-                console.log('Courses loaded', this.courses);
-            } catch (error) {
-                console.error('Error loading courses:', error);
-            }
-        },
-        async showGuestCourses() {
-            try {
                 const courseResponse = await axios.get('http://localhost:8082/courses');
                 this.courses = courseResponse.data;
                 console.log('Courses loaded', this.courses);
@@ -61,17 +46,21 @@ export const useCourseStore = defineStore('course', {
             }
         },
 
-        async bookCourse(courseId, userId){
-            console.log('token= ' + localStorage.getItem('accessToken'));
-                        const config = {
-                headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('accessToken')
-                }
+        async bookCourse(userId, courseId){
+            try {
+                console.log('token= ' + localStorage.getItem('accessToken'));
+                await axios.post('http://localhost:8082/users/'+userId+'/book-course/'+courseId, {},{
+                    headers: {
+                        Authorization: 'Bearer ' + window.localStorage.getItem('accessToken')
+                    }
+                })
+                await axios.post('http://localhost:8082/send-email/'+userId);
+                console.log('Course booked');
+                await this.showCourses()
+            } catch (error) {
+                console.error('Error booking course:', error);
             }
-        const bookCourseResponse = await axios.put('http://localhost:8082/users/'+courseId+'/book-course/'+userId, config)
-        console.log('Course booked')
-        await this.showCourses()
-    },
+        },
 
     async showUserCourses(userId){
         console.log('store' + this.userCourses);

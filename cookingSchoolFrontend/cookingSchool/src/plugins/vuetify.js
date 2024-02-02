@@ -10,7 +10,7 @@ export const vuetify = createVuetify(
             light: {
                 colors: {
                     primary: '#cb5400',
-                    secondary: '#EFEBE9',
+                    secondary: '#D7CCC8',
                 }
             }
         }
@@ -18,5 +18,13 @@ export const vuetify = createVuetify(
     icons: {
         defaultSet: 'mdi',
     },
+        typography: {
+            fontFamily: 'Montserrat',
+            colors:{
+
+
+
+            }
+        },
 }
 )

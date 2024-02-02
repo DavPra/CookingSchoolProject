@@ -2,7 +2,7 @@
 
 import { useCourseStore } from "@/stores/CourseStore.js";
 import { onMounted, ref, computed } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 import CourseCard from "@/components/CourseCard.vue";
 import { useAuthStore } from "@/stores/AuthStore.js";
 import HeaderIcon from "@/components/HeaderIcon.vue";
@@ -27,7 +27,7 @@ const err = false;
 
 
 async function ShowCourses() {
-  await courseStore.showGuestCourses();
+  await courseStore.showCourses();
 }
 
 ShowCourses();
@@ -44,51 +44,56 @@ ShowCourses();
     <NextCourses/>
   </div>
 
+
+
+
 <!-- bouncing --->
-  <v-sheet class="bg-brown-lighten-5 px-5 py-5">
-    <div>
-      <h1 class="text-h4 text-center">Dein Erlebnis bei uns</h1>
-    </div>
-    <div class="d-flex flex-row justify-space-around justify-center flex-wrap erlebnis">
-      <div class="circle-container">
-        <div class="circle">
-          <v-icon icon="mdi-glass-cocktail" class="mdi"></v-icon>
+  <v-sheet class=" px-5 py-5" color="secondary">
+        <div>
+          <h1 class="text-h4 text-center">Let´s cook together!</h1>
         </div>
-        <div class="text-under-circle text-h5">Getränke</div>
-        <div class="text-under-circle">Alle Getränke sind inkludiert</div>
-      </div>
-      <div class="circle-container">
-        <div class="circle ">
-          <v-icon icon="mdi-leaf-circle-outline" class="mdi"></v-icon>
-        </div>
-        <div class="text-under-circle text-h5">Qualität</div>
-        <div class="text-under-circle">Wir verwenden nur die besten Zutaten</div>
-      </div>
-      <div class="circle-container">
-        <div class="circle ">
-          <v-icon icon="mdi-pot-steam-outline" class="mdi"></v-icon>
-        </div>
-        <div class="text-under-circle text-h5">Menü</div>
-        <div class="text-under-circle">Wir kochen 4-5 verschiedene Gänge</div>
-      </div>
-    </div>
+        <v-container class="container2">
+          <v-row class="row">
+            <v-col class="item">
+
+             <img src="@/assets/1%203.png" class="circle">
+                <div class="text-under-circle text-h5">Getränke</div>
+                <div class="text-under-circle">Alle Getränke sind inkludiert</div>
+
+            </v-col>
+            <v-col class="item">
+
+              <img src="@/assets/2%203.png" class="circle">
+                <div class="text-under-circle text-h5">Qualität</div>
+                <div class="text-under-circle">Wir verwenden nur die besten Zutaten</div>
+
+            </v-col>
+            <v-col class="item">
+
+              <img src="@/assets/3%203.png" class="circle">
+                <div class="text-under-circle text-h5">Menü</div>
+                <div class="text-under-circle">Wir kochen 4-5 verschiedene Gänge</div>
+
+            </v-col>
+          </v-row>
+        </v-container>
+
   </v-sheet>
+
+
 
   <v-sheet class="">
     <div class="mx-2 my-2 px-2 py-2">
       <h2 class="text-h4 ">Alle unsere Kurse auf einen Blick:</h2>
     </div>
-
     <v-row class="d-flex ma-2 ">
       <v-col v-for="course in courses" :key="course.courseId" cols="12" sm="6" md="4" lg="3">
         <CourseCard
-                
                     :courseTitle="course.courseTitle"
                     :startDate="course.startDate"
                     :description="course.description"
                     :courseId="course.courseId"
                     :teacher="course.teacher"
-                    
         />
       </v-col>
     </v-row>
@@ -96,16 +101,25 @@ ShowCourses();
 </template>
 
 <style scoped>
-.erlebnis {
-  width: 100%;
+
+.container2 {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.row {
+  justify-content: space-between;
+}
+.item {
+  align-content: center;
+  justify-self: center;
+  text-align: center;
   align-items: center;
+  flex-grow: 0;
+  flex-basis: 0;
+  flex-shrink: 0;
 }
 
-.circle-container {
-  text-align: center;
-}
 
 .circle {
   width: 180px;

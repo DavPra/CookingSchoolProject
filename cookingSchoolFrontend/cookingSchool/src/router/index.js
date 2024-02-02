@@ -109,10 +109,6 @@ const routes = [
           component: HomeView
         },
         {
-          path: 'i',
-          component: HomeView1
-        },
-        {
           path: 'about',
           component: AboutView
         },

@@ -3,10 +3,10 @@
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useCourseStore } from "@/stores/CourseStore.js";
-import jwtdecode from "jwt-decode";
+import jwtDecode from "jwt-decode";
 
 const courseStore = useCourseStore()
-const course = defineProps(['courseTitle','startDate','description','teacher','courseId'])
+const course = defineProps(['courseTitle','startDate','description','teacher','courseId','prize'])
 const router = useRouter();
 
 onMounted(() => {
@@ -24,7 +24,7 @@ let decodedUserId = '';
 
 
 async function ShowCourses() {
-  await courseStore.showGuestCourses();
+  await courseStore.showCourses();
   courses = courseStore.courses;
   console.log(courses);
 }
@@ -35,10 +35,10 @@ async function bookCourse() {
   if(!window.localStorage.getItem('accessToken')) {
     await router.push('/login');
   } else {
-    decodedUserId = jwtdecode(localStorage.getItem("accessToken")).userId;
-    console.log("userID= " + decodedUserId);
+    const userId = jwtDecode(window.localStorage.getItem("accessToken")).userId;
+    console.log("userID= " + userId);
     console.log("courseID= " + courseId);
-    await courseStore.bookCourse(decodedUserId, courseId);
+    await courseStore.bookCourse(userId, courseId);
     console.log(courses.courseId);
   }
 }
@@ -58,8 +58,9 @@ async function bookCourse() {
         <v-card-title>
           {{ courseTitle }}
         </v-card-title>
-        <v-card-subtitle>{{ startDate }}</v-card-subtitle>
-        <v-card-text>{{ teacher }}</v-card-text>
+        <v-card-subtitle>Datum: {{ startDate }}</v-card-subtitle>
+        <v-card-subtitle>Preis: {{ prize }}</v-card-subtitle>
+        <v-card-text>Lehrer: {{ teacher }}</v-card-text>
         <v-btn class="ms-3 " rounded="xl" @click="bookCourse"
           color="primary">
           Buchen
