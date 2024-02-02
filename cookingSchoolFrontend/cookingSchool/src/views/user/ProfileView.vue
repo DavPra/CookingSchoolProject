@@ -6,6 +6,7 @@ import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 import DeleteAlert from "@/components/DeleteAlert.vue";
 import {useRouter} from 'vue-router';
+import ProfilLogo from "@/components/ProfilLogo.vue";
 
 const userStore = useUserStoreUpdate();
 const router = useRouter();
@@ -66,16 +67,16 @@ async function deleteUser() {
     <v-container class="container bg-brown-lighten-5 ">
       <v-col cols="6">
         <v-card class="pa-2 ma-2 text-center">
-          <v-icon size="48">mdi-account</v-icon>
-          <v-card-title>
+          <ProfilLogo/>
+          <v-card-title style="font-size: xx-large;">
             Profil
           </v-card-title>
           <v-divider class="my-2"/>
-          <v-card-text>Vorname: {{ user?.firstname }}</v-card-text>
-          <v-card-text>Nachname: {{ user?.lastname }}</v-card-text>
-          <v-card-text>Email: {{ user?.email }}</v-card-text>
-          <v-card-text>Benutzername: {{ user?.username }}</v-card-text>
-          <v-card-text>Adresse: {{ user?.address }}</v-card-text>
+          <v-card-text style="font-size: x-large;">Vorname: {{ user?.firstname }}</v-card-text>
+          <v-card-text style="font-size: x-large;">Nachname: {{ user?.lastname }}</v-card-text>
+          <v-card-text style="font-size: x-large;">Email: {{ user?.email }}</v-card-text>
+          <v-card-text style="font-size: x-large;">Benutzername: {{ user?.username }}</v-card-text>
+          <v-card-text style="font-size: x-large;">Adresse: {{ user?.address }}</v-card-text>
           <v-divider class="my-2"/>
           <v-row class="buttons">
           <v-card-item>

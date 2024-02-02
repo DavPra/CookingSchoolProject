@@ -164,7 +164,7 @@ const closeDialog = () => {
   <div class="d-flex flex-wrap flex-row justify-center">
     <div>
       <v-card @click="openDialog" class="mx-2 my-4" style="width: 350px; height:500px ">
-        <v-card-title class="  text-center">Estelle ein neues Rezept</v-card-title>
+        <v-card-title class="  text-center">Erstelle ein neues Rezept</v-card-title>
         <v-divider></v-divider>
         <v-card-text class="text-center">
           <v-icon class="mt-16 pt-10 mb-4" size="60" color="primary">mdi-plus</v-icon>

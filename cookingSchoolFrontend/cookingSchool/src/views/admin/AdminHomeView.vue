@@ -5,6 +5,7 @@ import {useUserStoreUpdate} from "@/stores/UserStoreforUpdate.js";
 import {onMounted, ref} from "vue";
 import Diagramm from "@/components/Diagramm.vue";
 import ProfileForm from "@/components/ProfileForm.vue";
+import ProfilLogo from "@/components/ProfilLogo.vue";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
 import {ApiUrl} from "@/helper/ApiHelper";
@@ -94,16 +95,16 @@ async function updateUsers(updatedUserDto) {
     <v-container class="container bg-brown-lighten-5 rounded">
       <v-col cols="6">
         <v-card class="pa-2 ma-2 text-center">
-          <v-icon size="48">mdi-account</v-icon>
-          <v-card-title>
+          <ProfilLogo/>
+          <v-card-title style="font-size: xx-large;">
             Profil
           </v-card-title>
           <v-divider class="my-2"/>
-          <v-card-text>Vorname: {{ user?.firstname }}</v-card-text>
-          <v-card-text>Nachname: {{ user?.lastname }}</v-card-text>
-          <v-card-text>Email: {{ user?.email }}</v-card-text>
-          <v-card-text>Benutzername: {{ user?.username }}</v-card-text>
-          <v-card-text>Adresse: {{ user?.address }}</v-card-text>
+          <v-card-text style="font-size: x-large;">Vorname: {{ user?.firstname }}</v-card-text>
+          <v-card-text style="font-size: x-large;">Nachname: {{ user?.lastname }}</v-card-text>
+          <v-card-text style="font-size: x-large;">Email: {{ user?.email }}</v-card-text>
+          <v-card-text style="font-size: x-large;">Benutzername: {{ user?.username }}</v-card-text>
+          <v-card-text style="font-size: x-large;">Adresse: {{ user?.address }}</v-card-text>
           <v-divider class="my-2"/>
           <v-card-item>
             <v-btn color="blue-lighten-3" class="mr-4" @click="showEditDialog = true"

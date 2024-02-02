@@ -21,7 +21,7 @@ async function logout() {
 <template>
   <!-- Grundgerüst des Headers und Navbar für die Ansicht der Guests -->
   <HeaderIcon/>
-  <v-toolbar color="bg-transparent" elevation="3" class="ps-16  bg-transparent" rounded>
+  <v-toolbar elevation="3" class="toolbar" rounded>
     <v-toolbar-items>
       <v-btn variant="plain" to="/user/profile">Profil</v-btn>
     </v-toolbar-items>
@@ -47,4 +47,7 @@ async function logout() {
 </template>
 
 <style scoped>
+.toolbar {
+  background: #EFEBE9;
+}
 </style>

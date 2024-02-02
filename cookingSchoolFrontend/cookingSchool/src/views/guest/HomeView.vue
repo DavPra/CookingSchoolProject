@@ -95,8 +95,8 @@ const isHovering= ref(false)
 
   <v-sheet class="container d-flex  flex-row flex-wrap justify-end typo mt-10 mb-10 elevation-0 align-center rounded-0 " color="secondary" width="100%" >
     <v-card variant="flat" class="mr-3 pa-5 bg-transparent" width="40%"  >
-      <v-card-title class="text-h4 mb-2 " varaiant="plain" color="primary">Unsere Mission</v-card-title>
-       <v-card-text class="text-h6 font-weight-light">Unsere Mission ist es, die Kunst des Kochens mit Leidenschaft, Kreativität, Nachhaltigkeit und natürlich auch einer guten Portion Spaß zu vermitteln.
+      <v-card-title class="text-h4 mb-2 text-medium-emphasis " varaiant="plain" color="primary">Unsere Mission</v-card-title>
+       <v-card-text class="text-h6 font-weight-light text-medium-emphasis">Unsere Mission ist es, die Kunst des Kochens mit Leidenschaft, Kreativität, Nachhaltigkeit und natürlich auch einer guten Portion Spaß zu vermitteln.
          Unabhängig von Ihren kulinarischen Fähigkeiten bieten wir eine Vielzahl von Kursen an, von Anfänger- bis Fortgeschrittenenkursen.
          Lernen Sie alles, was Sie für eine perfekte Küchenperformance benötigen, von grundlegenden Techniken bis zu anspruchsvollen Gerichten.
          Tauchen Sie ein in die Welt der Aromen und entdecken Sie die Freude am Kochen!
