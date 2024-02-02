@@ -68,15 +68,15 @@ async function deleteUser() {
       <v-col cols="6">
         <v-card class="pa-2 ma-2 text-center">
           <ProfilLogo/>
-          <v-card-title>
+          <v-card-title style="font-size: xx-large;">
             Profil
           </v-card-title>
           <v-divider class="my-2"/>
-          <v-card-text>Vorname: {{ user?.firstname }}</v-card-text>
-          <v-card-text>Nachname: {{ user?.lastname }}</v-card-text>
-          <v-card-text>Email: {{ user?.email }}</v-card-text>
-          <v-card-text>Benutzername: {{ user?.username }}</v-card-text>
-          <v-card-text>Adresse: {{ user?.address }}</v-card-text>
+          <v-card-text style="font-size: x-large;">Vorname: {{ user?.firstname }}</v-card-text>
+          <v-card-text style="font-size: x-large;">Nachname: {{ user?.lastname }}</v-card-text>
+          <v-card-text style="font-size: x-large;">Email: {{ user?.email }}</v-card-text>
+          <v-card-text style="font-size: x-large;">Benutzername: {{ user?.username }}</v-card-text>
+          <v-card-text style="font-size: x-large;">Adresse: {{ user?.address }}</v-card-text>
           <v-divider class="my-2"/>
           <v-row class="buttons">
           <v-card-item>
