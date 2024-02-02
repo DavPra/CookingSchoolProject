@@ -69,12 +69,11 @@ public class GlobalExceptionHandler{
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
-  /* @ExceptionHandler(Exception.class)
+   @ExceptionHandler(Exception.class)
     public final ResponseEntity<ErrorResponse> handleGenericException(Exception ex) {
         System.out.println("autsch");
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Internal Server Error");
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
-    }*/
-
+    }
 
 }

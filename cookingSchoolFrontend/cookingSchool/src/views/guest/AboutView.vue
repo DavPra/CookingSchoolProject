@@ -15,9 +15,9 @@ async function goToCourses() {
   <div class="">
     <!-- header -->
     <div align-center style="border-bottom: 10px;">
-    <v-container>
-       <h1 class="text-h2 mt-6 pa-3 header1"> Meet the Team </h1>
-    </v-container>
+      <v-container>
+        <h1 class="text-h2 mt-6 pa-3 header1"> Meet the Team </h1>
+      </v-container>
 
     </div>
 
@@ -55,11 +55,11 @@ async function goToCourses() {
       <div class="d-flex justify-start ma-6  align-center">
         <v-sheet style="flex: 1;" class="pa-2 ma-3 text-h6 font-weight-light">
           <h1 class="text-h4 my-3 font-weight-light">Unsere Mission </h1>
-        <v-sheet class="font-weight-light">
+          <v-sheet class="font-weight-light">
             Unsere Mission ist es, die Kunst des Kochens mit Leidenschaft, Kreativität und einer gehörigen Portion Spaß zu vermitteln.
             Unabhängig von deinen kulinarischen Fähigkeiten, bieten wir eine breite Palette von Kursen an, die von Anfänger bis Fortgeschrittene reichen.
             Lerne von Grundtechniken bis hin zu raffinierten Gerichten alles, was du für die perfekte Küchenperformance brauchst.
-        </v-sheet>
+          </v-sheet>
           <v-btn class="align-center ma-4" color="primary" rounded @click = "goToCourses"> Unsere Kurse </v-btn>
 
         </v-sheet>
@@ -77,14 +77,18 @@ async function goToCourses() {
 
 
     </div>
+
+
+
     <!-- Teacher -->
-<v-sheet class=" mt-2 pa-4 " color="secondary">
+  <v-sheet class=" mt-2 pa-4 " color="secondary">
   <h1 class="text-h4 mt-3 text-center text-medium-emphasis" >Die Crew </h1>
   <div class=" ma-2 py-5 text-h6 text-medium-emphasis font-weight-light text-center">
     Unser dynamisches Lehrerteam, bestehend aus einem charismatischen Mann und zwei ebenso talentierten Frauen, leitet nicht nur die Kurse, sondern ist auch stolzer Inhaber unserer Kochschule. Jeder Lehrer bringt seine eigene Expertise und Persönlichkeit in den Unterricht ein, um eine inspirierende Lernumgebung zu schaffen.
 
   </div>
-  <div class=" d-flex flex-row">
+
+  <div class=" d-flex flex-row flex-wrap">
     <v-card
         class="mx-auto"
         max-width="344"
@@ -150,6 +154,7 @@ async function goToCourses() {
     </v-card>
   </div>
 </v-sheet>
+
   </div>
 
 </template>
@@ -176,6 +181,12 @@ h3 {
   align-items: center;
   text-align: center;
 }
+.box{
+ background-color: #282828;
 
+}
+.item{
+
+}
 
 </style>

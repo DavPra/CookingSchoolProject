@@ -50,7 +50,7 @@ ShowCourses();
 <!-- bouncing --->
   <v-sheet class=" px-5 py-5" color="secondary">
         <div>
-          <h1 class="text-h4 text-center text-medium-emphasis">Let´s cook together!</h1>
+          <h1 class="text-h4 mt-3 text-center text-medium-emphasis">Let´s cook together!</h1>
         </div>
         <v-container class="container2 justify-space-evenly">
           <v-row class="row">

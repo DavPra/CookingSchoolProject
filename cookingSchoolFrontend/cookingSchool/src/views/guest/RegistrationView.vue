@@ -96,13 +96,16 @@ async function registerUser() {
 
 <template>
   <!-- Formular für einen neuen User um sich zu registrieren -->
-
+<v-container>
   <v-container class="container">
     <v-col cols="12">
-    <v-card class="pa-2 ma-2">
+    <v-card class="pa-3 ma-2">
+      <v-card-title>
+        Legen Sie einen neuen Account an:
+      </v-card-title>
+      <v-divider class="my-5"/>
     <v-form @submit.prevent="registerUser">
       <v-row>
-        
         <v-col cols="12" md="6">
           <v-text-field v-model="firstname" label="Vorname" required></v-text-field>
         </v-col>
@@ -135,4 +138,14 @@ async function registerUser() {
     </v-card>
     </v-col>
   </v-container>
+</v-container>
 </template>
+
+<style scoped>
+.container {
+background-color: #EFEBE9;
+display: flex;
+flex-flow: row wrap;
+justify-content: space-around;
+}
+</style>
