@@ -67,7 +67,7 @@ async function bookCourse() {
           </v-btn>
         <v-card-actions>
          
-          <v-btn color="primary" @click="show = !show">Mehr Info</v-btn>
+          <v-btn color="primary" rounded  @click="show = !show">Mehr Info</v-btn>
 
           <v-spacer></v-spacer>
 

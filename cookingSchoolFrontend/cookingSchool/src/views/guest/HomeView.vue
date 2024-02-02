@@ -92,31 +92,31 @@ const isHovering= ref(false)
   </v-sheet>
 
   <!-- first -->
+  <v-sheet class="container d-flex justify-end typo mt-10 mb-10 elevation-0 align-center rounded-0" color="secondary" width="100%">
+    <v-row>
+      <v-col cols="12" md="6">
+        <v-card variant="flat" class="mr-3 pa-5 bg-transparent">
+          <v-card-title class="text-h4 mb-2 text-medium-emphasis" variant="plain" color="primary">Hallo, wir sind Cooking Academy</v-card-title>
+          <v-card-text class="text-h6 font-weight-light text-medium-emphasis">
+            Entdecke die Freude am Kochen in unserer einzigartigen Kochschule. Tauche ein in kulinarische Abenteuer, probiere neue Rezepte und lerne, wie du mit Leidenschaft und Geschicklichkeit köstliche Gerichte zaubern kannst. Unsere erfahrenen Chefköche stehen bereit, um ihre Geheimnisse zu teilen und deine kulinarischen Fähigkeiten auf das nächste Level zu bringen. Mach mit uns gemeinsam die Küche zum Herzstück deiner Kreativität. Starte noch heute dein kulinarisches Abenteuer!
+          </v-card-text>
+          <v-btn class="ms-3" color="primary" rounded="xl" to="/about">Erfahre mehr</v-btn>
+        </v-card>
+      </v-col>
 
-  <v-sheet class="container d-flex  flex-row flex-wrap justify-end typo mt-10 mb-10 elevation-0 align-center rounded-0 " color="secondary" width="100%" >
-    <v-card variant="flat" class="mr-3 pa-5 bg-transparent" width="40%"  >
-      <v-card-title class="text-h4 mb-2 text-medium-emphasis " varaiant="plain" color="primary">Unsere Mission</v-card-title>
-       <v-card-text class="text-h6 font-weight-light text-medium-emphasis">Unsere Mission ist es, die Kunst des Kochens mit Leidenschaft, Kreativität, Nachhaltigkeit und natürlich auch einer guten Portion Spaß zu vermitteln.
-         Unabhängig von Ihren kulinarischen Fähigkeiten bieten wir eine Vielzahl von Kursen an, von Anfänger- bis Fortgeschrittenenkursen.
-         Lernen Sie alles, was Sie für eine perfekte Küchenperformance benötigen, von grundlegenden Techniken bis zu anspruchsvollen Gerichten.
-         Tauchen Sie ein in die Welt der Aromen und entdecken Sie die Freude am Kochen!
-       </v-card-text>
-
-      <v-btn class="ms-3" color="primary" rounded="xl" to="/about"  >Erfahre mehr</v-btn>
-
-    </v-card>
-
-    <v-card width="50%"
-    ><v-img
-        aspect-ratio="4/3"
-        cover
-        src="https://media.gettyimages.com/id/1059836070/de/foto/aktion-portr%C3%A4t-von-m%C3%A4nnlichen-chef-werfen-zutaten-in-einer-sch%C3%BCssel.jpg?s=612x612&w=0&k=20&c=MpJK_Ws5-YuWUvS3Hyf0jzqlWEw_mof2Rv61OLkSvMQ="
-         ></v-img>
-    </v-card>
+      <v-col cols="12" md="6">
+        <v-card>
+          <v-img
+              aspect-ratio="4/3"
+              cover
+              src="https://media.gettyimages.com/id/1140201428/de/foto/friends-playing-with-chili-peppers-making-moustaches.jpg?s=612x612&w=0&k=20&c=DMpanNC_sLK958Pvti5iDumDITHsmTf0wBZYoVZJ-qc="
+          ></v-img>
+        </v-card>
+      </v-col>
+    </v-row>
   </v-sheet>
-
-
-
+<!-- second -->
+<div>
   <v-sheet class="container d-flex  flex-row flex-wrap justify-start  seccard mt-10 elevation-0 rounded-0 bg-white" width="100%" >
     <v-card
     ><v-img
@@ -127,7 +127,7 @@ const isHovering= ref(false)
     ></v-img>
     </v-card>
     <v-sheet variant="flat" class="ml-10 " max-width="600" v-bind="props"  color="rgb(255, 255, 255, 0.8)">
-      <v-card-title class="text-h4 m-4 " variant="plain" color="primary">Unsere Kurse</v-card-title>
+      <v-card-title class="text-h4 m-4 font-weight-medium" variant="plain" color="primary">Unsere Kurse</v-card-title>
       <v-card-text class="text-h6 font-weight-light typo">
 
         Entwickeln Sie Ihre Kochfähigkeiten weiter,
@@ -136,15 +136,20 @@ const isHovering= ref(false)
         der mit Leidenschaft und Kreativität die Vielfalt der kulinarischen Welt erkundet."
       </v-card-text>
 
-        <v-btn rounded="xl" color="primary" class="ms-3" to="/courses" varaiant="tonal" >zu unseren Kursen</v-btn>
+      <v-btn rounded="xl" color="primary" class="ms-3" to="/courses" varaiant="tonal" >zu unseren Kursen</v-btn>
     </v-sheet>
   </v-sheet>
 
 
+</div>
+
+
+
+
   <div>
   <v-sheet class="container d-flex  flex wrap justify-center mt-10 mb-2 elevation-0 align-center rounded-0" color="secondary" width="100%">
-<v-card class="bg-white text-center mx-auto " rounded width="99%" >
-  <v-card-title class="text-h4 mp-3 mt-5" color="primary" >Bereit, ein Meisterkoch zu werden?</v-card-title>
+<v-card class="bg-white text-center mx-auto mt-2 " rounded width="99%" >
+  <v-card-title class="text-h4 mp-3 mt-5 font-weight-medium" color="primary" >Bereit, ein Meisterkoch zu werden?</v-card-title>
   <v-card-subtitle class="text-h4 py-3" color="primary" >Registriere dich jetzt und leg los!</v-card-subtitle>
   <v-btn  rounded="xl" class="ms-3 my-5" to="/register" color="primary" > Melde dich an </v-btn>
 

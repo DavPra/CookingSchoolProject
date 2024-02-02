@@ -18,7 +18,7 @@ import {globalColors as __colors} from "@/assets/colors";
         <v-btn variant="plain" to="/login" class="ma-1" style="font-size: large;">Login</v-btn>
     </v-toolbar>
   <RouterView />
-  <Logo style="position: centered;"/>
+  <Logo/>
 
 
 </template>

@@ -25,7 +25,7 @@ async function ShowCourses() {
 
 <template>
   <div class="mt-10">
-    <h1 class="ms-6 text-center text-h4">Unsere nächsten Events:</h1>
+    <h1 class="ms-6 text-center text-h4 text-h4">Unsere nächsten Events:</h1>
     <div>
       <v-row class="d-flex ma-2 mb-10 justify-center ">
         <v-col v-for="course in courses" :key="course.courseId" cols="12" sm="6" md="4" lg="3">
