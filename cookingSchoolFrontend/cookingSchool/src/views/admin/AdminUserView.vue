@@ -232,112 +232,137 @@ const closeCourseDialog = () => {
 </script>
 
 <template>
-  <v-sheet width="400" :elevation="3" rounded class="mx-auto pa-5  ma-4">
-    <h2 class="ma-2">{{ editingUser ? 'Bearbeite einen neuen User' : 'Erstelle einen neuen User' }}</h2>
-    <v-form @submit.prevent="createOrUpdateUser">
-      <v-text-field
-          v-model="newUser.firstname"
-          label="Vorname"
-          ref="firstTextField"
-      ></v-text-field>
-      <v-text-field
-          v-model="newUser.lastname"
-          label="Nachname"
-      ></v-text-field>
-      <v-text-field
-          v-model="newUser.address"
-          label="Adresse"
-      ></v-text-field>
-      <v-text-field
-          v-model.mobile="newUser.mobile"
-          label="Mobile"
-      ></v-text-field>
-      <v-text-field
-          v-model="newUser.email"
-          label="Email"
-          type="email"
-          :rules="[rules.required, rules.email]"
-          placeholder="johndoe@gmail.com"
-      ></v-text-field>
-      <v-text-field
-          v-model="newUser.password"
-          :rules="[rules.password]"
-          label="Passwort"
-          hint="Mindestens 6 Zeichen"
-      ></v-text-field>
-      <v-text-field
-          v-model="newUser.username"
-          label="username"
-      ></v-text-field>
-      <v-checkbox
-          v-model="newUser.admin"
-          label="is admin"
-      ></v-checkbox>
-      <v-alert v-if="errorFeedback" closable type="error">{{ errorFeedback }}</v-alert>
-      <v-btn type="submit" block class="mt-2">{{ editingUser ? 'Bearbeiten' : 'Speichern' }}</v-btn>
-    </v-form>
-  </v-sheet>
+  <div class="background">
+    <div class="d-flex flex-wrap justify-center justify-space-evenly">
+      <!-- User Form -->
+      <div class="mt-5">
+        <v-sheet width="400" :elevation="3" rounded class="mx-auto pa-5  ma-4">
+          <h2 class="ma-2 ">{{ editingUser ? 'Bearbeite einen User' : 'Erstelle einen neuen User' }}</h2>
+          <v-form @submit.prevent="createOrUpdateUser">
+            <v-text-field
+                variant="outlined"
+                v-model="newUser.firstname"
+                label="Vorname"
+                ref="firstTextField"
+            ></v-text-field>
+            <v-text-field
+                variant="outlined"
+                v-model="newUser.lastname"
+                label="Nachname"
+            ></v-text-field>
+            <v-text-field
+                variant="outlined"
+                v-model="newUser.address"
+                label="Adresse"
+            ></v-text-field>
+            <v-text-field
+                variant="outlined"
+                v-model.mobile="newUser.mobile"
+                label="Mobile"
+            ></v-text-field>
+            <v-text-field
+                variant="outlined"
+                v-model="newUser.email"
+                label="Email"
+                type="email"
+                :rules="[rules.required, rules.email]"
+                placeholder="johndoe@gmail.com"
+                class="mb-1"
+            ></v-text-field>
+            <v-text-field
+                variant="outlined"
+                v-model="newUser.password"
+                :rules="[rules.password]"
+                label="Passwort"
+                hint="Mindestens 6 Zeichen"
+            ></v-text-field>
+            <v-text-field
+                variant="outlined"
+                v-model="newUser.username"
+                label="username"
+            ></v-text-field>
+            <v-checkbox
+                v-model="newUser.admin"
+                label="Admin?"
+            ></v-checkbox>
+            <v-alert v-if="errorFeedback" closable type="error">{{ errorFeedback }}</v-alert>
+            <v-btn type="submit" color="primary"  class="mt-2">{{ editingUser ? 'Bearbeiten' : 'Speichern' }}</v-btn>
+          </v-form>
+        </v-sheet>
+      </div>
 
-  <!-- User Tabelle -->
-  <v-card width="90%" class="mx-auto" tonal title="User Management">
-    <template v-slot:text>
-      <v-text-field
-          v-model="search"
-          label="Search"
-          prepend-inner-icon="mdi-magnify"
-          single-line
-          variant="outlined"
-          hide-details
-      ></v-text-field>
-    </template>
+      <!-- User Tabelle -->
+      <div class="mt-16">
 
-    <v-data-table
-        :headers="headers"
-        :items="userStore.users"
-        :search="search"
-    >
-      <template v-slot:item="{ item }">
-        <tr>
-          <td>{{ item.userId }}</td>
-          <td>{{ item.firstname }}</td>
-          <td>{{ item.lastname }}</td>
-          <td>{{ item.address }}</td>
-          <td>{{ item.mobile }}</td>
-          <td>{{ item.email }}</td>
-          <td>{{ item.username }}</td>
-          <td>{{ item.admin ? 'Yes' : 'No' }}</td>
-          <td>
-            <v-btn icon="mdi-pencil" variant="text" @click="editUser(item)">
+        <v-card  class="mx-auto " tonal title="User Management">
+          <template v-slot:text>
+            <v-text-field
+                v-model="search"
+                label="Search"
+                prepend-inner-icon="mdi-magnify"
+                single-line
+                variant="outlined"
+                hide-details
+            ></v-text-field>
+          </template>
 
-            </v-btn>
-          </td>
-          <td>
-            <v-btn icon="mdi-delete" variant="text" @click="deleteUser(item.userId)">
+          <v-data-table
+              :headers="headers"
+              :items="userStore.users"
+              :search="search"
+          >
+            <template v-slot:item="{ item }">
+              <tr>
+                <td>{{ item.userId }}</td>
+                <td>{{ item.firstname }}</td>
+                <td>{{ item.lastname }}</td>
+                <td>{{ item.address }}</td>
+                <td>{{ item.mobile }}</td>
+                <td>{{ item.email }}</td>
+                <td>{{ item.username }}</td>
+                <td>{{ item.admin ? 'Yes' : 'No' }}</td>
+                <td>
+                  <v-btn icon="mdi-pencil" variant="text" @click="editUser(item)">
 
-            </v-btn>
-          </td>
-          <td>
-            <v-btn icon="mdi-plus" variant="text" @click="assignUserToCourse(item.userId)">
+                  </v-btn>
+                </td>
+                <td>
+                  <v-btn icon="mdi-delete" variant="text" @click="deleteUser(item.userId)">
 
-            </v-btn>
-          </td>
-        </tr>
-      </template>
-    </v-data-table>
-  </v-card>
+                  </v-btn>
+                </td>
+                <td>
+                  <v-btn icon="mdi-plus" variant="text" @click="assignUserToCourse(item.userId)">
 
-  <!-- Dialog zum hinzufügen eines Users zu einem Kurs -->
-  <v-dialog v-model="isCourseDialogOpen" width="400">
-    <v-card>
-      <v-card-title>Wähle einen Kurs</v-card-title>
+                  </v-btn>
+                </td>
+              </tr>
+            </template>
+          </v-data-table>
+        </v-card>
+      </div>
+    </div>
+    <!-- Dialog zum hinzufügen eines Users zu einem Kurs -->
+    <v-dialog v-model="isCourseDialogOpen" width="400">
+      <v-card>
+        <v-card-title>Wähle einen Kurs</v-card-title>
 
-      <v-select v-model="selectedCourseId" :items="courseOptions" item-value="courseId" label="Select a Course"
-                class="ma-4"></v-select>
-      <v-card-actions>
-        <v-btn @click="completeAssignment(selectedCourseId)" class="elevation-2">Eintragen</v-btn>
-        <v-btn @click="closeCourseDialog" variant="tonal">Zurück</v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
+        <v-select v-model="selectedCourseId" :items="courseOptions" item-value="courseId" label="Select a Course"
+                  class="ma-4"></v-select>
+        <v-card-actions>
+          <v-btn @click="completeAssignment(selectedCourseId)" class="elevation-2">Eintragen</v-btn>
+          <v-btn @click="closeCourseDialog" variant="tonal">Zurück</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
 
 </template>
+<style scoped>
+.background{
+  background: rgb(241,205,165);
+  background: linear-gradient(148deg, rgba(241,205,165,1) 0%, rgba(129,19,3,1) 100%);
+/*background-image: url("https://img.freepik.com/free-photo/orange-bokeh-patterned-wallpaper_53876-95993.jpg?size=626&ext=jpg&ga=GA1.1.1112527860.1705089653&semt=ais");
+background-size: cover; */
+}
+</style>
