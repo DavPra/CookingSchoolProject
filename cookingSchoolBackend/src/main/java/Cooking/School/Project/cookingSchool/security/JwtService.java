@@ -103,7 +103,7 @@ public class JwtService {
         Calendar calendar = Calendar.getInstance();
         Date now = calendar.getTime();
 
-        calendar.add(calendar.get(Calendar.HOUR), 4);
+        calendar.add(calendar.get(Calendar.HOUR), 12);
         Date expirationDate = calendar.getTime();
 
         expirationDate.setTime(expirationDate.getTime() + TimeUnit.MINUTES.toMillis(5));
