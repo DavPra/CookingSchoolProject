@@ -19,6 +19,7 @@ async function logout() {
 </script>
 
 <template>
+
   <!-- Grundgerüst des Headers und Navbar für die Ansicht der Guests -->
   <HeaderIcon/>
   <v-toolbar color="bg-transparent" elevation="3" class="  bg-transparent" rounded >
@@ -44,9 +45,19 @@ async function logout() {
     </v-toolbar-items>
     <v-spacer></v-spacer>
   </v-toolbar>
-  <RouterView />
+  <div class="background">
+    <RouterView />
+  </div>
+
   <Logo style="position: centered;"/>
 </template>
 
 <style scoped>
+  .background{
+    background: rgb(241,205,165);
+    background: linear-gradient(148deg, rgba(241,205,165,1) 0%, rgba(129,19,3,1) 100%);
+    /*background-image: url("https://img.freepik.com/free-photo/orange-bokeh-patterned-wallpaper_53876-95993.jpg?size=626&ext=jpg&ga=GA1.1.1112527860.1705089653&semt=ais");
+    background-size: cover; */
+
+}
 </style>
