@@ -83,7 +83,7 @@ const addUserToCourse = async () => {
 
 <template>
 
-  <v-card elevation="3" width="500" class="mx-auto mt-5">
+  <v-card elevation="3" width="500" class="mx-auto my-16">
     <v-card-title>{{courseDetails.courseTitle}}</v-card-title>
     <v-card-subtitle>Freie Plätze: {{courseDetails.maxAttendants}}</v-card-subtitle>
   <v-card-text class="text-subtitle-1">
@@ -95,7 +95,7 @@ const addUserToCourse = async () => {
 
     <v-alert closable close-label="Close Alert" type="error" title="Error" text="User Id nicht vorhanden" v-model="addUserToCourseErr">  </v-alert>
     <v-card-actions>
-      <v-btn variant="tonal" :style="{ color: __colors.primary }" @click="dialog= true">add User </v-btn>
+      <v-btn variant="tonal" color="primary" @click="dialog= true">add User </v-btn>
     </v-card-actions>
   </v-card>
 
