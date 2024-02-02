@@ -31,10 +31,10 @@ export const useAuthStore = defineStore('authentication', {
                 throw new Error('Token nicht gefunden')
             }
             this.token = token
-            console.log(token)
+            
             window.localStorage.setItem('accessToken', token)
             function parseJwt (token) {
-                console.log('\n\n\nHallo: ' + jwtDecode(token));
+               
                return "";
             }
             parseJwt(token);

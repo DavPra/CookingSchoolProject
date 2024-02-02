@@ -55,10 +55,9 @@ const loadCourses = async () => {
 
 
 const addRecipe = async () => {
-  console.log('addRecipe function called');
+ 
   try {
-    console.dir(recipeData.value.selectedCourses);
-    //const selectedCourseIds = recipeData.value.selectedCourses.map(course => course.courseId);
+   
     if (validateForm()) {
     let courseIds = [];
     courseIds.push(recipeData.value.selectedCourses);
@@ -73,7 +72,7 @@ const addRecipe = async () => {
     };
 
     await recipeStore.addRecipe(recipeDataToSend);
-    console.log('recipe created:', recipeDataToSend)
+  
     await recipeStore.showRecipes();
   }
   } catch (err) {

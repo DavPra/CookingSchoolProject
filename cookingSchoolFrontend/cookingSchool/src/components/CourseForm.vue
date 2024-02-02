@@ -55,21 +55,18 @@ function validateForm() {
 }
 
 onMounted(() => {
-  console.log('CourseForm mounted');
-  console.log('Initial startDate in CourseForm:', data.value.startDate);
+  
 });
 
 
 async function createCourse() {
-  console.log('createCourse function called');
-  console.log('Original startDate:', data.value.startDate);
 
   if (!validateForm()) {
     return;
   }
 
   if (data.value.startDate instanceof Date && !isNaN(data.value.startDate.getTime())) {
-    //const formattedDate = data.value.startDate.toISOString();
+    
     const requestData = {
 
       courseTitle: data.value.courseTitle,
@@ -87,7 +84,7 @@ async function createCourse() {
     } catch (err) {
 
       if (err.isAxiosError && err.response.status === 401) {
-        console.error('Error creating course:', err);
+        
         return courseErr = true
       } else {
         console.error('Unexpected error:', err.response.data);
@@ -98,9 +95,9 @@ async function createCourse() {
   }
 
   function closeForm() {
-    console.log('closeForm called');
+   
     props.closeForm()
-    // Hier können Sie weitere Aktionen vor dem Schließen des Formulars durchführen
+   
   }
 }
 

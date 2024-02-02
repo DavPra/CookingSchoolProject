@@ -7,12 +7,12 @@ import {globalColors as __colors} from "@/assets/colors";
 
 const router = useRouter();
 const courseId = defineProps(['courseId']);
-console.log(courseId)
+
 const dialog = ref(false);
 const userStore = useUserStore()
 const userIdInput = ref('');
 const courseIdValue = courseId.courseId;
-console.log(courseIdValue);
+
 const courseStore = useCourseStore()
 const addUserToCourseErr = ref(false)
 const courseDetails = ref({
@@ -66,7 +66,7 @@ const addUserToCourse = async () => {
   if (userId) {
     try {
       await userStore.addUserToCourse(userId, courseIdValue);
-      console.log(`User ${userId} added to course ${courseIdValue}`);
+     
       closeDialog();
     } catch (error) {
       console.error('Error in addUserToCourse:', error);

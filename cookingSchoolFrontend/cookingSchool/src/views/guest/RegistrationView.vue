@@ -79,7 +79,7 @@ async function registerUser() {
         });
 
         if (response.status === 200) {
-          console.log('User created:', userData);
+          
           await router.push('/login');
         }
       } catch (error) {

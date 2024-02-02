@@ -4,17 +4,10 @@ import {ref, toRaw} from "vue";
 
 const courseStore = useCourseStore()
 const course = defineProps(['courseTitle', 'startDate', 'description', 'courseId', 'teacher', 'image'])
-//const getImage = toRaw(image);
 
-/*async function updateCourse(courseId){
-  console.log('updateCourse function called')
-  await courseStore.updateCourse(courseId)
-  // await courseStore.showCourses()
-}*/
 
 async function deleteCourse(courseId) {
 
-  console.log('Deleted')
   await courseStore.deleteCourse(courseId)
 }
 

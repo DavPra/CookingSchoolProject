@@ -14,12 +14,12 @@ const {
   courseIds
 } = defineProps(['title', 'description', 'difficulty', 'preparation', 'ingredients', 'recipeId', 'courseIds']);
 const getIngredients = toRaw(ingredients);
-console.log('ingredients:', ingredients);
+
 const deleteRecipe = async () => {
-  console.log('Deleting recipe with ID:', recipeId);
+ 
   try {
     await recipeStore.deleteRecipe(recipeId);
-    console.log('Recipe deleted successfully');
+    
   } catch (error) {
     console.error('Error deleting recipe:', error.message);
     if (error.response) {
