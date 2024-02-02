@@ -6,7 +6,7 @@ import { useCourseStore } from "@/stores/CourseStore.js";
 import jwtDecode from "jwt-decode";
 
 const courseStore = useCourseStore()
-const course = defineProps(['courseTitle','startDate','description','teacher','courseId','prize'])
+const course = defineProps(['courseTitle','startDate','description','teacher','courseId','prize', 'maxAttendants'])
 const router = useRouter();
 
 onMounted(() => {
@@ -20,6 +20,7 @@ const show = ref(false)
 const err = false;
 let courses = ref([]);
 const courseId = course.courseId;
+const errorMaxAttendants = ref(false);
 let decodedUserId = '';
 
 
@@ -34,12 +35,15 @@ ShowCourses();
 async function bookCourse() {
   if(!window.localStorage.getItem('accessToken')) {
     await router.push('/login');
-  } else {
-    const userId = jwtDecode(window.localStorage.getItem("accessToken")).userId;
-    console.log("userID= " + userId);
-    console.log("courseID= " + courseId);
-    await courseStore.bookCourse(userId, courseId);
-    console.log(courses.courseId);
+  } else if (course.maxAttendants = 0) {
+    errorMaxAttendants.value = 'dieser Kurs ist leider schon ausgebucht'
+  } else{
+      const userId = jwtDecode(window.localStorage.getItem("accessToken")).userId;
+      console.log("userID= " + userId);
+      console.log("courseID= " + courseId);
+      await courseStore.bookCourse(userId, courseId);
+      console.log(courses.courseId);
+    }
   }
 }
 
@@ -70,7 +74,11 @@ async function bookCourse() {
           <v-btn color="primary" @click="show = !show">Mehr Info</v-btn>
 
           <v-spacer></v-spacer>
-
+          <v-col cols="4" v-if="errorMaxAttendants">
+            <v-alert type="error" closable>
+              {{errorMaxAttendants}}
+            </v-alert>
+          </v-col>
           <v-btn 
           :icon="show ? 'mdi-chevron-up' : 'mdi-chevron-down'"
           @click="show = !show">
