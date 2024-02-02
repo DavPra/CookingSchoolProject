@@ -17,15 +17,14 @@ async function goToCourses() {
     <div align-center style="border-bottom: 10px;">
     <v-container>
        <h1 class="text-h2 mt-6 pa-3 header1"> Meet the Team </h1>
-
-
     </v-container>
+
     </div>
-    <v-spacer></v-spacer>
+
     <!-- Part 1 -->
 
-    <div class="mt-6   ">
-      <v-sheet class="text-subtitle-1 text-center my-4 py-4 ">
+    <div class="mt-2 ">
+      <v-sheet class="text-h6 font-weight-light text-center my-4 py-4 ">
         Willkommen in unserer Kochschule, einem kulinarischen Paradies für alle, die ihre Kochkünste auf das nächste Level bringen und dabei eine unvergessliche Zeit erleben möchten!
         <br>
         Inmitten einer angesagten Location, die von urbanem Flair und modernem Design geprägt ist, entfaltet sich unsere fiktive Kochschule zu einem Treffpunkt für Gourmets, Foodies und Kochbegeisterte gleichermaßen.
@@ -41,8 +40,9 @@ async function goToCourses() {
               src="https://cdn.pixabay.com/photo/2017/08/02/13/03/architecture-2571498_1280.jpg"
           ></v-img>
         </v-sheet>
-        <v-sheet style="flex: 1;" class="pa-2 ma-3 " color="secondary">
-          <h4 > Inmitten einer angesagten Location, die von urbanem Flair und modernem Design geprägt ist,
+        <v-sheet style="flex: 1;" class="pa-2 ma-3 text-h6 font-weight-light " color="secondary">
+          <h1 class="text-h4 my-3 text-medium-emphasis">Unsere Location </h1>
+          <h4 class="text-medium-emphasis"> Inmitten einer angesagten Location, die von urbanem Flair und modernem Design geprägt ist,
             entfaltet sich unsere fiktive Kochschule zu einem Treffpunkt für Gourmets, Foodies und Kochbegeisterte
             gleichermaßen.
           </h4>
@@ -53,8 +53,9 @@ async function goToCourses() {
 
       <!-- Kurs Part -->
       <div class="d-flex justify-start ma-6  align-center">
-        <v-sheet style="flex: 1;" class="pa-2 ma-3">
-        <v-sheet>
+        <v-sheet style="flex: 1;" class="pa-2 ma-3 text-h6 font-weight-light">
+          <h1 class="text-h4 my-3 font-weight-light">Unsere Mission </h1>
+        <v-sheet class="font-weight-light">
             Unsere Mission ist es, die Kunst des Kochens mit Leidenschaft, Kreativität und einer gehörigen Portion Spaß zu vermitteln.
             Unabhängig von deinen kulinarischen Fähigkeiten, bieten wir eine breite Palette von Kursen an, die von Anfänger bis Fortgeschrittene reichen.
             Lerne von Grundtechniken bis hin zu raffinierten Gerichten alles, was du für die perfekte Küchenperformance brauchst.
@@ -78,7 +79,8 @@ async function goToCourses() {
     </div>
     <!-- Teacher -->
 <v-sheet class=" mt-2 pa-4 " color="secondary">
-  <div class=" ma-2 py-5">
+  <h1 class="text-h4 mt-3 text-center text-medium-emphasis" >Die Crew </h1>
+  <div class=" ma-2 py-5 text-h6 text-medium-emphasis font-weight-light text-center">
     Unser dynamisches Lehrerteam, bestehend aus einem charismatischen Mann und zwei ebenso talentierten Frauen, leitet nicht nur die Kurse, sondern ist auch stolzer Inhaber unserer Kochschule. Jeder Lehrer bringt seine eigene Expertise und Persönlichkeit in den Unterricht ein, um eine inspirierende Lernumgebung zu schaffen.
 
   </div>
