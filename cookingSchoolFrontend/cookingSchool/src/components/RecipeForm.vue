@@ -143,7 +143,7 @@ loadCourses();
             <v-text-field v-model="ingredient.title" label="Zutat"></v-text-field>
           </v-col>
           <v-col>
-            <v-text-field v-model="ingredient.quantity" label="Menge"></v-text-field>
+            <v-text-field v-model="ingredient.quantity" label="Menge" type="number"></v-text-field>
           </v-col>
           <v-col>
             <v-text-field v-model="ingredient.unit" label="Einheit"></v-text-field>
