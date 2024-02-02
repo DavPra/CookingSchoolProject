@@ -285,8 +285,8 @@ const closeCourseDialog = () => {
                 v-model="newUser.admin"
                 label="Admin?"
             ></v-checkbox>
-            <v-alert v-if="errorFeedback" closable type="error">{{ errorFeedback }}</v-alert>
-            <v-btn type="submit" color="primary"  class="mt-2">{{ editingUser ? 'Bearbeiten' : 'Speichern' }}</v-btn>
+            <v-alert v-if="errorFeedback" closable  type="error">{{ errorFeedback }}</v-alert>
+            <v-btn rounded type="submit" color="primary" variant="tonal" class="mt-2">{{ editingUser ? 'Bearbeiten' : 'Speichern' }}</v-btn>
           </v-form>
         </v-sheet>
       </div>
@@ -347,11 +347,11 @@ const closeCourseDialog = () => {
       <v-card>
         <v-card-title>Wähle einen Kurs</v-card-title>
 
-        <v-select v-model="selectedCourseId" :items="courseOptions" item-value="courseId" label="Select a Course"
+        <v-select variant="outlined" v-model="selectedCourseId" :items="courseOptions" item-value="courseId" label="Select a Course"
                   class="ma-4"></v-select>
-        <v-card-actions>
-          <v-btn @click="completeAssignment(selectedCourseId)" class="elevation-2">Eintragen</v-btn>
-          <v-btn @click="closeCourseDialog" variant="tonal">Zurück</v-btn>
+        <v-card-actions class="mb-2">
+          <v-btn rounded @click="completeAssignment(selectedCourseId)" variant="tonal" color="primary" >Eintragen</v-btn>
+          <v-btn rounded @click="closeCourseDialog" variant="outlined" color="primary" >Zurück</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
