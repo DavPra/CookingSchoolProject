@@ -94,10 +94,10 @@ const isHovering= ref(false)
   <!-- first -->
   <v-sheet class="container d-flex justify-end typo mt-10 mb-10 elevation-0 align-center rounded-0" color="secondary" width="100%">
     <v-row>
-      <v-col cols="12" md="6">
-        <v-card variant="flat" class="mr-3 pa-5 bg-transparent">
-          <v-card-title class="text-h4 mb-2 text-medium-emphasis" variant="plain" color="primary">Hallo, wir sind Cooking Academy</v-card-title>
-          <v-card-text class="text-h6 font-weight-light text-medium-emphasis">
+      <v-col cols="12" md="6" class="d-flex align-center">
+        <v-card variant="flat" class="mr-3 pa-5 bg-transparent align-center">
+          <v-card-title class="text-h4 mb-2 text-black" variant="plain" color="primary">Willkommen  bei Cooking Academy</v-card-title>
+          <v-card-text class="text-h6 font-weight-light text-black">
             Entdecke die Freude am Kochen in unserer einzigartigen Kochschule. Tauche ein in kulinarische Abenteuer, probiere neue Rezepte und lerne, wie du mit Leidenschaft und Geschicklichkeit köstliche Gerichte zaubern kannst. Unsere erfahrenen Chefköche stehen bereit, um ihre Geheimnisse zu teilen und deine kulinarischen Fähigkeiten auf das nächste Level zu bringen. Mach mit uns gemeinsam die Küche zum Herzstück deiner Kreativität. Starte noch heute dein kulinarisches Abenteuer!
           </v-card-text>
           <v-btn class="ms-3" color="primary" rounded="xl" to="/about">Erfahre mehr</v-btn>
@@ -126,7 +126,7 @@ const isHovering= ref(false)
         src="https://media.gettyimages.com/id/1302980333/de/foto/young-chef-learning-stirring-food-in-frying-pan-while-standing-by-colleague-in-kitchen.jpg?s=612x612&w=0&k=20&c=IyZ90eJfwcZDEjyJvJwWfMlI0segeoMI-qhhltJIgCk="
     ></v-img>
     </v-card>
-    <v-sheet variant="flat" class="ml-10 " max-width="600" v-bind="props"  color="rgb(255, 255, 255, 0.8)">
+    <v-sheet variant="flat" class="ml-10 " max-width="600" v-bind="props"  >
       <v-card-title class="text-h4 m-4 font-weight-medium" variant="plain" color="primary">Unsere Kurse</v-card-title>
       <v-card-text class="text-h6 font-weight-light typo">
 

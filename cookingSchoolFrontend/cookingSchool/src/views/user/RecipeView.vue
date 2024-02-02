@@ -22,9 +22,9 @@ async function showUserRecipes() {
 </script>
 
 <template>
-  <div id="recipes-list" class="ma-2">
-    <h1 class="mx-auto text-h4">Deine verfügbaren Rezepte:</h1>
-    <v-row class="d-flex ma-2">
+  <div id="recipes-list" class="mt-6 mx-3">
+    <h1 class="mx-5 mt-5 text-h4 ">Deine verfügbaren Rezepte:</h1>
+    <v-row class="d-flex my-5 mx-2">
       <v-col v-for="recipe in recipeStore.recipes" :key="recipe.recipeId" cols="12" sm="6" md="4" lg="3">
         <UserRecipeCard
             :key="recipe.recipeId"

@@ -42,9 +42,22 @@ ShowUserCourses();
 </script>
 
 <template>
-
-  <v-sheet color="secondary">
-    <h2 style="text-align: center;" class="mx-auto text-h4 py-10">Verfügbare Kurse: </h2>
+  <div>
+    <h2 style="text-align: center;" class="mx-auto text-h4 py-10" color="secondary">Deine gebuchten Kurse </h2>
+    <v-row class="d-flex ma-2 ">
+      <v-col v-for="courses in userCourses" :key="courses.courseId" cols="12" sm="6" md="4" lg="3">
+        <CourseCard
+            :courseTitle="courses.courseTitle"
+            :startDate="courses.startDate"
+            :description="courses.description"
+            :courseId="courses.courseId"
+            :teacher="courses.teacher"
+        />
+      </v-col>
+    </v-row>
+  </div>
+  <v-sheet color="secondary" class="mt-3">
+    <h2  class="mx-auto text-h4 py-10 text-black text-center ">Unsere aktuellen Kurse</h2>
     <v-row class="d-flex ma-2 ">
       <v-col v-for="course in courses" :key="course.courseId" cols="12" sm="6" md="4" lg="3">
         <CourseCard
@@ -58,18 +71,5 @@ ShowUserCourses();
       </v-col>
     </v-row>
   </v-sheet>
-  <div>
-    <h2 style="text-align: center;" class="mx-auto text-h4 py-10">Gebuchte Kurse: </h2>
-    <v-row class="d-flex ma-2 ">
-      <v-col v-for="courses in userCourses" :key="courses.courseId" cols="12" sm="6" md="4" lg="3">
-        <CourseCard
-            :courseTitle="courses.courseTitle"
-            :startDate="courses.startDate"
-            :description="courses.description"
-            :courseId="courses.courseId"
-            :teacher="courses.teacher"
-        />
-      </v-col>
-    </v-row>
-  </div>
+
 </template>
