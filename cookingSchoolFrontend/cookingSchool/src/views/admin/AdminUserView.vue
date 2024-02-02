@@ -12,12 +12,12 @@ const user = computed(() => userStore.users.find(u => u.userId === parseInt(rout
 const editingUser = ref(null);
 const route = useRoute()
 const errorFeedback = ref('')
-const show = ref(false)
 const rules = {
   required: value => !!value || 'Field is required',
   min: v => (v && v.length >= 6) || 'Min 6 characters',
   password: v => !v || (v && v.length >= 6) || 'Min 6 characters'
 }
+const passwort = ref('Passwort')
 const firstTextField = ref(null);
 const shouldFocusFirstTextField = ref(false);
 watch(shouldFocusFirstTextField, (newValue) => {
@@ -97,8 +97,13 @@ const editUser = (user) => {
 async function createOrUpdateUser() {
   try {
     if (editingUser.value === null) {
+      if (!newUser.value.password) {
+        errorFeedback.value ='Bitte geben Sie ein Passwort an';
+        return;
+      }
+
       await userStore.creatUser(newUser.value);
-      console.log('User created successfully');
+      console.log('Benutzer erfolgreich erstellt');
       newUser.value = {
         firstname: '',
         lastname: '',
@@ -109,11 +114,11 @@ async function createOrUpdateUser() {
         username: '',
         admin: true
       };
-      await userStore.showUsers()
+      await userStore.showUsers();
     } else {
-      console.log('upsihgrehbrthn', editingUser.value.userId, newUser.value)
+      console.log('upsihgrehbrthn', editingUser.value.userId, newUser.value);
       await userStore.updateUser(editingUser.value.userId, newUser.value);
-      console.log('User updated successfully');
+      console.log('Benutzer erfolgreich aktualisiert');
       newUser.value = {
         firstname: '',
         lastname: '',
@@ -123,21 +128,19 @@ async function createOrUpdateUser() {
         password: '',
         username: '',
         admin: true
-      }
-      await userStore.showUsers()
+      };
+      await userStore.showUsers();
     }
     errorFeedback.value = '';
   } catch (error) {
     errorFeedback.value = error.response.data.message;
-    console.log(error)
+    console.log(error);
     if (error.response && error.response.status === 409) {
-      console.log('Email address already exists')
+      console.log('E-Mail-Adresse existiert bereits');
     }
-    errorFeedback.value = error.response.data.message;
     throw error;
   }
 }
-
 async function showUsers() {
   try {
     await userStore.showUsers();
@@ -258,11 +261,9 @@ const closeCourseDialog = () => {
       ></v-text-field>
       <v-text-field
           v-model="newUser.password"
-          :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
           :rules="[rules.password]"
           label="Passwort"
           hint="Mindestens 6 Zeichen"
-          @click:append="show = !show"
       ></v-text-field>
       <v-text-field
           v-model="newUser.username"
