@@ -16,7 +16,9 @@ async function goToCourses() {
     <!-- header -->
     <div align-center style="border-bottom: 10px;">
     <v-container>
-       <h1 class="text-h2 pa-3 header1"> Cooking Academy</h1>
+       <h1 class="text-h2 mt-6 pa-3 header1"> Meet the Team </h1>
+
+
     </v-container>
     </div>
     <v-spacer></v-spacer>
@@ -30,22 +32,24 @@ async function goToCourses() {
       </v-sheet>
 
       <!-- Location Part  -->
-      <div class="d-flex justify-start ma-6  align-center">
-        <v-sheet style="flex: 1;">
+      <v-sheet class="d-flex justify-start  align-center location" color="secondary">
+        <v-sheet class=" my-5" style="flex: 1;" color="secondary">
           <v-img
-              class="pa-2 ma-3"
+              class="ms-8  ma-3"
               cover
-              height="250"
+              height="450"
               src="https://cdn.pixabay.com/photo/2017/08/02/13/03/architecture-2571498_1280.jpg"
           ></v-img>
         </v-sheet>
-        <v-sheet style="flex: 1;" class="pa-2 ma-3">
-          <h4> Inmitten einer angesagten Location, die von urbanem Flair und modernem Design geprägt ist,
+        <v-sheet style="flex: 1;" class="pa-2 ma-3 " color="secondary">
+          <h4 > Inmitten einer angesagten Location, die von urbanem Flair und modernem Design geprägt ist,
             entfaltet sich unsere fiktive Kochschule zu einem Treffpunkt für Gourmets, Foodies und Kochbegeisterte
             gleichermaßen.
           </h4>
         </v-sheet>
-      </div>
+      </v-sheet>
+
+
 
       <!-- Kurs Part -->
       <div class="d-flex justify-start ma-6  align-center">
@@ -62,7 +66,7 @@ async function goToCourses() {
           <v-img
               class="pa-2 ma-3"
               cover
-              height="250"
+              height="450"
               src="https://media.gettyimages.com/id/942153866/de/foto/koch-und-teilnehmer-des-kochens-klasse-browser-fotos-auf-handy.jpg?s=612x612&w=0&k=20&c=BaPpBqKZ8yyzsM5Kq3DZ3FePnVKRiEghgxw2sASJWYU="
           ></v-img>
         </v-sheet>
@@ -170,5 +174,6 @@ h3 {
   align-items: center;
   text-align: center;
 }
+
 
 </style>

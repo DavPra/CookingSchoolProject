@@ -52,7 +52,7 @@ function isAdmin() {
         <v-form @submit.prevent="login">
           <v-card-item>
             <v-alert color="error" v-model="areCredentialsInvalid" closable=true close-icon="mdi-close" text="Zugangsdaten falsch" class="mb-6"/>
-            <v-text-field variant="outlined" required label="Benutzername" v-model="credentials.username" :disabled="isLoginInProgress"/>
+            <v-text-field class="mt-2" variant="outlined" required label="Benutzername" v-model="credentials.username" :disabled="isLoginInProgress"/>
             <v-text-field type="password" variant="outlined" required label="Passwort" v-model="credentials.password" :disabled="isLoginInProgress"/>
           </v-card-item>
           <v-card-actions style="margin-left: 10px">
