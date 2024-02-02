@@ -6,6 +6,7 @@ import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 import DeleteAlert from "@/components/DeleteAlert.vue";
 import {useRouter} from 'vue-router';
+import ProfilLogo from "@/components/ProfilLogo.vue";
 
 const userStore = useUserStoreUpdate();
 const router = useRouter();
@@ -66,7 +67,7 @@ async function deleteUser() {
     <v-container class="container bg-brown-lighten-5 ">
       <v-col cols="6">
         <v-card class="pa-2 ma-2 text-center">
-          <v-icon size="48">mdi-account</v-icon>
+          <ProfilLogo/>
           <v-card-title>
             Profil
           </v-card-title>
