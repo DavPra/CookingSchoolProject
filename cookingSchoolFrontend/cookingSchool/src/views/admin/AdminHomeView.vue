@@ -5,6 +5,7 @@ import {useUserStoreUpdate} from "@/stores/UserStoreforUpdate.js";
 import {onMounted, ref} from "vue";
 import Diagramm from "@/components/Diagramm.vue";
 import ProfileForm from "@/components/ProfileForm.vue";
+import ProfilLogo from "@/components/ProfilLogo.vue";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
 import {ApiUrl} from "@/helper/ApiHelper";
@@ -94,7 +95,7 @@ async function updateUsers(updatedUserDto) {
     <v-container class="container bg-brown-lighten-5 rounded">
       <v-col cols="6">
         <v-card class="pa-2 ma-2 text-center">
-          <v-icon size="48">mdi-account</v-icon>
+          <ProfilLogo/>
           <v-card-title>
             Profil
           </v-card-title>
