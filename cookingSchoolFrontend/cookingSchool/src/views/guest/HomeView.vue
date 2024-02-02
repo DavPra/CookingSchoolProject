@@ -97,7 +97,7 @@ const isHovering= ref(false)
       <v-col cols="12" md="6" class="d-flex align-center">
         <v-card variant="flat" class="mr-3 pa-5 bg-transparent align-center">
           <v-card-title class="text-h4 mb-2 text-black" variant="plain" color="primary">Willkommen  bei Cooking Academy</v-card-title>
-          <v-card-text class="text-h6 font-weight-light text-black">
+          <v-card-text class="text-h6 font-weight-light text-black typo my-2">
             Entdecke die Freude am Kochen in unserer einzigartigen Kochschule. Tauche ein in kulinarische Abenteuer, probiere neue Rezepte und lerne, wie du mit Leidenschaft und Geschicklichkeit köstliche Gerichte zaubern kannst. Unsere erfahrenen Chefköche stehen bereit, um ihre Geheimnisse zu teilen und deine kulinarischen Fähigkeiten auf das nächste Level zu bringen. Mach mit uns gemeinsam die Küche zum Herzstück deiner Kreativität. Starte noch heute dein kulinarisches Abenteuer!
           </v-card-text>
           <v-btn class="ms-3" color="primary" rounded="xl" to="/about">Erfahre mehr</v-btn>
@@ -128,7 +128,7 @@ const isHovering= ref(false)
     </v-card>
     <v-sheet variant="flat" class="ml-10 " max-width="600" v-bind="props"  >
       <v-card-title class="text-h4 m-4 font-weight-medium" variant="plain" color="primary">Unsere Kurse</v-card-title>
-      <v-card-text class="text-h6 font-weight-light typo">
+      <v-card-text class="text-h6 font-weight-light typo my-2">
 
         Entwickeln Sie Ihre Kochfähigkeiten weiter,
         experimentieren Sie mit verschiedenen Aromen und Texturen,
@@ -204,7 +204,7 @@ background: linear-gradient(180deg, rgba(159,163,166,1) 0%, rgba(89,97,106,1) 50
   opacity: 0.4!important;
 }
 .typo{
-  line-height: 110%;
+  line-height: 130%!important;;
 }
 .luftig {
   letter-spacing: 0.5em;

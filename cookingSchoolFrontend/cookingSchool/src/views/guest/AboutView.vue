@@ -41,7 +41,7 @@ async function goToCourses() {
         </v-sheet>
         <v-sheet style="flex: 1;" class="pa-2 ma-3 text-h6 " color="secondary">
           <h1 class="text-h4 my-3 text-black">Unsere Location </h1>
-          <h4 class="text-black"> Inmitten einer angesagten Location, die von urbanem Flair und modernem Design geprägt ist,
+          <h4 class="text-black font-weight-light"> Inmitten einer angesagten Location, die von urbanem Flair und modernem Design geprägt ist,
             entfaltet sich unsere fiktive Kochschule zu einem Treffpunkt für Gourmets, Foodies und Kochbegeisterte
             gleichermaßen.
           </h4>
