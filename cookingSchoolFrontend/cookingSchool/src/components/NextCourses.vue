@@ -15,7 +15,6 @@ const courses = computed(() => {
 
 onMounted(() => {
   ShowCourses();
-  console.log('mounted');
 });
 
 async function ShowCourses() {

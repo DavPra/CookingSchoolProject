@@ -15,17 +15,15 @@ const err = false;
 
 onBeforeMount(() => {
   const userId = jwtDecode(localStorage.getItem("accessToken")).userId;
-  console.log(userId);
-  console.log('before mount');
+  
 });
 
 onMounted(() => {
   const userId = jwtDecode(localStorage.getItem("accessToken")).userId;
-  console.log(userId);
+  
   ShowCourses();
   ShowUserCourses(userId);
-  console.log('mounted');
-  console.log('userCourses = ' + userCourses.data);
+
 });
 
 async function ShowCourses() {

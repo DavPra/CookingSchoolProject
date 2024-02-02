@@ -13,14 +13,14 @@ export const useCourseStore = defineStore('course', {
             try {
                 const courseResponse = await axios.get('http://localhost:8082/courses');
                 this.courses = courseResponse.data;
-                console.log('Courses loaded', this.courses);
+               
             } catch (error) {
                 console.error('Error loading courses:', error);
             }
         },
 
         async createCourse(data) {
-            console.log('store 1', data)
+           
             try {
                 const courseData = {
                     courseTitle: data.courseTitle,
@@ -31,7 +31,7 @@ export const useCourseStore = defineStore('course', {
                     maxAttendants: data.maxAttendants,
                     price: data.price
                 };
-                console.log('store 2', data)
+               
                 const courseResponse = await axios.post(ApiUrl('/admin/courses'), courseData, {
                     headers: {
                         'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
@@ -39,7 +39,7 @@ export const useCourseStore = defineStore('course', {
                 });
                 const createdCourse = courseResponse.data;
                 this.courses.push(courseResponse.data);
-                console.log('Course created', courseResponse.data);
+              
               //bringt nichts  await this.showCourses()
             } catch (error) {
                 console.error('Error creating course:', error);
@@ -48,14 +48,14 @@ export const useCourseStore = defineStore('course', {
 
         async bookCourse(userId, courseId){
             try {
-                console.log('token= ' + localStorage.getItem('accessToken'));
+                
                 await axios.post('http://localhost:8082/users/'+userId+'/book-course/'+courseId, {},{
                     headers: {
                         Authorization: 'Bearer ' + window.localStorage.getItem('accessToken')
                     }
                 })
                 await axios.post('http://localhost:8082/send-email/'+userId);
-                console.log('Course booked');
+                
                 await this.showCourses()
             } catch (error) {
                 console.error('Error booking course:', error);
@@ -63,16 +63,13 @@ export const useCourseStore = defineStore('course', {
         },
 
     async showUserCourses(userId){
-        console.log('store' + this.userCourses);
-        
-        console.log("UserId " + userId);
+       
         const userCoursesResponse = await axios.get('http://localhost:8082/users/'+userId, {
             headers: {
                 'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
             }
         });
         
-        console.log("Array mit Courses " + userCoursesResponse);
 
             const userData = {
                 userId: userCoursesResponse.data.userId,
@@ -84,7 +81,7 @@ export const useCourseStore = defineStore('course', {
 
             this.userCourses = userData.courses;
         
-//for vielleicht zur view verschieben
+
     },
 
         //in AdminCourseUserView --- ADMIN
@@ -94,7 +91,7 @@ export const useCourseStore = defineStore('course', {
                     'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
                 }
             });
-            console.log('API response:', courseByIdResponse.data);
+        
             return courseByIdResponse.data
         },
 
@@ -109,7 +106,7 @@ export const useCourseStore = defineStore('course', {
                 const index = this.courses.findIndex(course => course.courseId === courseId);
                 if (index !== -1) {
                     this.courses[index] = courseResponse.data;
-                    console.log('Course updated', courseResponse.data);
+                  
                     // bringt nichts   await this.showCourses()
                 }
             } catch (error) {
@@ -124,7 +121,7 @@ export const useCourseStore = defineStore('course', {
                     'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
                 }
             });
-            console.log('Course deleted', courseId, deleteResponse.data);
+           
             await this.showCourses();
         }
 }   

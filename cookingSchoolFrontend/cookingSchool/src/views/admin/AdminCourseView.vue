@@ -31,7 +31,7 @@ watchEffect(() => {
 
 onMounted(() => {
   courseStore.showCourses()
-  console.log('comp mounted')
+
   fetchCourses();
 });
 
@@ -63,22 +63,20 @@ const editCourse = (course) => {
 
 const saveCourse = async () => {
   try {
-    console.log('Before update/create Course');
+    
     if (editMode.value) {
-      console.log('update Course called');
-      console.log(editedCourse.value.courseId);
+   
       await courseStore.updateCourse(editedCourse.value.courseId, editedCourse.value);
-      // await courseStore.showCourses()
+     
     } else {
-      console.log('create Course called');
-      console.log(editedCourse.value.courseId);
+      
       await courseStore.createCourse(editedCourse.value);
-      //await courseStore.showCourses()
+     
     }
 
-    console.log('Before showCourses');
+   
     await courseStore.showCourses();
-    console.log('After showCourses');
+    
 
   } catch (error) {
     console.error('Error saving course:', error);
@@ -91,7 +89,7 @@ const saveCourse = async () => {
 
 
 async function deleteCourse(courseId) {
-  console.log('courseId delete', courseId)
+ 
   await courseStore.deleteCourse(courseId)
   await courseStore.showCourses()
 }

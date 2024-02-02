@@ -37,19 +37,18 @@ onMounted(() => {
 
 const loadCourses = async () => {
   try {
-    console.log('Before loading courses');
+  
     await courseStore.showCourses();
-    console.log('After loading courses');
+    
 
-    console.log('Courses loaded:', courseStore.courses);
+    
 
     courseOptions.value = courseStore.courses.map(course => ({
       courseId: course.courseId,
       title: course.courseTitle
     }));
 
-    console.log('courseOptions:', courseOptions.value);
-    console.log('courseID for recipes loaded');
+   
   } catch (err) {
     console.error("Error loading courses:", err);
   }
@@ -91,16 +90,14 @@ const editRecipe = (recipe) => {
 };
 const saveRecipe = async () => {
   try {
-    console.log('Selected Courses:', recipeData.value.selectedCourses);
+    
     console.dir(recipeData.value.selectedCourses);
     let courseIds = [];
     courseIds.push(recipeData.value.selectedCourses);
 
-    console.log('Before update/create Recipe');
+   
     if (editMode.value) {
-      console.log('update Recipe called');
-
-      console.log(recipeData.value.recipeId);
+      
 
       await recipeStore.updateRecipe(recipeData.value.recipeId, {
         title: recipeData.value.title,
@@ -111,7 +108,7 @@ const saveRecipe = async () => {
         ingredients: recipeData.value.ingredients
       });
     } else {
-      console.log('create Recipe called');
+     
 
       await recipeStore.addRecipe({
         title: recipeData.value.title,
@@ -123,9 +120,9 @@ const saveRecipe = async () => {
       });
     }
 
-    console.log('Before showRecipes');
+    
     await recipeStore.showRecipes();
-    console.log('After showRecipes');
+   
     recipeErr.value=''
   } catch (error) {
     recipeErr.value = error.response.data.message;
@@ -136,7 +133,7 @@ const saveRecipe = async () => {
 };
 
 async function deleteRecipe(recipeId) {
-  console.log('recipeId delete', recipeId)
+  
   await recipeStore.deleteRecipe(recipeId)
   await recipeStore.showRecipes()
 }

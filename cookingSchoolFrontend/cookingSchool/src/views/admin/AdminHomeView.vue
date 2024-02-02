@@ -49,13 +49,13 @@ const fetchCourseCount = async () => {
 const fetchNextCourses = async () => {
   try {
     await courseStore.showCourses();
-    console.log('Courses in fetchNextCourses:', courseStore.courses);
+    
     const sortedCourses = courseStore.courses.sort(
         (a, b) => new Date(a.startDate) - new Date(b.startDate)
     );
-    console.log('Sorted courses:', sortedCourses);
+    
     nextCourses.value = sortedCourses.slice(0, 3);
-    console.log('Next courses:', nextCourses.value);
+    
   } catch (error) {
     console.error('Fehler beim Laden der Kurse', error);
   }

@@ -18,19 +18,18 @@ export const useUserStoreUpdate = defineStore('user', {
                             'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')
                         }
                     });
-                    console.log(userResponse.data);
-                    //this.users = userResponse.data;
+                    
+                    
                     this.users = userResponse.data
-                    //const userId =userResponse.data.userId //hinzugefügt weil id undefined für delete und put
-                    console.log('users geladen', userResponse.data);
+                    
                     const userIds = userResponse.data.map(user => user.userId);
-                    console.log('fuuuuuu...users ids ', userIds)
+                    
                     return userResponse.data;
                 } catch (error) {
                     console.error('Error loading users:', error);
                 }
             },  async creatUser(newUser){
-                console.log(newUser)
+               
 
                 const userResponse = await axios.post('http://localhost:8082/admin/users', newUser )
                 this.users.push(userResponse.data)
@@ -68,7 +67,7 @@ export const useUserStoreUpdate = defineStore('user', {
 
             //in AdminUserView, ProfileView(user) --- ADMIN, APPUSER
             async deleteUser(userId) {
-                console.log('userId in deleteUser der UserStore:', userId)
+               
                 await axios.delete(ApiUrl(`/users/${userId}`), {
                     headers: {
                         'Authorization': 'Bearer ' + window.localStorage.getItem('accessToken')

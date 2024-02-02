@@ -64,10 +64,7 @@ const newUser = ref({
 onMounted(async () => {
   try {
     const users = await userStore.showUsers();
-    console.log('user Component mounted', users);
-    //await courseStore.showCourses()
-    //courses.value = courseStore.courses
-    //console.log('courses Component mounted', courses);
+    
     await loadCourses()
   } catch (error) {
     console.error('Error loading users in component mount:', error);
@@ -76,10 +73,9 @@ onMounted(async () => {
 
 // userData durch newUser ersetzt
 const editUser = (user) => {
-  console.log('editUser function called userId: ', user);
-  console.log(userData.value);
+  
   editingUser.value = user;
-  console.log('editingUser.value', editingUser.value);
+  
   newUser.value = {
     firstname: user.firstname,
     lastname: user.lastname,
@@ -103,7 +99,7 @@ async function createOrUpdateUser() {
       }
 
       await userStore.creatUser(newUser.value);
-      console.log('Benutzer erfolgreich erstellt');
+      
       newUser.value = {
         firstname: '',
         lastname: '',
@@ -116,9 +112,9 @@ async function createOrUpdateUser() {
       };
       await userStore.showUsers();
     } else {
-      console.log('upsihgrehbrthn', editingUser.value.userId, newUser.value);
+      
       await userStore.updateUser(editingUser.value.userId, newUser.value);
-      console.log('Benutzer erfolgreich aktualisiert');
+      
       newUser.value = {
         firstname: '',
         lastname: '',
@@ -134,9 +130,9 @@ async function createOrUpdateUser() {
     errorFeedback.value = '';
   } catch (error) {
     errorFeedback.value = error.response.data.message;
-    console.log(error);
+    
     if (error.response && error.response.status === 409) {
-      console.log('E-Mail-Adresse existiert bereits');
+      
     }
     throw error;
   }
@@ -144,7 +140,7 @@ async function createOrUpdateUser() {
 async function showUsers() {
   try {
     await userStore.showUsers();
-    console.log('Users loaded in showUsers:', userStore.users);
+   
 
   } catch (error) {
     console.error('Error loading users in showUsers:', error);
@@ -155,10 +151,10 @@ async function showUsers() {
 showUsers();
 
 async function deleteUser(userId) {
-  console.log('userId vor dem Funktionsaufruf:', userId);
+ 
   try {
     await userStore.deleteUser(userId);
-    console.log('user gelöscht, mit der id', userId);
+    
   } catch (err) {
     console.error('Error delete user', err);
   }
@@ -178,19 +174,16 @@ const courseOptions = ref([])
 let userId
 const loadCourses = async () => {
   try {
-    console.log('Before loading courses');
+    
     await courseStore.showCourses();
-    console.log('After loading courses');
-
-    console.log('Courses loaded:', courseStore.courses);
+   
 
     courseOptions.value = courseStore.courses.map(course => ({
       courseId: course.courseId,
       title: course.courseTitle
     }));
 
-    console.log('courseOptions:', courseOptions.value);
-    console.log('courseID for recipes loaded');
+    
   } catch (err) {
     console.error("Error loading courses:", err);
   }
@@ -201,16 +194,12 @@ const openCourseDialog = () => {
 };
 const assignUserToCourse = (usersId) => {
   userId = usersId
-  console.log('userId', userId)
+  
   openCourseDialog();
-  // selectedCourseId.value = courseId;
-  // console.log('courseId', selectedCourseId.value, courseId)
 
 }
 const completeAssignment = async () => {
-  console.log("userId", userId);
-  console.log("courseId", selectedCourseId.value);
-
+  
   if (selectedCourseId.value !== null) {
     try {
       await userStore.addUserToCourse(userId, selectedCourseId.value);

@@ -13,7 +13,7 @@ const userId = jwtDecode(localStorage.getItem("accessToken")).userId;
 
 onMounted(() => {
   showUserRecipes();
-  console.log('mounted');
+  
 });
 
 async function showUserRecipes() {

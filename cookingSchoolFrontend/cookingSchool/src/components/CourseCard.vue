@@ -15,7 +15,6 @@ const showFinConfirmDialog = ref(false);
 
 onMounted(() => {
   ShowCourses();
-  console.log('mounted');
  
 });
 
@@ -31,7 +30,6 @@ let decodedUserId = '';
 async function ShowCourses() {
   await courseStore.showCourses();
   courses = courseStore.courses;
-  console.log(courses);
 }
 
 ShowCourses();
@@ -42,15 +40,14 @@ async function bookCourse() {
   } else {
     try {
     const userId = jwtDecode(window.localStorage.getItem("accessToken")).userId;
-    console.log("userID= " + userId);
-    console.log("courseID= " + courseId);
+
     await courseStore.bookCourse(userId, courseId);
-    console.log(courses.courseId);
+   
     showConfirmDialog.value = false;
     showFinConfirmDialog.value = true;
   }
   catch (error) {
-    console.log(error);
+   
     alert('Kurs konnte nicht gebucht werden kontaktieren Sie bitte den Support.');
   }
   }

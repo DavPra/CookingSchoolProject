@@ -19,7 +19,7 @@ const courses = computed(() => courseStore.courses);
 
 onMounted(() => {
   ShowCourses();
-  console.log('mounted');
+  
 });
 
 

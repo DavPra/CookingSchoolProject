@@ -13,7 +13,7 @@ const {
 const getIngredients = toRaw(ingredients);
 const show = ref(false);
 
-console.log('ingredients:', ingredients);
+
 </script>
 
 <template>
