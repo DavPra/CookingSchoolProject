@@ -22,7 +22,7 @@ async function logout() {
 
   <!-- Grundgerüst des Headers und Navbar für die Ansicht der Guests -->
   <HeaderIcon/>
-  <v-toolbar color="bg-transparent" elevation="3" class="  bg-transparent" rounded >
+  <v-toolbar color="bg-transparent" elevation="3" class="ps-16 bg-transparent" rounded>
     <v-toolbar-items>
       <v-btn variant="plain" to="/admin">Dashboard</v-btn>
     </v-toolbar-items>
@@ -39,14 +39,13 @@ async function logout() {
       <v-btn variant="plain" to="/admin/users">Benutzerverwaltung</v-btn>
     </v-toolbar-items>
     <v-spacer></v-spacer>
-
     <v-toolbar-items>
       <v-btn @click="logout()" icon="mdi-logout-variant"></v-btn>
     </v-toolbar-items>
     <v-spacer></v-spacer>
   </v-toolbar>
   <div class="background">
-    <RouterView />
+    <RouterView/>
   </div>
 
   <Logo style="position: centered;"/>
