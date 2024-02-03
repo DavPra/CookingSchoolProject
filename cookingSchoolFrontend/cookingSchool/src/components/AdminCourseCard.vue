@@ -3,7 +3,7 @@ import {useCourseStore} from "@/stores/CourseStore";
 import {ref, toRaw} from "vue";
 
 const courseStore = useCourseStore()
-const course = defineProps(['courseTitle', 'startDate', 'description', 'courseId', 'teacher', 'image'])
+const course = defineProps(['courseTitle', 'startDate', 'description', 'courseId', 'teacher', 'image','price'])
 
 
 async function deleteCourse(courseId) {
@@ -26,6 +26,7 @@ const show = ref(false)
 
     <v-card-title>{{ course.courseTitle }}</v-card-title>
     <v-card-subtitle>{{ course.startDate }}</v-card-subtitle>
+    <v-card-subtitle>Preis: {{ course.price }}</v-card-subtitle>
     <v-card-text>{{ course.teacher }}</v-card-text>
     <v-card-actions>
       <v-btn

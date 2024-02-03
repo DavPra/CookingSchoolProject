@@ -8,7 +8,7 @@ import BookCourseAlert from "@/components/BookCourseAlert.vue";
 import ConfirmDialog from "@/components/ConfirmDialog.vue";
 
 const courseStore = useCourseStore()
-const course = defineProps(['courseTitle','startDate','description','image','teacher','courseId','prize'])
+const course = defineProps(['courseTitle','startDate','description','image','teacher','courseId','price'])
 
 const router = useRouter();
 const showConfirmDialog = ref(false);
@@ -70,7 +70,7 @@ async function bookCourse() {
           {{ courseTitle }}
         </v-card-title>
         <v-card-subtitle>Datum: {{ startDate }}</v-card-subtitle>
-        <v-card-subtitle>Preis: {{ prize }}</v-card-subtitle>
+        <v-card-subtitle>Preis: {{ price }}</v-card-subtitle>
         <v-card-text>Lehrer: {{ teacher }}</v-card-text>
         <v-btn class="ms-3 " rounded="xl" @click="showConfirmDialog = true"
           color="primary">
