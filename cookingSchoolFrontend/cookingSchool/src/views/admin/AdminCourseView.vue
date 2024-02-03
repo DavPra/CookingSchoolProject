@@ -144,9 +144,9 @@ const openAdminCourseUserView = (courseId) => {
           ></v-img>
 
           <v-card-title>{{ course.courseTitle }}</v-card-title>
-          <v-card-subtitle>{{ course.startDate }}</v-card-subtitle>
-          <v-card-subtitle>{{ course.price }}</v-card-subtitle>
-          <v-card-text>{{ course.teacher }}</v-card-text>
+          <v-card-subtitle>Datum:{{ course.startDate }}</v-card-subtitle>
+          <v-card-subtitle>Preis:{{ course.price }}€</v-card-subtitle>
+          <v-card-text>Lehrer: {{ course.teacher }}</v-card-text>
           <v-card-actions>
             <v-btn
                 variant="plain"
