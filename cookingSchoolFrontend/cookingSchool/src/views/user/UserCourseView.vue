@@ -50,6 +50,8 @@ ShowUserCourses();
             :description="courses.description"
             :courseId="courses.courseId"
             :teacher="courses.teacher"
+            :prize="courses.price"
+            :image="courses.image"
         />
       </v-col>
     </v-row>
@@ -65,6 +67,7 @@ ShowUserCourses();
             :courseId="course.courseId"
             :teacher="course.teacher"
             :prize="course.price"
+            :image="course.image"
         />
       </v-col>
     </v-row>

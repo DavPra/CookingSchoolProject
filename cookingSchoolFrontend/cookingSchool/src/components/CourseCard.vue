@@ -8,7 +8,8 @@ import BookCourseAlert from "@/components/BookCourseAlert.vue";
 import ConfirmDialog from "@/components/ConfirmDialog.vue";
 
 const courseStore = useCourseStore()
-const course = defineProps(['courseTitle','startDate','description','teacher','courseId','prize'])
+const course = defineProps(['courseTitle','startDate','description','image','teacher','courseId','prize'])
+
 const router = useRouter();
 const showConfirmDialog = ref(false);
 const showFinConfirmDialog = ref(false);
@@ -62,7 +63,7 @@ async function bookCourse() {
         <v-img
             cover
             height="250"
-            src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+            :src="image"
         ></v-img>
 
         <v-card-title>
